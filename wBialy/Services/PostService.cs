@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Linq.Expressions;
 using wBialy.Authorization;
@@ -9,17 +10,16 @@ using wBialy.Models;
 
 namespace wBialy.Services
 {
-
     public interface IPostService
     {
-        void Confirm(int id);
-        int Create(CreatePostDto dto);
-        void Delete(int id);
-        PageResult<PostDto> GetAll(PostQuery query);
-        PageResult<PostDto> GetAllToConfirm(PostQuery query);
-        PostDto GetByIdToConfirm(int id);
-        PostDto GetById(int id);
-        void Update(EditPostDto editPostDto, int id);
+        Task Confirm(int id);
+        Task<int> Create(CreatePostDto dto);
+        Task Delete(int id);
+        Task<PageResult<PostDto>> GetAll(PostQuery query);
+        Task<PageResult<PostDto>> GetAllToConfirm(PostQuery query);
+        Task<PostDto> GetById(int id);
+        Task<PostDto> GetByIdToConfirm(int id);
+        Task Update(EditPostDto editPostDto, int id);
     }
 
     public class PostService : IPostService
@@ -37,22 +37,21 @@ namespace wBialy.Services
             _userContextService = userContextService;
             _mapper = mapper;
         }
-        public PostDto GetById(int id)
+        public async Task<PostDto> GetById(int id)
         {
-            var post = _context.Posts.FirstOrDefault(x => x.PostId == id && x.Confirmed == true);
+            var post = await _context.Posts.FirstOrDefaultAsync(x => x.PostId == id && x.Confirmed == true);
             if (post is null)
                 throw new NotFoundException("Post not found");
             var result = _mapper.Map<PostDto>(post);
             return result;
         }
-        public PageResult<PostDto> GetAll(PostQuery query)
+        public async Task<PageResult<PostDto>> GetAll(PostQuery query)
         {
             var baseQuery = _context
                 .Posts
-                .Where(x => query.SearchPhrase == null
+                .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())
-                ) && x.Confirmed == true); //nie do konca pewien jestem
+                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true);
             if (!string.IsNullOrEmpty(query.SortBy))
             {
                 var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
@@ -67,31 +66,31 @@ namespace wBialy.Services
                     baseQuery.OrderBy(selectedColumn)
                     : baseQuery.OrderByDescending(selectedColumn);
             }
-            var posts = baseQuery
+            var posts = await baseQuery
                 .Skip(query.PageSize * (query.PageNumber - 1))
                 .Take(query.PageSize)
-                .ToList();
+                .ToListAsync();
             var totalItemsCount = baseQuery.Count();
             var postDtos = _mapper.Map<List<PostDto>>(posts);
             var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
             return result;
         }
-        public int Create(CreatePostDto dto)
+        public async Task<int> Create(CreatePostDto dto)
         {
             var postDto = _mapper.Map<Post>(dto);
             var userId = _userContextService.GetUserId;
             postDto.UserId = userId;
-            _context.Add(postDto);
+            await _context.AddAsync(postDto);
             postDto.AddDate = DateTime.Now;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return postDto.PostId;
         }
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
             _logger.LogWarning($"Post with id: {id} DELETE action invoked");
-            var post = _context
+            var post = await _context
                 .Posts
-                .FirstOrDefault(x => x.PostId == id);
+                .FirstOrDefaultAsync(x => x.PostId == id);
             if (post is null)
             {
                 throw new NotFoundException("Post not found");
@@ -103,13 +102,13 @@ namespace wBialy.Services
                 throw new ForbidException("Forbidden");
             }
             _context.Remove(post);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
-        public void Update(EditPostDto editPostDto, int id)
+        public async Task Update(EditPostDto editPostDto, int id)
         {
-            var postToUpdate = _context
+            var postToUpdate = await _context
                 .Posts
-                .FirstOrDefault(x => x.PostId == id);
+                .FirstOrDefaultAsync(x => x.PostId == id);
             if (postToUpdate is null)
             {
                 throw new NotFoundException("Post not found");
@@ -128,24 +127,23 @@ namespace wBialy.Services
             postToUpdate.Tags = editPostDto.Tags;
             postToUpdate.Link = editPostDto.Link;
             postToUpdate.Confirmed = false;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
-        public PostDto GetByIdToConfirm(int id)
+        public async Task<PostDto> GetByIdToConfirm(int id)
         {
-            var post = _context.Posts.FirstOrDefault(x => x.PostId == id && x.Confirmed == false);
+            var post = await _context.Posts.FirstOrDefaultAsync(x => x.PostId == id && x.Confirmed == false);
             if (post is null)
                 throw new NotFoundException("Post not found");
             var result = _mapper.Map<PostDto>(post);
             return result;
         }
-        public PageResult<PostDto> GetAllToConfirm(PostQuery query)
+        public async Task<PageResult<PostDto>> GetAllToConfirm(PostQuery query)
         {
             var baseQuery = _context
                 .Posts
-                .Where(x => query.SearchPhrase == null
+                .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())
-                ) && x.Confirmed == false);
+                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false);
             if (!string.IsNullOrEmpty(query.SortBy))
             {
                 var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
@@ -160,26 +158,26 @@ namespace wBialy.Services
                     baseQuery.OrderBy(selectedColumn)
                     : baseQuery.OrderByDescending(selectedColumn);
             }
-            var posts = baseQuery
+            var posts = await baseQuery
                 .Skip(query.PageSize * (query.PageNumber - 1))
                 .Take(query.PageSize)
-                .ToList();
+                .ToListAsync();
             var totalItemsCount = baseQuery.Count();
             var postDtos = _mapper.Map<List<PostDto>>(posts);
             var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
             return result;
         }
-        public void Confirm(int id)
+        public async Task Confirm(int id)
         {
-            var postToConfirm = _context
+            var postToConfirm = await _context
                 .Posts
-                .FirstOrDefault(x => x.PostId == id && x.Confirmed == false);
+                .FirstOrDefaultAsync(x => x.PostId == id && x.Confirmed == false);
             if (postToConfirm is null)
             {
                 throw new NotFoundException("Post not found");
             }
             postToConfirm.Confirmed = true;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

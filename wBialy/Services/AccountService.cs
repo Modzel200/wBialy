@@ -12,8 +12,8 @@ namespace wBialy.Services
 {
     public interface IAccountService
     {
-        string GenerateJwt(LoginDto dto);
-        void RegisterUser(RegisterUserDto dto);
+        Task<string> GenerateJwt(LoginDto dto);
+        Task RegisterUser(RegisterUserDto dto);
     }
 
     public class AccountService : IAccountService
@@ -27,7 +27,7 @@ namespace wBialy.Services
             _passwordHasher = passwordHasher;
             _authenticationSettings = authenticationSettings;
         }
-        public void RegisterUser(RegisterUserDto dto)
+        public async Task RegisterUser(RegisterUserDto dto)
         {
             var newUser = new User()
             {
@@ -36,14 +36,14 @@ namespace wBialy.Services
             var hashedPassword = _passwordHasher.HashPassword(newUser, dto.Password);
             newUser.PasswordHash = hashedPassword;
             newUser.RoleId = 1;
-            _context.Users.Add(newUser);
-            _context.SaveChanges();
+            await _context.Users.AddAsync(newUser);
+            await _context.SaveChangesAsync();
         }
-        public string GenerateJwt(LoginDto dto)
+        public async Task<string> GenerateJwt(LoginDto dto)
         {
-            var user = _context.Users
+            var user = await _context.Users
                 .Include(x => x.Role)
-                .FirstOrDefault(x => x.Email == dto.Email);
+                .FirstOrDefaultAsync(x => x.Email == dto.Email);
             if (user is null)
             {
                 throw new BadRequestException("Invalid username or password");
