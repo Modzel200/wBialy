@@ -13,6 +13,7 @@
         public string? Tags { get; set; }
         public string? Link { get; set; }
         public int? UserId { get; set; }
+        public bool Confirmed { get; set; } = false;
         public virtual User User { get; set; }
 #pragma warning restore CS8618 // Pole niedopuszczające wartości null musi zawierać wartość inną niż null podczas kończenia działania konstruktora. Rozważ zadeklarowanie pola jako dopuszczającego wartość null.
     }

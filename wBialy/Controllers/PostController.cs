@@ -31,6 +31,27 @@ namespace wBialy.Controllers
             var post = _postService.GetById(id);
             return Ok(post);
         }
+        [HttpGet("admin")]
+        [Authorize(Roles = "Admin")]
+        public ActionResult<IEnumerable<Post>> GetAllToConfirm([FromQuery] PostQuery query)
+        {
+            var posts = _postService.GetAllToConfirm(query);
+            return Ok(posts);
+        }
+        [HttpGet("admin/{id}")]
+        [Authorize(Roles = "Admin")]
+        public ActionResult<Post> GetOneToConfirm([FromRoute] int id)
+        {
+            var post = _postService.GetByIdToConfirm(id);
+            return Ok(post);
+        }
+        [HttpPut("admin/{id}")]
+        [Authorize(Roles = "Admin")]
+        public ActionResult Confirm([FromRoute] int id)
+        {
+            _postService.Confirm(id);
+            return Ok();
+        }
         [HttpPost]
         [Authorize(Roles = "User,Admin")]
         public ActionResult CreatePost([FromBody] CreatePostDto dto)
@@ -39,12 +60,14 @@ namespace wBialy.Controllers
             return Created($"/api/post/{id}", null);
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "User,Admin")]
         public ActionResult Delete([FromRoute] int id)
         {
             _postService.Delete(id);
             return NoContent();
         }
         [HttpPut("{id}")]
+        [Authorize(Roles = "User,Admin")]
         public ActionResult Update([FromBody] EditPostDto modifyPostDto, [FromRoute] int id)
         {
             _postService.Update(modifyPostDto, id);

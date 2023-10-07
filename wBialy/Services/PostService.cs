@@ -9,11 +9,15 @@ using wBialy.Models;
 
 namespace wBialy.Services
 {
+
     public interface IPostService
     {
+        void Confirm(int id);
         int Create(CreatePostDto dto);
         void Delete(int id);
         PageResult<PostDto> GetAll(PostQuery query);
+        PageResult<PostDto> GetAllToConfirm(PostQuery query);
+        PostDto GetByIdToConfirm(int id);
         PostDto GetById(int id);
         void Update(EditPostDto editPostDto, int id);
     }
@@ -35,7 +39,7 @@ namespace wBialy.Services
         }
         public PostDto GetById(int id)
         {
-            var post = _context.Posts.FirstOrDefault(x => x.PostId == id);
+            var post = _context.Posts.FirstOrDefault(x => x.PostId == id && x.Confirmed == true);
             if (post is null)
                 throw new NotFoundException("Post not found");
             var result = _mapper.Map<PostDto>(post);
@@ -48,7 +52,7 @@ namespace wBialy.Services
                 .Where(x => query.SearchPhrase == null
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
                 || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())
-                ));
+                ) && x.Confirmed == true); //nie do konca pewien jestem
             if (!string.IsNullOrEmpty(query.SortBy))
             {
                 var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
@@ -123,6 +127,58 @@ namespace wBialy.Services
             postToUpdate.EventDate = editPostDto.EventDate;
             postToUpdate.Tags = editPostDto.Tags;
             postToUpdate.Link = editPostDto.Link;
+            postToUpdate.Confirmed = false;
+            _context.SaveChanges();
+        }
+        public PostDto GetByIdToConfirm(int id)
+        {
+            var post = _context.Posts.FirstOrDefault(x => x.PostId == id && x.Confirmed == false);
+            if (post is null)
+                throw new NotFoundException("Post not found");
+            var result = _mapper.Map<PostDto>(post);
+            return result;
+        }
+        public PageResult<PostDto> GetAllToConfirm(PostQuery query)
+        {
+            var baseQuery = _context
+                .Posts
+                .Where(x => query.SearchPhrase == null
+                || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
+                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())
+                ) && x.Confirmed == false);
+            if (!string.IsNullOrEmpty(query.SortBy))
+            {
+                var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
+                {
+                    { nameof(Post.Title), x => x.Title},
+                    { nameof(Post.Description), x => x.Description},
+                    { nameof(Post.EventDate), x => x.EventDate},
+                };
+                var selectedColumn = columnsSelectors[query.SortBy];
+
+                baseQuery = query.SortDirection == SortDirection.ASC ?
+                    baseQuery.OrderBy(selectedColumn)
+                    : baseQuery.OrderByDescending(selectedColumn);
+            }
+            var posts = baseQuery
+                .Skip(query.PageSize * (query.PageNumber - 1))
+                .Take(query.PageSize)
+                .ToList();
+            var totalItemsCount = baseQuery.Count();
+            var postDtos = _mapper.Map<List<PostDto>>(posts);
+            var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
+            return result;
+        }
+        public void Confirm(int id)
+        {
+            var postToConfirm = _context
+                .Posts
+                .FirstOrDefault(x => x.PostId == id && x.Confirmed == false);
+            if (postToConfirm is null)
+            {
+                throw new NotFoundException("Post not found");
+            }
+            postToConfirm.Confirmed = true;
             _context.SaveChanges();
         }
     }
