@@ -8,7 +8,7 @@
         public string? Image { get; set; }
         public string Place { get; set; }
         public DateTime EventDate { get; set; }
-        //public List<string>? Tags { get; set; }
+        public string? Tags { get; set; }
         public string? Link { get; set; }
 #pragma warning restore CS8618
     }

@@ -16,11 +16,11 @@ namespace wBialy.Entities
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>()
-                .HasKey(p => p.Id);
+                .HasKey(p => p.PostId);
             modelBuilder.Entity<Role>()
-                .HasKey(p => p.Id);
+                .HasKey(p => p.RoleId);
             modelBuilder.Entity<User>()
-                .HasKey(p => p.Id);
+                .HasKey(p => p.UserId);
             modelBuilder.Entity<Post>()
                 .Property(x => x.Title)
                 .IsRequired()

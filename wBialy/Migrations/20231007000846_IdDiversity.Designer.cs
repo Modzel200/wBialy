@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using wBialy.Entities;
 
@@ -11,9 +12,11 @@ using wBialy.Entities;
 namespace wBialy.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231007000846_IdDiversity")]
+    partial class IdDiversity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,6 +35,12 @@ namespace wBialy.Migrations
 
                     b.Property<DateTime>("AddDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CreatedByUserUserId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -59,12 +68,9 @@ namespace wBialy.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("PostId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CreatedByUserUserId");
 
                     b.ToTable("Posts");
                 });
@@ -114,11 +120,13 @@ namespace wBialy.Migrations
 
             modelBuilder.Entity("wBialy.Entities.Post", b =>
                 {
-                    b.HasOne("wBialy.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                    b.HasOne("wBialy.Entities.User", "CreatedByUser")
+                        .WithMany("Posts")
+                        .HasForeignKey("CreatedByUserUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("CreatedByUser");
                 });
 
             modelBuilder.Entity("wBialy.Entities.User", b =>
@@ -130,6 +138,11 @@ namespace wBialy.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("wBialy.Entities.User", b =>
+                {
+                    b.Navigation("Posts");
                 });
 #pragma warning restore 612, 618
         }

@@ -15,14 +15,10 @@ namespace wBialy.Services
         {
             _httpContextAccessor = httpContextAccessor;
         }
-#pragma warning disable CS8603 // Możliwe zwrócenie odwołania o wartości null.
         public ClaimsPrincipal User =>
             _httpContextAccessor.HttpContext?.User;
-#pragma warning restore CS8603 // Możliwe zwrócenie odwołania o wartości null.
-#pragma warning disable CS8602 // Wyłuskanie odwołania, które może mieć wartość null.
         public int? GetUserId =>
             User is null ? null : (int?)int.Parse(User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value);
-#pragma warning restore CS8602 // Wyłuskanie odwołania, które może mieć wartość null.
 
     }
 }

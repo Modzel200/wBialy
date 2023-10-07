@@ -14,7 +14,7 @@ namespace wBialy.Authorization
             }
             var userId = context.User.FindFirst(x => x.Type == ClaimTypes.NameIdentifier).Value;
 
-            if (post.CreatedById == int.Parse(userId))
+            if (post.UserId == int.Parse(userId))
             {
                 context.Succeed(requirement);
             }

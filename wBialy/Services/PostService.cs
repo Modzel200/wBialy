@@ -35,7 +35,7 @@ namespace wBialy.Services
         }
         public PostDto GetById(int id)
         {
-            var post = _context.Posts.FirstOrDefault(x => x.Id == id);
+            var post = _context.Posts.FirstOrDefault(x => x.PostId == id);
             if (post is null)
                 throw new NotFoundException("Post not found");
             var result = _mapper.Map<PostDto>(post);
@@ -48,7 +48,6 @@ namespace wBialy.Services
                 .Where(x => query.SearchPhrase == null
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
                 || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Tags.Any(y => y.Contains(query.SearchPhrase.ToLower()))
                 ));
             if (!string.IsNullOrEmpty(query.SortBy))
             {
@@ -77,17 +76,18 @@ namespace wBialy.Services
         {
             var postDto = _mapper.Map<Post>(dto);
             var userId = _userContextService.GetUserId;
-            postDto.CreatedById = (int)userId;
+            postDto.UserId = userId;
             _context.Add(postDto);
+            postDto.AddDate = DateTime.Now;
             _context.SaveChanges();
-            return postDto.Id;
+            return postDto.PostId;
         }
         public void Delete(int id)
         {
             _logger.LogWarning($"Post with id: {id} DELETE action invoked");
             var post = _context
                 .Posts
-                .FirstOrDefault(x => x.Id == id);
+                .FirstOrDefault(x => x.PostId == id);
             if (post is null)
             {
                 throw new NotFoundException("Post not found");
@@ -105,7 +105,7 @@ namespace wBialy.Services
         {
             var postToUpdate = _context
                 .Posts
-                .FirstOrDefault(x => x.Id == id);
+                .FirstOrDefault(x => x.PostId == id);
             if (postToUpdate is null)
             {
                 throw new NotFoundException("Post not found");
