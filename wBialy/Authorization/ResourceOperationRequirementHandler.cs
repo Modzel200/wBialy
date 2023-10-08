@@ -6,7 +6,7 @@ namespace wBialy.Authorization
 {
     public class ResourceOperationRequirementHandler : AuthorizationHandler<ResourceOperationRequirement, Post>
     {
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ResourceOperationRequirement requirement, Post post)
+        protected override async Task HandleRequirementAsync(AuthorizationHandlerContext context, ResourceOperationRequirement requirement, Post post)
         {
             if (requirement.ResourceOperation == ResourceOperation.Create || requirement.ResourceOperation == ResourceOperation.Read)
             {
@@ -18,7 +18,7 @@ namespace wBialy.Authorization
             {
                 context.Succeed(requirement);
             }
-            return Task.CompletedTask;
+            //return Task.CompletedTask;
         }
     }
 }

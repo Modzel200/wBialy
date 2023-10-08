@@ -22,56 +22,56 @@ namespace wBialy.Controllers
         public async Task<ActionResult<IEnumerable<Post>>> GetAll([FromQuery]PostQuery query)
         {
             var posts = await _postService.GetAll(query);
-            return Ok(posts);
+            return await Task.FromResult(Ok(posts));
         }
         [HttpGet("{id}")]
         [AllowAnonymous]
         public async Task<ActionResult<Post>> GetOne([FromRoute] int id)
         {
             var post = await _postService.GetById(id);
-            return Ok(post);
+            return await Task.FromResult(Ok(post));
         }
         [HttpGet("admin")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<IEnumerable<Post>>> GetAllToConfirm([FromQuery] PostQuery query)
         {
             var posts = await _postService.GetAllToConfirm(query);
-            return Ok(posts);
+            return await Task.FromResult(Ok(posts));
         }
         [HttpGet("admin/{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Post>> GetOneToConfirm([FromRoute] int id)
         {
             var post = await _postService.GetByIdToConfirm(id);
-            return Ok(post);
+            return await Task.FromResult(Ok(post));
         }
         [HttpPut("admin/{id}")]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Confirm([FromRoute] int id)
         {
             await _postService.Confirm(id);
-            return Ok();
+            return await Task.FromResult(Ok());
         }
         [HttpPost]
         [Authorize(Roles = "User,Admin")]
         public async Task<ActionResult> CreatePost([FromBody] CreatePostDto dto)
         {
             var id = await _postService.Create(dto);
-            return Created($"/api/post/{id}", null);
+            return await Task.FromResult(Created($"/api/post/{id}", null));
         }
         [HttpDelete("{id}")]
         [Authorize(Roles = "User,Admin")]
         public async Task<ActionResult> Delete([FromRoute] int id)
         {
             await _postService.Delete(id);
-            return NoContent();
+            return await Task.FromResult(NoContent());
         }
         [HttpPut("{id}")]
         [Authorize(Roles = "User,Admin")]
         public async Task<ActionResult> Update([FromBody] EditPostDto modifyPostDto, [FromRoute] int id)
         {
             await _postService.Update(modifyPostDto, id);
-            return Ok();
+            return await Task.FromResult(Ok());
         }
     }
 }

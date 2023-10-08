@@ -18,13 +18,13 @@ namespace wBialy.Controllers
         public async Task<ActionResult> RegisterUser([FromBody] RegisterUserDto dto)
         {
             await _accountService.RegisterUser(dto);
-            return Ok();
+            return await Task.FromResult(Ok());
         }
         [HttpPost("login")]
         public async Task<ActionResult> Login([FromBody] LoginDto dto)
         {
             string token = await _accountService.GenerateJwt(dto);
-            return Ok(token);
+            return await Task.FromResult(Ok(token));
         }
     }
 }

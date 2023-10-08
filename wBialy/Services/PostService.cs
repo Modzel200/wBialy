@@ -43,7 +43,7 @@ namespace wBialy.Services
             if (post is null)
                 throw new NotFoundException("Post not found");
             var result = _mapper.Map<PostDto>(post);
-            return result;
+            return await Task.FromResult(result);
         }
         public async Task<PageResult<PostDto>> GetAll(PostQuery query)
         {
@@ -73,7 +73,7 @@ namespace wBialy.Services
             var totalItemsCount = baseQuery.Count();
             var postDtos = _mapper.Map<List<PostDto>>(posts);
             var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
-            return result;
+            return await Task.FromResult(result);
         }
         public async Task<int> Create(CreatePostDto dto)
         {
@@ -83,7 +83,7 @@ namespace wBialy.Services
             await _context.AddAsync(postDto);
             postDto.AddDate = DateTime.Now;
             await _context.SaveChangesAsync();
-            return postDto.PostId;
+            return await Task.FromResult(postDto.PostId);
         }
         public async Task Delete(int id)
         {
@@ -102,6 +102,7 @@ namespace wBialy.Services
                 throw new ForbidException("Forbidden");
             }
             _context.Remove(post);
+            //_context.Remove(await _context.Posts.SingleOrDefaultAsync(x => x == post));
             await _context.SaveChangesAsync();
         }
         public async Task Update(EditPostDto editPostDto, int id)
@@ -135,15 +136,15 @@ namespace wBialy.Services
             if (post is null)
                 throw new NotFoundException("Post not found");
             var result = _mapper.Map<PostDto>(post);
-            return result;
+            return await Task.FromResult(result);
         }
         public async Task<PageResult<PostDto>> GetAllToConfirm(PostQuery query)
         {
-            var baseQuery = _context
+            var baseQuery = /*await*/ _context
                 .Posts
                 .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false);
+                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false)/*.ToListAsync()*/;
             if (!string.IsNullOrEmpty(query.SortBy))
             {
                 var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
@@ -165,7 +166,7 @@ namespace wBialy.Services
             var totalItemsCount = baseQuery.Count();
             var postDtos = _mapper.Map<List<PostDto>>(posts);
             var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
-            return result;
+            return await Task.FromResult(result);
         }
         public async Task Confirm(int id)
         {
