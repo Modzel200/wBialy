@@ -14,20 +14,20 @@
     @media (max-width: 750px){
         padding: 0 2vw 0 2vw;
     }
-  
+
     .left-side {
       display: flex;
       align-items: center;
-  
+
       .logo {
         font-size: 20px;
         font-weight: bold;
         margin-right: 20px;
       }
-  
+
       .nav-items {
         display: flex;
-  
+
         a {
             padding:5px;
             color: #18A0FB;
@@ -35,8 +35,8 @@
             margin-right: 20px;
             transition: 0.3s ease;
             font-weight: normal;
-            transition: 0.3 ease;
-  
+            cursor: pointer;
+
           &:hover {
             background-color: #eee;
             border-radius: 6px;
@@ -65,7 +65,7 @@
         }
       }
     }
-  
+
     .right-side {
         button{
             margin-left: 10px;
@@ -73,12 +73,10 @@
             height: 40px;
             flex-shrink: 0;
             padding: 8px 16px;
-            border: none;
             cursor: pointer;
             font-size: 14px;
-            border: 1px solid;
             border-radius: 6px;
-            border-color: #18A0FB;
+            border: 1px solid #18A0FB;
             transition: box-shadow 0.3s ease, transform 0.3s ease;
             &:hover {
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -104,6 +102,5 @@
             align-items: center;
             padding: 1vw;
         }
-    } 
+    }
   }
-  
