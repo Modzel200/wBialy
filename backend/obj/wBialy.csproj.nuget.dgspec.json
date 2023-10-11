@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ACEREK\\Documents\\GitHub\\wBialy\\wBialy\\wBialy.csproj": {}
+    "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ACEREK\\Documents\\GitHub\\wBialy\\wBialy\\wBialy.csproj": {
+    "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ACEREK\\Documents\\GitHub\\wBialy\\wBialy\\wBialy.csproj",
+        "projectUniqueName": "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj",
         "projectName": "wBialy",
-        "projectPath": "C:\\Users\\ACEREK\\Documents\\GitHub\\wBialy\\wBialy\\wBialy.csproj",
-        "packagesPath": "C:\\Users\\ACEREK\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ACEREK\\Documents\\GitHub\\wBialy\\wBialy\\obj\\",
+        "projectPath": "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj",
+        "packagesPath": "C:\\Users\\Mafisto CHEF\\.nuget\\packages\\",
+        "outputPath": "D:\\Kurs\\wBialy\\wBialy\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "F:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\ACEREK\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mafisto CHEF\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

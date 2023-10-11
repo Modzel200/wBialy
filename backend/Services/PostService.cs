@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 using wBialy.Authorization;
 using wBialy.Entities;
@@ -47,11 +49,7 @@ namespace wBialy.Services
         }
         public async Task<PageResult<PostDto>> GetAll(PostQuery query)
         {
-            var baseQuery = _context
-                .Posts
-                .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
-                || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true);
+            List<Post> baseQuery;
             if (!string.IsNullOrEmpty(query.SortBy))
             {
                 var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
@@ -61,19 +59,67 @@ namespace wBialy.Services
                     { nameof(Post.EventDate), x => x.EventDate},
                 };
                 var selectedColumn = columnsSelectors[query.SortBy];
-
-                baseQuery = query.SortDirection == SortDirection.ASC ?
-                    baseQuery.OrderBy(selectedColumn)
-                    : baseQuery.OrderByDescending(selectedColumn);
+                if(query.SortDirection == SortDirection.ASC)
+                {
+                    baseQuery = await _context
+                    .Posts
+                    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
+                    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
+                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true)
+                    .OrderBy(selectedColumn)
+                    .ToListAsync();
+                } else
+                {
+                    baseQuery = await _context
+                    .Posts
+                    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
+                    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
+                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true)
+                    .OrderByDescending(selectedColumn)
+                    .ToListAsync();
+                }
+            } else
+            {
+                baseQuery = await _context
+                    .Posts
+                    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
+                    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
+                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true)
+                    .ToListAsync();
             }
-            var posts = await baseQuery
+            var posts = baseQuery
                 .Skip(query.PageSize * (query.PageNumber - 1))
-                .Take(query.PageSize)
-                .ToListAsync();
+                .Take(query.PageSize);
             var totalItemsCount = baseQuery.Count();
             var postDtos = _mapper.Map<List<PostDto>>(posts);
             var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
             return await Task.FromResult(result);
+            //var baseQuery = await _context
+            //    .Posts
+            //    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
+            //    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
+            //    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true).ToListAsync();
+            //if (!string.IsNullOrEmpty(query.SortBy))
+            //{
+            //    var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
+            //    {
+            //        { nameof(Post.Title), x => x.Title},
+            //        { nameof(Post.Description), x => x.Description},
+            //        { nameof(Post.EventDate), x => x.EventDate},
+            //    };
+            //    var selectedColumn = columnsSelectors[query.SortBy];
+            //    baseQuery = query.SortDirection == SortDirection.ASC ?
+            //        baseQuery.OrderBy(selectedColumn)
+            //        : baseQuery.OrderByDescending(selectedColumn);
+            //}
+            //var posts = await baseQuery
+            //    .Skip(query.PageSize * (query.PageNumber - 1))
+            //    .Take(query.PageSize)
+            //    .ToListAsync();
+            //var totalItemsCount = baseQuery.Count();
+            //var postDtos = _mapper.Map<List<PostDto>>(posts);
+            //var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
+            //return await Task.FromResult(result);
         }
         public async Task<int> Create(CreatePostDto dto)
         {
@@ -140,11 +186,7 @@ namespace wBialy.Services
         }
         public async Task<PageResult<PostDto>> GetAllToConfirm(PostQuery query)
         {
-            var baseQuery = /*await*/ _context
-                .Posts
-                .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
-                || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false)/*.ToListAsync()*/;
+            List<Post> baseQuery;
             if (!string.IsNullOrEmpty(query.SortBy))
             {
                 var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
@@ -154,19 +196,70 @@ namespace wBialy.Services
                     { nameof(Post.EventDate), x => x.EventDate},
                 };
                 var selectedColumn = columnsSelectors[query.SortBy];
-
-                baseQuery = query.SortDirection == SortDirection.ASC ?
-                    baseQuery.OrderBy(selectedColumn)
-                    : baseQuery.OrderByDescending(selectedColumn);
+                if (query.SortDirection == SortDirection.ASC)
+                {
+                    baseQuery = await _context
+                    .Posts
+                    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
+                    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
+                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false)
+                    .OrderBy(selectedColumn)
+                    .ToListAsync();
+                }
+                else
+                {
+                    baseQuery = await _context
+                    .Posts
+                    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
+                    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
+                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false)
+                    .OrderByDescending(selectedColumn)
+                    .ToListAsync();
+                }
             }
-            var posts = await baseQuery
+            else
+            {
+                baseQuery = await _context
+                    .Posts
+                    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
+                    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
+                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false)
+                    .ToListAsync();
+            }
+            var posts = baseQuery
                 .Skip(query.PageSize * (query.PageNumber - 1))
-                .Take(query.PageSize)
-                .ToListAsync();
+                .Take(query.PageSize);
             var totalItemsCount = baseQuery.Count();
             var postDtos = _mapper.Map<List<PostDto>>(posts);
             var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
             return await Task.FromResult(result);
+            //var baseQuery = /*await*/ _context
+            //    .Posts
+            //    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
+            //    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
+            //    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false)/*.ToListAsync()*/;
+            //if (!string.IsNullOrEmpty(query.SortBy))
+            //{
+            //    var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
+            //    {
+            //        { nameof(Post.Title), x => x.Title},
+            //        { nameof(Post.Description), x => x.Description},
+            //        { nameof(Post.EventDate), x => x.EventDate},
+            //    };
+            //    var selectedColumn = columnsSelectors[query.SortBy];
+
+            //    baseQuery = query.SortDirection == SortDirection.ASC ?
+            //        baseQuery.OrderBy(selectedColumn)
+            //        : baseQuery.OrderByDescending(selectedColumn);
+            //}
+            //var posts = await baseQuery
+            //    .Skip(query.PageSize * (query.PageNumber - 1))
+            //    .Take(query.PageSize)
+            //    .ToListAsync();
+            //var totalItemsCount = baseQuery.Count();
+            //var postDtos = _mapper.Map<List<PostDto>>(posts);
+            //var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
+            //return await Task.FromResult(result);
         }
         public async Task Confirm(int id)
         {
