@@ -1,0 +1,106 @@
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid black;
+    border-color: rgba(0, 0, 0, 0.25);
+    height: 60px;
+    position: relative;
+    padding: 0 5vw 0 5vw;
+
+    @media (max-width: 750px){
+        padding: 0 2vw 0 2vw;
+    }
+
+    .left-side {
+      display: flex;
+      align-items: center;
+
+      .logo {
+        font-size: 20px;
+        font-weight: bold;
+        margin-right: 20px;
+      }
+
+      .nav-items {
+        display: flex;
+
+        a {
+            padding:5px;
+            color: #18A0FB;
+            text-decoration: none;
+            margin-right: 20px;
+            transition: 0.3s ease;
+            font-weight: normal;
+            cursor: pointer;
+
+          &:hover {
+            background-color: #eee;
+            border-radius: 6px;
+          }
+        }
+
+        @media (max-width: 750px){
+            display: none;
+            padding:0;
+            margin:0;
+            &.is-open{
+                display: grid;
+                gap:2vh;
+                grid-template-columns: 100vw;
+                justify-content: center;
+                position: absolute;
+                top: 70px;
+                background-color: #fff;
+                width: 100vw;
+
+                a{
+                    border-bottom: 1px solid;
+                    border-color: rgba(0, 0, 0, 0.25);
+                }
+            }
+        }
+      }
+    }
+
+    .right-side {
+        button{
+            margin-left: 10px;
+            width: 130px;
+            height: 40px;
+            flex-shrink: 0;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 6px;
+            border: 1px solid #18A0FB;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            &:hover {
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                transform: translateY(-1px);
+            }
+        }
+      .btn-secondary {
+        background-color: #fff;
+        color: #18A0FB;
+      }
+      .btn-primary {
+        background-color: #18A0FB;
+        color: #fff;
+      }
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .burger{
+        display: none;
+        cursor: pointer;
+        @media (max-width: 750px){
+            display: flex;
+            align-items: center;
+            padding: 1vw;
+        }
+    }
+  }
