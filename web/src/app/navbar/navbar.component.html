@@ -20,8 +20,9 @@
       </div>
     </div>
     <div class="right-side">
-      <button class="btn-secondary">Zaloguj</button>
-      <button class="btn-primary">Zarejestruj</button>
+      <button *ngIf="!isLogged" (click)="isLogged=!isLogged" class="btn-secondary">Zaloguj</button>
+      <button *ngIf="!isLogged" class="btn-primary">Zarejestruj</button>
+      <button *ngIf="isLogged" class="btn-primary">Twój profil</button>
       <div class="burger">
         <i (click)="toggleMenu()" class="material-icons">{{ isMenuOpen ? "close" : "menu"}}</i>
     </div>
