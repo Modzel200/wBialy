@@ -1,2 +1,18 @@
-<h1>Co nowego ...</h1>
-<p>Darmowe eventy codziennie!</p>
+<div class="home">
+    <h1>Co nowego w Białymstoku?</h1>
+    <h2>Darmowe eventy codziennie!</h2>
+    <div class="container">
+        <div class="card" *ngFor="let event of shortEvents">
+            <img src="{{event.Image}}" alt="Denim Jeans" style="width:100%">
+            <h1>{{event.Title}}</h1>
+            <p class="date">{{event.EventDate}}</p>
+            <p>{{event.Description}}</p>
+            <p><button class="btn-primary">Dołącz</button></p>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="btn-secondary material-icons">arrow_back_ios</button>
+        <button class="btn-secondary material-icons">arrow_forward_ios</button>
+    </div>
+</div>
+  
