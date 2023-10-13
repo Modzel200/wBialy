@@ -9,6 +9,8 @@ using wBialy.Authorization;
 using wBialy.Entities;
 using wBialy.Exceptions;
 using wBialy.Models;
+using Microsoft.IdentityModel.Tokens;
+using System.Diagnostics;
 
 namespace wBialy.Services
 {
@@ -355,12 +357,8 @@ namespace wBialy.Services
         {
             var postToUpdate = await _context
                 .LFPosts
+                .Include(x => x.Tags)
                 .FirstOrDefaultAsync(x => x.PostId == id);
-            var tagList = new List<LFTag>();
-            foreach (var e in editPostDto.Tags)
-            {
-                tagList.Add(await _context.LFTags.FirstOrDefaultAsync(x => x.Name == e.Name));
-            }
             if (postToUpdate is null)
             {
                 throw new NotFoundException("Post not found");
@@ -371,25 +369,26 @@ namespace wBialy.Services
             {
                 throw new ForbidException("Forbidden");
             }
+            postToUpdate.Tags.Clear();
+            foreach (var e in editPostDto.Tags)
+            {
+                postToUpdate.Tags.Add(await _context.LFTags.FirstOrDefaultAsync(x => x.Name == e.Name));
+            }
             postToUpdate.Title = editPostDto.Title;
             postToUpdate.Description = editPostDto.Description;
             postToUpdate.Image = editPostDto.Image;
             postToUpdate.Place = editPostDto.Place;
-            //postToUpdate.EventDate = editPostDto.EventDate;
-            postToUpdate.Tags = tagList;
             postToUpdate.Confirmed = false;
+            //postToUpdate.EventDate = editPostDto.EventDate;
+            _context.Update(postToUpdate);
             await _context.SaveChangesAsync();
         }
         public async Task UpdateEventPost(EditEventPostDto editPostDto, int id)
         {
             var postToUpdate = await _context
                 .EventPosts
+                .Include(x => x.Tags)
                 .FirstOrDefaultAsync(x => x.PostId == id);
-            var tagList = new List<EventTag>();
-            foreach (var e in editPostDto.Tags)
-            {
-                tagList.Add(await _context.EventTags.FirstOrDefaultAsync(x => x.Name == e.Name));
-            }
             if (postToUpdate is null)
             {
                 throw new NotFoundException("Post not found");
@@ -399,27 +398,28 @@ namespace wBialy.Services
             if (!authorizationResult.Succeeded)
             {
                 throw new ForbidException("Forbidden");
+            }
+            postToUpdate.Tags.Clear();
+            foreach (var e in editPostDto.Tags)
+            {
+                postToUpdate.Tags.Add(await _context.EventTags.FirstOrDefaultAsync(x => x.Name == e.Name));
             }
             postToUpdate.Title = editPostDto.Title;
             postToUpdate.Description = editPostDto.Description;
             postToUpdate.Image = editPostDto.Image;
             postToUpdate.Place = editPostDto.Place;
             postToUpdate.EventDate = editPostDto.EventDate;
-            postToUpdate.Tags = tagList;
             postToUpdate.Link = editPostDto.Link;
             postToUpdate.Confirmed = false;
+            _context.Update(postToUpdate);
             await _context.SaveChangesAsync();
         }
         public async Task UpdateGastroPost(EditGastroPostDto editPostDto, int id)
         {
             var postToUpdate = await _context
                 .GastroPosts
+                .Include(x => x.Tags)
                 .FirstOrDefaultAsync(x => x.PostId == id);
-            var tagList = new List<GastroTag>();
-            foreach (var e in editPostDto.Tags)
-            {
-                tagList.Add(await _context.GastroTags.FirstOrDefaultAsync(x => x.Name == e.Name));
-            }
             if (postToUpdate is null)
             {
                 throw new NotFoundException("Post not found");
@@ -430,14 +430,19 @@ namespace wBialy.Services
             {
                 throw new ForbidException("Forbidden");
             }
+            postToUpdate.Tags.Clear();
+            foreach (var e in editPostDto.Tags)
+            {
+                postToUpdate.Tags.Add(await _context.GastroTags.FirstOrDefaultAsync(x => x.Name == e.Name));
+            }
             postToUpdate.Title = editPostDto.Title;
             postToUpdate.Description = editPostDto.Description;
             postToUpdate.Image = editPostDto.Image;
             postToUpdate.Place = editPostDto.Place;
             postToUpdate.Day = editPostDto.Day;
-            postToUpdate.Tags = tagList;
             postToUpdate.Link = editPostDto.Link;
             postToUpdate.Confirmed = false;
+            _context.Update(postToUpdate);
             await _context.SaveChangesAsync();
         }
         public async Task<PostDto> GetByIdToConfirm(int id)
