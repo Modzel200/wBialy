@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "W/rNp2uYSgIGiNVWS/CA+LTF74i5qqRJY2pfM8Balz7UMunhpfNvSDx7+IFh8SFKPWdLQCYawXB0O5XB9Y7GEA==",
+  "dgSpecHash": "7AGGPwBQ9T9AmR7F1AQu89gP2/HpezqHd/9hrjabgqarodGMWZj8eADCSo8+mifEaPc4TwOAOwvZeeCCWAYsdA==",
   "success": true,
-  "projectFilePath": "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj",
+  "projectFilePath": "D:\\Kurs\\wBialy\\backend\\wBialy.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Mafisto CHEF\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Mafisto CHEF\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

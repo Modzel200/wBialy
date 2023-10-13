@@ -17,11 +17,25 @@ namespace wBialy.Controllers
         {
             _postService = postService;
         }
-        [HttpGet]
+        [HttpGet("lfposts")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Post>>> GetAll([FromQuery]PostQuery query)
+        public async Task<ActionResult<IEnumerable<Post>>> GetAllLF([FromQuery]PostQuery query)
         {
-            var posts = await _postService.GetAll(query);
+            var posts = await _postService.GetAllLFPosts(query);
+            return await Task.FromResult(Ok(posts));
+        }
+        [HttpGet("gastroposts")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Post>>> GetAllGastro([FromQuery] PostQuery query)
+        {
+            var posts = await _postService.GetAllGastroPosts(query);
+            return await Task.FromResult(Ok(posts));
+        }
+        [HttpGet("eventposts")]
+        [AllowAnonymous]
+        public async Task<ActionResult<IEnumerable<Post>>> GetAllEvent([FromQuery] PostQuery query)
+        {
+            var posts = await _postService.GetAllEventPosts(query);
             return await Task.FromResult(Ok(posts));
         }
         [HttpGet("{id}")]
@@ -52,11 +66,25 @@ namespace wBialy.Controllers
             await _postService.Confirm(id);
             return await Task.FromResult(Ok());
         }
-        [HttpPost]
+        [HttpPost("lfposts")]
         [Authorize(Roles = "User,Admin")]
-        public async Task<ActionResult> CreatePost([FromBody] CreatePostDto dto)
+        public async Task<ActionResult> CreateLFPost([FromBody] CreateLFPostDto dto)
         {
-            var id = await _postService.Create(dto);
+            var id = await _postService.CreateLFPost(dto);
+            return await Task.FromResult(Created($"/api/post/{id}", null));
+        }
+        [HttpPost("eventposts")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult> CreateEventPost([FromBody] CreateEventPostDto dto)
+        {
+            var id = await _postService.CreateEventPost(dto);
+            return await Task.FromResult(Created($"/api/post/{id}", null));
+        }
+        [HttpPost("gastroposts")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult> CreateGastroPost([FromBody] CreateGastroPostDto dto)
+        {
+            var id = await _postService.CreateGastroPost(dto);
             return await Task.FromResult(Created($"/api/post/{id}", null));
         }
         [HttpDelete("{id}")]
@@ -66,11 +94,25 @@ namespace wBialy.Controllers
             await _postService.Delete(id);
             return await Task.FromResult(NoContent());
         }
-        [HttpPut("{id}")]
+        [HttpPut("lfposts/{id}")]
         [Authorize(Roles = "User,Admin")]
-        public async Task<ActionResult> Update([FromBody] EditPostDto modifyPostDto, [FromRoute] int id)
+        public async Task<ActionResult> UpdateLFPost([FromBody] EditLFPostDto modifyPostDto, [FromRoute] int id)
         {
-            await _postService.Update(modifyPostDto, id);
+            await _postService.UpdateLFPost(modifyPostDto, id);
+            return await Task.FromResult(Ok());
+        }
+        [HttpPut("eventposts/{id}")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult> UpdateEventPost([FromBody] EditEventPostDto modifyPostDto, [FromRoute] int id)
+        {
+            await _postService.UpdateEventPost(modifyPostDto, id);
+            return await Task.FromResult(Ok());
+        }
+        [HttpPut("gastroposts/{id}")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult> UpdateGstroPost([FromBody] EditGastroPostDto modifyPostDto, [FromRoute] int id)
+        {
+            await _postService.UpdateGastroPost(modifyPostDto, id);
             return await Task.FromResult(Ok());
         }
     }

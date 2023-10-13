@@ -52,11 +52,16 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("appDb")));
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<wBialySeeder>();
 builder.Services.AddScoped<IValidator<RegisterUserDto>, RegisterUserDtoValidator>();
 builder.Services.AddScoped<IValidator<LoginDto>, LoginDtoValidator>();
-builder.Services.AddScoped<IValidator<EditPostDto>, EditPostDtoValidator>();
-builder.Services.AddScoped<IValidator<CreatePostDto>, CreatePostDtoValidator>();
-
+builder.Services.AddScoped<IValidator<EditLFPostDto>, EditLFPostDtoValidator>();
+builder.Services.AddScoped<IValidator<CreateLFPostDto>, CreateLFPostDtoValidator>();
+builder.Services.AddScoped<IValidator<CreateEventPostDto>, CreateEventPostDtoValidator>();
+builder.Services.AddScoped<IValidator<CreateGastroPostDto>, CreateGastroPostDtoValidator>();
+builder.Services.AddScoped<IValidator<LFTagDto>, LFTagDtoValidator>();
+builder.Services.AddScoped<IValidator<EventTagDto>, EventTagDtoValidator>();
+builder.Services.AddScoped<IValidator<GastroTagDto>, GastroTagDtoValidator>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
@@ -67,7 +72,9 @@ builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
 
 var app = builder.Build();
-
+var scope = app.Services.CreateScope();
+var seeder = scope.ServiceProvider.GetRequiredService<wBialySeeder>();
+seeder.Seed();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

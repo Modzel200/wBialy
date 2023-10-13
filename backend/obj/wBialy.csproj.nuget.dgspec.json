@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj": {}
+    "D:\\Kurs\\wBialy\\backend\\wBialy.csproj": {}
   },
   "projects": {
-    "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj": {
+    "D:\\Kurs\\wBialy\\backend\\wBialy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj",
+        "projectUniqueName": "D:\\Kurs\\wBialy\\backend\\wBialy.csproj",
         "projectName": "wBialy",
-        "projectPath": "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj",
+        "projectPath": "D:\\Kurs\\wBialy\\backend\\wBialy.csproj",
         "packagesPath": "C:\\Users\\Mafisto CHEF\\.nuget\\packages\\",
-        "outputPath": "D:\\Kurs\\wBialy\\wBialy\\obj\\",
+        "outputPath": "D:\\Kurs\\wBialy\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "F:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

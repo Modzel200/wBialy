@@ -2,17 +2,16 @@
 
 namespace wBialy.Models
 {
-    public class PostDto
+    public class EditGastroPostDto
     {
-#pragma warning disable CS8618 
+#pragma warning disable CS8618
         public string Title { get; set; }
         public string Description { get; set; }
         public string? Image { get; set; }
         public string Place { get; set; }
-        public DateTime? EventDate { get; set; }
-        public DateTime? Day { get; set; }
-        public string? Tags { get; set; }
+        public DateTime Day { get; set; }
+        public List<GastroTag> Tags { get; set; }
         public string? Link { get; set; }
-#pragma warning restore CS8618 
+#pragma warning restore CS8618
     }
 }

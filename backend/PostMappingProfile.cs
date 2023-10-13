@@ -9,7 +9,15 @@ namespace wBialy
         public PostMappingProfile()
         {
             CreateMap<Post, PostDto>();
-            CreateMap<CreatePostDto, Post>();
+            CreateMap<LFPost, PostDto>();
+            CreateMap<GastroPost, PostDto>();
+            CreateMap<EventPost, PostDto>();
+            //CreateMap<CreateEventPostDto, Post>();
+            //CreateMap<CreateGastroPostDto, Post>();
+            //CreateMap<CreateLFPostDto, Post>();
+            CreateMap<CreateLFPostDto, LFPost>();
+            CreateMap<CreateGastroPostDto, GastroPost>();
+            CreateMap<CreateEventPostDto, EventPost>();
         }
     }
 }
