@@ -59,11 +59,11 @@
     color: #fff;
   }
   @media (max-width: 1400px){
-    grid-template-columns: 5vw 50vw 40vw 5vw;
+    grid-template-columns: 5vw 50vw 40vw 1vw;
   }
 
   @media (max-width: 900px){
-    padding: 2vh 15vw 2vh 15vw;
+    padding: 2vh 18vw 2vh 18vw;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
