@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dawid\\Desktop\\GitHub\\wbialy\\wBialy\\backend\\wBialy.csproj": {}
+    "F:\\GitHub\\wBialy\\backend\\wBialy.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dawid\\Desktop\\GitHub\\wbialy\\wBialy\\backend\\wBialy.csproj": {
+    "F:\\GitHub\\wBialy\\backend\\wBialy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dawid\\Desktop\\GitHub\\wbialy\\wBialy\\backend\\wBialy.csproj",
+        "projectUniqueName": "F:\\GitHub\\wBialy\\backend\\wBialy.csproj",
         "projectName": "wBialy",
-        "projectPath": "C:\\Users\\dawid\\Desktop\\GitHub\\wbialy\\wBialy\\backend\\wBialy.csproj",
-        "packagesPath": "C:\\Users\\dawid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dawid\\Desktop\\GitHub\\wbialy\\wBialy\\backend\\obj\\",
+        "projectPath": "F:\\GitHub\\wBialy\\backend\\wBialy.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "F:\\GitHub\\wBialy\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dawid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
