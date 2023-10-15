@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj": {}
+    "C:\\Users\\dawid\\Desktop\\GitHub\\wbialy\\wBialy\\backend\\wBialy.csproj": {}
   },
   "projects": {
-    "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj": {
+    "C:\\Users\\dawid\\Desktop\\GitHub\\wbialy\\wBialy\\backend\\wBialy.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj",
+        "projectUniqueName": "C:\\Users\\dawid\\Desktop\\GitHub\\wbialy\\wBialy\\backend\\wBialy.csproj",
         "projectName": "wBialy",
-        "projectPath": "D:\\Kurs\\wBialy\\wBialy\\wBialy.csproj",
-        "packagesPath": "C:\\Users\\Mafisto CHEF\\.nuget\\packages\\",
-        "outputPath": "D:\\Kurs\\wBialy\\wBialy\\obj\\",
+        "projectPath": "C:\\Users\\dawid\\Desktop\\GitHub\\wbialy\\wBialy\\backend\\wBialy.csproj",
+        "packagesPath": "C:\\Users\\dawid\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dawid\\Desktop\\GitHub\\wbialy\\wBialy\\backend\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "F:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Mafisto CHEF\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\dawid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -103,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

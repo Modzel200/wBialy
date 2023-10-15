@@ -7,6 +7,8 @@ import {FormsModule} from "@angular/forms";
 import { EventsComponent } from './events/events.component';
 import { EventComponent } from './events/event/event.component';
 import { HomeComponent } from './home/home.component';
+import { SignupFormComponent } from './signup-form/signup-form.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { HomeComponent } from './home/home.component';
     NavbarComponent,
     EventsComponent,
     EventComponent,
-    HomeComponent
+    HomeComponent,
+    SignupFormComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
