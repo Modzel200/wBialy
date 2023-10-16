@@ -30,3 +30,5 @@ backend/.vs/wBialy/v17/.futdcache.v2
 backend/.vs/wBialy/v17/.suo
 backend/.vs/
 backend/obj/
+backend/wBialyApiLogs/*
+backend/bin/
