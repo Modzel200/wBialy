@@ -19,10 +19,10 @@ namespace wBialy.Controllers
         }
         [HttpGet("kutas")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<PostDto>>> guwno()
+        public ActionResult<IEnumerable<PostDto>> guwno()
         {
-            var posts = await _postService.gettt();
-            return await Task.FromResult(Ok(posts));
+            var posts = _postService.gettt();
+            return Ok(posts);
         }
         [HttpGet("lfposts")]
         [AllowAnonymous]
