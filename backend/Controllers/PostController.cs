@@ -19,42 +19,42 @@ namespace wBialy.Controllers
         }
         [HttpGet("lfposts")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Post>>> GetAllLF([FromQuery]PostQuery query)
+        public async Task<ActionResult<IEnumerable<PostDto>>> GetAllLF([FromQuery]PostQuery query)
         {
             var posts = await _postService.GetAllLFPosts(query);
             return await Task.FromResult(Ok(posts));
         }
         [HttpGet("gastroposts")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Post>>> GetAllGastro([FromQuery] PostQuery query)
+        public async Task<ActionResult<IEnumerable<PostDto>>> GetAllGastro([FromQuery] PostQuery query)
         {
             var posts = await _postService.GetAllGastroPosts(query);
             return await Task.FromResult(Ok(posts));
         }
         [HttpGet("eventposts")]
         [AllowAnonymous]
-        public async Task<ActionResult<IEnumerable<Post>>> GetAllEvent([FromQuery] PostQuery query)
+        public async Task<ActionResult<IEnumerable<PostDto>>> GetAllEvent([FromQuery] PostQuery query)
         {
             var posts = await _postService.GetAllEventPosts(query);
             return await Task.FromResult(Ok(posts));
         }
         [HttpGet("{id}")]
         [AllowAnonymous]
-        public async Task<ActionResult<Post>> GetOne([FromRoute] int id)
+        public async Task<ActionResult<PostDto>> GetOne([FromRoute] int id)
         {
             var post = await _postService.GetById(id);
             return await Task.FromResult(Ok(post));
         }
         [HttpGet("admin")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<IEnumerable<Post>>> GetAllToConfirm([FromQuery] PostQuery query)
+        public async Task<ActionResult<IEnumerable<PostDto>>> GetAllToConfirm([FromQuery] PostQuery query)
         {
             var posts = await _postService.GetAllToConfirm(query);
             return await Task.FromResult(Ok(posts));
         }
         [HttpGet("admin/{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<Post>> GetOneToConfirm([FromRoute] int id)
+        public async Task<ActionResult<PostDto>> GetOneToConfirm([FromRoute] int id)
         {
             var post = await _postService.GetByIdToConfirm(id);
             return await Task.FromResult(Ok(post));
