@@ -23,3 +23,8 @@ backend/obj/Debug/net7.0/wBialy.dll
 backend/obj/Debug/net7.0/wBialy.MvcApplicationPartsAssemblyInfo.cs
 backend/obj/Debug/net7.0/wBialy.pdb
 *.log
+backend/.vs/ProjectEvaluation/wbialy.metadata.v7.bin
+backend/.vs/ProjectEvaluation/wbialy.projects.v7.bin
+backend/.vs/wBialy/DesignTimeBuild/.dtbcache.v2
+backend/.vs/wBialy/v17/.futdcache.v2
+backend/.vs/wBialy/v17/.suo
