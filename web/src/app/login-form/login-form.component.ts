@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import {RegisterUser} from "../signup-form/model/signup-form.model";
+import {UserLogin} from "./model/login-form.model";
+import {LoginFormService} from "./service/login-form.service";
 
 @Component({
   selector: 'app-login-form',
@@ -6,5 +9,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
-
+  user: UserLogin = {
+    Email: '',
+    Password: ''
+  }
+  token:string='';
+  constructor(private loginFormService: LoginFormService) {
+  }
+  onSubmit()
+  {
+    this.loginFormService.loginUser(this.user).subscribe(response=>{this.token=response});
+  }
 }

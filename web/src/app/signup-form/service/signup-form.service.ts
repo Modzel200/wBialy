@@ -1,5 +1,5 @@
 import {HttpClient} from "@angular/common/http";
-import {RegisterUserDto} from "../model/signup-form.model";
+import {RegisterUser} from "../model/signup-form.model";
 import {Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 @Injectable({
@@ -10,8 +10,8 @@ export class SignupFormService{
   constructor(private http: HttpClient) {
   }
   //signup
-  signUpUser(user: RegisterUserDto): Observable<RegisterUserDto>{
+  signUpUser(user: RegisterUser): Observable<RegisterUser>{
     console.log("serwis");
-    return this.http.post<RegisterUserDto>(this.baseUrl,user);
+    return this.http.post<RegisterUser>(this.baseUrl,user);
   }
 }
