@@ -10,7 +10,6 @@ import {EventComponent} from "./event/event.component";
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit{
-
   events: EventPost[] = [];
   pageResult: PageResultModel={
     Items: [],
@@ -28,10 +27,12 @@ export class EventsComponent implements OnInit{
     this.eventsService.getAllPosts()
       .subscribe(response => {
       console.log(response);
+      console.log(response.TotalItemsCount);
       this.pageResult = response;
     })
   }
   testFunc(){
-    console.log(this.pageResult.Items)
+    console.log(this.pageResult.TotalPages)
   }
 }
+
