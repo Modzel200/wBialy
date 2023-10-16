@@ -67,6 +67,14 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FrontEndClient", policyBuilder =>
+        policyBuilder.AllowAnyMethod()
+        .AllowAnyHeader()
+        .WithOrigins(builder.Configuration["AllowedOrigins"])
+        );
+});
 
 
 
@@ -75,6 +83,7 @@ var app = builder.Build();
 var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<wBialySeeder>();
 seeder.Seed();
+app.UseCors("FrontEndClient");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
