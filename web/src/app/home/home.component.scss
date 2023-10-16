@@ -15,10 +15,12 @@
         .card {
             display: grid;
             gap:1vh;
+            grid-template-rows: 1fr 1fr 2fr 1fr;
             border-radius: 6px;
             overflow: hidden;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             max-width: 300px;
+            height: 400px;
             margin: auto;
             text-align: center;
             transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -32,8 +34,15 @@
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
                 transform: translateY(-1px);
             }
-          }
-          
+        }
+
+        @media (max-width: 800px){
+          display: flex;
+          align-items: center;
+          padding: 1vw;
+      }
+
+
     }
 
     h1{
@@ -43,8 +52,19 @@
     }
     h2{
         font-size: 2rem;
-        padding-bottom: 5vh;
+        
     }
+
+    @media (max-width: 900px){
+        gap: 1vh;
+        h1{
+            font-size: 3rem;
+        }
+        h2{
+            font-size: 1.5rem;
+        }
+    }
+
 
     button{
         width: 100%;
@@ -81,4 +101,5 @@
     justify-content: center;
     align-self: center;
   }
+  
 }
