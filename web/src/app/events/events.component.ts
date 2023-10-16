@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {EventPost} from "./model/event.model";
 import {EventsService} from "./service/events.service";
 import {PageResultModel} from "./model/pageResult.model";
+import {map} from 'rxjs/operators'
+import {EventComponent} from "./event/event.component";
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
@@ -23,14 +25,13 @@ export class EventsComponent implements OnInit{
     this.getAllPosts();
   }
   getAllPosts(){
-    this.eventsService.getAllPosts().subscribe(response => {
+    this.eventsService.getAllPosts()
+      .subscribe(response => {
       console.log(response);
-      console.log(response.Items);
       this.pageResult = response;
-      console.log(this.pageResult.TotalPages);
     })
   }
   testFunc(){
-    console.log(typeof this.pageResult.Items)
+    console.log(this.pageResult.Items)
   }
 }

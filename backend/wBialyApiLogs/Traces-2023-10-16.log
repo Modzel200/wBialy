@@ -24592,3 +24592,538 @@ ORDER BY [p].[AddDate] DESC
 2023-10-16 16:33:41.6961|20008|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Disposed connection to database '' on server '' (0ms). 
 2023-10-16 16:33:41.6961|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7012/api/post/eventposts?PageNumber=1&PageSize=5&SortBy=Title - - - 200 - application/json;+charset=utf-8 15.8800ms 
 2023-10-16 16:33:41.6961|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEAHN7GEGQ" received WINDOW_UPDATE frame for stream ID 0 with length 4 and flags 0x0. 
+2023-10-16 17:52:52.9052|10401|DEBUG|Microsoft.EntityFrameworkCore.Infrastructure|An 'IServiceProvider' was created for internal use by Entity Framework. 
+2023-10-16 17:52:53.3431|10601|DEBUG|Microsoft.EntityFrameworkCore.Model|The index {'PostsPostId'} was not created on entity type 'EventPostEventTag (Dictionary<string, object>)' as the properties are already covered by the index {'PostsPostId', 'TagsTagId'}. 
+2023-10-16 17:52:53.3431|10601|DEBUG|Microsoft.EntityFrameworkCore.Model|The index {'PostsPostId'} was not created on entity type 'GastroPostGastroTag (Dictionary<string, object>)' as the properties are already covered by the index {'PostsPostId', 'TagsTagId'}. 
+2023-10-16 17:52:53.3431|10601|DEBUG|Microsoft.EntityFrameworkCore.Model|The index {'PostsPostId'} was not created on entity type 'LFPostLFTag (Dictionary<string, object>)' as the properties are already covered by the index {'PostsPostId', 'TagsTagId'}. 
+2023-10-16 17:52:53.5479|10600|DEBUG|Microsoft.EntityFrameworkCore.Model.Validation|The property 'EventPostEventTag (Dictionary<string, object>).PostsPostId' was created in shadow state because there are no eligible CLR members with a matching name. 
+2023-10-16 17:52:53.5479|10600|DEBUG|Microsoft.EntityFrameworkCore.Model.Validation|The property 'EventPostEventTag (Dictionary<string, object>).TagsTagId' was created in shadow state because there are no eligible CLR members with a matching name. 
+2023-10-16 17:52:53.5479|10600|DEBUG|Microsoft.EntityFrameworkCore.Model.Validation|The property 'GastroPostGastroTag (Dictionary<string, object>).PostsPostId' was created in shadow state because there are no eligible CLR members with a matching name. 
+2023-10-16 17:52:53.5479|10600|DEBUG|Microsoft.EntityFrameworkCore.Model.Validation|The property 'GastroPostGastroTag (Dictionary<string, object>).TagsTagId' was created in shadow state because there are no eligible CLR members with a matching name. 
+2023-10-16 17:52:53.5479|10600|DEBUG|Microsoft.EntityFrameworkCore.Model.Validation|The property 'LFPostLFTag (Dictionary<string, object>).PostsPostId' was created in shadow state because there are no eligible CLR members with a matching name. 
+2023-10-16 17:52:53.5479|10600|DEBUG|Microsoft.EntityFrameworkCore.Model.Validation|The property 'LFPostLFTag (Dictionary<string, object>).TagsTagId' was created in shadow state because there are no eligible CLR members with a matching name. 
+2023-10-16 17:52:53.6753|10403|DEBUG|Microsoft.EntityFrameworkCore.Infrastructure|Entity Framework Core 7.0.11 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:7.0.11' with options: None 
+2023-10-16 17:52:53.7360|20005|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Creating DbConnection. 
+2023-10-16 17:52:53.7683|20006|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Created DbConnection. (31ms). 
+2023-10-16 17:52:53.7683|20000|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opening connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.0535|20001|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opened connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.0583|20103|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Creating DbCommand for 'ExecuteNonQuery'. 
+2023-10-16 17:52:55.0583|20104|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Created DbCommand for 'ExecuteNonQuery' (4ms). 
+2023-10-16 17:52:55.0583|20106|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Initialized DbCommand for 'ExecuteNonQuery' (9ms). 
+2023-10-16 17:52:55.0715|20100|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1 
+2023-10-16 17:52:55.0919|20101|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (21ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT 1 
+2023-10-16 17:52:55.0919|20002|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closing connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.0919|20003|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closed connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB' (3ms). 
+2023-10-16 17:52:55.1626|10111|DEBUG|Microsoft.EntityFrameworkCore.Query|Compiling query expression: 
+'DbSet<Role>()
+    .Any()' 
+2023-10-16 17:52:55.3400|10107|DEBUG|Microsoft.EntityFrameworkCore.Query|Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Roles AS r)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    wBialy.Entities.AppDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()' 
+2023-10-16 17:52:55.3823|20103|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Creating DbCommand for 'ExecuteReader'. 
+2023-10-16 17:52:55.3823|20104|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Created DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:52:55.3823|20106|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Initialized DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:52:55.3823|20000|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opening connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.3841|20001|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opened connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.3841|20100|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Roles] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END 
+2023-10-16 17:52:55.3841|20101|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (11ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Roles] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END 
+2023-10-16 17:52:55.4055|20301|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Closing data reader to 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4055|20300|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|A data reader for 'wBialyDb' on server '(localdb)\MSSQLLocalDB' is being disposed after spending 10ms reading results. 
+2023-10-16 17:52:55.4055|20002|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closing connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4055|20003|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closed connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB' (0ms). 
+2023-10-16 17:52:55.4055|10111|DEBUG|Microsoft.EntityFrameworkCore.Query|Compiling query expression: 
+'DbSet<LFTag>()
+    .Any()' 
+2023-10-16 17:52:55.4195|10107|DEBUG|Microsoft.EntityFrameworkCore.Query|Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Tags AS t
+            INNER JOIN LFTags AS l ON t.TagId == l.TagId)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    wBialy.Entities.AppDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()' 
+2023-10-16 17:52:55.4195|20103|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Creating DbCommand for 'ExecuteReader'. 
+2023-10-16 17:52:55.4195|20104|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Created DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:52:55.4195|20106|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Initialized DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:52:55.4195|20000|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opening connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4195|20001|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opened connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4195|20100|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Tags] AS [t]
+        INNER JOIN [LFTags] AS [l] ON [t].[TagId] = [l].[TagId]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END 
+2023-10-16 17:52:55.4195|20101|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Tags] AS [t]
+        INNER JOIN [LFTags] AS [l] ON [t].[TagId] = [l].[TagId]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END 
+2023-10-16 17:52:55.4195|20301|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Closing data reader to 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4195|20300|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|A data reader for 'wBialyDb' on server '(localdb)\MSSQLLocalDB' is being disposed after spending 0ms reading results. 
+2023-10-16 17:52:55.4195|20002|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closing connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4195|20003|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closed connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB' (0ms). 
+2023-10-16 17:52:55.4195|10111|DEBUG|Microsoft.EntityFrameworkCore.Query|Compiling query expression: 
+'DbSet<EventTag>()
+    .Any()' 
+2023-10-16 17:52:55.4195|10107|DEBUG|Microsoft.EntityFrameworkCore.Query|Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Tags AS t
+            INNER JOIN EventTags AS e ON t.TagId == e.TagId)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    wBialy.Entities.AppDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()' 
+2023-10-16 17:52:55.4195|20103|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Creating DbCommand for 'ExecuteReader'. 
+2023-10-16 17:52:55.4195|20104|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Created DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:52:55.4195|20106|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Initialized DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:52:55.4195|20000|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opening connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4195|20001|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opened connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4195|20100|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Tags] AS [t]
+        INNER JOIN [EventTags] AS [e] ON [t].[TagId] = [e].[TagId]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END 
+2023-10-16 17:52:55.4195|20101|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (2ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Tags] AS [t]
+        INNER JOIN [EventTags] AS [e] ON [t].[TagId] = [e].[TagId]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END 
+2023-10-16 17:52:55.4299|20301|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Closing data reader to 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4299|20300|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|A data reader for 'wBialyDb' on server '(localdb)\MSSQLLocalDB' is being disposed after spending 0ms reading results. 
+2023-10-16 17:52:55.4299|20002|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closing connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4299|20003|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closed connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB' (0ms). 
+2023-10-16 17:52:55.4299|10111|DEBUG|Microsoft.EntityFrameworkCore.Query|Compiling query expression: 
+'DbSet<GastroTag>()
+    .Any()' 
+2023-10-16 17:52:55.4299|10107|DEBUG|Microsoft.EntityFrameworkCore.Query|Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<bool>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> 0
+        SELECT EXISTS (
+            SELECT 1
+            FROM Tags AS t
+            INNER JOIN GastroTags AS g ON t.TagId == g.TagId)), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, bool>, 
+    wBialy.Entities.AppDbContext, 
+    False, 
+    False, 
+    True
+)
+    .Single()' 
+2023-10-16 17:52:55.4299|20103|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Creating DbCommand for 'ExecuteReader'. 
+2023-10-16 17:52:55.4299|20104|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Created DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:52:55.4299|20106|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Initialized DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:52:55.4299|20000|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opening connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4299|20001|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opened connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4299|20100|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Tags] AS [t]
+        INNER JOIN [GastroTags] AS [g] ON [t].[TagId] = [g].[TagId]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END 
+2023-10-16 17:52:55.4299|20101|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Tags] AS [t]
+        INNER JOIN [GastroTags] AS [g] ON [t].[TagId] = [g].[TagId]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END 
+2023-10-16 17:52:55.4299|20301|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Closing data reader to 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4299|20300|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|A data reader for 'wBialyDb' on server '(localdb)\MSSQLLocalDB' is being disposed after spending 0ms reading results. 
+2023-10-16 17:52:55.4299|20002|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closing connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:55.4299|20003|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closed connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB' (0ms). 
+2023-10-16 17:52:55.4948|12|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ModelBinderFactory|Registered model binder providers, in the following order: Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider, Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider 
+2023-10-16 17:52:55.5379|1|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting starting 
+2023-10-16 17:52:55.5574|63|INFO|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|User profile is available. Using 'C:\Users\user\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest. 
+2023-10-16 17:52:55.5574|37|DEBUG|Microsoft.AspNetCore.DataProtection.Repositories.FileSystemXmlRepository|Reading data from file 'C:\Users\user\AppData\Local\ASP.NET\DataProtection-Keys\key-04225d81-604f-4a56-ae92-ed39037cf040.xml'. 
+2023-10-16 17:52:55.5838|18|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|Found key {04225d81-604f-4a56-ae92-ed39037cf040}. 
+2023-10-16 17:52:55.5946|13|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.DefaultKeyResolver|Considering key {04225d81-604f-4a56-ae92-ed39037cf040} with expiration date 2024-01-13 21:00:43Z as default key. 
+2023-10-16 17:52:55.5946|0|DEBUG|Microsoft.AspNetCore.DataProtection.TypeForwardingActivator|Forwarded activator type request from Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60 
+2023-10-16 17:52:55.5946|51|DEBUG|Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlDecryptor|Decrypting secret element using Windows DPAPI. 
+2023-10-16 17:52:55.5946|0|DEBUG|Microsoft.AspNetCore.DataProtection.TypeForwardingActivator|Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60 
+2023-10-16 17:52:55.5946|4|DEBUG|Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory|Opening CNG algorithm 'AES' from provider '(null)' with chaining mode CBC. 
+2023-10-16 17:52:55.5946|3|DEBUG|Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.CngCbcAuthenticatedEncryptorFactory|Opening CNG algorithm 'SHA256' from provider '(null)' with HMAC. 
+2023-10-16 17:52:55.5946|2|DEBUG|Microsoft.AspNetCore.DataProtection.KeyManagement.KeyRingProvider|Using key {04225d81-604f-4a56-ae92-ed39037cf040} as the default key. 
+2023-10-16 17:52:55.6016|65|DEBUG|Microsoft.AspNetCore.DataProtection.Internal.DataProtectionHostedService|Key ring with default key {04225d81-604f-4a56-ae92-ed39037cf040} was loaded during application startup. 
+2023-10-16 17:52:55.7066|14|INFO|Microsoft.Hosting.Lifetime|Now listening on: https://localhost:7012 
+2023-10-16 17:52:55.7066|14|INFO|Microsoft.Hosting.Lifetime|Now listening on: http://localhost:5029 
+2023-10-16 17:52:55.7066|13|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly wBialy 
+2023-10-16 17:52:55.7066|13|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly Microsoft.AspNetCore.Watch.BrowserRefresh 
+2023-10-16 17:52:55.7066|13|DEBUG|Microsoft.AspNetCore.Hosting.Diagnostics|Loaded hosting startup assembly Microsoft.WebTools.BrowserLink.Net 
+2023-10-16 17:52:55.7066|0|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down. 
+2023-10-16 17:52:55.7066|0|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Development 
+2023-10-16 17:52:55.7066|0|INFO|Microsoft.Hosting.Lifetime|Content root path: F:\GitHub\wBialy\backend 
+2023-10-16 17:52:55.7066|2|DEBUG|Microsoft.Extensions.Hosting.Internal.Host|Hosting started 
+2023-10-16 17:52:55.9097|39|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q13" accepted. 
+2023-10-16 17:52:55.9097|1|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q13" started. 
+2023-10-16 17:52:55.9450|3|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware|Connection 0HMUEBVRB2Q13 established using the following protocol: Tls13 
+2023-10-16 17:52:55.9634|39|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q14" accepted. 
+2023-10-16 17:52:55.9634|1|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q14" started. 
+2023-10-16 17:52:55.9634|3|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware|Connection 0HMUEBVRB2Q14 established using the following protocol: Tls13 
+2023-10-16 17:52:55.9634|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" sending SETTINGS frame for stream ID 0 with length 24 and flags NONE. 
+2023-10-16 17:52:55.9634|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" sending WINDOW_UPDATE frame for stream ID 0 with length 4 and flags 0x0. 
+2023-10-16 17:52:55.9634|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" received SETTINGS frame for stream ID 0 with length 24 and flags NONE. 
+2023-10-16 17:52:55.9634|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" sending SETTINGS frame for stream ID 0 with length 0 and flags ACK. 
+2023-10-16 17:52:55.9634|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" received WINDOW_UPDATE frame for stream ID 0 with length 4 and flags 0x0. 
+2023-10-16 17:52:55.9634|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" received HEADERS frame for stream ID 1 with length 437 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2023-10-16 17:52:55.9867|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" received SETTINGS frame for stream ID 0 with length 0 and flags ACK. 
+2023-10-16 17:52:56.0034|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7012/api/post/eventposts/?pageSize=5&pageNumber=1&sortBy=Title - - 
+2023-10-16 17:52:56.0152|0|DEBUG|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|Wildcard detected, all requests with hosts will be allowed. 
+2023-10-16 17:52:56.0152|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
+2023-10-16 17:52:56.0394|1001|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|2 candidate(s) found for the request path '/api/post/eventposts/' 
+2023-10-16 17:52:56.0394|1005|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|Endpoint 'wBialy.Controllers.PostController.GetAllEvent (wBialy)' with route pattern 'api/post/eventposts' is valid for the request path '/api/post/eventposts/' 
+2023-10-16 17:52:56.0394|1005|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|Endpoint 'wBialy.Controllers.PostController.GetOne (wBialy)' with route pattern 'api/post/{id}' is valid for the request path '/api/post/eventposts/' 
+2023-10-16 17:52:56.0394|1|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request matched endpoint 'wBialy.Controllers.PostController.GetAllEvent (wBialy)' 
+2023-10-16 17:52:56.0394|2|DEBUG|Microsoft.AspNetCore.Cors.Infrastructure.CorsService|The request has an origin header: 'http://localhost:4200'. 
+2023-10-16 17:52:56.0394|4|INFO|Microsoft.AspNetCore.Cors.Infrastructure.CorsService|CORS policy execution successful. 
+2023-10-16 17:52:56.0568|39|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q15" accepted. 
+2023-10-16 17:52:56.0568|1|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q15" started. 
+2023-10-16 17:52:56.0568|15|DEBUG|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Static files was skipped as the request already matched an endpoint. 
+2023-10-16 17:52:56.0728|39|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q16" accepted. 
+2023-10-16 17:52:56.0728|1|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q16" started. 
+2023-10-16 17:52:56.1900|9|DEBUG|Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler|AuthenticationScheme: Bearer was not authenticated. 
+2023-10-16 17:52:56.1900|0|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executing endpoint 'wBialy.Controllers.PostController.GetAllEvent (wBialy)' 
+2023-10-16 17:52:56.2163|102|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Route matched with {action = "GetAllEvent", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[wBialy.Entities.Post]]] GetAllEvent(wBialy.Models.PostQuery) on controller wBialy.Controllers.PostController (wBialy). 
+2023-10-16 17:52:56.2163|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of authorization filters (in the following order): None 
+2023-10-16 17:52:56.2163|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of resource filters (in the following order): None 
+2023-10-16 17:52:56.2163|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of action filters (in the following order): Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000), Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000) 
+2023-10-16 17:52:56.2163|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of exception filters (in the following order): None 
+2023-10-16 17:52:56.2163|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of result filters (in the following order): Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000) 
+2023-10-16 17:52:56.2163|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executing controller factory for controller wBialy.Controllers.PostController (wBialy) 
+2023-10-16 17:52:56.2849|2|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed controller factory for controller wBialy.Controllers.PostController (wBialy) 
+2023-10-16 17:52:56.2981|22|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder|Attempting to bind parameter 'query' of type 'wBialy.Models.PostQuery' ... 
+2023-10-16 17:52:56.2981|44|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinder|Attempting to bind parameter 'query' of type 'wBialy.Models.PostQuery' using the name '' in request data ... 
+2023-10-16 17:52:56.2981|13|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Attempting to bind property 'wBialy.Models.PostQuery.SearchPhrase' of type 'System.String' using the name 'SearchPhrase' in request data ... 
+2023-10-16 17:52:56.3052|15|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Could not find a value in the request with name 'SearchPhrase' for binding property 'wBialy.Models.PostQuery.SearchPhrase' of type 'System.String'. 
+2023-10-16 17:52:56.3052|14|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Done attempting to bind property 'wBialy.Models.PostQuery.SearchPhrase' of type 'System.String'. 
+2023-10-16 17:52:56.3052|13|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Attempting to bind property 'wBialy.Models.PostQuery.PageNumber' of type 'System.Int32' using the name 'PageNumber' in request data ... 
+2023-10-16 17:52:56.3052|14|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Done attempting to bind property 'wBialy.Models.PostQuery.PageNumber' of type 'System.Int32'. 
+2023-10-16 17:52:56.3052|13|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Attempting to bind property 'wBialy.Models.PostQuery.PageSize' of type 'System.Int32' using the name 'PageSize' in request data ... 
+2023-10-16 17:52:56.3052|14|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Done attempting to bind property 'wBialy.Models.PostQuery.PageSize' of type 'System.Int32'. 
+2023-10-16 17:52:56.3052|13|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Attempting to bind property 'wBialy.Models.PostQuery.SortBy' of type 'System.String' using the name 'SortBy' in request data ... 
+2023-10-16 17:52:56.3052|14|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Done attempting to bind property 'wBialy.Models.PostQuery.SortBy' of type 'System.String'. 
+2023-10-16 17:52:56.3052|13|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Attempting to bind property 'wBialy.Models.PostQuery.SortDirection' of type 'System.Nullable`1[wBialy.Models.SortDirection]' using the name 'SortDirection' in request data ... 
+2023-10-16 17:52:56.3052|15|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Could not find a value in the request with name 'SortDirection' for binding property 'wBialy.Models.PostQuery.SortDirection' of type 'System.Nullable`1[wBialy.Models.SortDirection]'. 
+2023-10-16 17:52:56.3052|14|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Done attempting to bind property 'wBialy.Models.PostQuery.SortDirection' of type 'System.Nullable`1[wBialy.Models.SortDirection]'. 
+2023-10-16 17:52:56.3052|45|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinder|Done attempting to bind parameter 'query' of type 'wBialy.Models.PostQuery'. 
+2023-10-16 17:52:56.3052|23|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder|Done attempting to bind parameter 'query' of type 'wBialy.Models.PostQuery'. 
+2023-10-16 17:52:56.3052|26|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder|Attempting to validate the bound parameter 'query' of type 'wBialy.Models.PostQuery' ... 
+2023-10-16 17:52:56.3305|27|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder|Done attempting to validate the bound parameter 'query' of type 'wBialy.Models.PostQuery'. 
+2023-10-16 17:52:56.3305|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2023-10-16 17:52:56.3305|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2023-10-16 17:52:56.3305|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter. 
+2023-10-16 17:52:56.3305|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter. 
+2023-10-16 17:52:56.3305|101|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executing action method wBialy.Controllers.PostController.GetAllEvent (wBialy) - Validation state: Valid 
+2023-10-16 17:52:56.3305|102|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executing action method wBialy.Controllers.PostController.GetAllEvent (wBialy) with arguments (wBialy.Models.PostQuery) 
+2023-10-16 17:52:56.3455|10403|DEBUG|Microsoft.EntityFrameworkCore.Infrastructure|Entity Framework Core 7.0.11 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:7.0.11' with options: None 
+2023-10-16 17:52:56.3539|10111|DEBUG|Microsoft.EntityFrameworkCore.Query|Compiling query expression: 
+'DbSet<EventPost>()
+    .Where(x => True && x.Confirmed == True)
+    .OrderByDescending(x => (object)x.AddDate)' 
+2023-10-16 17:52:56.3946|10107|DEBUG|Microsoft.EntityFrameworkCore.Query|Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<EventPost>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Post.PostId (int) Required PK FK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Post.AddDate (DateTime) Required, 1], [Property: Post.Confirmed (bool) Required, 2], [Property: Post.Description (string) Required MaxLength(250), 3], [Property: Post.Image (string), 4], [Property: Post.Place (string) Required, 5], [Property: Post.Title (string) Required MaxLength(50), 6], [Property: Post.UserId (int?) FK Index, 7], [Property: OnSitePost.Link (string) Required, 8], [Property: EventPost.EventDate (DateTime) Required, 9] }
+        SELECT p.PostId, p.AddDate, p.Confirmed, p.Description, p.Image, p.Place, p.Title, p.UserId, o.Link, e.EventDate
+        FROM Posts AS p
+        INNER JOIN OnSitePosts AS o ON p.PostId == o.PostId
+        INNER JOIN EventPosts AS e ON p.PostId == e.PostId
+        WHERE CAST(1 AS bit) && (p.Confirmed == CAST(1 AS bit))
+        ORDER BY p.AddDate DESC), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, EventPost>, 
+    wBialy.Entities.AppDbContext, 
+    False, 
+    False, 
+    True
+)' 
+2023-10-16 17:52:56.4032|20103|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Creating DbCommand for 'ExecuteReader'. 
+2023-10-16 17:52:56.4032|20005|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Creating DbConnection. 
+2023-10-16 17:52:56.4032|20006|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Created DbConnection. (0ms). 
+2023-10-16 17:52:56.4032|20104|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Created DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:52:56.4032|20106|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Initialized DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:52:56.4032|20000|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opening connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:56.4032|20001|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opened connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:56.4032|20100|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[PostId], [p].[AddDate], [p].[Confirmed], [p].[Description], [p].[Image], [p].[Place], [p].[Title], [p].[UserId], [o].[Link], [e].[EventDate]
+FROM [Posts] AS [p]
+INNER JOIN [OnSitePosts] AS [o] ON [p].[PostId] = [o].[PostId]
+INNER JOIN [EventPosts] AS [e] ON [p].[PostId] = [e].[PostId]
+WHERE [p].[Confirmed] = CAST(1 AS bit)
+ORDER BY [p].[AddDate] DESC 
+2023-10-16 17:52:56.4247|20101|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (16ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[PostId], [p].[AddDate], [p].[Confirmed], [p].[Description], [p].[Image], [p].[Place], [p].[Title], [p].[UserId], [o].[Link], [e].[EventDate]
+FROM [Posts] AS [p]
+INNER JOIN [OnSitePosts] AS [o] ON [p].[PostId] = [o].[PostId]
+INNER JOIN [EventPosts] AS [e] ON [p].[PostId] = [e].[PostId]
+WHERE [p].[Confirmed] = CAST(1 AS bit)
+ORDER BY [p].[AddDate] DESC 
+2023-10-16 17:52:56.4786|10806|DEBUG|Microsoft.EntityFrameworkCore.ChangeTracking|Context 'AppDbContext' started tracking 'EventPost' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values. 
+2023-10-16 17:52:56.5090|20301|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Closing data reader to 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:56.5090|20300|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|A data reader for 'wBialyDb' on server '(localdb)\MSSQLLocalDB' is being disposed after spending 84ms reading results. 
+2023-10-16 17:52:56.5090|20002|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closing connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:56.5090|20003|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closed connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB' (0ms). 
+2023-10-16 17:52:56.5303|103|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed action method wBialy.Controllers.PostController.GetAllEvent (wBialy), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 193.247ms. 
+2023-10-16 17:52:56.5303|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter. 
+2023-10-16 17:52:56.5303|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter. 
+2023-10-16 17:52:56.5303|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2023-10-16 17:52:56.5303|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2023-10-16 17:52:56.5303|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: Before executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter. 
+2023-10-16 17:52:56.5303|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: After executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter. 
+2023-10-16 17:52:56.5303|5|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Before executing action result Microsoft.AspNetCore.Mvc.OkObjectResult. 
+2023-10-16 17:52:56.5303|11|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|List of registered output formatters, in the following order: Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter, Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter, Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter, Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter 
+2023-10-16 17:52:56.5303|4|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|No information found on request to perform content negotiation. 
+2023-10-16 17:52:56.5303|8|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|Attempting to select an output formatter without using a content type as no explicit content types were specified for the response. 
+2023-10-16 17:52:56.5303|10|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|Attempting to select the first formatter in the output formatters list which can write the result. 
+2023-10-16 17:52:56.5303|2|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response. 
+2023-10-16 17:52:56.5303|1|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor|Executing OkObjectResult, writing value of type 'wBialy.Models.PageResult`1[[wBialy.Models.PostDto, wBialy, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. 
+2023-10-16 17:52:56.5910|6|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|After executing action result Microsoft.AspNetCore.Mvc.OkObjectResult. 
+2023-10-16 17:52:56.5910|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: Before executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter. 
+2023-10-16 17:52:56.5910|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: After executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter. 
+2023-10-16 17:52:56.5910|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" sending HEADERS frame for stream ID 1 with length 136 and flags END_HEADERS. 
+2023-10-16 17:52:56.5910|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" sending DATA frame for stream ID 1 with length 224 and flags NONE. 
+2023-10-16 17:52:56.5910|105|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed action wBialy.Controllers.PostController.GetAllEvent (wBialy) in 374.0657ms 
+2023-10-16 17:52:56.5910|1|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executed endpoint 'wBialy.Controllers.PostController.GetAllEvent (wBialy)' 
+2023-10-16 17:52:56.5910|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" sending DATA frame for stream ID 1 with length 0 and flags END_STREAM. 
+2023-10-16 17:52:56.5910|10407|DEBUG|Microsoft.EntityFrameworkCore.Infrastructure|'AppDbContext' disposed. 
+2023-10-16 17:52:56.6028|20007|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Disposing connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:52:56.6028|20008|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Disposed connection to database '' on server '' (0ms). 
+2023-10-16 17:52:56.6028|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7012/api/post/eventposts/?pageSize=5&pageNumber=1&sortBy=Title - - - 200 - application/json;+charset=utf-8 602.6164ms 
+2023-10-16 17:52:57.4278|39|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q17" accepted. 
+2023-10-16 17:52:57.4278|1|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q17" started. 
+2023-10-16 17:52:57.4305|3|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware|Connection 0HMUEBVRB2Q17 established using the following protocol: Tls13 
+2023-10-16 17:52:57.4305|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending SETTINGS frame for stream ID 0 with length 24 and flags NONE. 
+2023-10-16 17:52:57.4305|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending WINDOW_UPDATE frame for stream ID 0 with length 4 and flags 0x0. 
+2023-10-16 17:52:57.4305|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" received SETTINGS frame for stream ID 0 with length 24 and flags NONE. 
+2023-10-16 17:52:57.4305|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending SETTINGS frame for stream ID 0 with length 0 and flags ACK. 
+2023-10-16 17:52:57.4305|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" received WINDOW_UPDATE frame for stream ID 0 with length 4 and flags 0x0. 
+2023-10-16 17:52:57.4305|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" received HEADERS frame for stream ID 1 with length 473 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2023-10-16 17:52:57.4305|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" received SETTINGS frame for stream ID 0 with length 0 and flags ACK. 
+2023-10-16 17:52:57.4305|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7012/swagger/index.html - - 
+2023-10-16 17:52:57.4464|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
+2023-10-16 17:52:57.4464|1000|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|No candidates found for the request path '/swagger/index.html' 
+2023-10-16 17:52:57.4464|2|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request did not match any endpoints 
+2023-10-16 17:52:57.5092|1|DEBUG|Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware|Response markup is scheduled to include browser refresh script injection. 
+2023-10-16 17:52:57.5092|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending HEADERS frame for stream ID 1 with length 66 and flags END_HEADERS. 
+2023-10-16 17:52:57.8367|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 1 with length 1024 and flags NONE. 
+2023-10-16 17:52:57.8367|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 1 with length 2048 and flags NONE. 
+2023-10-16 17:52:57.8367|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 1 with length 2012 and flags NONE. 
+2023-10-16 17:52:57.8367|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 1 with length 81 and flags NONE. 
+2023-10-16 17:52:57.8367|2|DEBUG|Microsoft.AspNetCore.Watch.BrowserRefresh.BrowserRefreshMiddleware|Response markup was updated to include browser refresh script injection. 
+2023-10-16 17:52:57.8367|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 1 with length 0 and flags END_STREAM. 
+2023-10-16 17:52:57.8367|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7012/swagger/index.html - - - 200 - text/html;charset=utf-8 409.4099ms 
+2023-10-16 17:52:57.8367|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" received HEADERS frame for stream ID 3 with length 108 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2023-10-16 17:52:57.8367|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7012/_framework/aspnetcore-browser-refresh.js - - 
+2023-10-16 17:52:57.8521|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" received HEADERS frame for stream ID 5 with length 57 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2023-10-16 17:52:57.8521|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7012/_vs/browserLink - - 
+2023-10-16 17:52:57.8521|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending HEADERS frame for stream ID 3 with length 90 and flags END_HEADERS. 
+2023-10-16 17:52:57.8521|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 3 with length 12344 and flags NONE. 
+2023-10-16 17:52:57.8674|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 3 with length 0 and flags END_STREAM. 
+2023-10-16 17:52:57.8674|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7012/_framework/aspnetcore-browser-refresh.js - - - 200 12344 application/javascript;+charset=utf-8 16.8067ms 
+2023-10-16 17:52:57.8674|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending HEADERS frame for stream ID 5 with length 119 and flags END_HEADERS. 
+2023-10-16 17:52:57.8674|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 9986 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 10240 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 160 and flags NONE. 
+2023-10-16 17:52:57.8833|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 5 with length 0 and flags END_STREAM. 
+2023-10-16 17:52:57.8833|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7012/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 35.6943ms 
+2023-10-16 17:52:57.9408|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" received HEADERS frame for stream ID 7 with length 66 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2023-10-16 17:52:57.9408|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7012/swagger/v1/swagger.json - - 
+2023-10-16 17:52:57.9408|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
+2023-10-16 17:52:57.9408|1000|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|No candidates found for the request path '/swagger/v1/swagger.json' 
+2023-10-16 17:52:57.9408|2|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request did not match any endpoints 
+2023-10-16 17:52:58.0428|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending HEADERS frame for stream ID 7 with length 35 and flags END_HEADERS. 
+2023-10-16 17:52:58.0428|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 7 with length 16384 and flags NONE. 
+2023-10-16 17:52:58.0428|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 7 with length 11413 and flags NONE. 
+2023-10-16 17:52:58.0428|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7012/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 103.2844ms 
+2023-10-16 17:52:58.0428|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q17" sending DATA frame for stream ID 7 with length 0 and flags END_STREAM. 
+2023-10-16 17:53:06.0620|2|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware|Authentication of the HTTPS connection timed out. 
+2023-10-16 17:53:06.0620|2|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q15" stopped. 
+2023-10-16 17:53:06.0620|7|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMUEBVRB2Q15" sending FIN because: "The Socket transport's send loop completed gracefully." 
+2023-10-16 17:53:06.0751|2|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Https.Internal.HttpsConnectionMiddleware|Authentication of the HTTPS connection timed out. 
+2023-10-16 17:53:06.0751|2|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q16" stopped. 
+2023-10-16 17:53:06.0751|7|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMUEBVRB2Q16" sending FIN because: "The Socket transport's send loop completed gracefully." 
+2023-10-16 17:54:11.9614|6|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMUEBVRB2Q14" received FIN. 
+2023-10-16 17:54:11.9614|48|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q14" is closed. The last processed stream ID was 0. 
+2023-10-16 17:54:11.9614|7|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets|Connection id "0HMUEBVRB2Q14" sending FIN because: "The Socket transport's send loop completed gracefully." 
+2023-10-16 17:54:11.9614|62|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Http2|The connection queue processing loop for 0HMUEBVRB2Q14 completed. 
+2023-10-16 17:54:11.9614|2|DEBUG|Microsoft.AspNetCore.Server.Kestrel.Connections|Connection id "0HMUEBVRB2Q14" stopped. 
+2023-10-16 17:54:12.2366|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" received HEADERS frame for stream ID 3 with length 65 and flags END_STREAM, END_HEADERS, PRIORITY. 
+2023-10-16 17:54:12.2366|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" received PING frame for stream ID 0 with length 8 and flags NONE. 
+2023-10-16 17:54:12.2366|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" sending PING frame for stream ID 0 with length 8 and flags ACK. 
+2023-10-16 17:54:12.2366|1|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request starting HTTP/2 GET https://localhost:7012/api/post/eventposts/?pageSize=5&pageNumber=1&sortBy=Title - - 
+2023-10-16 17:54:12.2366|2|TRACE|Microsoft.AspNetCore.HostFiltering.HostFilteringMiddleware|All hosts are allowed. 
+2023-10-16 17:54:12.2366|1001|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|2 candidate(s) found for the request path '/api/post/eventposts/' 
+2023-10-16 17:54:12.2366|1005|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|Endpoint 'wBialy.Controllers.PostController.GetAllEvent (wBialy)' with route pattern 'api/post/eventposts' is valid for the request path '/api/post/eventposts/' 
+2023-10-16 17:54:12.2366|1005|DEBUG|Microsoft.AspNetCore.Routing.Matching.DfaMatcher|Endpoint 'wBialy.Controllers.PostController.GetOne (wBialy)' with route pattern 'api/post/{id}' is valid for the request path '/api/post/eventposts/' 
+2023-10-16 17:54:12.2366|1|DEBUG|Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware|Request matched endpoint 'wBialy.Controllers.PostController.GetAllEvent (wBialy)' 
+2023-10-16 17:54:12.2366|2|DEBUG|Microsoft.AspNetCore.Cors.Infrastructure.CorsService|The request has an origin header: 'http://localhost:4200'. 
+2023-10-16 17:54:12.2366|4|INFO|Microsoft.AspNetCore.Cors.Infrastructure.CorsService|CORS policy execution successful. 
+2023-10-16 17:54:12.2366|15|DEBUG|Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware|Static files was skipped as the request already matched an endpoint. 
+2023-10-16 17:54:12.2366|9|DEBUG|Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler|AuthenticationScheme: Bearer was not authenticated. 
+2023-10-16 17:54:12.2366|0|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executing endpoint 'wBialy.Controllers.PostController.GetAllEvent (wBialy)' 
+2023-10-16 17:54:12.2428|102|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Route matched with {action = "GetAllEvent", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[wBialy.Entities.Post]]] GetAllEvent(wBialy.Models.PostQuery) on controller wBialy.Controllers.PostController (wBialy). 
+2023-10-16 17:54:12.2428|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of authorization filters (in the following order): None 
+2023-10-16 17:54:12.2428|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of resource filters (in the following order): None 
+2023-10-16 17:54:12.2428|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of action filters (in the following order): Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000), Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000) 
+2023-10-16 17:54:12.2428|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of exception filters (in the following order): None 
+2023-10-16 17:54:12.2428|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Execution plan of result filters (in the following order): Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000) 
+2023-10-16 17:54:12.2428|1|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executing controller factory for controller wBialy.Controllers.PostController (wBialy) 
+2023-10-16 17:54:12.2428|2|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed controller factory for controller wBialy.Controllers.PostController (wBialy) 
+2023-10-16 17:54:12.2428|22|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder|Attempting to bind parameter 'query' of type 'wBialy.Models.PostQuery' ... 
+2023-10-16 17:54:12.2428|44|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinder|Attempting to bind parameter 'query' of type 'wBialy.Models.PostQuery' using the name '' in request data ... 
+2023-10-16 17:54:12.2428|13|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Attempting to bind property 'wBialy.Models.PostQuery.SearchPhrase' of type 'System.String' using the name 'SearchPhrase' in request data ... 
+2023-10-16 17:54:12.2428|15|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Could not find a value in the request with name 'SearchPhrase' for binding property 'wBialy.Models.PostQuery.SearchPhrase' of type 'System.String'. 
+2023-10-16 17:54:12.2428|14|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Done attempting to bind property 'wBialy.Models.PostQuery.SearchPhrase' of type 'System.String'. 
+2023-10-16 17:54:12.2428|13|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Attempting to bind property 'wBialy.Models.PostQuery.PageNumber' of type 'System.Int32' using the name 'PageNumber' in request data ... 
+2023-10-16 17:54:12.2428|14|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Done attempting to bind property 'wBialy.Models.PostQuery.PageNumber' of type 'System.Int32'. 
+2023-10-16 17:54:12.2428|13|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Attempting to bind property 'wBialy.Models.PostQuery.PageSize' of type 'System.Int32' using the name 'PageSize' in request data ... 
+2023-10-16 17:54:12.2428|14|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Done attempting to bind property 'wBialy.Models.PostQuery.PageSize' of type 'System.Int32'. 
+2023-10-16 17:54:12.2428|13|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Attempting to bind property 'wBialy.Models.PostQuery.SortBy' of type 'System.String' using the name 'SortBy' in request data ... 
+2023-10-16 17:54:12.2428|14|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Done attempting to bind property 'wBialy.Models.PostQuery.SortBy' of type 'System.String'. 
+2023-10-16 17:54:12.2428|13|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Attempting to bind property 'wBialy.Models.PostQuery.SortDirection' of type 'System.Nullable`1[wBialy.Models.SortDirection]' using the name 'SortDirection' in request data ... 
+2023-10-16 17:54:12.2428|15|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Could not find a value in the request with name 'SortDirection' for binding property 'wBialy.Models.PostQuery.SortDirection' of type 'System.Nullable`1[wBialy.Models.SortDirection]'. 
+2023-10-16 17:54:12.2428|14|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinder|Done attempting to bind property 'wBialy.Models.PostQuery.SortDirection' of type 'System.Nullable`1[wBialy.Models.SortDirection]'. 
+2023-10-16 17:54:12.2428|45|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinder|Done attempting to bind parameter 'query' of type 'wBialy.Models.PostQuery'. 
+2023-10-16 17:54:12.2428|23|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder|Done attempting to bind parameter 'query' of type 'wBialy.Models.PostQuery'. 
+2023-10-16 17:54:12.2428|26|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder|Attempting to validate the bound parameter 'query' of type 'wBialy.Models.PostQuery' ... 
+2023-10-16 17:54:12.2428|27|DEBUG|Microsoft.AspNetCore.Mvc.ModelBinding.ParameterBinder|Done attempting to validate the bound parameter 'query' of type 'wBialy.Models.PostQuery'. 
+2023-10-16 17:54:12.2428|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2023-10-16 17:54:12.2428|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2023-10-16 17:54:12.2428|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter. 
+2023-10-16 17:54:12.2428|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuting on filter Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter. 
+2023-10-16 17:54:12.2428|101|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executing action method wBialy.Controllers.PostController.GetAllEvent (wBialy) - Validation state: Valid 
+2023-10-16 17:54:12.2428|102|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executing action method wBialy.Controllers.PostController.GetAllEvent (wBialy) with arguments (wBialy.Models.PostQuery) 
+2023-10-16 17:54:12.2948|10403|DEBUG|Microsoft.EntityFrameworkCore.Infrastructure|Entity Framework Core 7.0.11 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:7.0.11' with options: None 
+2023-10-16 17:54:12.2948|20103|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Creating DbCommand for 'ExecuteReader'. 
+2023-10-16 17:54:12.2948|20005|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Creating DbConnection. 
+2023-10-16 17:54:12.2948|20006|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Created DbConnection. (0ms). 
+2023-10-16 17:54:12.2948|20104|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Created DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:54:12.2948|20106|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Initialized DbCommand for 'ExecuteReader' (0ms). 
+2023-10-16 17:54:12.2948|20000|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opening connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:54:12.2948|20001|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Opened connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:54:12.2948|20100|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[PostId], [p].[AddDate], [p].[Confirmed], [p].[Description], [p].[Image], [p].[Place], [p].[Title], [p].[UserId], [o].[Link], [e].[EventDate]
+FROM [Posts] AS [p]
+INNER JOIN [OnSitePosts] AS [o] ON [p].[PostId] = [o].[PostId]
+INNER JOIN [EventPosts] AS [e] ON [p].[PostId] = [e].[PostId]
+WHERE [p].[Confirmed] = CAST(1 AS bit)
+ORDER BY [p].[AddDate] DESC 
+2023-10-16 17:54:12.2948|20101|INFO|Microsoft.EntityFrameworkCore.Database.Command|Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [p].[PostId], [p].[AddDate], [p].[Confirmed], [p].[Description], [p].[Image], [p].[Place], [p].[Title], [p].[UserId], [o].[Link], [e].[EventDate]
+FROM [Posts] AS [p]
+INNER JOIN [OnSitePosts] AS [o] ON [p].[PostId] = [o].[PostId]
+INNER JOIN [EventPosts] AS [e] ON [p].[PostId] = [e].[PostId]
+WHERE [p].[Confirmed] = CAST(1 AS bit)
+ORDER BY [p].[AddDate] DESC 
+2023-10-16 17:54:12.2948|10806|DEBUG|Microsoft.EntityFrameworkCore.ChangeTracking|Context 'AppDbContext' started tracking 'EventPost' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values. 
+2023-10-16 17:54:12.2948|20301|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|Closing data reader to 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:54:12.2948|20300|DEBUG|Microsoft.EntityFrameworkCore.Database.Command|A data reader for 'wBialyDb' on server '(localdb)\MSSQLLocalDB' is being disposed after spending 1ms reading results. 
+2023-10-16 17:54:12.2948|20002|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closing connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:54:12.2948|20003|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Closed connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB' (0ms). 
+2023-10-16 17:54:12.2948|103|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed action method wBialy.Controllers.PostController.GetAllEvent (wBialy), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 56.8151ms. 
+2023-10-16 17:54:12.2948|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter. 
+2023-10-16 17:54:12.2948|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter. 
+2023-10-16 17:54:12.2948|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: Before executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2023-10-16 17:54:12.2948|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Action Filter: After executing OnActionExecuted on filter Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter. 
+2023-10-16 17:54:12.2948|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: Before executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter. 
+2023-10-16 17:54:12.2948|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: After executing OnResultExecuting on filter Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter. 
+2023-10-16 17:54:12.2948|5|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Before executing action result Microsoft.AspNetCore.Mvc.OkObjectResult. 
+2023-10-16 17:54:12.3044|11|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|List of registered output formatters, in the following order: Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter, Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter, Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter, Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter 
+2023-10-16 17:54:12.3044|4|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|No information found on request to perform content negotiation. 
+2023-10-16 17:54:12.3044|8|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|Attempting to select an output formatter without using a content type as no explicit content types were specified for the response. 
+2023-10-16 17:54:12.3044|10|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|Attempting to select the first formatter in the output formatters list which can write the result. 
+2023-10-16 17:54:12.3044|2|DEBUG|Microsoft.AspNetCore.Mvc.Infrastructure.DefaultOutputFormatterSelector|Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response. 
+2023-10-16 17:54:12.3044|1|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ObjectResultExecutor|Executing OkObjectResult, writing value of type 'wBialy.Models.PageResult`1[[wBialy.Models.PostDto, wBialy, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. 
+2023-10-16 17:54:12.3044|6|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|After executing action result Microsoft.AspNetCore.Mvc.OkObjectResult. 
+2023-10-16 17:54:12.3044|52|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: Before executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter. 
+2023-10-16 17:54:12.3044|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" sending HEADERS frame for stream ID 3 with length 36 and flags END_HEADERS. 
+2023-10-16 17:54:12.3044|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" sending DATA frame for stream ID 3 with length 224 and flags NONE. 
+2023-10-16 17:54:12.3044|53|TRACE|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Result Filter: After executing OnResultExecuted on filter Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter. 
+2023-10-16 17:54:12.3044|105|INFO|Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker|Executed action wBialy.Controllers.PostController.GetAllEvent (wBialy) in 62.641ms 
+2023-10-16 17:54:12.3044|1|INFO|Microsoft.AspNetCore.Routing.EndpointMiddleware|Executed endpoint 'wBialy.Controllers.PostController.GetAllEvent (wBialy)' 
+2023-10-16 17:54:12.3044|49|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" sending DATA frame for stream ID 3 with length 0 and flags END_STREAM. 
+2023-10-16 17:54:12.3044|10407|DEBUG|Microsoft.EntityFrameworkCore.Infrastructure|'AppDbContext' disposed. 
+2023-10-16 17:54:12.3044|20007|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Disposing connection to database 'wBialyDb' on server '(localdb)\MSSQLLocalDB'. 
+2023-10-16 17:54:12.3044|20008|DEBUG|Microsoft.EntityFrameworkCore.Database.Connection|Disposed connection to database '' on server '' (0ms). 
+2023-10-16 17:54:12.3044|2|INFO|Microsoft.AspNetCore.Hosting.Diagnostics|Request finished HTTP/2 GET https://localhost:7012/api/post/eventposts/?pageSize=5&pageNumber=1&sortBy=Title - - - 200 - application/json;+charset=utf-8 69.4932ms 
+2023-10-16 17:54:12.3044|37|TRACE|Microsoft.AspNetCore.Server.Kestrel.Http2|Connection id "0HMUEBVRB2Q13" received WINDOW_UPDATE frame for stream ID 0 with length 4 and flags 0x0. 
