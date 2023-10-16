@@ -30,6 +30,7 @@ namespace wBialy.Services
         Task UpdateEventPost(EditEventPostDto editPostDto, int id);
         Task UpdateGastroPost(EditGastroPostDto editPostDto, int id);
         Task UpdateLFPost(EditLFPostDto editPostDto, int id);
+        Task<List<PostDto>> gettt();
     }
 
     public class PostService : IPostService
@@ -46,6 +47,16 @@ namespace wBialy.Services
             _authorizationService = authorizationService;
             _userContextService = userContextService;
             _mapper = mapper;
+        }
+        public async Task<List<PostDto>> gettt()
+        {
+            List<EventPost> baseQuery;
+            baseQuery = await _context
+                .EventPosts
+                .Where(x => x.Confirmed == true)
+                .ToListAsync();
+            var postDtos = _mapper.Map<List<PostDto>>(baseQuery);
+            return await Task.FromResult(postDtos);
         }
         public async Task<PostDto> GetById(int id)
         {
