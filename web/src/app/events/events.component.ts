@@ -31,8 +31,9 @@ export class EventsComponent implements OnInit{
       this.pageResult = response;
     })
   }
-  testFunc(){
+  async testFunc(){
     console.log(this.pageResult.TotalPages)
+    const dupa = this.getAllPosts()
   }
 }
 
