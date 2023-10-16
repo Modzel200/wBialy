@@ -1,15 +1,13 @@
-<button (click)="testFunc()">Test</button>
-<button (click)="getAllPosts()">Fetch</button>
-<div class="container" *ngFor="let event of pageResult.Items">
+<div class="container" *ngFor="let event of events">
   <div class="left-side">
-    <img src="{{event.Image}}" alt="">
+    <img src="{{event.image}}" alt="">
   </div>
   <div class="right-side">
     <div>
-      <h1>{{event.Title}}</h1>
-      <h2>{{event.EventDate}}</h2>
+      <h1>{{event.title}}</h1>
+      <h2>{{event.eventDate}}</h2>
     </div>
-    <p>{{event.Description}}</p>
+    <p>{{event.description}}</p>
     <button class="btn-primary">Dołącz</button>
   </div>
 </div>

@@ -12,11 +12,11 @@ import {EventComponent} from "./event/event.component";
 export class EventsComponent implements OnInit{
   events: EventPost[] = [];
   pageResult: PageResultModel={
-    Items: [],
-    TotalPages:0,
-    ItemFrom:0,
-    ItemTo:0,
-    TotalItemsCount:0
+    items: [],
+    totalPages:0,
+    itemFrom:0,
+    itemTo:0,
+    totalItemsCount:0
   };
   constructor(private eventsService: EventsService) {
   }
@@ -27,12 +27,13 @@ export class EventsComponent implements OnInit{
     this.eventsService.getAllPosts()
       .subscribe(response => {
       console.log(response);
-      console.log(response.TotalItemsCount);
+      console.log(response.totalItemsCount);
       this.pageResult = response;
-    })
+      this.events = this.pageResult.items;
+    });
   }
-  async testFunc(){
-    console.log(this.pageResult.TotalPages)
+  testFunc(){
+    console.log(this.pageResult?.totalPages);
   }
 }
 

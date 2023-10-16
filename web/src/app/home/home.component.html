@@ -2,11 +2,11 @@
     <h1>Co nowego w Białymstoku?</h1>
     <h2>Darmowe eventy codziennie!</h2>
     <div class="container">
-      <div *ngFor="let event of visibleEvents" class="card">
-        <img src="{{event.Image}}" style="width:100%">
-        <h1>{{event.Title}}</h1>
-        <p class="date">{{event.EventDate}}</p>
-        <p class="opis">{{event.Description}}</p>
+      <div *ngFor="let event of shortEvents" class="card">
+        <img src="{{event.image}}" style="width:100%">
+        <h1>{{event.title}}</h1>
+        <p class="date">{{event.eventDate}}</p>
+        <p class="opis">{{event.description}}</p>
         <p><button class="btn-primary">Dołącz</button></p>
       </div>
     </div>
@@ -15,4 +15,3 @@
       <button class="btn-secondary material-icons" (click)="nextEvent()">arrow_forward_ios</button>
     </div>
   </div>
-  

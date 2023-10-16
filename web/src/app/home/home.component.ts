@@ -1,24 +1,29 @@
-import { Component } from '@angular/core';
-import {ShortEventModel} from "./shortEvent.model";
+import { Component, OnInit } from '@angular/core';
+import {EventPost} from "../events/model/event.model";
+import {ShortEventsService} from "./service/home.service";
+import {PageResultModel} from "../events/model/pageResult.model";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-  shortEvents: ShortEventModel[] = [
-    new ShortEventModel('tytul','opisopisopis opis opisopisopis opis','https://upload.wikimedia.org/wikipedia/commons/7/7a/Rynek_Ko%C5%9Bciuszki%2C_Bia%C5%82ystok_%282%29.jpg',new Date()),
-    new ShortEventModel('tytul','opisopisopis opisopisopisopisopisopisopisopisopis opisopisopisopisopisopisopisopis','https://upload.wikimedia.org/wikipedia/commons/7/7a/Rynek_Ko%C5%9Bciuszki%2C_Bia%C5%82ystok_%282%29.jpg',new Date()),
-    new ShortEventModel('tytul','opisopisopisopis opisopisopisopis opisopisopisopisopis opisopisopis','https://upload.wikimedia.org/wikipedia/commons/7/7a/Rynek_Ko%C5%9Bciuszki%2C_Bia%C5%82ystok_%282%29.jpg',new Date())
-  ];
-
+export class HomeComponent implements OnInit{
+  shortEvents: EventPost[] = [];
+  pageResult: PageResultModel={
+    items: [],
+    totalPages:0,
+    itemFrom:0,
+    itemTo:0,
+    totalItemsCount:0
+  };
   currentIndex: number = 0;
   isWideScreen: boolean = window.innerWidth >= 800;
 
-  get visibleEvents(): ShortEventModel[] {
+  constructor(private shortEventsService:ShortEventsService) {
+  }
+  get visibleEvents(): EventPost[] {
     const wrappedIndex = this.currentIndex % this.shortEvents.length;
-
     if (this.isWideScreen) {
       const newEvent = this.shortEvents[wrappedIndex];
       const prevEvents = [
@@ -33,6 +38,13 @@ export class HomeComponent {
 
   ngOnInit() {
     window.addEventListener('resize', this.onResize.bind(this));
+    this.shortEventsService.getAllPosts().subscribe(response => {
+      console.log(response);
+      console.log(response.totalItemsCount);
+      this.pageResult = response;
+      this.shortEvents = this.pageResult.items;
+    })
+
   }
 
   onResize() {
