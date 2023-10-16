@@ -73,6 +73,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("FrontEndClient", policyBuilder =>
         policyBuilder.AllowAnyMethod()
         .AllowAnyHeader()
+        .AllowCredentials() //do testu
         .WithOrigins(builder.Configuration["AllowedOrigins"])
         );
 });
