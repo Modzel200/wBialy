@@ -68,14 +68,15 @@ builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
-builder.Services.AddCors(options =>
+builder.Services.AddCors((options) =>
 {
-    options.AddPolicy("FrontEndClient", policyBuilder =>
-        policyBuilder.AllowAnyMethod()
+    options.AddPolicy("FrontEndClient", (policyBuilder) =>
+    {
+        policyBuilder
+        .AllowAnyMethod()
         .AllowAnyHeader()
-        .AllowCredentials() //do testu
-        .WithOrigins(builder.Configuration["AllowedOrigins"])
-        );
+        .WithOrigins(builder.Configuration["AllowedOrigins"]);
+    });
 });
 
 

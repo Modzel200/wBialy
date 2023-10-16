@@ -17,13 +17,6 @@ namespace wBialy.Controllers
         {
             _postService = postService;
         }
-        [HttpGet("kutas")]
-        [AllowAnonymous]
-        public ActionResult<IEnumerable<PostDto>> guwno()
-        {
-            var posts = _postService.gettt();
-            return Ok(posts);
-        }
         [HttpGet("lfposts")]
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<PostDto>>> GetAllLF([FromQuery]PostQuery query)
