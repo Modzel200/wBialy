@@ -12,6 +12,6 @@ export class LoginFormService{
   constructor(private http: HttpClient) {
   }
   loginUser(user: UserLogin):Observable<string>{
-    return this.http.post<string>(this.baseUrl,user);
+    return this.http.post(this.baseUrl,user, {responseType: 'text'});
   }
 }

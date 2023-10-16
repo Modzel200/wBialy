@@ -13,11 +13,12 @@ export class LoginFormComponent {
     Email: '',
     Password: ''
   }
-  token:string='';
   constructor(private loginFormService: LoginFormService) {
   }
   onSubmit()
   {
-    this.loginFormService.loginUser(this.user).subscribe(response=>{this.token=response});
+    this.loginFormService.loginUser(this.user).subscribe(token=>{
+      localStorage.setItem('Authorization','Bearer '+token);
+    });
   }
 }

@@ -1,17 +1,36 @@
-import { Component } from '@angular/core';
-import {EventPost} from "./event.model";
-
+import {Component, OnInit} from '@angular/core';
+import {EventPost} from "./model/event.model";
+import {EventsService} from "./service/events.service";
+import {PageResultModel} from "./model/pageResult.model";
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss']
 })
-export class EventsComponent {
-  events: EventPost[] = [
-    new EventPost(1,'tytul','opis','https://static.android.com.pl/uploads/2022/11/Shrek-animacja-bajka.jpg',new Date(),'Bialy',1,true,'link',new Date(),['bialy','test']),
-    new EventPost(1,'tytul','opis','https://static.android.com.pl/uploads/2022/11/Shrek-animacja-bajka.jpg',new Date(),'Bialy',1,true,'link',new Date(),['bialy','test']),
-    new EventPost(1,'tytul','opis','https://static.android.com.pl/uploads/2022/11/Shrek-animacja-bajka.jpg',new Date(),'Bialy',1,true,'link',new Date(),['bialy','test']),
-    new EventPost(1,'tytul','opis','https://static.android.com.pl/uploads/2022/11/Shrek-animacja-bajka.jpg',new Date(),'Bialy',1,true,'link',new Date(),['bialy','test'])
+export class EventsComponent implements OnInit{
 
-  ]
+  events: EventPost[] = [];
+  pageResult: PageResultModel={
+    Items: [],
+    TotalPages:0,
+    ItemFrom:0,
+    ItemTo:0,
+    TotalItemsCount:0
+  };
+  constructor(private eventsService: EventsService) {
+  }
+  ngOnInit() {
+    this.getAllPosts();
+  }
+  getAllPosts(){
+    this.eventsService.getAllPosts().subscribe(response => {
+      console.log(response);
+      console.log(response.Items);
+      this.pageResult = response;
+      console.log(this.pageResult.TotalPages);
+    })
+  }
+  testFunc(){
+    console.log(typeof this.pageResult.Items)
+  }
 }
