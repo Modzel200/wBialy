@@ -12,20 +12,19 @@
               <div class="form-container">
                 <h2>Wprowadź swoje dane</h2>
                   <br>
-                <label for="email"><b>Adres email</b></label>
-                <input type="text" placeholder="Email" name="email" required>
-            
-                <label for="psw"><b>Hasło</b></label>
-                <input type="password" placeholder="Password" name="psw" required>
-            
+                <label for=""><b>Adres email</b></label>
+                <input type="text" placeholder="Email" name="email" [(ngModel)]="user.Email" required>
+
+                <label for=""><b>Hasło</b></label>
+                <input type="password" placeholder="Password" name="psw" [(ngModel)]="user.Password" required>
+
                 <p>Aby dowiedzieć się więcej, przeczytaj <a href="#" style="color:#18A0FB;">Warunki i prywatność</a>.</p>
                 <br>
                 <div class="buttons">
-                  <button type="button" class="btn-primary">Zaloguj</button>
+                  <button type="button" class="btn-primary" (click)="onSubmit()">Zaloguj</button>
                   <button type="submit" class="btn-secondary">Załóż konto</button>
                 </div>
               </div>
             </form>
       </div>
   </div>
-  
