@@ -1,9 +1,11 @@
 <nav class="navbar">
     <div class="left-side">
+      <a routerLink="/">
       <div class="logo">
         <img src = "../../assets/icons/VectorWhole.svg" alt="Logo Wbialy" class="WholeLogo"/>
         <img src = "../../assets/icons/VectorLogo.svg" alt="Logo W" class="ShortLogo" />
       </div>
+      </a>
       <div class="nav-items" [class.is-open]="isMenuOpen">
         <a routerLink="/news">Nowości</a>
         <a routerLink="/pricing">Cennik</a>
@@ -12,9 +14,9 @@
       </div>
     </div>
     <div class="right-side">
-      <button *ngIf="!isLogged" (click)="isLogged=!isLogged" class="btn-secondary">Zaloguj</button>
-      <button *ngIf="!isLogged" class="btn-primary">Zarejestruj</button>
-      <button *ngIf="isLogged" class="btn-primary">Twój profil</button>
+      <a routerLink="/login" *ngIf="isLogged==null"><button class="btn-secondary" >Zaloguj</button></a>
+      <a routerLink="/signup" *ngIf="isLogged==null"><button class="btn-primary">Zarejestruj</button></a>
+      <a routerLink="/account" *ngIf="isLogged!=null"><button class="btn-primary">Twoje Konto</button></a>
       <div class="burger">
         <i (click)="toggleMenu()" class="material-icons">{{ isMenuOpen ? "close" : "menu"}}</i>
     </div>

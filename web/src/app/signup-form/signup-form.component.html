@@ -24,8 +24,12 @@
               <p>Tworząc konto zgadzasz się na <a href="#" style="color:#18A0FB;">Warunki i prywatność</a>.</p>
               <br>
               <div class="buttons">
-                <button type="button" class="btn-primary" (click)="onSubmit()">Zarejestruj</button>
-                <button type="submit" class="btn-secondary">Mam już konto</button>
+                <a routerLink="/login">
+                  <button type="button" class="btn-primary" (click)="onSubmit()">Zarejestruj</button>
+                </a>
+                <a routerLink="/login">
+                  <button type="submit" class="btn-secondary">Mam już konto</button>
+                </a>
               </div>
             </div>
           </form>

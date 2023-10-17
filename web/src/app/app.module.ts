@@ -10,7 +10,17 @@ import { HomeComponent } from './home/home.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import {HttpClientModule} from "@angular/common/http";
+import {RouterModule, Routes} from "@angular/router";
+import {DatePipe} from "@angular/common";
+import { UserPanelComponent } from './user-panel/user-panel.component';
 
+const appRoutes: Routes = [
+  {path: '', component: EventsComponent},
+  {path: 'login', component: LoginFormComponent},
+  {path: 'signup', component: SignupFormComponent},
+  {path: 'account',component:UserPanelComponent},
+  {path: 'event',component:EventComponent},
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,14 +29,16 @@ import {HttpClientModule} from "@angular/common/http";
     EventComponent,
     HomeComponent,
     SignupFormComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    UserPanelComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes)
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

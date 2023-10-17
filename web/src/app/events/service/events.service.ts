@@ -8,7 +8,17 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class EventsService{
-  baseUrl = 'https://localhost:7012/api/post/eventposts/'
+  baseUrl = 'https://localhost:7012/api/post/eventposts/';
+  public event: EventPost={
+    title:'',
+    description:'',
+    image:'',
+    place:'',
+    eventDate:'',
+    day:'',
+    tags:[],
+    link:'',
+  };
   constructor(private http: HttpClient) {
   }
   getAllPosts():Observable<PageResultModel>

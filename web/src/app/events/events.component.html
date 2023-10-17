@@ -1,3 +1,4 @@
+<!--<app-home></app-home>-->
 <div class="container" *ngFor="let event of events">
   <div class="left-side">
     <img src="{{event.image}}" alt="">
@@ -8,6 +9,6 @@
       <h2>{{event.eventDate}}</h2>
     </div>
     <p>{{event.description}}</p>
-    <button class="btn-primary">Dołącz</button>
+    <button class="btn-primary" (click)="showEvent(event)">Dołącz</button>
   </div>
 </div>

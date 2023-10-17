@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {EventPost} from "../events/model/event.model";
 import {ShortEventsService} from "./service/home.service";
 import {PageResultModel} from "../events/model/pageResult.model";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,7 @@ export class HomeComponent implements OnInit{
   currentIndex: number = 0;
   isWideScreen: boolean = window.innerWidth >= 800;
 
-  constructor(private shortEventsService:ShortEventsService) {
+  constructor(private shortEventsService:ShortEventsService, private datePipe: DatePipe) {
   }
   get visibleEvents(): EventPost[] {
     const wrappedIndex = this.currentIndex % this.shortEvents.length;
@@ -43,8 +44,16 @@ export class HomeComponent implements OnInit{
       console.log(response.totalItemsCount);
       this.pageResult = response;
       this.shortEvents = this.pageResult.items;
+      this.changeDateFormat();
     })
 
+  }
+  changeDateFormat()
+  {
+    for(let i=0;i<this.shortEvents.length;i++)
+    {
+      this.shortEvents[i].eventDate = <string>this.datePipe.transform(new Date(), 'dd.MM.yyyy hh:mm');
+    }
   }
 
   onResize() {

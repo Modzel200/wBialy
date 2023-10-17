@@ -19,6 +19,7 @@ export class LoginFormComponent {
   {
     this.loginFormService.loginUser(this.user).subscribe(token=>{
       localStorage.setItem('Authorization','Bearer '+token);
+      window.location.reload();
     });
   }
 }

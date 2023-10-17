@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit{
   isMenuOpen = false;
-  isLogged = false;
+  isLogged = localStorage.getItem('Authorization');
+  ngOnInit() {
+    this.isLogged = localStorage.getItem('Authorization');
+  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+
   }
 }

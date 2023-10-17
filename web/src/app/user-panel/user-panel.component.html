@@ -1,0 +1,24 @@
+<p>user-panel works!</p>
+<form action="action_page.php">
+  <h2>Dodawanie postu</h2>
+  <br>
+  <label for="">Tytuł</label>
+  <input type="text" name="tytul" [(ngModel)]="postToAdd.title" required>
+
+  <label for="">Opis</label>
+  <input type="text" name="opis" [(ngModel)]="postToAdd.description" required>
+
+  <label for="">Link do zdjęcia</label>
+  <input type="text" name="img" [(ngModel)]="postToAdd.image" required>
+
+  <label for="">Miejsce</label>
+  <input type="text" name="miejsce" [(ngModel)]="postToAdd.place" required>
+
+  <label for="">Data</label>
+  <input type="date" name="tytul" [(ngModel)]="postToAdd.day" required>
+
+  <label for="">Link</label>
+  <input type="text" name="link" [(ngModel)]="postToAdd.link" required>
+
+  <button (click)="onSubmit()">Stwórz</button>
+</form>
