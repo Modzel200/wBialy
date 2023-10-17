@@ -18,6 +18,9 @@ namespace wBialy
             CreateMap<CreateLFPostDto, LFPost>();
             CreateMap<CreateGastroPostDto, GastroPost>();
             CreateMap<CreateEventPostDto, EventPost>();
+            CreateMap<EventTag, EventTagDto>();
+            CreateMap<LFTag, LFTagDto>();
+            CreateMap<GastroTag, GastroTagDto>();
         }
     }
 }

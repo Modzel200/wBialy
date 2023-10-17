@@ -115,5 +115,26 @@ namespace wBialy.Controllers
             await _postService.UpdateGastroPost(modifyPostDto, id);
             return await Task.FromResult(Ok());
         }
+        [HttpGet("gastrotags")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<IEnumerable<GastroTagDto>>> GetAllGastroTags()
+        {
+            var tags = await _postService.GetAllGastroTags();
+            return await Task.FromResult(Ok(tags));
+        }
+        [HttpGet("eventtags")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<IEnumerable<EventTagDto>>> GetAllEventTags()
+        {
+            var tags = await _postService.GetAllEventTags();
+            return await Task.FromResult(Ok(tags));
+        }
+        [HttpGet("lftags")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<IEnumerable<LFTagDto>>> GetAllLFTags()
+        {
+            var tags = await _postService.GetAllLFTags();
+            return await Task.FromResult(Ok(tags));
+        }
     }
 }

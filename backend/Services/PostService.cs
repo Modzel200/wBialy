@@ -30,6 +30,10 @@ namespace wBialy.Services
         Task UpdateEventPost(EditEventPostDto editPostDto, int id);
         Task UpdateGastroPost(EditGastroPostDto editPostDto, int id);
         Task UpdateLFPost(EditLFPostDto editPostDto, int id);
+        Task<IEnumerable<GastroTagDto>> GetAllGastroTags();
+        Task<IEnumerable<EventTagDto>> GetAllEventTags();
+        Task<IEnumerable<LFTagDto>> GetAllLFTags();
+
     }
 
     public class PostService : IPostService
@@ -541,6 +545,30 @@ namespace wBialy.Services
             }
             postToConfirm.Confirmed = true;
             await _context.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<GastroTagDto>> GetAllGastroTags()
+        {
+            var tags = await _context
+                .GastroTags
+                .ToListAsync();
+            var tagsDto = _mapper.Map<List<GastroTagDto>>(tags);
+            return await Task.FromResult(tagsDto);
+        }
+        public async Task<IEnumerable<EventTagDto>> GetAllEventTags()
+        {
+            var tags = await _context
+                .EventTags
+                .ToListAsync();
+            var tagsDto = _mapper.Map<List<EventTagDto>>(tags);
+            return await Task.FromResult(tagsDto);
+        }
+        public async Task<IEnumerable<LFTagDto>> GetAllLFTags()
+        {
+            var tags = await _context
+                .LFTags
+                .ToListAsync();
+            var tagsDto = _mapper.Map<List<LFTagDto>>(tags);
+            return await Task.FromResult(tagsDto);
         }
     }
 }
