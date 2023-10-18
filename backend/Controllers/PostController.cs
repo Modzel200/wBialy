@@ -136,11 +136,25 @@ namespace wBialy.Controllers
             var tags = await _postService.GetAllLFTags();
             return await Task.FromResult(Ok(tags));
         }
-        [HttpGet("userposts")]
+        [HttpGet("userlfposts")]
         [Authorize(Roles = "User,Admin")]
-        public async Task<ActionResult<IEnumerable<PostDto>>> GetAllUserPosts()
+        public async Task<ActionResult<IEnumerable<PostDto>>> GetAllUserLFPosts()
         {
-            var posts = await _postService.GetAllUserPosts();
+            var posts = await _postService.GetAllUserLFPosts();
+            return await Task.FromResult(Ok(posts));
+        }
+        [HttpGet("usereventposts")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<IEnumerable<PostDto>>> GetAllUserEventPosts()
+        {
+            var posts = await _postService.GetAllUserEventPosts();
+            return await Task.FromResult(Ok(posts));
+        }
+        [HttpGet("usergastroposts")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<IEnumerable<PostDto>>> GetAllUserGastroPosts()
+        {
+            var posts = await _postService.GetAllUserGastroPosts();
             return await Task.FromResult(Ok(posts));
         }
     }
