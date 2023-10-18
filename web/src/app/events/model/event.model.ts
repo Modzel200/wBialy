@@ -1,5 +1,6 @@
 export interface EventPost{
   //public PostId: number;
+  postId: number;
   title: string;
   description: string;
   image: string;

@@ -53,6 +53,10 @@ export class PostsUnconfirmedComponent {
   }
 
   deleteEvent(id: number){
-
+    console.log(id);
+    this.userPanelService.deleteEvent(id).subscribe(response=>{
+      console.log(response);
+      this.getAllPosts();
+    })
   }
 }

@@ -10,6 +10,7 @@ import {Observable} from "rxjs";
 export class EventsService{
   baseUrl = 'https://localhost:7012/api/post/eventposts/';
   public event: EventPost={
+    postId: 0,
     title:'',
     description:'',
     image:'',

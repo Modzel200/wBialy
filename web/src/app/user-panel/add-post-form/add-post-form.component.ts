@@ -17,6 +17,7 @@ export class AddPostFormComponent implements OnInit {
   ]
   userEvents: EventPost[] =[];
   postToAdd: PostToAdd = {
+    postId: 5,
     title: '',
     description: '',
     image: '',

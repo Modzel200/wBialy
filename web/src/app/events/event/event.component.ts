@@ -11,6 +11,7 @@ export class EventComponent implements OnInit{
   constructor(private eventsService: EventsService) {
   }
   event: EventPost={
+    postId:0,
     title:'',
     description:'',
     image:'',

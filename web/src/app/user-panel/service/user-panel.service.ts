@@ -11,6 +11,7 @@ import {EventPost} from "../../events/model/event.model";
 export class UserPanelService{
   baseUrl = 'https://localhost:7012/api/post/eventposts/';
   userUrl = 'https://localhost:7012/api/post/usereventposts/';
+  deleteUrl = 'https://localhost:7012/api/post/';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': localStorage.getItem("Authorization")!
@@ -25,5 +26,9 @@ export class UserPanelService{
   getAllPosts()
   {
     return this.http.get<EventPost[]>(this.userUrl,this.options);
+  }
+  deleteEvent(id:number)
+  {
+    return this.http.delete(this.deleteUrl+id,this.options);
   }
 }
