@@ -303,7 +303,7 @@ namespace wBialy.Services
                 Description = dto.Description,
                 Image = dto.Image,
                 Place = dto.Place,
-                EventDate = DateTime.ParseExact(dto.EventDate, "yyyy-MM-DDThh:mm", CultureInfo.InvariantCulture),
+                EventDate = DateTime.Parse(dto.EventDate),
                 Link = dto.Link,
                 Tags = tagList,
             };
