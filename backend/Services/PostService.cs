@@ -11,6 +11,7 @@ using wBialy.Exceptions;
 using wBialy.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace wBialy.Services
 {
@@ -302,7 +303,7 @@ namespace wBialy.Services
                 Description = dto.Description,
                 Image = dto.Image,
                 Place = dto.Place,
-                EventDate = dto.EventDate,
+                EventDate = DateTime.ParseExact(dto.EventDate, "yyyy-MM-DDThh:mm", CultureInfo.InvariantCulture),
                 Link = dto.Link,
                 Tags = tagList,
             };
