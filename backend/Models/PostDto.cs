@@ -5,7 +5,7 @@ namespace wBialy.Models
     public class PostDto
     {
 #pragma warning disable CS8618 
-        public int Id { get; set; }
+        public int PostId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string? Image { get; set; }
