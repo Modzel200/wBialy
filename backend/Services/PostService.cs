@@ -33,6 +33,7 @@ namespace wBialy.Services
         Task<IEnumerable<GastroTagDto>> GetAllGastroTags();
         Task<IEnumerable<EventTagDto>> GetAllEventTags();
         Task<IEnumerable<LFTagDto>> GetAllLFTags();
+        Task<IEnumerable<PostDto>> GetAllUserPosts();
 
     }
 
@@ -569,6 +570,19 @@ namespace wBialy.Services
                 .ToListAsync();
             var tagsDto = _mapper.Map<List<LFTagDto>>(tags);
             return await Task.FromResult(tagsDto);
+        }
+        public async Task<IEnumerable<PostDto>> GetAllUserPosts()
+        {
+            var userId = (int)_userContextService.GetUserId;
+            var posts = await _context
+                .Posts.Where(x => x.UserId == userId)
+                .ToListAsync();
+            if (posts is null)
+            {
+                throw new NotFoundException("Not found");
+            }
+            var postsDto = _mapper.Map<List<PostDto>>(posts);
+            return await Task.FromResult(postsDto);
         }
     }
 }

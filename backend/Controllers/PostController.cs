@@ -136,5 +136,12 @@ namespace wBialy.Controllers
             var tags = await _postService.GetAllLFTags();
             return await Task.FromResult(Ok(tags));
         }
+        [HttpGet("userposts")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<IEnumerable<PostDto>>> GetAllUserPosts()
+        {
+            var posts = await _postService.GetAllUserPosts();
+            return await Task.FromResult(Ok(posts));
+        }
     }
 }
