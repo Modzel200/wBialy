@@ -13,7 +13,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import { UserPanelComponent } from './user-panel/user-panel.component';
-
+import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
@@ -30,13 +31,15 @@ const appRoutes: Routes = [
     HomeComponent,
     SignupFormComponent,
     LoginFormComponent,
-    UserPanelComponent
+    UserPanelComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

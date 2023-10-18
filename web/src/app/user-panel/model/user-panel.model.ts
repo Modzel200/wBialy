@@ -3,7 +3,7 @@ export interface PostToAdd{
   description: string;
   image: string;
   place: string;
-  day: string;
+  eventDay: string;
   tags: Tags[];
   link: string;
 }

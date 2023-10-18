@@ -18,7 +18,7 @@ export class UserPanelComponent implements OnInit{
     description: '',
     image: '',
     place: '',
-    day: '',
+    eventDay: '',
     tags: this.tags,
     link: ''
   }
@@ -35,6 +35,7 @@ export class UserPanelComponent implements OnInit{
   {
     this.userPanelService.addNewPost(this.postToAdd).subscribe(response=>{
       console.log(response);
+      console.log(this.postToAdd.eventDay);
     });
   }
   logOff()
