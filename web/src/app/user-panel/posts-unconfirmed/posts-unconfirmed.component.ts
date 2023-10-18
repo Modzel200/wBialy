@@ -40,7 +40,6 @@ export class PostsUnconfirmedComponent {
     this.userPanelService.getAllPosts()
       .subscribe(response=>{
         this.userEvents = response;
-        console.log(this.userEvents);
         this.changeDateFormat();
       })
   }
@@ -55,7 +54,6 @@ export class PostsUnconfirmedComponent {
   deleteEvent(id: number){
     console.log(id);
     this.userPanelService.deleteEvent(id).subscribe(response=>{
-      console.log(response);
       this.getAllPosts();
     })
   }

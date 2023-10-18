@@ -40,7 +40,6 @@ export class PostsConfirmedComponent {
     this.userPanelService.getAllPosts()
       .subscribe(response=>{
         this.userEvents = response;
-        console.log(this.userEvents);
         this.changeDateFormat();
       })
   }
@@ -50,6 +49,12 @@ export class PostsConfirmedComponent {
     {
       this.userEvents[i].eventDate = <string>this.datePipe.transform(this.userEvents[i].eventDate, 'dd.MM.yyyy hh:mm');
     }
+  }
+  deleteEvent(id: number){
+    console.log(id);
+    this.userPanelService.deleteEvent(id).subscribe(response=>{
+      this.getAllPosts();
+    })
   }
 
 }
