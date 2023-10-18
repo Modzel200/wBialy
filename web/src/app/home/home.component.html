@@ -2,7 +2,7 @@
     <h1>Co nowego w Białymstoku?</h1>
     <h2>Darmowe eventy codziennie!</h2>
     <div class="container">
-      <div *ngFor="let event of shortEvents" class="card">
+      <div *ngFor="let event of eventsToShow" class="card">
         <img src="{{event.image}}" style="width:100%">
         <h1>{{event.title}}</h1>
         <p class="date">{{event.eventDate}}</p>

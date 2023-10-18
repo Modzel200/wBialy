@@ -11,6 +11,7 @@ import {DatePipe} from "@angular/common";
 })
 export class HomeComponent implements OnInit{
   shortEvents: EventPost[] = [];
+  eventsToShow: EventPost[] = [];
   pageResult: PageResultModel={
     items: [],
     totalPages:0,
@@ -20,30 +21,15 @@ export class HomeComponent implements OnInit{
   };
   currentIndex: number = 0;
   isWideScreen: boolean = window.innerWidth >= 800;
-
   constructor(private shortEventsService:ShortEventsService, private datePipe: DatePipe) {
   }
-  get visibleEvents(): EventPost[] {
-    const wrappedIndex = this.currentIndex % this.shortEvents.length;
-    if (this.isWideScreen) {
-      const newEvent = this.shortEvents[wrappedIndex];
-      const prevEvents = [
-        this.shortEvents[(wrappedIndex - 1 + this.shortEvents.length) % this.shortEvents.length],
-        this.shortEvents[(wrappedIndex - 2 + this.shortEvents.length) % this.shortEvents.length],
-      ];
-      return [newEvent, ...prevEvents];
-    } else {
-      return this.shortEvents.slice(wrappedIndex, wrappedIndex + 1);
-    }
-  }
-
   ngOnInit() {
     window.addEventListener('resize', this.onResize.bind(this));
     this.shortEventsService.getAllPosts().subscribe(response => {
-      console.log(response);
-      console.log(response.totalItemsCount);
       this.pageResult = response;
       this.shortEvents = this.pageResult.items;
+      // this.eventsToShow = this.shortEvents.slice(this.indexDown,this.indexUp);
+      this.eventsToShow = [this.shortEvents[this.currentIndex],this.shortEvents[this.currentIndex+1],this.shortEvents[this.currentIndex+2]];
       this.changeDateFormat();
     })
 
@@ -62,10 +48,12 @@ export class HomeComponent implements OnInit{
 
   prevEvent() {
     this.currentIndex = (this.currentIndex - 1 + this.shortEvents.length) % this.shortEvents.length;
+    this.eventsToShow = [this.shortEvents[this.currentIndex%this.shortEvents.length],this.shortEvents[(this.currentIndex+1)%this.shortEvents.length],this.shortEvents[(this.currentIndex+2)%this.shortEvents.length]];
   }
 
   nextEvent() {
     this.currentIndex = (this.currentIndex + 1) % this.shortEvents.length;
+    this.eventsToShow = [this.shortEvents[this.currentIndex%this.shortEvents.length],this.shortEvents[(this.currentIndex+1)%this.shortEvents.length],this.shortEvents[(this.currentIndex+2)%this.shortEvents.length]];
   }
 
 }
