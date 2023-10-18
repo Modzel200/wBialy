@@ -1,0 +1,32 @@
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    height: 80vh;
+
+    .right{
+      padding: 5vh 5vw 0 5vw;
+      grid-column: 2;
+    }
+    .left{
+      padding: 5vh 5vw 0 5vw;
+      grid-column: 1;
+    }
+    @media (max-width: 1200px){
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+
+      .right{
+        grid-column: 1;
+        grid-row: 1;
+      }
+      .left{
+        grid-column: 1;
+        grid-row: 2;
+      }
+
+    }
+
+}
+

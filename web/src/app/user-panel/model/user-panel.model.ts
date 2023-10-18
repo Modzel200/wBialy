@@ -1,4 +1,5 @@
 export interface PostToAdd{
+  postId:number;
   title: string;
   description: string;
   image: string;

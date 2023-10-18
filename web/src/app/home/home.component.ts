@@ -29,7 +29,11 @@ export class HomeComponent implements OnInit{
       this.pageResult = response;
       this.shortEvents = this.pageResult.items;
       // this.eventsToShow = this.shortEvents.slice(this.indexDown,this.indexUp);
-      this.eventsToShow = [this.shortEvents[this.currentIndex],this.shortEvents[this.currentIndex+1],this.shortEvents[this.currentIndex+2]];
+      if(this.isWideScreen){
+        this.eventsToShow = [this.shortEvents[this.currentIndex],this.shortEvents[this.currentIndex+1],this.shortEvents[this.currentIndex+2]];
+      }else{
+        this.eventsToShow = [this.shortEvents[this.currentIndex]];
+      }
       this.changeDateFormat();
     })
 
@@ -48,12 +52,16 @@ export class HomeComponent implements OnInit{
 
   prevEvent() {
     this.currentIndex = (this.currentIndex - 1 + this.shortEvents.length) % this.shortEvents.length;
-    this.eventsToShow = [this.shortEvents[this.currentIndex%this.shortEvents.length],this.shortEvents[(this.currentIndex+1)%this.shortEvents.length],this.shortEvents[(this.currentIndex+2)%this.shortEvents.length]];
+    this.isWideScreen 
+    ? this.eventsToShow = [this.shortEvents[this.currentIndex%this.shortEvents.length],this.shortEvents[(this.currentIndex+1)%this.shortEvents.length],this.shortEvents[(this.currentIndex+2)%this.shortEvents.length]] 
+    : this.eventsToShow = [this.shortEvents[this.currentIndex - 1]];
   }
 
   nextEvent() {
     this.currentIndex = (this.currentIndex + 1) % this.shortEvents.length;
-    this.eventsToShow = [this.shortEvents[this.currentIndex%this.shortEvents.length],this.shortEvents[(this.currentIndex+1)%this.shortEvents.length],this.shortEvents[(this.currentIndex+2)%this.shortEvents.length]];
+    this.isWideScreen 
+    ? this.eventsToShow = [this.shortEvents[this.currentIndex%this.shortEvents.length],this.shortEvents[(this.currentIndex+1)%this.shortEvents.length],this.shortEvents[(this.currentIndex+2)%this.shortEvents.length]]
+    : this.eventsToShow = [this.shortEvents[this.currentIndex + 1]];
   }
 
 }

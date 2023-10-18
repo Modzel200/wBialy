@@ -1,23 +1,22 @@
-import {Component, OnInit} from '@angular/core';
-import {UserPanelService} from "./service/user-panel.service";
-import {PostToAdd, Tags} from "./model/user-panel.model";
-import {Router} from "@angular/router";
-import {EventPost} from "../events/model/event.model";
-import {DatePipe} from "@angular/common";
+import { Component, OnInit } from '@angular/core';
+import { PostToAdd, Tags } from '../model/user-panel.model';
+import { EventPost } from 'src/app/events/model/event.model';
+import { UserPanelService } from '../service/user-panel.service';
+import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-user-panel',
-  templateUrl: './user-panel.component.html',
-  styleUrls: ['./user-panel.component.scss']
+  selector: 'app-add-post-form',
+  templateUrl: './add-post-form.component.html',
+  styleUrls: ['./add-post-form.component.scss']
 })
-export class UserPanelComponent implements OnInit{
+export class AddPostFormComponent implements OnInit {
   tags: Tags[] =[{
     name: 'pub'
   }
   ]
   userEvents: EventPost[] =[];
   postToAdd: PostToAdd = {
-    postId: 0,
     title: '',
     description: '',
     image: '',
@@ -51,4 +50,13 @@ export class UserPanelComponent implements OnInit{
       this.userEvents[i].eventDate = <string>this.datePipe.transform(this.userEvents[i].eventDate, 'dd.MM.yyyy hh:mm');
     }
   }
+  onSubmit()
+  {
+    this.userPanelService.addNewPost(this.postToAdd).subscribe(response=>{
+      console.log(response);
+      console.log(this.postToAdd.eventDate);
+    });
+    window.location.reload();
+  }
+
 }

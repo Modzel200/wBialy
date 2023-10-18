@@ -15,6 +15,9 @@ import {DatePipe} from "@angular/common";
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import {MatDialog, MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
+import { AddPostFormComponent } from './user-panel/add-post-form/add-post-form.component';
+import { PostsConfirmedComponent } from './user-panel/posts-confirmed/posts-confirmed.component';
+import { PostsUnconfirmedComponent } from './user-panel/posts-unconfirmed/posts-unconfirmed.component';
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
@@ -32,6 +35,9 @@ const appRoutes: Routes = [
     SignupFormComponent,
     LoginFormComponent,
     UserPanelComponent,
+    AddPostFormComponent,
+    PostsConfirmedComponent,
+    PostsUnconfirmedComponent,
   ],
   imports: [
     BrowserModule,
