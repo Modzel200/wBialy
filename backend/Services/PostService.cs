@@ -34,7 +34,9 @@ namespace wBialy.Services
         Task<IEnumerable<GastroTagDto>> GetAllGastroTags();
         Task<IEnumerable<EventTagDto>> GetAllEventTags();
         Task<IEnumerable<LFTagDto>> GetAllLFTags();
-        Task<IEnumerable<PostDto>> GetAllUserPosts();
+        Task<IEnumerable<PostDto>> GetAllUserLFPosts();
+        Task<IEnumerable<PostDto>> GetAllUserEventPosts();
+        Task<IEnumerable<PostDto>> GetAllUserGastroPosts();
 
     }
 
@@ -572,11 +574,37 @@ namespace wBialy.Services
             var tagsDto = _mapper.Map<List<LFTagDto>>(tags);
             return await Task.FromResult(tagsDto);
         }
-        public async Task<IEnumerable<PostDto>> GetAllUserPosts()
+        public async Task<IEnumerable<PostDto>> GetAllUserLFPosts()
         {
             var userId = (int)_userContextService.GetUserId;
             var posts = await _context
-                .Posts.Where(x => x.UserId == userId)
+                .LFPosts.Where(x => x.UserId == userId)
+                .ToListAsync();
+            if (posts is null)
+            {
+                throw new NotFoundException("Not found");
+            }
+            var postsDto = _mapper.Map<List<PostDto>>(posts);
+            return await Task.FromResult(postsDto);
+        }
+        public async Task<IEnumerable<PostDto>> GetAllUserEventPosts()
+        {
+            var userId = (int)_userContextService.GetUserId;
+            var posts = await _context
+                .EventPosts.Where(x => x.UserId == userId)
+                .ToListAsync();
+            if (posts is null)
+            {
+                throw new NotFoundException("Not found");
+            }
+            var postsDto = _mapper.Map<List<PostDto>>(posts);
+            return await Task.FromResult(postsDto);
+        }
+        public async Task<IEnumerable<PostDto>> GetAllUserGastroPosts()
+        {
+            var userId = (int)_userContextService.GetUserId;
+            var posts = await _context
+                .GastroPosts.Where(x => x.UserId == userId)
                 .ToListAsync();
             if (posts is null)
             {
