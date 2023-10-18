@@ -5,6 +5,7 @@ export interface EventPost{
   image: string;
   place: string;
   eventDate: string;
+  confirmed: boolean;
   day: string;
   tags: string[]
   link: string;

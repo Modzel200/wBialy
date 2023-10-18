@@ -1,27 +1,4 @@
-<p>user-panel works!</p>
-<form action="action_page.php">
-  <h2>Dodawanie postu</h2>
-  <br>
-  <label for="">Tytuł</label>
-  <input type="text" name="tytul" [(ngModel)]="postToAdd.title" required>
-
-  <label for="">Opis</label>
-  <input type="text" name="opis" [(ngModel)]="postToAdd.description" required>
-
-  <label for="">Link do zdjęcia</label>
-  <input type="text" name="img" [(ngModel)]="postToAdd.image" required>
-
-  <label for="">Miejsce</label>
-  <input type="text" name="miejsce" [(ngModel)]="postToAdd.place" required>
-
-  <label for="">Data</label>
-  <input type="datetime-local" name="tytul" [(ngModel)]="postToAdd.eventDate" required>
-
-  <label for="">Link</label>
-  <input type="text" name="link" [(ngModel)]="postToAdd.link" required>
-
-  <button (click)="onSubmit()">Stwórz</button>
-</form>
-<h2>Wyloguj się</h2>
-<button (click)="logOff()">Wyloguj się</button>
-
+<div class="container">
+    <app-posts-unconfirmed class="left"></app-posts-unconfirmed>
+    <app-posts-confirmed class="right"></app-posts-confirmed>
+</div>

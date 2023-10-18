@@ -13,6 +13,7 @@ export class EventsService{
     title:'',
     description:'',
     image:'',
+    confirmed: false,
     place:'',
     eventDate:'',
     day:'',

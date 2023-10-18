@@ -1,0 +1,19 @@
+<h1>Posty niezatwierdzone</h1>
+<div *ngFor="let event of userEvents">
+  <div *ngIf="!event.confirmed" class="container">
+  <div class="left-side">
+    <img src="{{event.image}}" alt="">
+  </div>
+  <div class="right-side">
+    <div class="first">
+      <h1>{{event.title}}</h1>
+      <h2>{{event.eventDate}}</h2>
+      <p>{{event.description}}</p>
+    </div>
+    <div class="second">
+      <a ><button class="btn-primary" >Edytuj</button></a>
+      <a ><button class="btn-secondary" (click)="deleteEvent(event.postId)">Usuń</button></a>
+    </div>
+  </div>
+  </div>
+</div>

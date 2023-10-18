@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {UserPanelService} from "./service/user-panel.service";
-import {PostToAdd, Tags} from "./model/user-panel.model";
-import {Router} from "@angular/router";
-import {EventPost} from "../events/model/event.model";
-import {DatePipe} from "@angular/common";
+import { Component } from '@angular/core';
+import { PostToAdd, Tags } from '../model/user-panel.model';
+import { EventPost } from 'src/app/events/model/event.model';
+import { UserPanelService } from '../service/user-panel.service';
+import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-user-panel',
-  templateUrl: './user-panel.component.html',
-  styleUrls: ['./user-panel.component.scss']
+  selector: 'app-posts-confirmed',
+  templateUrl: './posts-confirmed.component.html',
+  styleUrls: ['./posts-confirmed.component.scss']
 })
-export class UserPanelComponent implements OnInit{
+export class PostsConfirmedComponent {
   tags: Tags[] =[{
     name: 'pub'
   }
@@ -51,4 +51,5 @@ export class UserPanelComponent implements OnInit{
       this.userEvents[i].eventDate = <string>this.datePipe.transform(this.userEvents[i].eventDate, 'dd.MM.yyyy hh:mm');
     }
   }
+
 }

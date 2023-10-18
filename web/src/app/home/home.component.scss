@@ -11,6 +11,7 @@
         gap: 2vw;
         justify-content: center;
         align-self: center;
+        overflow: hidden;
     
         .card {
             display: grid;
@@ -40,6 +41,9 @@
           display: flex;
           align-items: center;
           padding: 1vw;
+          .card{
+            height: 300px;
+          }
       }
 
 
