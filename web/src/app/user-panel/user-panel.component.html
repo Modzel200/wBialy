@@ -25,3 +25,35 @@
 <h2>Wyloguj się</h2>
 <button (click)="logOff()">Wyloguj się</button>
 
+<div class="container" *ngFor="let event of userEvents">
+  <div *ngIf="event.confirmed">
+  <div class="left-side">
+    <img src="{{event.image}}" alt="">
+  </div>
+  <div class="right-side">
+    <div>
+      <h1>{{event.title}}</h1>
+      <h2>{{event.eventDate}}</h2>
+    </div>
+    <p>{{event.description}}</p>
+  </div>
+  </div>
+</div>
+
+
+<h1>Posty niezatwierdzone</h1>
+<div class="container" *ngFor="let event of userEvents">
+  <div *ngIf="!event.confirmed">
+    <div class="left-side">
+      <img src="{{event.image}}" alt="">
+    </div>
+    <div class="right-side">
+      <div>
+        <h1>{{event.title}}</h1>
+        <h2>{{event.eventDate}}</h2>
+      </div>
+      <p>{{event.description}}</p>
+    </div>
+  </div>
+</div>
+
