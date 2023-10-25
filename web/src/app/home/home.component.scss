@@ -35,6 +35,12 @@
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
                 transform: translateY(-1px);
             }
+            img{
+                object-fit:cover;
+                width: 300px;
+                height: 200px;
+                aspect-ratio: 16 / 9;
+            }
         }
 
         @media (max-width: 800px){

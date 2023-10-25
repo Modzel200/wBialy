@@ -51,6 +51,12 @@ export class AddPostFormComponent implements OnInit {
       this.userEvents[i].eventDate = <string>this.datePipe.transform(this.userEvents[i].eventDate, 'dd.MM.yyyy hh:mm');
     }
   }
+  selectedFile: File = {} as File;
+  onFileSelected(event : any){
+    this.selectedFile = <File>event.target.files[0]
+    this.postToAdd.image = this.selectedFile.name
+  }
+
   onSubmit()
   {
     this.userPanelService.addNewPost(this.postToAdd).subscribe(response=>{
@@ -59,5 +65,7 @@ export class AddPostFormComponent implements OnInit {
     });
     window.location.reload();
   }
+
+  selectedToggleValue: string = 'Post';
 
 }

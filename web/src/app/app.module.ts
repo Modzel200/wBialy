@@ -18,6 +18,11 @@ import {MatButtonModule} from "@angular/material/button";
 import { AddPostFormComponent } from './user-panel/add-post-form/add-post-form.component';
 import { PostsConfirmedComponent } from './user-panel/posts-confirmed/posts-confirmed.component';
 import { PostsUnconfirmedComponent } from './user-panel/posts-unconfirmed/posts-unconfirmed.component';
+import { FooterComponent } from './footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
@@ -38,6 +43,7 @@ const appRoutes: Routes = [
     AddPostFormComponent,
     PostsConfirmedComponent,
     PostsUnconfirmedComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,10 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    FontAwesomeModule,
+    BrowserAnimationsModule,
+    MatButtonToggleModule
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
