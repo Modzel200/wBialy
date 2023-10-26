@@ -22,6 +22,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { GastroComponent } from './gastro/gastro.component';
 
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
@@ -44,6 +45,7 @@ const appRoutes: Routes = [
     PostsConfirmedComponent,
     PostsUnconfirmedComponent,
     FooterComponent,
+    GastroComponent,
   ],
   imports: [
     BrowserModule,
