@@ -14,7 +14,7 @@
 </div>
 <div class="pagination">
     <div class="buttons">
-        <button class="btn-primary" (click)="backPage()" >Poprzednia strona</button>
-        <button class="btn-primary"(click)="nextPage()">Następna strona</button>
+        <button class="btn-primary" (click)="backPage()" [disabled]="canGoPrev" >Poprzednia strona</button>
+        <button class="btn-primary"(click)="nextPage()" [disabled]="canGoNext">Następna strona</button>
     </div>
 </div>

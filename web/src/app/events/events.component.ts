@@ -27,7 +27,12 @@ export class EventsComponent implements OnInit{
   ngOnInit() {
     this.getAllPosts();
   }
+  canGoNext: boolean = false;
+  canGoPrev: boolean = false;
+
   getAllPosts(){
+    this.canGoNextPage();
+    this.canGoPrevPage();
     this.eventsService.getAllPosts(this.number)
       .subscribe(response => {
       this.pageResult = response;
@@ -38,6 +43,17 @@ export class EventsComponent implements OnInit{
       }
     });
   }
+  canGoNextPage(): void {
+    this.eventsService.getAllPosts((this.number) + 1)
+      .subscribe(response => {
+        this.canGoNext = response.items.length === 0 ? true : false;
+      });
+  }
+  
+  canGoPrevPage(): void {
+    this.canGoPrev = this.number === 1? true : false;
+  }
+
   nextPage(){
     this.number++;
     this.getAllPosts();
