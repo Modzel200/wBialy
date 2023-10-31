@@ -30,6 +30,7 @@ const appRoutes: Routes = [
   {path: 'signup', component: SignupFormComponent},
   {path: 'account',component:UserPanelComponent},
   {path: 'event',component:EventComponent},
+  {path: 'gastro',component:GastroComponent},
 ];
 @NgModule({
   declarations: [

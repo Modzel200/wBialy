@@ -9,6 +9,7 @@ import {Observable} from "rxjs";
 })
 export class EventsService{
   baseUrl = 'https://localhost:7012/api/post/eventposts/';
+  number = 1;
   public event: EventPost={
     postId: 0,
     title:'',
@@ -23,8 +24,8 @@ export class EventsService{
   };
   constructor(private http: HttpClient) {
   }
-  getAllPosts():Observable<PageResultModel>
+  getAllPosts(number: number):Observable<PageResultModel>
   {
-    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber=1&sortBy=Title");
+    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortBy=Title");
   }
 }

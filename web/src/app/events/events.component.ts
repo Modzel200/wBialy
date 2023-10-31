@@ -13,6 +13,7 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit{
+  number = 1;
   events: EventPost[] = [];
   pageResult: PageResultModel={
     items: [],
@@ -27,12 +28,30 @@ export class EventsComponent implements OnInit{
     this.getAllPosts();
   }
   getAllPosts(){
-    this.eventsService.getAllPosts()
+    this.eventsService.getAllPosts(this.number)
       .subscribe(response => {
       this.pageResult = response;
       this.events = this.pageResult.items;
       this.changeDateFormat();
     });
+  }
+  nextPage(){
+    this.number++;
+    this.eventsService.getAllPosts(this.number)
+      .subscribe(response => {
+        this.pageResult = response;
+        this.events = this.pageResult.items;
+        this.changeDateFormat();
+      });
+  }
+  backPage(){
+    this.number--;
+    this.eventsService.getAllPosts(this.number)
+      .subscribe(response => {
+        this.pageResult = response;
+        this.events = this.pageResult.items;
+        this.changeDateFormat();
+      });
   }
   changeDateFormat()
   {
