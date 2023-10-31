@@ -23,6 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { GastroComponent } from './gastro/gastro.component';
+import { EditPostFormComponent } from './user-panel/posts-unconfirmed/edit-post-form/edit-post-form.component';
 
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
@@ -47,6 +48,7 @@ const appRoutes: Routes = [
     PostsUnconfirmedComponent,
     FooterComponent,
     GastroComponent,
+    EditPostFormComponent,
   ],
   imports: [
     BrowserModule,

@@ -54,7 +54,13 @@ export class AddPostFormComponent implements OnInit {
   selectedFile: File = {} as File;
   onFileSelected(event : any){
     this.selectedFile = <File>event.target.files[0]
-    this.postToAdd.image = this.selectedFile.name
+    console.log("test");
+    this.userPanelService.uploadImg(this.selectedFile).subscribe(url=>
+    {
+      console.log(url.data.url);
+      this.postToAdd.image = url.data.url;
+    }
+    );
   }
 
   onSubmit()

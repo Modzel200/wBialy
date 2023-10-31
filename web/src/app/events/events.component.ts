@@ -31,27 +31,20 @@ export class EventsComponent implements OnInit{
     this.eventsService.getAllPosts(this.number)
       .subscribe(response => {
       this.pageResult = response;
-      this.events = this.pageResult.items;
-      this.changeDateFormat();
+      if(this.pageResult.items.length>0)
+      {
+        this.events = this.pageResult.items;
+        this.changeDateFormat();
+      }
     });
   }
   nextPage(){
     this.number++;
-    this.eventsService.getAllPosts(this.number)
-      .subscribe(response => {
-        this.pageResult = response;
-        this.events = this.pageResult.items;
-        this.changeDateFormat();
-      });
+    this.getAllPosts();
   }
   backPage(){
     this.number--;
-    this.eventsService.getAllPosts(this.number)
-      .subscribe(response => {
-        this.pageResult = response;
-        this.events = this.pageResult.items;
-        this.changeDateFormat();
-      });
+    this.getAllPosts();
   }
   changeDateFormat()
   {
@@ -59,9 +52,6 @@ export class EventsComponent implements OnInit{
     {
       this.events[i].eventDate = <string>this.datePipe.transform(this.events[i].eventDate, 'dd.MM.yyyy hh:mm');
     }
-  }
-  testFunc(){
-    console.log(this.pageResult?.totalPages);
   }
   showEvent(event: EventPost){
     this.eventsService.event = event;

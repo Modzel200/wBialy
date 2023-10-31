@@ -1,0 +1,24 @@
+<form class="form" style="border:1px solid #ccc">
+  <div class="form-container">
+    <h2>Event</h2>
+    <br>
+    <label for="">Tytuł</label>
+    <input type="text" name="tytul" [(ngModel)]="event.title" required>
+    <label for="">Opis</label>
+    <input type="text" name="opis" [(ngModel)]="event.description" required>
+    <label for="">Link do zdjęcia</label>
+    <input type="file" accept="image/*" name="img" (change)="onFileSelected($event)" required>
+    <label for="">Miejsce</label>
+    <input type="text" name="miejsce" [(ngModel)]="event.place" required>
+
+    <label for="">Data</label>
+    <input type="datetime-local" name="data" [(ngModel)]="event.eventDate" required>
+
+    <label for="">Link</label>
+    <input type="text" name="link" [(ngModel)]="event.link" required>
+
+    <div class="buttons">
+      <a><button (click)="onSubmit(event)" class="btn-secondary">Stwórz</button></a>
+    </div>
+  </div>
+</form>
