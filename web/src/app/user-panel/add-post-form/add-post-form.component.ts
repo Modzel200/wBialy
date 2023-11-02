@@ -73,7 +73,7 @@ export class AddPostFormComponent implements OnInit {
       console.log(response);
       console.log(this.postToAdd.eventDate);
     });
-    //window.location.reload();
+    window.location.reload();
   }
   public handleAddressChange(place: google.maps.places.PlaceResult) {
     // Do some stuff

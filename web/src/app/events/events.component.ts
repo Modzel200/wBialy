@@ -4,7 +4,7 @@ import {EventsService} from "./service/events.service";
 import {PageResultModel} from "./model/pageResult.model";
 import {map} from 'rxjs/operators'
 import {EventComponent} from "./event/event.component";
-import {DatePipe} from "@angular/common";
+import {DatePipe, ViewportScroller} from "@angular/common";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 @Component({
@@ -22,7 +22,7 @@ export class EventsComponent implements OnInit{
     itemTo:0,
     totalItemsCount:0
   };
-  constructor(private eventsService: EventsService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog) {
+  constructor(private eventsService: EventsService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller) {
   }
   ngOnInit() {
     this.getAllPosts();
@@ -42,6 +42,7 @@ export class EventsComponent implements OnInit{
         this.changeDateFormat();
       }
     });
+
   }
   canGoNextPage(): void {
     this.eventsService.getAllPosts((this.number) + 1)
@@ -49,7 +50,7 @@ export class EventsComponent implements OnInit{
         this.canGoNext = response.items.length === 0 ? true : false;
       });
   }
-  
+
   canGoPrevPage(): void {
     this.canGoPrev = this.number === 1? true : false;
   }
@@ -57,10 +58,12 @@ export class EventsComponent implements OnInit{
   nextPage(){
     this.number++;
     this.getAllPosts();
+    this.scroller.scrollToAnchor("eventsScroll");
   }
   backPage(){
     this.number--;
     this.getAllPosts();
+    this.scroller.scrollToAnchor("eventsScroll");
   }
   changeDateFormat()
   {
