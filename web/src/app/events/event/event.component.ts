@@ -16,6 +16,7 @@ export class EventComponent implements OnInit{
     description:'',
     image:'',
     place:'',
+    location:'',
     confirmed: false,
     eventDate:'',
     day:'',

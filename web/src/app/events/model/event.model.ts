@@ -5,9 +5,13 @@ export interface EventPost{
   description: string;
   image: string;
   place: string;
+  location: string;
   eventDate: string;
   confirmed: boolean;
   day: string;
-  tags: string[]
+  tags: Tags[]
   link: string;
+}
+export interface Tags{
+  name: string;
 }

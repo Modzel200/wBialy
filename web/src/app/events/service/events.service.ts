@@ -17,6 +17,7 @@ export class EventsService{
     image:'',
     confirmed: false,
     place:'',
+    location:'',
     eventDate:'',
     day:'',
     tags:[],

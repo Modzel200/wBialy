@@ -22,6 +22,7 @@ export class UserPanelComponent implements OnInit{
     description: '',
     image: '',
     place: '',
+    location: '',
     eventDate: '',
     tags: this.tags,
     link: ''
