@@ -9,6 +9,7 @@ namespace wBialy.Models
         public string Description { get; set; }
         public string? Image { get; set; }
         public string Place { get; set; }
+        public string Location { get; set; }
         public DateTime EventDate { get; set; }
         public List<EventTagDto> Tags { get; set; }
         public string? Link { get; set; }
