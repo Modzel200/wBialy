@@ -1,0 +1,20 @@
+<div class="home">
+    <h1><img src = "../../assets/icons/VectorWhole.svg" alt="Logo Wbialy" class="WholeLogo"/> - Zgubione i znalezione</h1>
+    <div>
+        <mat-button-toggle-group class="toggle" name="fontStyle" aria-label="Font Style"  [(ngModel)]="selectedToggleValue">
+            <mat-button-toggle class="toggle item" value="zgubione">Zgubione</mat-button-toggle>
+            <mat-button-toggle class="toggle item" value="znalezione">Znalezione</mat-button-toggle>
+          </mat-button-toggle-group>
+      </div>
+    <div class="lf-container">
+      <div class="container" *ngFor="let event of events">
+        <div class="card">
+          <img src="{{event.image}}" style="width:100%">
+          <h2>{{event.title}}</h2>
+          <p class="opis">{{event.description}}</p>
+          <p><button class="btn-primary">Sprawdź</button></p>
+        </div>
+      </div>
+  </div>
+
+  </div>

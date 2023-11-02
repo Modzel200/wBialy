@@ -26,6 +26,10 @@ import { GastroComponent } from './gastro/gastro.component';
 import { EditPostFormComponent } from './user-panel/posts-unconfirmed/edit-post-form/edit-post-form.component';
 import {NgxGpAutocompleteModule} from "@angular-magic/ngx-gp-autocomplete";
 import {Loader} from "@googlemaps/js-api-loader";
+import { AddEventPostComponent } from './user-panel/add-event-post/add-event-post.component';
+import { AddLfPostComponent } from './user-panel/add-lf-post/add-lf-post.component';
+import { AddGastroPostComponent } from './user-panel/add-gastro-post/add-gastro-post.component';
+import { LostfoundComponent } from './lostfound/lostfound.component';
 
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
@@ -34,6 +38,7 @@ const appRoutes: Routes = [
   {path: 'account',component:UserPanelComponent},
   {path: 'event',component:EventComponent},
   {path: 'gastro',component:GastroComponent},
+  {path: 'social',component:LostfoundComponent},
 ];
 @NgModule({
   declarations: [
@@ -51,6 +56,10 @@ const appRoutes: Routes = [
     FooterComponent,
     GastroComponent,
     EditPostFormComponent,
+    AddEventPostComponent,
+    AddLfPostComponent,
+    AddGastroPostComponent,
+    LostfoundComponent,
   ],
   imports: [
     BrowserModule,

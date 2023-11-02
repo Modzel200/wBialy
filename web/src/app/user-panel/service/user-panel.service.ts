@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {PostToAdd} from "../model/user-panel.model";
+import {PostToAdd, gastroPostToAdd, lfPostToAdd} from "../model/user-panel.model";
 import {Observable} from "rxjs";
 import {PageResultModel} from "../../events/model/pageResult.model";
 import {EventPost} from "../../events/model/event.model";
@@ -12,6 +12,8 @@ import {UploadImgModel} from "../model/uploadImg.model";
 })
 export class UserPanelService{
   baseUrl = 'https://localhost:7012/api/post/eventposts/';
+  lfUrl = 'https://localhost:7012/api/post/lfposts/';
+  gastroUrl = 'https://localhost:7012/api/post/gastroposts';
   userUrl = 'https://localhost:7012/api/post/usereventposts/';
   deleteUrl = 'https://localhost:7012/api/post/';
   apiKey = '0044368c0f15bd2f0120f0819f511ee9';
@@ -38,6 +40,14 @@ export class UserPanelService{
   addNewPost(postToAdd: PostToAdd):Observable<object>
   {
     return this.http.post(this.baseUrl,postToAdd,this.options);
+  }
+  addNewLfPost(postToAdd: lfPostToAdd):Observable<object>
+  {
+    return this.http.post(this.lfUrl,postToAdd,this.options);
+  }
+  addNewGastroPost(postToAdd: gastroPostToAdd):Observable<object>
+  {
+    return this.http.post(this.gastroUrl,postToAdd,this.options);
   }
   getAllPosts()
   {

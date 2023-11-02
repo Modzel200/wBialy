@@ -1,106 +1,14 @@
 <div class="container">
-    <div id="circle"></div>
-    <div id="circle"></div>
-  <form action="action_page.php" class="form" style="border:1px solid #ccc" *ngIf="selectedToggleValue === 'Post'">
-    <div>
-      <mat-button-toggle-group name="fontStyle" aria-label="Font Style"  [(ngModel)]="selectedToggleValue">
-          <mat-button-toggle value="Post">Post</mat-button-toggle>
-          <mat-button-toggle value="L&F">Zgubione & Znalezione</mat-button-toggle>
-          <mat-button-toggle value="Gastro">Gastro</mat-button-toggle>
-        </mat-button-toggle-group>
-    </div>
-    <div class="form-container">
-      <h2>Event</h2>
-      <br>
-      <label for="">Tytuł</label>
-      <input type="text" name="tytul" [(ngModel)]="postToAdd.title" required>
-
-      <label for="">Opis</label>
-      <input type="text" name="opis" [(ngModel)]="postToAdd.description" required>
-
-      <label for="">Link do zdjęcia</label>
-      <input type="file" accept="image/*" name="img" (change)="onFileSelected($event)" required>
-
-      <label for="">Miejsce</label>
-<!--      <input type="text" name="miejsce" [(ngModel)]="postToAdd.place" required>-->
-      <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" type="text" name="miejsce" [(ngModel)]="postToAdd.place" required/>
-      <label for="">Data</label>
-      <input type="datetime-local" name="data" [(ngModel)]="postToAdd.eventDate" required>
-
-      <label for="">Link</label>
-      <input type="text" name="link" [(ngModel)]="postToAdd.link" required>
-
-        <div class="buttons">
-          <a><button (click)="onSubmit()" class="btn-secondary">Stwórz</button></a>
-        </div>
-    </div>
-    </form>
-    <form action="action_page.php" class="form" style="border:1px solid #ccc" *ngIf="selectedToggleValue === 'L&F'">
-      <div>
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style"  [(ngModel)]="selectedToggleValue">
-            <mat-button-toggle value="Post">Post</mat-button-toggle>
-            <mat-button-toggle value="L&F">Zgubione & Znalezione</mat-button-toggle>
-            <mat-button-toggle value="Gastro">Gastro</mat-button-toggle>
-          </mat-button-toggle-group>
-      </div>
-      <div class="form-container">
-        <h2>L&F</h2>
-        <br>
-        <label for="">Tytuł</label>
-        <input type="text" name="tytul" [(ngModel)]="postToAdd.title" required>
-
-        <label for="">Opis</label>
-        <input type="text" name="opis" [(ngModel)]="postToAdd.description" required>
-
-        <label for="">Link do zdjęcia</label>
-        <input type="file" accpet="image/*" name="img" (change)="onFileSelected($event)" required>
-
-        <label for="">Miejsce</label>
-        <input type="text" name="miejsce" [(ngModel)]="postToAdd.place" required>
-
-        <label for="">Data</label>
-        <input type="datetime-local" name="tytul" [(ngModel)]="postToAdd.eventDate" required>
-
-        <label for="">Link</label>
-        <input type="text" name="link" [(ngModel)]="postToAdd.link" required>
-
-          <div class="buttons">
-            <a><button (click)="onSubmit()" class="btn-secondary">Stwórz</button></a>
-          </div>
-      </div>
-      </form>
-      <form action="action_page.php" class="form" style="border:1px solid #ccc" *ngIf="selectedToggleValue === 'Gastro'">
-        <div>
-          <mat-button-toggle-group name="fontStyle" aria-label="Font Style"  [(ngModel)]="selectedToggleValue">
-              <mat-button-toggle value="Post">Post</mat-button-toggle>
-              <mat-button-toggle value="L&F">Zgubione & Znalezione</mat-button-toggle>
-              <mat-button-toggle value="Gastro">Gastro</mat-button-toggle>
-            </mat-button-toggle-group>
-        </div>
-        <div class="form-container">
-          <h2>Gastro</h2>
-          <br>
-          <label for="">Tytuł</label>
-          <input type="text" name="tytul" [(ngModel)]="postToAdd.title" required>
-
-          <label for="">Opis</label>
-          <input type="text" name="opis" [(ngModel)]="postToAdd.description" required>
-
-          <label for="">Link do zdjęcia</label>
-          <input type="file" accpet="image/*" name="img" (change)="onFileSelected($event)" required>
-
-          <label for="">Miejsce</label>
-          <input type="text" name="miejsce" [(ngModel)]="postToAdd.place" required>
-
-          <label for="">Data</label>
-          <input type="datetime-local" name="tytul" [(ngModel)]="postToAdd.eventDate" required>
-
-          <label for="">Link</label>
-          <input type="text" name="link" [(ngModel)]="postToAdd.link" required>
-
-            <div class="buttons">
-              <a><button (click)="onSubmit()" class="btn-secondary">Stwórz</button></a>
-            </div>
-        </div>
-        </form>
+  <div class="header">
+    <mat-button-toggle-group class="itemgroup"  [(ngModel)]="selectedToggleValue">
+        <mat-button-toggle class="item" value="Post">Post</mat-button-toggle>
+        <mat-button-toggle class="item" value="L&F">Zgubione & Znalezione</mat-button-toggle>
+        <mat-button-toggle class="item" value="Gastro">Gastro</mat-button-toggle>
+      </mat-button-toggle-group>
+  </div>
+  <div class="form">
+    <app-add-event-post *ngIf="selectedToggleValue === 'Post'"></app-add-event-post>
+    <app-add-lf-post *ngIf="selectedToggleValue === 'L&F'"></app-add-lf-post>
+    <app-add-gastro-post *ngIf="selectedToggleValue === 'Gastro'"></app-add-gastro-post>
+  </div>
   </div>

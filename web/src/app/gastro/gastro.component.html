@@ -11,14 +11,18 @@
             <mat-button-toggle class="toggle item"value="niedziela">Nd</mat-button-toggle>
           </mat-button-toggle-group>
       </div>
-    <div class="container">
-      <div class="card">
-        <img src="" style="width:100%">
-        <h2>Tytul</h2>
-        <p class="date">Opis</p>
-        <p class="opis">Procent</p>
-        <p><button class="btn-primary">Sprawdź</button></p>
+    <div class="gastro-container">
+      <div class="container" *ngFor="let event of events">
+        <a href="{{event.link}}" target="_blank">
+        <div class="card">
+          <img src="{{event.image}}" style="width:100%">
+          <h2>{{event.title}}</h2>
+          <p class="date">{{event.day}}</p>
+          <p class="opis">{{event.description}}</p>
+          <p><button class="btn-primary">Sprawdź</button></p>
+        </div>
+        </a>
       </div>
-    </div>
+  </div>
 
   </div>
