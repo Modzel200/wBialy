@@ -79,6 +79,9 @@ export class AddPostFormComponent implements OnInit {
     console.log(place);
     if (place.formatted_address != null) {
       this.postToAdd.place = place.formatted_address;
+      if (place.url != null) {
+        this.postToAdd.location = place.url;
+      }
     }
   }
   selectedToggleValue: string = 'Post';
