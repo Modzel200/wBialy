@@ -68,20 +68,21 @@ export class AddPostFormComponent implements OnInit {
 
   onSubmit()
   {
+    console.log(this.postToAdd)
     this.userPanelService.addNewPost(this.postToAdd).subscribe(response=>{
       console.log(response);
       console.log(this.postToAdd.eventDate);
     });
-    window.location.reload();
+    //window.location.reload();
   }
   public handleAddressChange(place: google.maps.places.PlaceResult) {
     // Do some stuff
     console.log(place);
     if (place.formatted_address != null) {
       this.postToAdd.place = place.formatted_address;
-      if (place.url != null) {
-        this.postToAdd.location = place.url;
-      }
+    }
+    if (place.url != null) {
+      this.postToAdd.location = place.url;
     }
   }
   selectedToggleValue: string = 'Post';
