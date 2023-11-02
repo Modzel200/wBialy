@@ -22,6 +22,7 @@ export class UserPanelService{
     image:'',
     confirmed: false,
     place:'',
+    location:'',
     eventDate:'',
     day:'',
     tags:[],

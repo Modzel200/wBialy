@@ -24,6 +24,7 @@ export class AddPostFormComponent implements OnInit {
     description: '',
     image: '',
     place: '',
+    location:'',
     eventDate: '',
     tags: this.tags,
     link: ''

@@ -4,6 +4,7 @@ export interface PostToAdd{
   description: string;
   image: string;
   place: string;
+  location: string;
   eventDate: string;
   tags: Tags[];
   link: string;

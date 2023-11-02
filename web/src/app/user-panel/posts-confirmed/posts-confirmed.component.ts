@@ -22,6 +22,7 @@ export class PostsConfirmedComponent {
     description: '',
     image: '',
     place: '',
+    location:'',
     eventDate: '',
     tags: this.tags,
     link: ''
