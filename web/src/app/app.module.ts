@@ -24,6 +24,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { GastroComponent } from './gastro/gastro.component';
 import { EditPostFormComponent } from './user-panel/posts-unconfirmed/edit-post-form/edit-post-form.component';
+import {NgxGpAutocompleteModule} from "@angular-magic/ngx-gp-autocomplete";
+import {Loader} from "@googlemaps/js-api-loader";
 
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
@@ -59,9 +61,16 @@ const appRoutes: Routes = [
     MatButtonModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    NgxGpAutocompleteModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,{
+    provide: Loader,
+    useValue: new Loader({
+      apiKey: 'AIzaSyDGzemBUP_vbFaoOS4r_SZFsPGBLjDXF_4',
+      libraries: ['places']
+    })
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
