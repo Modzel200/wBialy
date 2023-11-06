@@ -38,7 +38,7 @@ const appRoutes: Routes = [
   {path: 'account',component:UserPanelComponent},
   {path: 'event',component:EventComponent},
   {path: 'gastro',component:GastroComponent},
-  {path: 'social',component:LostfoundComponent},
+  {path: 'l&f',component:LostfoundComponent},
 ];
 @NgModule({
   declarations: [

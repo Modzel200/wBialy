@@ -14,9 +14,17 @@
       <label for="">Miejsce</label>
       <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" type="text" name="miejsce" [(ngModel)]="postToAdd.place" required/>
 
-      <label for="">Data</label>
-      <input type="datetime-local" name="data" [(ngModel)]="postToAdd.day" required>
-
+      <label for="">Dzień</label>
+      <select [(ngModel)]="postToAdd.day" required>
+        <option value="poniedziałek">Poniedziałek</option>
+        <option value="wtorek">Wtorek</option>
+        <option value="środa">Środa</option>
+        <option value="czwartek">Czwartek</option>
+        <option value="piątek">Piątek</option>
+        <option value="sobota">Sobota</option>
+        <option value="niedziela">Niedziela</option>
+      </select>
+      <br>
       <label for="">Link</label>
       <input type="text" name="link" [(ngModel)]="postToAdd.link" required>
 
