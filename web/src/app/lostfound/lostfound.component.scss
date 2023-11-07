@@ -6,10 +6,15 @@
     min-height: 80vh;
     gap: 40px;
     padding: 0 20vw 0 20vw;
+    background-color: var(--background-color);
+    color: var(--font-color);
     @media (max-width: 1200px){
         padding: 0 10vw 0 10vw;
     }
 
+}
+.WholeLogo{
+    filter: invert(var(--logo-color));
 }
 
 .gastro-container{
@@ -23,7 +28,7 @@
 
 a{
     text-decoration: none;
-    color:black;
+    color:var(--font-color);
 }
 h1{
     padding-top: 20px;
@@ -44,13 +49,14 @@ h1{
         font-size: 2.2rem;
         img{
             height: 40px;
+
         }
     }
 }
 
 .toggle{
     font-weight: 700;
-    color: #18A0FB;
+    color: var(--primary-color);
 }
 
 .card {
@@ -61,12 +67,12 @@ h1{
     overflow: hidden;
     justify-content: center;
     align-content: center;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px 0 var(--background-hover-color);
     max-width: 300px;
     height: 400px;
     margin: auto;
     text-align: center;
-    background-color: #fff;
+    background-color: var(--background-color);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     h1{
         padding: 0;
@@ -75,7 +81,7 @@ h1{
     }
 
     &:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 8px var(--background-hover-color);
         transform: translateY(-1px);
     }
     img{
@@ -93,26 +99,26 @@ button{
     cursor: pointer;
     font-size: 14px;
     border-radius: 0;
-    border: 1px solid #18A0FB;
+    border: 1px solid var(--primary-color);
     transition: background-color 0.3s ease;
     &:hover {
         background-color: #37afff;;
     }
 }
 .btn-secondary {
-background-color: #fff;
-color: #18A0FB;
+background-color: var(--background-color);
+color: var(--primary-color);
 transition: color 0.3s ease;
 height: 60px;
 width: 60px;
 margin: 1vw;
 &:hover {
-    color: #fff;;
+    color: var(--background-color);
 }
 }
 .btn-primary {
-background-color: #18A0FB;
-color: #fff;
+background-color: var(--primary-color);
+color: var(--background-color);
 }
 
 .buttons{
@@ -122,3 +128,11 @@ justify-content: center;
 align-self: center;
 }
 
+.toggle{
+    font-weight: 700;
+    color: var(--primary-color);
+    background-color: var(--background-color);
+}
+.item:target{
+    color: var(--font-color);
+}

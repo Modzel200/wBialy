@@ -1,0 +1,21 @@
+button{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    outline: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+button:hover {
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    transform: translateY(-1px);
+}

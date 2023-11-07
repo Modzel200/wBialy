@@ -3,6 +3,7 @@ h1{
   font-style: bold;
   font-size: 2rem;
   padding-left: 30px;
+  color: var(--font-color);
 }
 
 .container{
@@ -11,9 +12,8 @@ h1{
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
     height: 200px;
-    background-color: #fff  ;
-    border-bottom: 1px solid black;
-    border-color: rgba(0, 0, 0, 0.25);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--font-color);
 
 
     .left-side{
@@ -27,7 +27,7 @@ h1{
     }
     .right-side{
       grid-column: 2;
-      justify-self: end;
+      justify-self: start;
       align-self: center;
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -48,18 +48,44 @@ button{
     cursor: pointer;
     font-size: 14px;
     border-radius: 6px;
-    border: 1px solid #18A0FB;
+    border: 1px solid var(--primary-color);
+    margin: 10px;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     &:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 8px var(--border-color);
         transform: translateY(-1px);
     }
 }
 .btn-secondary {
-background-color: #fff;
-color: #18A0FB;
+background-color: var(--background-color);
+color: var(--primary-color);
 }
 .btn-primary {
-background-color: #18A0FB;
+background-color: var(--primary-color);
 color: #fff;
+}
+
+@media (max-width: 1200px){
+  .container{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+
+    .right-side{
+      display: flex;
+      flex-direction: column;
+      justify-self: start;
+      align-self: start;
+    }
+
+    .left-side{
+      justify-self: start;
+      align-self: start;
+    }
+  }
+
+  h1{
+    padding-left: 0;
+  }
 }

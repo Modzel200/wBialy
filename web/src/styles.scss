@@ -55,3 +55,24 @@ $web-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+:root {
+  --background-color: #ffffff;
+  --background-hover-color: #eee;
+  --primary-color: #18A0FB;
+  --border-color: rgba(0, 0, 0, 0.25);
+  --font-color: black;
+  --font-secondary-color: rgba(0, 0, 0, 0.5);
+  --logo-color: 0%;
+}
+
+.dark-mode{
+  --background-color: #1a1a1a;
+  --background-hover-color: #272727;
+  --primary-color: #18a0fb;
+  --border-color: rgba(228, 228, 228, 0.25);
+  --font-color: rgb(238, 238, 238);
+  --font-secondary-color: rgba(255, 255, 255, 0.5);
+  --logo-color: 100%;
+}

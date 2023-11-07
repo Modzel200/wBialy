@@ -1,4 +1,3 @@
-
 .container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -7,6 +6,7 @@
     "header header "
     "form title";
     height: 80vh;
+    background-color: var(--background-color);
 
 
     .form{
@@ -14,7 +14,7 @@
         flex-direction: column;
         padding-right: 8vw;
         grid-column: 2;
-        background-color: #fff;
+        background-color:  var(--background-color);
       
         h2{
             font-style: bold;
@@ -41,19 +41,19 @@ button{
     cursor: pointer;
     font-size: 14px;
     border-radius: 6px;
-    border: 1px solid #18A0FB;
+    border: 1px solid  var(--primary-color);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     &:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 8px  var(--border-color);
         transform: translateY(-1px);
     }
 }
 .btn-secondary {
-background-color: #fff;
-color: #18A0FB;
+background-color:  var(--background-color);
+color: var(--primary-color);
 }
 .btn-primary {
-background-color: #18A0FB;
+background-color:  var(--primary-color);
 color: #fff;
 }
 
@@ -62,18 +62,18 @@ color: #fff;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: 1px solid #f1f1f1;
-  background: #fff;
+  border: 1px solid var(--background-hover-color);
+  background: var(--background-color);
 }
 
 input[type=text]:focus, input[type=password]:focus {
-  background-color: #eeeeee;
+  background-color: var(--background-hover-color);
   outline: none;
 }
 
 .form-container {
   padding: 16px;
-  background-color: #fff;
+  background-color: var(--background-color);
 }
 
 .buttons{

@@ -6,6 +6,8 @@
     align-items: center;
     overflow: hidden;
     grid-auto-flow: column;
+    background-color: var(--background-color);
+    color: var(--font-color);
     
     img{
         width: 60vh;
@@ -45,7 +47,7 @@
         cursor: pointer;
         font-size: 14px;
         border-radius: 6px;
-        border: 1px solid #18A0FB;
+        border: 1px solid var(--primary-color);
         transition: box-shadow 0.3s ease, transform 0.3s ease;
         &:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -53,11 +55,11 @@
         }
     }
   .btn-secondary {
-    background-color: #fff;
-    color: #18A0FB;
+    background-color: var(--background-color);
+    color: #fff;
   }
   .btn-primary {
-    background-color: #18A0FB;
+    background-color: var(--primary-color);
     color: #fff;
   }
   @media (max-width: 1400px){
@@ -97,7 +99,7 @@
 }
 
 .container:nth-child(2n){
-    background-color: #F5F5F5;
+    background-color: var(--background-hover-color);
 
     .right-side{
         grid-column:2;
@@ -115,6 +117,7 @@
     flex-direction: row;
     justify-content: center;
     align-content: center;
+    background-color: var(--background-color);;
 }
 
 button{
@@ -141,10 +144,10 @@ button{
     }
 }
 .btn-secondary {
-background-color: #fff;
-color: #18A0FB;
+    background-color: var(--background-color);
+    color: #fff;
 }
 .btn-primary {
-background-color: #18A0FB;
-color: #fff;
+    background-color: var(--primary-color);
+    color: #fff;
 } 
