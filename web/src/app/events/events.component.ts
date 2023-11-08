@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, } from '@angular/core';
 import {EventPost} from "./model/event.model";
 import {EventsService} from "./service/events.service";
 import {PageResultModel} from "./model/pageResult.model";
@@ -73,10 +73,12 @@ export class EventsComponent implements OnInit{
     }
   }
   showEvent(event: EventPost){
+    const classmode = localStorage.getItem('DarkMode') === 'true'? 'dark-mode' : '';
     this.eventsService.event = event;
     const dialogRef = this.dialog.open(EventComponent,{
       height:'80%',
       autoFocus: false,
+      panelClass: classmode
     });
     //this.router.navigate(['/event']);
   }

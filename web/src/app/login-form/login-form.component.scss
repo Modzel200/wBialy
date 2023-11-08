@@ -9,9 +9,11 @@
     justify-items: center;
     align-items: center;
     height: 80vh;
+    background-color: var(--background-color);
 
     .logo{
         grid-area: header;
+        filter: invert(var(--logo-color));
     }
 
     .title{
@@ -19,7 +21,7 @@
         padding-left: 8vw;
         flex-wrap: wrap;
         h1{
-           
+            color: var(--font-color);
             font-size: 4rem;
         }
     }
@@ -67,19 +69,19 @@ button{
     cursor: pointer;
     font-size: 14px;
     border-radius: 6px;
-    border: 1px solid #18A0FB;
+    border: 1px solid var(--primary-color);
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     &:hover {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 4px 8px var(--background-hover-color);
         transform: translateY(-1px);
     }
 }
 .btn-secondary {
-background-color: #fff;
-color: #18A0FB;
+background-color: var(--background-color);
+color: var(--primary-color);
 }
 .btn-primary {
-background-color: #18A0FB;
+background-color: var(--primary-color);
 color: #fff;
 }
 
@@ -88,18 +90,21 @@ color: #fff;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
-  border: 1px solid #f1f1f1;
-  background: #fff;
+  border: 1px solid var(--background-hover-color);
+  background: var(--background-color);
+  color: var(--font-color);
 }
 
 input[type=text]:focus, input[type=password]:focus {
-  background-color: #eeeeee;
+  background-color: var(--background-hover-color);
   outline: none;
+  color: var(--font-color);
 }
 
 .form-container {
   padding: 16px;
-  background-color: #fff;
+  background-color: var(--background-color);
+  color: var(--font-color);
 }
 
 .buttons{
@@ -115,7 +120,7 @@ input[type=text]:focus, input[type=password]:focus {
   display: block;
   width: 624px;
   height: 624px;
-  background: #18A0FB;
+  background: var(--primary-color);
   border-radius: 50%;
   position: fixed;
   z-index: -100;
@@ -123,10 +128,10 @@ input[type=text]:focus, input[type=password]:focus {
 
 #circle:first-child{
   top: -30vh;
-  right: -15vw;
+  left: -15vw;
 }
 
 #circle:nth-child(2n){
   top: 80vh;
-  right: 90vw;
+  left: 90vw;
 }

@@ -1,16 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import { AddPostFormComponent } from '../user-panel/add-post-form/add-post-form.component';
 import { Dialog } from '@angular/cdk/dialog';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit{
   constructor(private dialog : Dialog){
     
   }
+  @Input() 'isDarkMode' : boolean;
   isMenuOpen = false;
   isLogged = localStorage.getItem('Authorization');
   ngOnInit() {
@@ -27,11 +28,12 @@ export class NavbarComponent implements OnInit{
     localStorage.clear();
     window.location.reload();
   }
-
   showEvent(){
+    const classmode = this.isDarkMode ? 'dark-mode' : '';
     const dialogRef = this.dialog.open(AddPostFormComponent,{
       height:'80%',
       autoFocus: false,
+      panelClass: classmode
     });
     //this.router.navigate(['/event']);
   }
