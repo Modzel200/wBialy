@@ -8,9 +8,10 @@ import { faPalette } from '@fortawesome/free-solid-svg-icons'
 })
 export class AppComponent {
   title = 'web';
-  isDarkMode: boolean = false;
+  isDarkMode: boolean = Boolean(localStorage.getItem("DarkMode"));
   faPalette=faPalette;
   toggleDarkMode(): void {
     this.isDarkMode = !this.isDarkMode;
+    localStorage.setItem("DarkMode",String(this.isDarkMode));
   }
 }
