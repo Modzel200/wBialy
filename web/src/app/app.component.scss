@@ -1,4 +1,4 @@
-button{
+.handleTheme{
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -12,9 +12,10 @@ button{
     color: var(--background-color);
     outline: none;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    z-index: 99999;
 }
 
-button:hover {
+.handleTheme:hover {
     background-color: var(--primary-color);
     color: var(--font-color);
     transform: translateY(-1px);

@@ -1,4 +1,27 @@
 <app-home></app-home>
+
+<mat-drawer-container class="events" autosize style="background-color: var(--background-color);">
+  
+  <mat-drawer #drawer mode="side" position="end" class="filterDrawer">
+      <mat-card class="demo-inline-calendar-card">
+        <mat-calendar [(selected)]="selected" (click)="formatDate()"></mat-calendar>
+      </mat-card>
+      <br>
+      <p>Wybrana data: {{selected}}</p>
+      <br>
+      <mat-form-field>
+        <mat-label>Tagi</mat-label>
+        <mat-select  [formControl]="toppings" [(value)]="selectedToppings" multiple>
+          <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{tag.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <p>Tagi: {{selectedToppings}}</p>
+      <br>
+    <button type="button" class="btn-primary btn" mat-button (click)="drawer.toggle();sendFilters()">
+      Filtruj
+    </button>
+
+    </mat-drawer>
 <div class="container" *ngFor="let event of events" id="eventsScroll">
   <div class="left-side">
     <img src="{{event.image}}" alt="">
@@ -14,7 +37,12 @@
 </div>
 <div class="pagination">
     <div class="buttons">
-        <button class="btn-primary" (click)="backPage()" [disabled]="canGoPrev" >Poprzednia strona</button>
-        <button class="btn-primary"(click)="nextPage()" [disabled]="canGoNext">Następna strona</button>
+        <button class="btn-primary btn" (click)="backPage()" [disabled]="canGoPrev" >Poprzednia strona</button>
+        <button class="btn-primary btn"(click)="nextPage()" [disabled]="canGoNext">Następna strona</button>
     </div>
 </div>
+<button class="handleFilters" (click)="drawer.toggle()">
+  <fa-icon size="xl" [icon]="faFilter"></fa-icon>
+</button>
+
+</mat-drawer-container>

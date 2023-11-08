@@ -6,21 +6,18 @@
     background-color: var(--background-color);
     align-items: center;
     justify-items: center;
+    border: 1px solid var(--primary-color);
 
     .form{
         display: flex;
         flex-direction: column;
-        background-color: #fff;
+        background-color: var(--background-color);
         width: 100%;
       
         h2{
             font-style: bold;
             font-size: 2rem;
         }
-    }
-
-    .item{
-      background-color: var(--background-color);
     }
 
     @media (max-width: 800px){
@@ -30,6 +27,7 @@
     }
 
     .item{
+      background-color: var(--background-color);
       border: none;
       outline: none;
       color: var(--primary-color);

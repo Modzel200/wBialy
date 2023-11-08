@@ -7,6 +7,11 @@ import {EventComponent} from "./event/event.component";
 import {DatePipe, ViewportScroller} from "@angular/common";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
+import { FormControl } from '@angular/forms';
+import { UserPanelService } from '../user-panel/service/user-panel.service';
+import { Tags } from '../user-panel/model/user-panel.model';
+import { faFilter } from '@fortawesome/free-solid-svg-icons'
+
 @Component({
   selector: 'app-events',
   templateUrl: './events.component.html',
@@ -14,6 +19,7 @@ import {MatDialog} from "@angular/material/dialog";
 })
 export class EventsComponent implements OnInit{
   number = 1;
+  allTags: Tags[] = []
   events: EventPost[] = [];
   pageResult: PageResultModel={
     items: [],
@@ -22,13 +28,31 @@ export class EventsComponent implements OnInit{
     itemTo:0,
     totalItemsCount:0
   };
-  constructor(private eventsService: EventsService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller) {
+  toppings = new FormControl();
+  selectedToppings = [];
+  faFilter = faFilter;
+
+  constructor(private eventsService: EventsService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller,private userPanelService: UserPanelService,) {
   }
   ngOnInit() {
     this.getAllPosts();
+    this.getAllTags();
   }
   canGoNext: boolean = false;
   canGoPrev: boolean = false;
+  classmode = localStorage.getItem('DarkMode') === 'true'? 'dark-mode' : '';
+  selected: Date | null | string = null;
+ 
+  formatDate(){
+    this.selected = this.datePipe.transform(this.selected, 'dd.MM.yyyy');
+  }
+  getAllTags()
+  {
+    this.userPanelService.getAllTags()
+      .subscribe(response=>{
+        this.allTags = response;
+      })
+  }
 
   getAllPosts(){
     this.canGoNextPage();
@@ -42,7 +66,10 @@ export class EventsComponent implements OnInit{
         this.changeDateFormat();
       }
     });
+  }
 
+  sendFilters(){
+    
   }
   canGoNextPage(): void {
     this.eventsService.getAllPosts((this.number) + 1)

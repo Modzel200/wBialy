@@ -32,6 +32,10 @@ import { AddGastroPostComponent } from './user-panel/add-gastro-post/add-gastro-
 import { LostfoundComponent } from './lostfound/lostfound.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatSelectModule} from "@angular/material/select";
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatCardModule} from '@angular/material/card';
+import {MatNativeDateModule} from '@angular/material/core';
 
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
@@ -76,7 +80,11 @@ const appRoutes: Routes = [
     NgxGpAutocompleteModule,
     MatInputModule,
     MatSelectModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSidenavModule,
+    MatDatepickerModule,
+    MatCardModule,
+    MatNativeDateModule
   ],
   providers: [DatePipe,{
     provide: Loader,

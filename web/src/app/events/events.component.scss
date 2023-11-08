@@ -121,7 +121,6 @@
 }
 
 button{
-    margin-left: 10px;
     width: 130px;
     height: 60px;
     flex-shrink: 0;
@@ -151,3 +150,44 @@ button{
     background-color: var(--primary-color);
     color: #fff;
 } 
+.buttons{
+    display: flex;
+    gap: 10px;
+}
+
+.handleFilters{
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    height: 50px;
+    width: 50px;
+    padding: 10px;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    background-color: var(--primary-color);
+    color: var(--background-color);
+    outline: none;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    z-index: 99999;
+}
+
+.handleFilters:hover {
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    transform: translateY(-1px);
+}
+
+.filterDrawer{
+    outline: 1px solid var(--primary-color);
+    margin-top: 230px;
+    margin-bottom: 230px;
+    width: 350px;
+    background-color: var(--background-hover-color);
+    position:fixed; 
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+    color: var(--font-color);
+    z-index: 1;
+}
