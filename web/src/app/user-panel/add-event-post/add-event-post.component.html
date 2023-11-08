@@ -7,13 +7,21 @@
 
     <label for="">Opis</label>
     <input type="text" name="opis" [(ngModel)]="postToAdd.description" required>
-
+    <label for="">Tagi</label>
+    <br>
+    <mat-form-field>
+      <mat-label>Tagi</mat-label>
+      <mat-select  [formControl]="toppings" [(value)]="selectedToppings" multiple>
+        <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{tag.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
     <label for="">Link do zdjęcia</label>
     <input type="file" accept="image/*" name="img" (change)="onFileSelected($event)" required>
 
     <label for="">Miejsce</label>
     <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" type="text" name="miejsce" [(ngModel)]="postToAdd.place" required/>
-    
+
     <label for="">Data</label>
     <input type="datetime-local" name="data" [(ngModel)]="postToAdd.eventDate" required>
 

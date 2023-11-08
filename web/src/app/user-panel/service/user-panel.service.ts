@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {PostToAdd, gastroPostToAdd, lfPostToAdd} from "../model/user-panel.model";
+import {PostToAdd, gastroPostToAdd, lfPostToAdd, Tags} from "../model/user-panel.model";
 import {Observable} from "rxjs";
 import {PageResultModel} from "../../events/model/pageResult.model";
 import {EventPost} from "../../events/model/event.model";
@@ -52,6 +52,10 @@ export class UserPanelService{
   getAllPosts()
   {
     return this.http.get<EventPost[]>(this.userUrl,this.options);
+  }
+  getAllTags()
+  {
+    return this.http.get<Tags[]>(this.deleteUrl+"eventtags",this.options);
   }
   deleteEvent(id:number)
   {

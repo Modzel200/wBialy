@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { EventsComponent } from './events/events.component';
 import { EventComponent } from './events/event/event.component';
 import { HomeComponent } from './home/home.component';
@@ -30,6 +30,8 @@ import { AddEventPostComponent } from './user-panel/add-event-post/add-event-pos
 import { AddLfPostComponent } from './user-panel/add-lf-post/add-lf-post.component';
 import { AddGastroPostComponent } from './user-panel/add-gastro-post/add-gastro-post.component';
 import { LostfoundComponent } from './lostfound/lostfound.component';
+import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
 
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
@@ -71,7 +73,10 @@ const appRoutes: Routes = [
     FontAwesomeModule,
     BrowserAnimationsModule,
     MatButtonToggleModule,
-    NgxGpAutocompleteModule
+    NgxGpAutocompleteModule,
+    MatInputModule,
+    MatSelectModule,
+    ReactiveFormsModule
   ],
   providers: [DatePipe,{
     provide: Loader,

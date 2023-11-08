@@ -4,6 +4,7 @@ import { EventPost } from 'src/app/events/model/event.model';
 import { UserPanelService } from '../service/user-panel.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-add-event-post',
@@ -11,10 +12,8 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./add-event-post.component.scss']
 })
 export class AddEventPostComponent {
-  tags: Tags[] =[{
-    name: 'pub'
-  }
-  ]
+  tags: Tags[] =[]
+  allTags: Tags[] = []
   userEvents: EventPost[] =[];
   postToAdd: PostToAdd = {
     postId: 5,
@@ -27,6 +26,8 @@ export class AddEventPostComponent {
     tags: this.tags,
     link: ''
   }
+  toppings = new FormControl();
+  selectedToppings = [];
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe) {
   }
   ngOnInit() {
@@ -35,6 +36,7 @@ export class AddEventPostComponent {
       this.router.navigate(['/']);
     }
     this.getAllPosts();
+    this.getAllTags();
   }
   getAllPosts()
   {
@@ -43,6 +45,13 @@ export class AddEventPostComponent {
         this.userEvents = response;
         console.log(this.userEvents);
         this.changeDateFormat();
+      })
+  }
+  getAllTags()
+  {
+    this.userPanelService.getAllTags()
+      .subscribe(response=>{
+        this.allTags = response;
       })
   }
   changeDateFormat()
@@ -66,7 +75,11 @@ export class AddEventPostComponent {
 
   onSubmit()
   {
-    console.log(this.postToAdd)
+    for(let i=0;i<this.selectedToppings.length;i++)
+    {
+      this.tags.push({name:this.selectedToppings[i]});
+    }
+    console.log(this.tags);
     this.userPanelService.addNewPost(this.postToAdd).subscribe(response=>{
       console.log(response);
       console.log(this.postToAdd.eventDate);
