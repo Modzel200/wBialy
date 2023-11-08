@@ -281,7 +281,7 @@ namespace wBialy.Services
                 Description = dto.Description,
                 Image = dto.Image,
                 Place = dto.Place,
-                Day = DateTime.Parse(dto.Day),
+                Day = dto.Day,
                 Link = dto.Link,
                 Tags = tagList,
             };

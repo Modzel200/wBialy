@@ -11,7 +11,7 @@ namespace wBialy.Models
         public string? Image { get; set; }
         public string Place { get; set; }
         public DateTime? EventDate { get; set; }
-        public DateTime? Day { get; set; }
+        public string Day { get; set; }
         public string? Tags { get; set; }
         public string? Link { get; set; }
         public bool Confirmed { get; set; }
