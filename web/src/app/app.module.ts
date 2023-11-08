@@ -13,7 +13,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
 import {DatePipe} from "@angular/common";
 import { UserPanelComponent } from './user-panel/user-panel.component';
-import {MatDialog, MatDialogModule} from "@angular/material/dialog";
+import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import { AddPostFormComponent } from './user-panel/add-post-form/add-post-form.component';
 import { PostsConfirmedComponent } from './user-panel/posts-confirmed/posts-confirmed.component';
@@ -36,6 +36,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
@@ -84,7 +85,8 @@ const appRoutes: Routes = [
     MatSidenavModule,
     MatDatepickerModule,
     MatCardModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule,
   ],
   providers: [DatePipe,{
     provide: Loader,
@@ -92,7 +94,12 @@ const appRoutes: Routes = [
       apiKey: 'AIzaSyDGzemBUP_vbFaoOS4r_SZFsPGBLjDXF_4',
       libraries: ['places']
     })
-  }],
+  },
+    {
+      provide:MatDialogRef,
+      useValue:{}
+    },
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

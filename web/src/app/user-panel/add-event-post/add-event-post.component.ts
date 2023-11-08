@@ -5,6 +5,9 @@ import { UserPanelService } from '../service/user-panel.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import {FormControl} from "@angular/forms";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDialogRef} from "@angular/material/dialog";
+import {AddPostFormComponent} from "../add-post-form/add-post-form.component";
 
 @Component({
   selector: 'app-add-event-post',
@@ -28,7 +31,7 @@ export class AddEventPostComponent {
   }
   toppings = new FormControl();
   selectedToppings = [];
-  constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe) {
+  constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe, private _snackBar: MatSnackBar) {
   }
   ngOnInit() {
     if(localStorage.getItem("Authorization")==null)
@@ -83,8 +86,13 @@ export class AddEventPostComponent {
     this.userPanelService.addNewPost(this.postToAdd).subscribe(response=>{
       console.log(response);
       console.log(this.postToAdd.eventDate);
+      if(response==null)
+      {
+        //window.location.reload();
+        let snackBarRef = this._snackBar.open("Post utworzony","Zamknij");
+        snackBarRef.onAction().subscribe(()=> window.location.reload());
+      }
     });
-    window.location.reload();
   }
   public handleAddressChange(place: google.maps.places.PlaceResult) {
     // Do some stuff

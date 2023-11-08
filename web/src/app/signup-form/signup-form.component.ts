@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {RegisterUser} from "./model/signup-form.model";
 import {SignupFormService} from "./service/signup-form.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-signup-form',
@@ -14,10 +16,18 @@ export class SignupFormComponent {
     PasswordConfirm:''
   }
 
-  constructor(private signupFormService: SignupFormService) {
+  constructor(private signupFormService: SignupFormService, private _snackBar: MatSnackBar, private router: Router) {
   }
 
   onSubmit(){
-    this.signupFormService.signUpUser(this.user).subscribe(response=>{console.log(response)});
+    this.signupFormService.signUpUser(this.user).subscribe(response=>{
+      console.log(response)
+      if(response==null)
+      {
+        this._snackBar.open("Konto utworzone","dzięki");
+        this.router.navigate(['/login']);
+      }
+    });
+
   }
 }
