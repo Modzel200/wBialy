@@ -4,7 +4,7 @@ import {EventsService} from "./service/events.service";
 import {PageResultModel} from "./model/pageResult.model";
 import {map} from 'rxjs/operators'
 import {EventComponent} from "./event/event.component";
-import {DatePipe} from "@angular/common";
+import {DatePipe, ViewportScroller} from "@angular/common";
 import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
 @Component({
@@ -13,6 +13,7 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent implements OnInit{
+  number = 1;
   events: EventPost[] = [];
   pageResult: PageResultModel={
     items: [],
@@ -21,18 +22,48 @@ export class EventsComponent implements OnInit{
     itemTo:0,
     totalItemsCount:0
   };
-  constructor(private eventsService: EventsService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog) {
+  constructor(private eventsService: EventsService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller) {
   }
   ngOnInit() {
     this.getAllPosts();
   }
+  canGoNext: boolean = false;
+  canGoPrev: boolean = false;
+
   getAllPosts(){
-    this.eventsService.getAllPosts()
+    this.canGoNextPage();
+    this.canGoPrevPage();
+    this.eventsService.getAllPosts(this.number)
       .subscribe(response => {
       this.pageResult = response;
-      this.events = this.pageResult.items;
-      this.changeDateFormat();
+      if(this.pageResult.items.length>0)
+      {
+        this.events = this.pageResult.items;
+        this.changeDateFormat();
+      }
     });
+
+  }
+  canGoNextPage(): void {
+    this.eventsService.getAllPosts((this.number) + 1)
+      .subscribe(response => {
+        this.canGoNext = response.items.length === 0 ? true : false;
+      });
+  }
+
+  canGoPrevPage(): void {
+    this.canGoPrev = this.number === 1? true : false;
+  }
+
+  nextPage(){
+    this.number++;
+    this.getAllPosts();
+    this.scroller.scrollToAnchor("eventsScroll");
+  }
+  backPage(){
+    this.number--;
+    this.getAllPosts();
+    this.scroller.scrollToAnchor("eventsScroll");
   }
   changeDateFormat()
   {
@@ -40,9 +71,6 @@ export class EventsComponent implements OnInit{
     {
       this.events[i].eventDate = <string>this.datePipe.transform(this.events[i].eventDate, 'dd.MM.yyyy hh:mm');
     }
-  }
-  testFunc(){
-    console.log(this.pageResult?.totalPages);
   }
   showEvent(event: EventPost){
     this.eventsService.event = event;

@@ -22,6 +22,7 @@ export class UserPanelComponent implements OnInit{
     description: '',
     image: '',
     place: '',
+    location: '',
     eventDate: '',
     tags: this.tags,
     link: ''
@@ -40,7 +41,6 @@ export class UserPanelComponent implements OnInit{
     this.userPanelService.getAllPosts()
       .subscribe(response=>{
         this.userEvents = response;
-        console.log(this.userEvents);
         this.changeDateFormat();
       })
   }

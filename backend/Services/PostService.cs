@@ -259,6 +259,7 @@ namespace wBialy.Services
                 Description = dto.Description,
                 Image = dto.Image,
                 Place = dto.Place,
+                Location = dto.Location,
                 Tags = tagList,
             };
             var userId = _userContextService.GetUserId;
@@ -281,7 +282,8 @@ namespace wBialy.Services
                 Description = dto.Description,
                 Image = dto.Image,
                 Place = dto.Place,
-                Day = dto.Day,
+                Location = dto.Location,
+                Day = DateTime.Parse(dto.Day),
                 Link = dto.Link,
                 Tags = tagList,
             };
@@ -305,6 +307,7 @@ namespace wBialy.Services
                 Description = dto.Description,
                 Image = dto.Image,
                 Place = dto.Place,
+                Location = dto.Location,
                 EventDate = DateTime.Parse(dto.EventDate),
                 Link = dto.Link,
                 Tags = tagList,
@@ -386,6 +389,7 @@ namespace wBialy.Services
             postToUpdate.Description = editPostDto.Description;
             postToUpdate.Image = editPostDto.Image;
             postToUpdate.Place = editPostDto.Place;
+            postToUpdate.Location = editPostDto.Location;
             postToUpdate.Confirmed = false;
             //postToUpdate.EventDate = editPostDto.EventDate;
             _context.Update(postToUpdate);
@@ -416,6 +420,7 @@ namespace wBialy.Services
             postToUpdate.Description = editPostDto.Description;
             postToUpdate.Image = editPostDto.Image;
             postToUpdate.Place = editPostDto.Place;
+            postToUpdate.Location = editPostDto.Location;
             postToUpdate.EventDate = editPostDto.EventDate;
             postToUpdate.Link = editPostDto.Link;
             postToUpdate.Confirmed = false;
@@ -447,6 +452,7 @@ namespace wBialy.Services
             postToUpdate.Description = editPostDto.Description;
             postToUpdate.Image = editPostDto.Image;
             postToUpdate.Place = editPostDto.Place;
+            postToUpdate.Location = editPostDto.Location;
             postToUpdate.Day = editPostDto.Day;
             postToUpdate.Link = editPostDto.Link;
             postToUpdate.Confirmed = false;

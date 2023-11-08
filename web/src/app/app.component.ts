@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faPalette } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'web';
+  isDarkMode: boolean = Boolean(localStorage.getItem("DarkMode"));
+  faPalette=faPalette;
+  toggleDarkMode(): void {
+    this.isDarkMode = !this.isDarkMode;
+    localStorage.setItem("DarkMode",String(this.isDarkMode));
+  }
 }

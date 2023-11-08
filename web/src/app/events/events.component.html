@@ -1,5 +1,5 @@
 <app-home></app-home>
-<div class="container" *ngFor="let event of events">
+<div class="container" *ngFor="let event of events" id="eventsScroll">
   <div class="left-side">
     <img src="{{event.image}}" alt="">
   </div>
@@ -11,4 +11,10 @@
     <p>{{event.description}}</p>
     <button class="btn-primary" (click)="showEvent(event)">Dołącz</button>
   </div>
+</div>
+<div class="pagination">
+    <div class="buttons">
+        <button class="btn-primary" (click)="backPage()" [disabled]="canGoPrev" >Poprzednia strona</button>
+        <button class="btn-primary"(click)="nextPage()" [disabled]="canGoNext">Następna strona</button>
+    </div>
 </div>

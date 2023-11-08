@@ -11,10 +11,12 @@ export class EventComponent implements OnInit{
   constructor(private eventsService: EventsService) {
   }
   event: EventPost={
+    postId:0,
     title:'',
     description:'',
     image:'',
     place:'',
+    location:'',
     confirmed: false,
     eventDate:'',
     day:'',

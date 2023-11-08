@@ -18,12 +18,27 @@ import {MatButtonModule} from "@angular/material/button";
 import { AddPostFormComponent } from './user-panel/add-post-form/add-post-form.component';
 import { PostsConfirmedComponent } from './user-panel/posts-confirmed/posts-confirmed.component';
 import { PostsUnconfirmedComponent } from './user-panel/posts-unconfirmed/posts-unconfirmed.component';
+import { FooterComponent } from './footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { GastroComponent } from './gastro/gastro.component';
+import { EditPostFormComponent } from './user-panel/posts-unconfirmed/edit-post-form/edit-post-form.component';
+import {NgxGpAutocompleteModule} from "@angular-magic/ngx-gp-autocomplete";
+import {Loader} from "@googlemaps/js-api-loader";
+import { AddEventPostComponent } from './user-panel/add-event-post/add-event-post.component';
+import { AddLfPostComponent } from './user-panel/add-lf-post/add-lf-post.component';
+import { AddGastroPostComponent } from './user-panel/add-gastro-post/add-gastro-post.component';
+import { LostfoundComponent } from './lostfound/lostfound.component';
+
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
   {path: 'signup', component: SignupFormComponent},
   {path: 'account',component:UserPanelComponent},
   {path: 'event',component:EventComponent},
+  {path: 'gastro',component:GastroComponent},
+  {path: 'l&f',component:LostfoundComponent},
 ];
 @NgModule({
   declarations: [
@@ -38,6 +53,13 @@ const appRoutes: Routes = [
     AddPostFormComponent,
     PostsConfirmedComponent,
     PostsUnconfirmedComponent,
+    FooterComponent,
+    GastroComponent,
+    EditPostFormComponent,
+    AddEventPostComponent,
+    AddLfPostComponent,
+    AddGastroPostComponent,
+    LostfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,9 +67,19 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    FontAwesomeModule,
+    BrowserAnimationsModule,
+    MatButtonToggleModule,
+    NgxGpAutocompleteModule
   ],
-  providers: [DatePipe],
+  providers: [DatePipe,{
+    provide: Loader,
+    useValue: new Loader({
+      apiKey: 'AIzaSyDGzemBUP_vbFaoOS4r_SZFsPGBLjDXF_4',
+      libraries: ['places']
+    })
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

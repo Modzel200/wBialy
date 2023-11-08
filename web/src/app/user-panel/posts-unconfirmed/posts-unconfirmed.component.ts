@@ -4,6 +4,9 @@ import { EventPost } from 'src/app/events/model/event.model';
 import { UserPanelService } from '../service/user-panel.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import {AddPostFormComponent} from "../add-post-form/add-post-form.component";
+import {Dialog} from "@angular/cdk/dialog";
+import {EditPostFormComponent} from "./edit-post-form/edit-post-form.component";
 
 @Component({
   selector: 'app-posts-unconfirmed',
@@ -22,11 +25,12 @@ export class PostsUnconfirmedComponent {
     description: '',
     image: '',
     place: '',
+    location:'',
     eventDate: '',
     tags: this.tags,
     link: ''
   }
-  constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe) {
+  constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe, private dialog: Dialog) {
   }
   ngOnInit() {
     if(localStorage.getItem("Authorization")==null)
@@ -40,7 +44,6 @@ export class PostsUnconfirmedComponent {
     this.userPanelService.getAllPosts()
       .subscribe(response=>{
         this.userEvents = response;
-        console.log(this.userEvents);
         this.changeDateFormat();
       })
   }
@@ -53,6 +56,20 @@ export class PostsUnconfirmedComponent {
   }
 
   deleteEvent(id: number){
-
+    this.userPanelService.deleteEvent(id).subscribe(response=>{
+      this.getAllPosts();
+    })
+  }
+  // editEvent(event: EventPost)
+  // {
+  //   this.userPanelService.editEvent(event)
+  // }
+  editEvent(event: EventPost){
+    this.userPanelService.event = event;
+    const dialogRef = this.dialog.open(EditPostFormComponent,{
+      height:'80%',
+      autoFocus: false,
+    });
+    //this.router.navigate(['/event']);
   }
 }

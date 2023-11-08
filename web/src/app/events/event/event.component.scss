@@ -6,6 +6,8 @@
     align-items: center;
     overflow: hidden;
     grid-auto-flow: column;
+    background-color: var(--background-color);
+    
     .image{
         grid-row: 2;
         grid-column: 2;
@@ -52,7 +54,7 @@
         grid-template-columns: 20vw 30vw;
         a{
             text-decoration: none;
-            color: #18A0FB;
+            color: var(--primary-color);
         }
     }
 
@@ -69,7 +71,7 @@
         cursor: pointer;
         font-size: 14px;
         border-radius: 6px;
-        border: 1px solid #18A0FB;
+        border: 1px solid var(--primary-color);
         transition: box-shadow 0.3s ease, transform 0.3s ease;
         &:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -77,13 +79,13 @@
         }
     }
   .btn-secondary {
-    background-color: #fff;
-    color: #18A0FB;
+    background-color: var(--background-color);
+    color: var(--primary-color);
     margin-left: 1vw;
   }
   .btn-primary {
-    background-color: #18A0FB;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--background-color);
   }
   @media (max-width: 1400px){
     .long-list{

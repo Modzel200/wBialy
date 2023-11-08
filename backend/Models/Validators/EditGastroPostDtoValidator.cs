@@ -16,6 +16,8 @@ namespace wBialy.Models.Validators
                 .NotEmpty();
             RuleFor(x => x.Day)
                 .NotEmpty();
+            RuleFor(x => x.Location)
+                .NotEmpty();
             RuleFor(x => x.Tags)
                 .NotEmpty();
         }
