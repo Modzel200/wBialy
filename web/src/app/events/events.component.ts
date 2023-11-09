@@ -30,6 +30,7 @@ export class EventsComponent implements OnInit{
   };
   toppings = new FormControl();
   selectedToppings = [];
+  selectedToppingsString:string[] = [];
   faFilter = faFilter;
 
   constructor(private eventsService: EventsService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller,private userPanelService: UserPanelService,) {
@@ -42,7 +43,7 @@ export class EventsComponent implements OnInit{
   canGoPrev: boolean = false;
   classmode = localStorage.getItem('DarkMode') === 'true'? 'dark-mode' : '';
   selected: Date | null | string = null;
- 
+
   formatDate(){
     this.selected = this.datePipe.transform(this.selected, 'dd.MM.yyyy');
   }
@@ -69,7 +70,23 @@ export class EventsComponent implements OnInit{
   }
 
   sendFilters(){
-    
+    //this.number=1;
+    this.selectedToppingsString=[];
+    for(let i=0;i<this.selectedToppings.length;i++)
+    {
+      this.selectedToppingsString.push(this.selectedToppings[i]);
+      console.log(this.selectedToppingsString[i]);
+    }
+    this.eventsService.getFilterPosts(this.selectedToppingsString,this.selected,this.number)
+      .subscribe(response=>{
+        console.log(response);
+        this.pageResult = response;
+        if(this.pageResult.items.length>0)
+        {
+          this.events = this.pageResult.items;
+          this.changeDateFormat();
+        }
+      });
   }
   canGoNextPage(): void {
     this.eventsService.getAllPosts((this.number) + 1)
