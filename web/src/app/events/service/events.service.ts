@@ -27,6 +27,15 @@ export class EventsService{
   }
   getAllPosts(number: number):Observable<PageResultModel>
   {
-    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortBy=EventDate"+"&sortDirection=1");
+    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortDirection=0");
+  }
+  getFilterPosts(toppings: string[],date: string|Date|null,number: number)
+  {
+    let string = "";
+    for(let i=0;i<toppings.length;i++)
+    {
+      string+="&TagFilter="+toppings[i];
+    }
+    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortDirection=0"+string+"&DateFilter="+date);
   }
 }

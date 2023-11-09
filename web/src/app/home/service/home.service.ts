@@ -12,6 +12,6 @@ export class ShortEventsService{
   }
   getAllPosts():Observable<PageResultModel>
   {
-    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber=1&sortBy=Title");
+    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber=1&sortDirection=0");
   }
 }
