@@ -63,61 +63,23 @@ namespace wBialy.Services
             var result = _mapper.Map<PostDto>(post);
             return await Task.FromResult(result);
         }
-        //public async Task<PageResult<PostDto>> GetAll(PostQuery query)
-        //{
-        //    if(String.Equals(query.PostType, "LFPost"))
-        //    {
-        //        return await GetAllLFPosts(query);
-        //    } else
-        //    {
-        //        if(String.Equals(query.PostType, "EventPost"))
-        //        {
-        //            return await GetAllEventPosts(query);
-        //        } else
-        //        {
-        //            return await GetAllGastroPosts(query);
-        //        }
-        //    }
-
-        //    //var baseQuery = await _context
-        //    //    .Posts
-        //    //    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
-        //    //    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-        //    //    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true).ToListAsync();
-        //    //if (!string.IsNullOrEmpty(query.SortBy))
-        //    //{
-        //    //    var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
-        //    //    {
-        //    //        { nameof(Post.Title), x => x.Title},
-        //    //        { nameof(Post.Description), x => x.Description},
-        //    //        { nameof(Post.EventDate), x => x.EventDate},
-        //    //    };
-        //    //    var selectedColumn = columnsSelectors[query.SortBy];
-        //    //    baseQuery = query.SortDirection == SortDirection.ASC ?
-        //    //        baseQuery.OrderBy(selectedColumn)
-        //    //        : baseQuery.OrderByDescending(selectedColumn);
-        //    //}
-        //    //var posts = await baseQuery
-        //    //    .Skip(query.PageSize * (query.PageNumber - 1))
-        //    //    .Take(query.PageSize)
-        //    //    .ToListAsync();
-        //    //var totalItemsCount = baseQuery.Count();
-        //    //var postDtos = _mapper.Map<List<PostDto>>(posts);
-        //    //var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
-        //    //return await Task.FromResult(result);
-        //}
 
         public async Task<PageResult<PostDto>> GetAllLFPosts(PostQuery query)
         {
             List<LFPost> baseQuery;
-            if (!string.IsNullOrEmpty(query.SortBy))
+            List<LFTag> tags = new List<LFTag>();
+            if (string.IsNullOrEmpty(query.SortBy))
             {
                 query.SortBy = "AddDate"; //tutaj sie usunie i doda od razu sortowanie w frontend po dacie
             }
+            if (!query.TagFilter.IsNullOrEmpty())
+            {
+                tags = await _context.LFTags.Where(x => query.TagFilter.Contains(x.Name)).ToListAsync();
+            }
             var columnsSelectors = new Dictionary<string, Expression<Func<LFPost, object>>>
             {
-                { nameof(LFPost.Title), x => x.Title},
-                { nameof(LFPost.Description), x => x.Description},
+                //{ nameof(LFPost.Title), x => x.Title},
+                //{ nameof(LFPost.Description), x => x.Description},
                 { nameof(LFPost.AddDate), x => x.AddDate},
             };
             var selectedColumn = columnsSelectors[query.SortBy];
@@ -127,7 +89,10 @@ namespace wBialy.Services
                 .LFPosts
                 .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true)
+                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
+                && (query.TagFilter.IsNullOrEmpty()
+                || x.Tags.Any(y => tags.Contains(y)) )
+                && x.Confirmed == true)
                 .OrderBy(selectedColumn)
                 .ToListAsync();
             }
@@ -137,7 +102,10 @@ namespace wBialy.Services
                 .LFPosts
                 .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true)
+                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
+                && (query.TagFilter.IsNullOrEmpty()
+                || x.Tags.Any(y => tags.Contains(y)))
+                && x.Confirmed == true)
                 .OrderByDescending(selectedColumn)
                 .ToListAsync();
             }
@@ -152,15 +120,20 @@ namespace wBialy.Services
         public async Task<PageResult<PostDto>> GetAllEventPosts(PostQuery query)
         {
             List<EventPost> baseQuery;
-            if (!string.IsNullOrEmpty(query.SortBy))
+            List<EventTag> tags = new List<EventTag>();
+            if (string.IsNullOrEmpty(query.SortBy))
             {
-                query.SortBy = "AddDate"; //tutaj sie usunie i doda od razu sortowanie w frontend po dacie
+                query.SortBy = "EventDate"; //tutaj sie usunie i doda od razu sortowanie w frontend po dacie
+            }
+            if (!query.TagFilter.IsNullOrEmpty())
+            {
+                tags = await _context.EventTags.Where(x => query.TagFilter.Contains(x.Name)).ToListAsync();
             }
             var columnsSelectors = new Dictionary<string, Expression<Func<EventPost, object>>>
             {
-                { nameof(EventPost.Title), x => x.Title},
-                { nameof(EventPost.Description), x => x.Description},
-                { nameof(EventPost.AddDate), x => x.AddDate},
+                //{ nameof(EventPost.Title), x => x.Title},
+                //{ nameof(EventPost.Description), x => x.Description},
+                //{ nameof(EventPost.AddDate), x => x.AddDate},
                 { nameof(EventPost.EventDate), x => x.EventDate},
             };
             var selectedColumn = columnsSelectors[query.SortBy];
@@ -170,7 +143,10 @@ namespace wBialy.Services
                 .EventPosts
                 .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true)
+                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
+                && (query.TagFilter.IsNullOrEmpty()
+                || x.Tags.Any(y => tags.Contains(y)))
+                && x.Confirmed == true)
                 .OrderBy(selectedColumn)
                 .ToListAsync();
             }
@@ -180,7 +156,10 @@ namespace wBialy.Services
                 .EventPosts
                 .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true)
+                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
+                && (query.TagFilter.IsNullOrEmpty()
+                || x.Tags.Any(y => tags.Contains(y)))
+                && x.Confirmed == true)
                 .OrderByDescending(selectedColumn)
                 .ToListAsync();
             }
@@ -195,16 +174,21 @@ namespace wBialy.Services
         public async Task<PageResult<PostDto>> GetAllGastroPosts(PostQuery query)
         {
             List<GastroPost> baseQuery;
-            if (!string.IsNullOrEmpty(query.SortBy))
+            List<GastroTag> tags = new List<GastroTag>();
+            if (string.IsNullOrEmpty(query.SortBy))
             {
                 query.SortBy = "AddDate"; //tutaj sie usunie i doda od razu sortowanie w frontend po dacie
             }
+            if (!query.TagFilter.IsNullOrEmpty())
+            {
+                tags = await _context.GastroTags.Where(x => query.TagFilter.Contains(x.Name)).ToListAsync();
+            }
             var columnsSelectors = new Dictionary<string, Expression<Func<GastroPost, object>>>
             {
-                { nameof(GastroPost.Title), x => x.Title},
-                { nameof(GastroPost.Description), x => x.Description},
+                //{ nameof(GastroPost.Title), x => x.Title},
+                //{ nameof(GastroPost.Description), x => x.Description},
                 { nameof(GastroPost.AddDate), x => x.AddDate},
-                { nameof(GastroPost.Day), x => x.Day},
+                //{ nameof(GastroPost.Day), x => x.Day},
             };
             var selectedColumn = columnsSelectors[query.SortBy];
             if (query.SortDirection == SortDirection.ASC)
@@ -213,7 +197,10 @@ namespace wBialy.Services
                 .GastroPosts
                 .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true)
+                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
+                && (query.TagFilter.IsNullOrEmpty()
+                || x.Tags.Any(y => tags.Contains(y)))
+                && x.Confirmed == true)
                 .OrderBy(selectedColumn)
                 .ToListAsync();
             }
@@ -223,7 +210,10 @@ namespace wBialy.Services
                 .GastroPosts
                 .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == true)
+                || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
+                && (query.TagFilter.IsNullOrEmpty()
+                || x.Tags.Any(y => tags.Contains(y)))
+                && x.Confirmed == true)
                 .OrderByDescending(selectedColumn)
                 .ToListAsync();
             }
@@ -236,16 +226,6 @@ namespace wBialy.Services
             return await Task.FromResult(result);
         }
 
-        //public async Task<int> Create(CreatePostDto dto)
-        //{
-        //    var postDto = _mapper.Map<Post>(dto);
-        //    var userId = _userContextService.GetUserId;
-        //    postDto.UserId = userId;
-        //    await _context.AddAsync(postDto);
-        //    postDto.AddDate = DateTime.Now;
-        //    await _context.SaveChangesAsync();
-        //    return await Task.FromResult(postDto.PostId);
-        //}
         public async Task<int> CreateLFPost(CreateLFPostDto dto)
         {
             var tagList = new List<LFTag>();
@@ -336,34 +316,9 @@ namespace wBialy.Services
                 throw new ForbidException("Forbidden");
             }
             _context.Remove(post);
-            //_context.Remove(await _context.Posts.SingleOrDefaultAsync(x => x == post));
             await _context.SaveChangesAsync();
         }
-        //public async Task Update(EditPostDto editPostDto, int id)
-        //{
-        //    var postToUpdate = await _context
-        //        .Posts
-        //        .FirstOrDefaultAsync(x => x.PostId == id);
-        //    if (postToUpdate is null)
-        //    {
-        //        throw new NotFoundException("Post not found");
-        //    }
-        //    var user = _userContextService.User;
-        //    var authorizationResult = _authorizationService.AuthorizeAsync(user, postToUpdate, new ResourceOperationRequirement(ResourceOperation.Update)).Result;
-        //    if (!authorizationResult.Succeeded)
-        //    {
-        //        throw new ForbidException("Forbidden");
-        //    }
-        //    postToUpdate.Title = editPostDto.Title;
-        //    postToUpdate.Description = editPostDto.Description;
-        //    postToUpdate.Image = editPostDto.Image;
-        //    postToUpdate.Place = editPostDto.Place;
-        //    //postToUpdate.EventDate = editPostDto.EventDate;
-        //    //postToUpdate.Tags = editPostDto.Tags;
-        //    //postToUpdate.Link = editPostDto.Link;
-        //    postToUpdate.Confirmed = false;
-        //    await _context.SaveChangesAsync();
-        //}
+
         public async Task UpdateLFPost(EditLFPostDto editPostDto, int id)
         {
             var postToUpdate = await _context
@@ -485,7 +440,8 @@ namespace wBialy.Services
                     .Posts
                     .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
                     || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false)
+                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
+                    && x.Confirmed == false)
                     .OrderBy(selectedColumn)
                     .ToListAsync();
                 }
@@ -495,7 +451,8 @@ namespace wBialy.Services
                     .Posts
                     .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
                     || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false)
+                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
+                    && x.Confirmed == false)
                     .OrderByDescending(selectedColumn)
                     .ToListAsync();
                 }
@@ -516,33 +473,6 @@ namespace wBialy.Services
             var postDtos = _mapper.Map<List<PostDto>>(posts);
             var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
             return await Task.FromResult(result);
-            //var baseQuery = /*await*/ _context
-            //    .Posts
-            //    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
-            //    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-            //    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false)/*.ToListAsync()*/;
-            //if (!string.IsNullOrEmpty(query.SortBy))
-            //{
-            //    var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
-            //    {
-            //        { nameof(Post.Title), x => x.Title},
-            //        { nameof(Post.Description), x => x.Description},
-            //        { nameof(Post.EventDate), x => x.EventDate},
-            //    };
-            //    var selectedColumn = columnsSelectors[query.SortBy];
-
-            //    baseQuery = query.SortDirection == SortDirection.ASC ?
-            //        baseQuery.OrderBy(selectedColumn)
-            //        : baseQuery.OrderByDescending(selectedColumn);
-            //}
-            //var posts = await baseQuery
-            //    .Skip(query.PageSize * (query.PageNumber - 1))
-            //    .Take(query.PageSize)
-            //    .ToListAsync();
-            //var totalItemsCount = baseQuery.Count();
-            //var postDtos = _mapper.Map<List<PostDto>>(posts);
-            //var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
-            //return await Task.FromResult(result);
         }
         public async Task Confirm(int id)
         {
