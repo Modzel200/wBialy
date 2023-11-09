@@ -121,7 +121,8 @@ namespace wBialy.Services
         {
             List<EventPost> baseQuery;
             List<EventTag> tags = new List<EventTag>();
-            DateTime date = DateTime.Today;
+            DateTime date;
+            bool isDateSpecified = DateTime.TryParse(query.DateFilter, out date) && !string.IsNullOrEmpty(query.DateFilter);
             if (string.IsNullOrEmpty(query.SortBy))
             {
                 query.SortBy = "EventDate"; //tutaj sie usunie i doda od razu sortowanie w frontend po dacie
@@ -129,10 +130,6 @@ namespace wBialy.Services
             if (!query.TagFilter.IsNullOrEmpty())
             {
                 tags = await _context.EventTags.Where(x => query.TagFilter.Contains(x.Name)).ToListAsync();
-            }
-            if(!string.IsNullOrEmpty(query.DateFilter))
-            {
-                date = DateTime.Parse(query.DateFilter);
             }
             var columnsSelectors = new Dictionary<string, Expression<Func<EventPost, object>>>
             {
@@ -151,7 +148,7 @@ namespace wBialy.Services
                 || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
                 && (query.TagFilter.IsNullOrEmpty()
                 || x.Tags.Any(y => tags.Contains(y)))
-                && (string.IsNullOrEmpty(query.DateFilter)
+                && (!isDateSpecified
                 || x.EventDate.Date == date.Date)
                 && x.Confirmed == true)
                 .OrderBy(selectedColumn)
@@ -166,6 +163,8 @@ namespace wBialy.Services
                 || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
                 && (query.TagFilter.IsNullOrEmpty()
                 || x.Tags.Any(y => tags.Contains(y)))
+                && (!isDateSpecified
+                || x.EventDate.Date == date.Date)
                 && x.Confirmed == true)
                 .OrderByDescending(selectedColumn)
                 .ToListAsync();
