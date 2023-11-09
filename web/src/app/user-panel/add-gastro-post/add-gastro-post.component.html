@@ -14,16 +14,28 @@
       <label for="">Miejsce</label>
       <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" type="text" name="miejsce" [(ngModel)]="postToAdd.place" required/>
 
-      <label for="">Dzień</label>
-      <select [(ngModel)]="postToAdd.day" required>
-        <option value="poniedziałek">Poniedziałek</option>
-        <option value="wtorek">Wtorek</option>
-        <option value="środa">Środa</option>
-        <option value="czwartek">Czwartek</option>
-        <option value="piątek">Piątek</option>
-        <option value="sobota">Sobota</option>
-        <option value="niedziela">Niedziela</option>
-      </select>
+<!--      <label for="">Dzień</label>-->
+<!--      <select [(ngModel)]="postToAdd.day" (change)="changeDay($event)" required>-->
+<!--        <option value="poniedziałek">Poniedziałek</option>-->
+<!--        <option value="wtorek">Wtorek</option>-->
+<!--        <option value="środa">Środa</option>-->
+<!--        <option value="czwartek">Czwartek</option>-->
+<!--        <option value="piątek">Piątek</option>-->
+<!--        <option value="sobota">Sobota</option>-->
+<!--        <option value="niedziela">Niedziela</option>-->
+<!--      </select>-->
+      <mat-form-field>
+        <mat-label>Dzień</mat-label>
+        <mat-select [(value)]="postToAdd.day">
+          <mat-option value="poniedzialek">Poniedziałek</mat-option>
+          <mat-option value="wtorek">Wtorek</mat-option>
+          <mat-option value="sroda">Środa</mat-option>
+          <mat-option value="czwartek">Czwartek</mat-option>
+          <mat-option value="piatek">Piątek</mat-option>
+          <mat-option value="sobota">Sobota</mat-option>
+          <mat-option value="niedziela">Niedziela</mat-option>
+        </mat-select>
+      </mat-form-field>
       <br>
       <label for="">Link</label>
       <input type="text" name="link" [(ngModel)]="postToAdd.link" required>

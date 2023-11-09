@@ -27,16 +27,16 @@ export class GastroComponent {
     this.getAllGastroPosts();
   }
 
-getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
-{
-    var date = new Date(dateStr);
-    return date.toLocaleDateString(locale, { weekday: 'long' });        
-}
+// getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
+// {
+//     var date = new Date(dateStr);
+//     return date.toLocaleDateString(locale, { weekday: 'long' });
+// }
+//
+//  dateStr = new Date();
+//  day = this.getDayName(this.dateStr, "pl-PL");
 
- dateStr = new Date();
- day = this.getDayName(this.dateStr, "pl-PL");
-
- selectedToggleValue: string = this.day;
+ // selectedToggleValue: string = this.day;
 
  getAllGastroPosts(){
   this.eventsService.getAllGastroPosts(this.number)
@@ -46,18 +46,81 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
     if(this.pageResult.items.length>0)
     {
       this.events = this.pageResult.items;
-      this.changeDateFormat();
+      //this.changeDateFormat();
     }
   });
 
 }
 
-changeDateFormat()
-{
-  for(let i=0;i<this.events.length;i++)
+// changeDateFormat()
+// {
+//   for(let i=0;i<this.events.length;i++)
+//   {
+//     this.events[i].day = <string>this.datePipe.transform(this.events[i].day, 'dd.MM.yyyy hh:mm');
+//   }
+// }
+  getPoniedzialek()
   {
-    this.events[i].day = <string>this.datePipe.transform(this.events[i].day, 'dd.MM.yyyy hh:mm');
+    this.eventsService.getDayPosts('poniedzialek',this.number)
+      .subscribe(response=>{
+        this.pageResult = response;
+        console.log(this.pageResult);
+        this.events=this.pageResult.items;
+      })
   }
-}
+  getWtorek()
+  {
+    this.eventsService.getDayPosts('wtorek',this.number)
+      .subscribe(response=>{
+        this.pageResult = response;
+        console.log(this.pageResult);
+        this.events=this.pageResult.items;
+      })
+  }
+  getSroda()
+  {
+    this.eventsService.getDayPosts('sroda',this.number)
+      .subscribe(response=>{
+        this.pageResult = response;
+        console.log(this.pageResult);
+        this.events=this.pageResult.items;
+      })
+  }
+  getCzwartek()
+  {
+    this.eventsService.getDayPosts('czwartek',this.number)
+      .subscribe(response=>{
+        this.pageResult = response;
+        console.log(this.pageResult);
+        this.events=this.pageResult.items;
+      })
+  }
+  getPiatek()
+  {
+    this.eventsService.getDayPosts('piatek',this.number)
+      .subscribe(response=>{
+        this.pageResult = response;
+        console.log(this.pageResult);
+        this.events=this.pageResult.items;
+      })
+  }
+  getSobota()
+  {
+    this.eventsService.getDayPosts('sobota',this.number)
+      .subscribe(response=>{
+        this.pageResult = response;
+        console.log(this.pageResult);
+        this.events=this.pageResult.items;
+      })
+  }
+  getNiedziela()
+  {
+    this.eventsService.getDayPosts('niedziela',this.number)
+      .subscribe(response=>{
+        this.pageResult = response;
+        console.log(this.pageResult);
+        this.events=this.pageResult.items;
+      })
+  }
 }
 

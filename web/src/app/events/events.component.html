@@ -20,7 +20,7 @@
     <button type="button" class="btn-primary btn" mat-button (click)="drawer.toggle();sendFilters()">
       Filtruj
     </button>
-    <button (click)="getAllPosts()">Usuń filtry</button>
+    <button (click)="clearTags()">Usuń filtry</button>
 
     </mat-drawer>
 <div class="container" *ngFor="let event of events" id="eventsScroll">

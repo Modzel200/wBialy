@@ -4,6 +4,7 @@ import { UserPanelService } from '../service/user-panel.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { gastroPost } from 'src/app/events/model/gastro.model';
+import {EventPost} from "../../events/model/event.model";
 
 @Component({
   selector: 'app-add-gastro-post',
@@ -53,6 +54,10 @@ export class AddGastroPostComponent {
       console.log(response);
     });
     window.location.reload();
+  }
+  changeDay(event: Event)
+  {
+    console.log(event);
   }
   public handleAddressChange(place: google.maps.places.PlaceResult) {
     console.log(place);

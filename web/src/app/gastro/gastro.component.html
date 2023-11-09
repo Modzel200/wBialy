@@ -1,14 +1,14 @@
 <div class="home">
     <h1><img src = "../../assets/icons/VectorWhole.svg" alt="Logo Wbialy" class="WholeLogo"/> - Strefa Gastro</h1>
     <div>
-        <mat-button-toggle-group class="toggle" name="fontStyle" aria-label="Font Style"  [(ngModel)]="selectedToggleValue">
-            <mat-button-toggle class="toggle item" value="poniedziałek">Pn</mat-button-toggle>
-            <mat-button-toggle class="toggle item" value="wtorek">Wt</mat-button-toggle>
-            <mat-button-toggle class="toggle item" value="środa">Śr</mat-button-toggle>
-            <mat-button-toggle class="toggle item" value="czwartek">Czw</mat-button-toggle>
-            <mat-button-toggle class="toggle item" value="piątek">Pt</mat-button-toggle>
-            <mat-button-toggle class="toggle item" value="sobota">Sob</mat-button-toggle>
-            <mat-button-toggle class="toggle item"value="niedziela">Nd</mat-button-toggle>
+        <mat-button-toggle-group class="toggle" name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle class="toggle item" value="poniedziałek" (click)="getPoniedzialek()">Pn</mat-button-toggle>
+            <mat-button-toggle class="toggle item" value="wtorek" (click)="getWtorek()">Wt</mat-button-toggle>
+            <mat-button-toggle class="toggle item" value="środa" (click)="getSroda()">Śr</mat-button-toggle>
+            <mat-button-toggle class="toggle item" value="czwartek" (click)="getCzwartek()">Czw</mat-button-toggle>
+            <mat-button-toggle class="toggle item" value="piątek" (click)="getPiatek()">Pt</mat-button-toggle>
+            <mat-button-toggle class="toggle item" value="sobota" (click)="getSobota()">Sob</mat-button-toggle>
+            <mat-button-toggle class="toggle item"value="niedziela" (click)="getNiedziela()">Nd</mat-button-toggle>
           </mat-button-toggle-group>
       </div>
     <div class="gastro-container">

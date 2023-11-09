@@ -61,35 +61,20 @@ export class EventsComponent implements OnInit{
     this.eventsService.getAllPosts(this.selectedToppingsString,this.selected,this.number)
       .subscribe(response => {
       this.pageResult = response;
-      if(this.pageResult.items.length>0)
-      {
-        this.events = this.pageResult.items;
-        this.changeDateFormat();
-      }
+      console.log(response);
+      this.events = this.pageResult.items;
+      this.changeDateFormat();
     });
   }
 
   sendFilters(){
-    // this.number=1; //Dawid możliwe że to będzie do wyjebania to Pilne ok?
-    // this.selectedToppingsString=[];
-    // for(let i=0;i<this.selectedToppings.length;i++)
-    // {
-    //   this.selectedToppingsString.push(this.selectedToppings[i]);
-    //   console.log(this.selectedToppingsString[i]);
-    // }
-    // this.eventsService.getAllPosts(this.selectedToppingsString,this.selected,this.number)
-    //   .subscribe(response=>{
-    //     console.log(response);
-    //     this.pageResult = response;
-    //     if(this.pageResult.items.length>0)
-    //     {
-    //       this.events = this.pageResult.items;
-    //       this.changeDateFormat();
-    //     }
-    //   });
-    // this.canGoNext = true;
-    // this.canGoPrev = true;
     this.selectedToppingsString = this.selectedToppings;
+    this.getAllPosts();
+  }
+  clearTags()
+  {
+    this.selectedToppings = [];
+    this.selected = "";
     this.getAllPosts();
   }
   canGoNextPage(): void {

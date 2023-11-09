@@ -27,6 +27,11 @@ export class gastroService{
   }
   getAllGastroPosts(number: number):Observable<PageResultModel>
   {
-    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortBy=Title");
+    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&DateFilter=");
+  }
+  getDayPosts(day:string, number: number)
+  {
+    console.log(day);
+    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&DateFilter="+day);
   }
 }
