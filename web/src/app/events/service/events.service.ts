@@ -27,6 +27,6 @@ export class EventsService{
   }
   getAllPosts(number: number):Observable<PageResultModel>
   {
-    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortBy=Title");
+    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortBy=EventDate"+"&sortDirection=1");
   }
 }
