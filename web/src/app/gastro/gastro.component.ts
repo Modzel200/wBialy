@@ -5,6 +5,10 @@ import { gastroService } from '../events/service/gastro.service';
 import { DatePipe, ViewportScroller } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import {FormControl} from "@angular/forms";
+import {Tags} from "../user-panel/model/user-panel.model";
+import {faFilter} from "@fortawesome/free-solid-svg-icons";
+import {UserPanelService} from "../user-panel/service/user-panel.service";
 
 @Component({
   selector: 'app-gastro',
@@ -21,16 +25,22 @@ export class GastroComponent {
     itemTo:0,
     totalItemsCount:0
   };
-  constructor(private eventsService: gastroService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller) {
+  toppings = new FormControl();
+  selectedToppings = [];
+  selectedToppingsString:string[] = [];
+  allTags: Tags[] = []
+  constructor(private eventsService: gastroService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller,private userPanelService: UserPanelService) {
   }
   ngOnInit() {
-    this.getAllGastroPosts();
+    //this.getAllGastroPosts();
+    this.getGastroPosts(this.day);
+    this.getAllTags();
   }
 
 getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
 {
     var date = new Date(dateStr);
-    return date.toLocaleDateString(locale, { weekday: 'long' });        
+    return date.toLocaleDateString(locale, { weekday: 'long' });
 }
 
  dateStr = new Date();
@@ -42,22 +52,39 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
   this.eventsService.getAllGastroPosts(this.number)
     .subscribe(response => {
     this.pageResult = response;
-    console.log(this.pageResult);
     if(this.pageResult.items.length>0)
     {
       this.events = this.pageResult.items;
-      this.changeDateFormat();
+      //this.changeDateFormat();
     }
   });
 
 }
-
-changeDateFormat()
-{
-  for(let i=0;i<this.events.length;i++)
+  getGastroPosts(day: string)
   {
-    this.events[i].day = <string>this.datePipe.transform(this.events[i].day, 'dd.MM.yyyy hh:mm');
+    this.eventsService.getDayPosts(day,this.number,this.selectedToppingsString)
+      .subscribe(response=>{
+        this.pageResult = response;
+        this.events=this.pageResult.items;
+      })
   }
-}
+  getAllTags()
+  {
+    this.userPanelService.getAllGastroTags()
+      .subscribe(response=>{
+        this.allTags = response;
+      })
+  }
+  sendFilters(){
+    this.selectedToppingsString = this.selectedToppings;
+    this.getGastroPosts(this.day);
+  }
+  clearTags()
+  {
+    this.selectedToppings = [];
+    this.getGastroPosts(this.day);
+  }
+
+  protected readonly faFilter = faFilter;
 }
 

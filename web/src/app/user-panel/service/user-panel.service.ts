@@ -57,6 +57,10 @@ export class UserPanelService{
   {
     return this.http.get<Tags[]>(this.deleteUrl+"eventtags",this.options);
   }
+  getAllGastroTags()
+  {
+    return this.http.get<Tags[]>(this.deleteUrl+"gastrotags",this.options);
+  }
   deleteEvent(id:number)
   {
     return this.http.delete(this.deleteUrl+id,this.options);
