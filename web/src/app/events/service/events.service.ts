@@ -25,17 +25,17 @@ export class EventsService{
   };
   constructor(private http: HttpClient) {
   }
-  getAllPosts(number: number):Observable<PageResultModel>
-  {
-    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortDirection=0");
-  }
-  getFilterPosts(toppings: string[],date: string|Date|null,number: number)
+  // getAllPosts(number: number):Observable<PageResultModel>
+  // {
+  //   return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortDirection=0");
+  // }
+  getAllPosts(toppings: string[],date: string|Date|null,number: number)
   {
     let string = "";
     for(let i=0;i<toppings.length;i++)
     {
       string+="&TagFilter="+toppings[i];
     }
-    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortDirection=0"+string+"&DateFilter="+date);
+    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5"+"&pageNumber="+number+"&sortDirection=0"+string+"&DateFilter="+date);
   }
 }

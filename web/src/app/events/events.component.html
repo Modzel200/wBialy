@@ -1,7 +1,7 @@
 <app-home></app-home>
 
 <mat-drawer-container class="events" autosize style="background-color: var(--background-color);">
-  
+
   <mat-drawer #drawer mode="side" position="end" class="filterDrawer">
       <mat-card class="demo-inline-calendar-card">
         <mat-calendar [(selected)]="selected" (click)="formatDate()"></mat-calendar>
@@ -20,6 +20,7 @@
     <button type="button" class="btn-primary btn" mat-button (click)="drawer.toggle();sendFilters()">
       Filtruj
     </button>
+    <button (click)="getAllPosts()">Usuń filtry</button>
 
     </mat-drawer>
 <div class="container" *ngFor="let event of events" id="eventsScroll">

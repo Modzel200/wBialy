@@ -58,7 +58,7 @@ export class EventsComponent implements OnInit{
   getAllPosts(){
     this.canGoNextPage();
     this.canGoPrevPage();
-    this.eventsService.getAllPosts(this.number)
+    this.eventsService.getAllPosts(this.selectedToppingsString,this.selected,this.number)
       .subscribe(response => {
       this.pageResult = response;
       if(this.pageResult.items.length>0)
@@ -70,26 +70,30 @@ export class EventsComponent implements OnInit{
   }
 
   sendFilters(){
-    //this.number=1;
-    this.selectedToppingsString=[];
-    for(let i=0;i<this.selectedToppings.length;i++)
-    {
-      this.selectedToppingsString.push(this.selectedToppings[i]);
-      console.log(this.selectedToppingsString[i]);
-    }
-    this.eventsService.getFilterPosts(this.selectedToppingsString,this.selected,this.number)
-      .subscribe(response=>{
-        console.log(response);
-        this.pageResult = response;
-        if(this.pageResult.items.length>0)
-        {
-          this.events = this.pageResult.items;
-          this.changeDateFormat();
-        }
-      });
+    // this.number=1; //Dawid możliwe że to będzie do wyjebania to Pilne ok?
+    // this.selectedToppingsString=[];
+    // for(let i=0;i<this.selectedToppings.length;i++)
+    // {
+    //   this.selectedToppingsString.push(this.selectedToppings[i]);
+    //   console.log(this.selectedToppingsString[i]);
+    // }
+    // this.eventsService.getAllPosts(this.selectedToppingsString,this.selected,this.number)
+    //   .subscribe(response=>{
+    //     console.log(response);
+    //     this.pageResult = response;
+    //     if(this.pageResult.items.length>0)
+    //     {
+    //       this.events = this.pageResult.items;
+    //       this.changeDateFormat();
+    //     }
+    //   });
+    // this.canGoNext = true;
+    // this.canGoPrev = true;
+    this.selectedToppingsString = this.selectedToppings;
+    this.getAllPosts();
   }
   canGoNextPage(): void {
-    this.eventsService.getAllPosts((this.number) + 1)
+    this.eventsService.getAllPosts(this.selectedToppingsString,this.selected,(this.number) + 1)
       .subscribe(response => {
         this.canGoNext = response.items.length === 0 ? true : false;
       });
