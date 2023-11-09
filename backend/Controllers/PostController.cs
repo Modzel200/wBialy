@@ -116,21 +116,21 @@ namespace wBialy.Controllers
             return await Task.FromResult(Ok());
         }
         [HttpGet("gastrotags")]
-        [Authorize(Roles = "User,Admin")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<GastroTagDto>>> GetAllGastroTags()
         {
             var tags = await _postService.GetAllGastroTags();
             return await Task.FromResult(Ok(tags));
         }
         [HttpGet("eventtags")]
-        [Authorize(Roles = "User,Admin")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<EventTagDto>>> GetAllEventTags()
         {
             var tags = await _postService.GetAllEventTags();
             return await Task.FromResult(Ok(tags));
         }
         [HttpGet("lftags")]
-        [Authorize(Roles = "User,Admin")]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<LFTagDto>>> GetAllLFTags()
         {
             var tags = await _postService.GetAllLFTags();
