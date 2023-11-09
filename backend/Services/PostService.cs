@@ -146,6 +146,8 @@ namespace wBialy.Services
                 || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
                 && (query.TagFilter.IsNullOrEmpty()
                 || x.Tags.Any(y => tags.Contains(y)))
+                && (string.IsNullOrEmpty(query.DateFilter)
+                || x.EventDate.Date == DateTime.Parse(query.DateFilter).Date)
                 && x.Confirmed == true)
                 .OrderBy(selectedColumn)
                 .ToListAsync();
@@ -200,6 +202,8 @@ namespace wBialy.Services
                 || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
                 && (query.TagFilter.IsNullOrEmpty()
                 || x.Tags.Any(y => tags.Contains(y)))
+                && (string.IsNullOrEmpty(query.DateFilter)
+                || x.Day == query.DateFilter)
                 && x.Confirmed == true)
                 .OrderBy(selectedColumn)
                 .ToListAsync();
