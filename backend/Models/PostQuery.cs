@@ -1,4 +1,6 @@
-﻿namespace wBialy.Models
+﻿using wBialy.Entities;
+
+namespace wBialy.Models
 {
     public class PostQuery
     {
@@ -8,6 +10,8 @@
         public int PageSize { get; set; }
         public string? SortBy { get; set; }
         public SortDirection? SortDirection { get; set; }
+        public string? DateFilter { get; set; }
+        public List<string>? TagFilter { get; set; }
 #pragma warning restore CS8618
     }
 }
