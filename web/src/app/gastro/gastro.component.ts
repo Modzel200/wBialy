@@ -70,7 +70,7 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
   }
   getAllTags()
   {
-    this.userPanelService.getAllGastroTags()
+    this.eventsService.getAllGastroTags()
       .subscribe(response=>{
         this.allTags = response;
       })

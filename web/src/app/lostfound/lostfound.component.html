@@ -1,3 +1,4 @@
+<mat-drawer-container class="events" autosize style="background-color: var(--background-color);">
 <div class="home">
     <h1><img src = "../../assets/icons/VectorWhole.svg" alt="Logo Wbialy" class="WholeLogo"/> - Zgubione i znalezione</h1>
     <div>
@@ -18,3 +19,22 @@
   </div>
 
   </div>
+  <mat-drawer #drawer mode="side" position="end" class="filterDrawer">
+    <mat-form-field>
+      <mat-label>Tagi</mat-label>
+      <mat-select  [formControl]="toppings" [(value)]="selectedToppings" multiple>
+        <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{tag.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>Tagi: {{selectedToppings}}</p>
+    <br>
+    <button type="button" class="btn-primary btn" mat-button (click)="drawer.toggle();sendFilters()">
+      Filtruj
+    </button>
+    <button (click)="clearTags()">Usuń filtry</button>
+
+  </mat-drawer>
+  <button class="handleFilters" (click)="drawer.toggle()">
+    <fa-icon size="xl" [icon]="faFilter"></fa-icon>
+  </button>
+</mat-drawer-container>

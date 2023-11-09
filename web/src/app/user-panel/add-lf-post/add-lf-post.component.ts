@@ -5,6 +5,7 @@ import { UserPanelService } from '../service/user-panel.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { lfPost } from 'src/app/events/model/lostfound.model';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-add-lf-post',
@@ -12,10 +13,8 @@ import { lfPost } from 'src/app/events/model/lostfound.model';
   styleUrls: ['./add-lf-post.component.scss']
 })
 export class AddLfPostComponent {
-  tags: Tags[] =[{
-    name: 'telefon'
-  }
-  ]
+  tags: Tags[] =[]
+  allTags: Tags[] = []
   userEvents: lfPost[] =[];
   postToAdd: lfPostToAdd = {
     postId: 5,
@@ -26,6 +25,8 @@ export class AddLfPostComponent {
     location:'',
     tags: this.tags,
   }
+  toppings = new FormControl();
+  selectedToppings = [];
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe) {
   }
   ngOnInit() {
@@ -33,8 +34,16 @@ export class AddLfPostComponent {
     {
       this.router.navigate(['/']);
     }
+    this.getAllTags();
   }
   selectedFile: File = {} as File;
+  getAllTags()
+  {
+    this.userPanelService.getAllLFTags()
+      .subscribe(response=>{
+        this.allTags = response;
+      })
+  }
   onFileSelected(event : any){
     this.selectedFile = <File>event.target.files[0]
     this.userPanelService.uploadImg(this.selectedFile).subscribe(url=>

@@ -5,6 +5,9 @@ import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { lfPost } from '../events/model/lostfound.model';
 import { lfService } from '../events/service/lf.service';
+import {faFilter} from "@fortawesome/free-solid-svg-icons";
+import {FormControl} from "@angular/forms";
+import {Tags} from "../user-panel/model/user-panel.model";
 
 @Component({
   selector: 'app-lostfound',
@@ -21,16 +24,21 @@ export class LostfoundComponent {
     itemTo:0,
     totalItemsCount:0
   };
+  toppings = new FormControl();
+  selectedToppings = [];
+  selectedToppingsString:string[] = [];
+  allTags: Tags[] = []
   constructor(private eventsService: lfService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller) {
   }
   ngOnInit() {
-    this.getAllGastroPosts();
+    this.getAllLFPosts();
+    this.getAllTags();
   }
 
 getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
 {
     var date = new Date(dateStr);
-    return date.toLocaleDateString(locale, { weekday: 'long' });        
+    return date.toLocaleDateString(locale, { weekday: 'long' });
 }
 
  dateStr = new Date();
@@ -38,7 +46,7 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
 
  selectedToggleValue: string = this.day;
 
- getAllGastroPosts(){
+ getAllLFPosts(){
   this.eventsService.getAllLfPosts(this.number)
     .subscribe(response => {
     this.pageResult = response;
@@ -50,4 +58,22 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
   });
 
 }
+  getAllTags()
+  {
+    this.eventsService.getAllGastroTags()
+      .subscribe(response=>{
+        this.allTags = response;
+      })
+  }
+  sendFilters(){
+    this.selectedToppingsString = this.selectedToppings;
+    this.getAllLFPosts();
+  }
+  clearTags()
+  {
+    this.selectedToppings = [];
+    this.getAllLFPosts();
+  }
+
+    protected readonly faFilter = faFilter;
 }

@@ -8,6 +8,15 @@
       <label for="">Opis</label>
       <input type="text" name="opis" [(ngModel)]="postToAdd.description" required>
 
+      <label for="">Tagi</label>
+      <br>
+      <mat-form-field>
+        <mat-label>Tagi</mat-label>
+        <mat-select class="selectTag" [formControl]="toppings" [(value)]="selectedToppings" multiple>
+          <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{tag.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
       <label for="">Link do zdjęcia</label>
       <input type="file" accpet="image/*" name="img" (change)="onFileSelected($event)" required>
 

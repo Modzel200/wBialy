@@ -9,7 +9,7 @@ import { Dialog } from '@angular/cdk/dialog';
 })
 export class NavbarComponent implements OnInit{
   constructor(private dialog : Dialog){
-    
+
   }
   @Input() 'isDarkMode' : boolean;
   isMenuOpen = false;
@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit{
 
   logOff()
   {
-    localStorage.clear();
+    localStorage.removeItem("Authorization");
     window.location.reload();
   }
   showEvent(){
