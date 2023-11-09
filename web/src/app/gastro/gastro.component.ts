@@ -5,6 +5,10 @@ import { gastroService } from '../events/service/gastro.service';
 import { DatePipe, ViewportScroller } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import {FormControl} from "@angular/forms";
+import {Tags} from "../user-panel/model/user-panel.model";
+import {faFilter} from "@fortawesome/free-solid-svg-icons";
+import {UserPanelService} from "../user-panel/service/user-panel.service";
 
 @Component({
   selector: 'app-gastro',
@@ -21,28 +25,33 @@ export class GastroComponent {
     itemTo:0,
     totalItemsCount:0
   };
-  constructor(private eventsService: gastroService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller) {
+  toppings = new FormControl();
+  selectedToppings = [];
+  selectedToppingsString:string[] = [];
+  allTags: Tags[] = []
+  constructor(private eventsService: gastroService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller,private userPanelService: UserPanelService) {
   }
   ngOnInit() {
-    this.getAllGastroPosts();
+    //this.getAllGastroPosts();
+    this.getGastroPosts(this.day);
+    this.getAllTags();
   }
 
-// getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
-// {
-//     var date = new Date(dateStr);
-//     return date.toLocaleDateString(locale, { weekday: 'long' });
-// }
-//
-//  dateStr = new Date();
-//  day = this.getDayName(this.dateStr, "pl-PL");
+getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
+{
+    var date = new Date(dateStr);
+    return date.toLocaleDateString(locale, { weekday: 'long' });
+}
 
- // selectedToggleValue: string = this.day;
+ dateStr = new Date();
+ day = this.getDayName(this.dateStr, "pl-PL");
+
+ selectedToggleValue: string = this.day;
 
  getAllGastroPosts(){
   this.eventsService.getAllGastroPosts(this.number)
     .subscribe(response => {
     this.pageResult = response;
-    console.log(this.pageResult);
     if(this.pageResult.items.length>0)
     {
       this.events = this.pageResult.items;
@@ -51,76 +60,31 @@ export class GastroComponent {
   });
 
 }
+  getGastroPosts(day: string)
+  {
+    this.eventsService.getDayPosts(day,this.number,this.selectedToppingsString)
+      .subscribe(response=>{
+        this.pageResult = response;
+        this.events=this.pageResult.items;
+      })
+  }
+  getAllTags()
+  {
+    this.userPanelService.getAllGastroTags()
+      .subscribe(response=>{
+        this.allTags = response;
+      })
+  }
+  sendFilters(){
+    this.selectedToppingsString = this.selectedToppings;
+    this.getGastroPosts(this.day);
+  }
+  clearTags()
+  {
+    this.selectedToppings = [];
+    this.getGastroPosts(this.day);
+  }
 
-// changeDateFormat()
-// {
-//   for(let i=0;i<this.events.length;i++)
-//   {
-//     this.events[i].day = <string>this.datePipe.transform(this.events[i].day, 'dd.MM.yyyy hh:mm');
-//   }
-// }
-  getPoniedzialek()
-  {
-    this.eventsService.getDayPosts('poniedzialek',this.number)
-      .subscribe(response=>{
-        this.pageResult = response;
-        console.log(this.pageResult);
-        this.events=this.pageResult.items;
-      })
-  }
-  getWtorek()
-  {
-    this.eventsService.getDayPosts('wtorek',this.number)
-      .subscribe(response=>{
-        this.pageResult = response;
-        console.log(this.pageResult);
-        this.events=this.pageResult.items;
-      })
-  }
-  getSroda()
-  {
-    this.eventsService.getDayPosts('sroda',this.number)
-      .subscribe(response=>{
-        this.pageResult = response;
-        console.log(this.pageResult);
-        this.events=this.pageResult.items;
-      })
-  }
-  getCzwartek()
-  {
-    this.eventsService.getDayPosts('czwartek',this.number)
-      .subscribe(response=>{
-        this.pageResult = response;
-        console.log(this.pageResult);
-        this.events=this.pageResult.items;
-      })
-  }
-  getPiatek()
-  {
-    this.eventsService.getDayPosts('piatek',this.number)
-      .subscribe(response=>{
-        this.pageResult = response;
-        console.log(this.pageResult);
-        this.events=this.pageResult.items;
-      })
-  }
-  getSobota()
-  {
-    this.eventsService.getDayPosts('sobota',this.number)
-      .subscribe(response=>{
-        this.pageResult = response;
-        console.log(this.pageResult);
-        this.events=this.pageResult.items;
-      })
-  }
-  getNiedziela()
-  {
-    this.eventsService.getDayPosts('niedziela',this.number)
-      .subscribe(response=>{
-        this.pageResult = response;
-        console.log(this.pageResult);
-        this.events=this.pageResult.items;
-      })
-  }
+  protected readonly faFilter = faFilter;
 }
 

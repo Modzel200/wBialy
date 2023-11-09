@@ -4,6 +4,7 @@ import {EventPost} from "../model/event.model";
 import {PageResultModel} from "../model/pageResult.model";
 import {Observable} from "rxjs";
 import { gastroPost } from "../model/gastro.model";
+import {Tags} from "../../user-panel/model/user-panel.model";
 
 @Injectable({
   providedIn: 'root'
@@ -29,9 +30,18 @@ export class gastroService{
   {
     return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&DateFilter=");
   }
-  getDayPosts(day:string, number: number)
+  getDayPosts(day:string, number: number,toppings:string[])
   {
-    console.log(day);
-    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&DateFilter="+day);
+    let string = "";
+    for(let i=0;i<toppings.length;i++)
+    {
+      string+="&TagFilter="+toppings[i];
+    }
+    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&DateFilter="+day+string);
   }
+  getAllGastroTags()
+  {
+    return this.http.get<Tags[]>('https://localhost:7012/api/post/gastrotags');
+  }
+
 }
