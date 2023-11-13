@@ -11,7 +11,7 @@ namespace wBialy.Models.Validators
                 .MaximumLength(50);
             RuleFor(x => x.Description)
                 .NotEmpty()
-                .MaximumLength(250);
+                .MaximumLength(600);
             RuleFor(x => x.Place)
                 .NotEmpty();
             RuleFor(x => x.Day)
