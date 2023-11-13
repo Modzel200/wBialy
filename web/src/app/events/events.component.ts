@@ -49,7 +49,7 @@ export class EventsComponent implements OnInit{
   }
   getAllTags()
   {
-    this.userPanelService.getAllTags()
+    this.eventsService.getAllTags()
       .subscribe(response=>{
         this.allTags = response;
       })

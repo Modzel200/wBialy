@@ -4,6 +4,7 @@ import {EventPost} from "../model/event.model";
 import {PageResultModel} from "../model/pageResult.model";
 import {Observable} from "rxjs";
 import { lfPost } from "../model/lostfound.model";
+import {Tags} from "../../user-panel/model/user-panel.model";
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +27,9 @@ export class lfService{
   getAllLfPosts(number: number):Observable<PageResultModel>
   {
     return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortBy=Title");
+  }
+  getAllGastroTags()
+  {
+    return this.http.get<Tags[]>('https://localhost:7012/api/post/lftags');
   }
 }
