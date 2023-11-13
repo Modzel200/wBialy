@@ -61,7 +61,6 @@ export class EventsComponent implements OnInit{
     this.eventsService.getAllPosts(this.selectedToppingsString,this.selected,this.number)
       .subscribe(response => {
       this.pageResult = response;
-      console.log(response);
       this.events = this.pageResult.items;
       this.changeDateFormat();
     });

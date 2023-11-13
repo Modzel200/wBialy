@@ -3,6 +3,7 @@ import {RegisterUser} from "./model/signup-form.model";
 import {SignupFormService} from "./service/signup-form.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
+import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signup-form',
@@ -19,9 +20,54 @@ export class SignupFormComponent {
   constructor(private signupFormService: SignupFormService, private _snackBar: MatSnackBar, private router: Router) {
   }
 
+  email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [
+    (c: AbstractControl) => Validators.required(c),
+    Validators.pattern(
+      /.{8,}/
+    ),
+  ]);
+  passwordConfirm = new FormControl('', [
+    Validators.required,
+    this.passwordMatchValidator.bind(this)
+  ]);
+
+  passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+    const password = this.password.root.value;
+    const confirmPassword = control.value;
+    if (password !== confirmPassword) {
+      return { passwordMismatch: true };
+    }
+  
+    return null;
+  }
+
+  getErrorMessage() {
+    if (this.email.hasError('required') && this.email.root.touched) {
+      return 'Musisz wprowadzić wartość';
+    }
+    return this.email.hasError('email') ? 'Nieprawidłowy email' : '';
+  }
+
+  getPasswordMessage() {
+    if (this.password.hasError('required') && this.password.root.touched) {
+      return 'Musisz wprowadzić wartość';
+    }
+    return this.password.hasError('pattern') ? 'Za krótkie hasło' : '';
+  }
+
+  getPasswordConfirmMessage() {
+    if (this.passwordConfirm.hasError('required') && this.passwordConfirm.root.touched) {
+      return 'Musisz wprowadzić wartość';
+    }
+    return this.passwordConfirm.hasError('passwordMismatch') ? 'Hasła nie zgadzają się' : '';
+  }
+  
   onSubmit(){
+    if(this.passwordConfirm.errors || this.password.errors || this.email.errors){
+      return;
+    }
     this.signupFormService.signUpUser(this.user).subscribe(response=>{
-      console.log(response)
       if(response==null)
       {
         this._snackBar.open("Konto utworzone","dzięki");

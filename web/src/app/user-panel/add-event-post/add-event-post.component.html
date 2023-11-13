@@ -2,31 +2,54 @@
   <div class="form-container">
     <h2>Event</h2>
     <br>
-    <label for=""><p>Tytuł</p></label>
-    <input type="text" name="tytul" [(ngModel)]="postToAdd.title" required>
+ 
+    <div class="input-end">
+      <mat-label>Tytuł</mat-label>
+      <input matInput placeholder="Tytuł" [formControl]="title" [(ngModel)]="postToAdd.title" required>
+      <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>             
+    </div>
 
-    <label for="">Opis</label>
-    <input type="text" name="opis" [(ngModel)]="postToAdd.description" required>
+    <div class="input-end">
+      <mat-label>Opis</mat-label>
+      <br>
+      <textarea matInput placeholder="Opis" class="desc" [formControl]="description" [(ngModel)]="postToAdd.description" required> </textarea>
+      <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() }}</mat-error>             
+    </div>
+
     <label for="">Tagi</label>
-    <br>
+    <div class="input-end">
     <mat-form-field>
       <mat-label>Tagi</mat-label>
       <mat-select class="selectTag" [formControl]="toppings" [(value)]="selectedToppings" multiple>
         <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{tag.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <br>
+    <mat-error *ngIf="toppings.invalid">{{ getErrorToppingsMessage() }}</mat-error>  
+    </div>
+
+    <div class="input-end">
     <label for="">Link do zdjęcia</label>
     <input type="file" accept="image/*" name="img" (change)="onFileSelected($event)" required>
+    </div>
 
-    <label for="">Miejsce</label>
-    <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" type="text" name="miejsce" [(ngModel)]="postToAdd.place" required/>
+    <div class="input-end">
+      <mat-label>Miejsce</mat-label>
+      <br>
+      <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" matInput placeholder="Miejsce" [formControl]="place" [(ngModel)]="postToAdd.place" required>
+      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() }}</mat-error>             
+    </div>
 
-    <label for="">Data</label>
-    <input type="datetime-local" name="data" [(ngModel)]="postToAdd.eventDate" required>
+    <div class="input-end">
+      <mat-label>Data</mat-label>
+      <br>
+      <input type="datetime-local" name="data" [formControl]="date" [(ngModel)]="postToAdd.eventDate" required>
+      <mat-error *ngIf="date.invalid">{{ getErrorDateMessage() }}</mat-error>             
+    </div>
 
+    <div class="input-end">
     <label for="">Link</label>
     <input type="text" name="link" [(ngModel)]="postToAdd.link" required>
+    </div>
 
       <div class="buttons">
         <a><button (click)="onSubmit()" class="btn-secondary">Stwórz</button></a>

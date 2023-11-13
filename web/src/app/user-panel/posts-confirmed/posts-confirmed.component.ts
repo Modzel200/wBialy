@@ -52,7 +52,6 @@ export class PostsConfirmedComponent {
     }
   }
   deleteEvent(id: number){
-    console.log(id);
     this.userPanelService.deleteEvent(id).subscribe(response=>{
       this.getAllPosts();
     })

@@ -30,23 +30,17 @@ export class EditPostFormComponent implements OnInit{
   }
   ngOnInit() {
     this.event = this.userPanelService.event;
-    console.log(this.event.title);
   }
   onSubmit(event: EventPost){
     this.event.tags=this.tags;
-    console.log(event);
     this.userPanelService.editEvent(event,event.postId).subscribe(response=>{
-      console.log(response);
     });
-    //window.location.reload();
   }
   selectedFile: File = {} as File;
   onFileSelected(event : any){
     this.selectedFile = <File>event.target.files[0]
-    console.log("test");
     this.userPanelService.uploadImg(this.selectedFile).subscribe(url=>
       {
-        console.log(url.data.url);
         this.event.image = url.data.url;
       }
     );

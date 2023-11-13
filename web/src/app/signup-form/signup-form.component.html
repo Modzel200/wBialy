@@ -12,14 +12,23 @@
             <div class="form-container">
               <h2>Wprowadź swoje dane</h2>
                 <br>
-              <label for=""><b>Adres email</b></label>
-              <input type="text" placeholder="Email" name="Email" [(ngModel)]="user.Email" required>
+              <div class="input-end">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" [formControl]="email" [(ngModel)]="user.Email" required>
+                <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>             
+              </div>
 
-              <label for=""><b>Hasło</b></label>
-              <input type="password" placeholder="Password" name="Password" [(ngModel)]="user.Password" required>
+              <div class="input-end">
+                <mat-label>Hasło</mat-label>
+                <input matInput placeholder="Password" [formControl]="password" [(ngModel)]="user.Password" type="password" required>
+                <mat-error *ngIf="password.invalid">{{ getPasswordMessage() }}</mat-error>             
+              </div>
 
-              <label for=""><b>Powtórz hasło</b></label>
-              <input type="password" placeholder="Repeat Password" name="PasswordConfirm" [(ngModel)]="user.PasswordConfirm" required>
+              <div class="input-end">
+                <mat-label>Powtórz hasło</mat-label>
+                <input matInput placeholder="Repeat Password" [formControl]="passwordConfirm" [(ngModel)]="user.PasswordConfirm" type="password" required>
+                <mat-error *ngIf="passwordConfirm.invalid">{{ getPasswordConfirmMessage() }}</mat-error>             
+              </div>
 
               <p>Tworząc konto zgadzasz się na <a href="#" style="color:var(--primary-color);">Warunki i prywatność</a>.</p>
               <br>
