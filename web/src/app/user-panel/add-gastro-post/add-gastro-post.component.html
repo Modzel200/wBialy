@@ -8,12 +8,18 @@
         <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>             
       </div>
 
-    <div class="input-end">
-      <mat-label>Opis</mat-label>
-      <br>
-      <textarea matInput class="desc" placeholder="Opis" [formControl]="description" [(ngModel)]="postToAdd.description" required> </textarea>
-      <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() }}</mat-error>             
-    </div>
+      <div class="input-end">
+        <mat-label>Opis</mat-label>
+        <ckeditor class="desc" [formControl]="description"
+          [editor]="Editor"
+          [config]="config"
+          data=""
+          (ready)="onReady($event)"
+          (blur)="onChange($event)"
+        >
+        </ckeditor>
+        <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() }}</mat-error>
+      </div>
 
     <label for="">Tagi</label>
     <div class="input-end">

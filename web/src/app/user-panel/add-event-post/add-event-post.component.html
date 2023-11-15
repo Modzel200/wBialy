@@ -13,6 +13,7 @@
       <mat-label>Opis</mat-label>
       <ckeditor class="desc" [formControl]="description"
         [editor]="Editor"
+        [config]="config"
         data=""
         (ready)="onReady($event)"
         (blur)="onChange($event)"

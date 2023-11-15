@@ -61,14 +61,10 @@ color: var(--background-color);
 }
 
 .desc{
-  width: 560px;
-  max-width: 560px;
-  min-width: 560px;
-  min-height: 15px;
   background-color: var(--background-color);
-  color: var(--font-color);
-  border: 1px solid var(--background-hover-color);
+  color: black;
 }
+
 
 input{
 width: 100%;

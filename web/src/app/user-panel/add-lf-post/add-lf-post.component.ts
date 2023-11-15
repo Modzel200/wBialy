@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { lfPost } from 'src/app/events/model/lostfound.model';
 import {AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { BlurEvent } from '@ckeditor/ckeditor5-angular';
 
 @Component({
   selector: 'app-add-lf-post',
@@ -25,6 +27,12 @@ export class AddLfPostComponent {
     location:'',
     tags: this.tags,
   }
+  public Editor = ClassicEditor
+  public config = {
+    toolbar: [
+      'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'
+    ]
+  };
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe) {
   }
 
@@ -119,4 +127,11 @@ export class AddLfPostComponent {
       this.postToAdd.location = place.url;
     }
   }
+
+  public onReady(editor: ClassicEditor) {
+  }
+  public onChange({ editor }: BlurEvent) {
+  this.postToAdd.description = editor.data.get();
+  }
+
 }

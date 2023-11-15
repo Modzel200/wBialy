@@ -33,6 +33,13 @@ export class AddEventPostComponent {
     link: ''
   }
   public Editor = ClassicEditor
+  public config = {
+    toolbar: [
+      'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'
+    ]
+  };
+  public editorHeight = '300px';
+  public editorScroll = 'scroll';
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe, private _snackBar: MatSnackBar) {
   }
 
@@ -158,11 +165,8 @@ export class AddEventPostComponent {
     }
   }
   public onReady(editor: ClassicEditor) {
-    //console.log('CKEditor5 Angular Component is ready to use!', editor);
-    //CKEditorInspector.attach(editor);
-  }
+    }
   public onChange({ editor }: BlurEvent) {
-    //console.log(editor.data.get());
     this.postToAdd.description = editor.data.get();
   }
 

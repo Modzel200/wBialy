@@ -10,8 +10,15 @@
   
       <div class="input-end">
         <mat-label>Opis</mat-label>
-        <textarea matInput placeholder="Opis" class="desc" [formControl]="description" [(ngModel)]="postToAdd.description" required> </textarea>
-        <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() }}</mat-error>             
+        <ckeditor class="desc" [formControl]="description"
+          [editor]="Editor"
+          [config]="config"
+          data=""
+          (ready)="onReady($event)"
+          (blur)="onChange($event)"
+        >
+        </ckeditor>
+        <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() }}</mat-error>
       </div>
       
       <label for="">Tagi</label>
