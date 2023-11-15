@@ -21,6 +21,6 @@
     </div>
     <div class="image">
         <img src="{{event.image}}" alt="">
-        <p>{{event.description}}</p>
+      <div [innerHTML]="event.description"></div>
     </div>
   </div>

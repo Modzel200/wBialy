@@ -37,7 +37,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
@@ -87,6 +87,7 @@ const appRoutes: Routes = [
     MatCardModule,
     MatNativeDateModule,
     MatSnackBarModule,
+    CKEditorModule,
   ],
   providers: [DatePipe,{
     provide: Loader,

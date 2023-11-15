@@ -8,7 +8,7 @@
     <div class="first">
       <h1>{{event.title}}</h1>
       <h2>{{event.eventDate}}</h2>
-      <p>{{event.description}}</p>
+      <div [innerHTML]="event.description"></div>
     </div>
     <div class="second">
       <a ><button class="btn-primary" (click)="editEvent(event)">Edytuj</button></a>

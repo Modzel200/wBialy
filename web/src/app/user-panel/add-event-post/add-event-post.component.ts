@@ -8,6 +8,9 @@ import {AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators}
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {MatDialogRef} from "@angular/material/dialog";
 import {AddPostFormComponent} from "../add-post-form/add-post-form.component";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import {BlurEvent, ChangeEvent, CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import InlineEditor from "@ckeditor/ckeditor5-build-inline";
 
 @Component({
   selector: 'app-add-event-post',
@@ -29,13 +32,14 @@ export class AddEventPostComponent {
     tags: this.tags,
     link: ''
   }
+  public Editor = ClassicEditor
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe, private _snackBar: MatSnackBar) {
   }
 
   atLeastOneSelectedValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const selectedOptions = control.value;
-      
+
       if (!selectedOptions || selectedOptions.length === 0) {
         return { atLeastOneSelected: true };
       }
@@ -87,7 +91,7 @@ export class AddEventPostComponent {
     }
     return;
   }
-  
+
   ngOnInit() {
     if(localStorage.getItem("Authorization")==null)
     {
@@ -131,7 +135,7 @@ export class AddEventPostComponent {
   onSubmit()
   {
     if(this.toppings.errors || this.place.errors || this.title.errors || this.description.errors || this.date.errors){
-      return; 
+      return;
     }
     for(let i=0;i<this.selectedToppings.length;i++)
     {
@@ -152,6 +156,14 @@ export class AddEventPostComponent {
     if (place.url != null) {
       this.postToAdd.location = place.url;
     }
+  }
+  public onReady(editor: ClassicEditor) {
+    //console.log('CKEditor5 Angular Component is ready to use!', editor);
+    //CKEditorInspector.attach(editor);
+  }
+  public onChange({ editor }: BlurEvent) {
+    //console.log(editor.data.get());
+    this.postToAdd.description = editor.data.get();
   }
 
 }

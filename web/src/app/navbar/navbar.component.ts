@@ -31,9 +31,9 @@ export class NavbarComponent implements OnInit{
   showEvent(){
     const classmode = this.isDarkMode ? 'dark-mode' : '';
     const dialogRef = this.dialog.open(AddPostFormComponent,{
-      height:'80%',
+      height:'1000px',
       autoFocus: false,
-      panelClass: classmode
+      panelClass: classmode,
     });
     //this.router.navigate(['/event']);
   }

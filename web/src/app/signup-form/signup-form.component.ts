@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RegisterUser} from "./model/signup-form.model";
 import {SignupFormService} from "./service/signup-form.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -10,7 +10,7 @@ import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss']
 })
-export class SignupFormComponent {
+export class SignupFormComponent implements OnInit{
   user: RegisterUser = {
     Email:'',
     Password:'',
@@ -18,6 +18,12 @@ export class SignupFormComponent {
   }
 
   constructor(private signupFormService: SignupFormService, private _snackBar: MatSnackBar, private router: Router) {
+  }
+  ngOnInit() {
+    if(localStorage.getItem("Authorization")!=null)
+    {
+      this.router.navigate(["/"]);
+    }
   }
 
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -38,7 +44,7 @@ export class SignupFormComponent {
     if (password !== confirmPassword) {
       return { passwordMismatch: true };
     }
-  
+
     return null;
   }
 
@@ -62,7 +68,7 @@ export class SignupFormComponent {
     }
     return this.passwordConfirm.hasError('passwordMismatch') ? 'Hasła nie zgadzają się' : '';
   }
-  
+
   onSubmit(){
     if(this.passwordConfirm.errors || this.password.errors || this.email.errors){
       return;

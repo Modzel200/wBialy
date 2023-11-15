@@ -72,4 +72,10 @@ export class PostsUnconfirmedComponent {
     });
     //this.router.navigate(['/event']);
   }
+  // parseToText(text: string)
+  // {
+  //   var doc = new DOMParser().parseFromString(text,"text/html");
+  //   console.log(doc.body.innerHTML)
+  //   return doc.body.innerHTML
+  // }
 }

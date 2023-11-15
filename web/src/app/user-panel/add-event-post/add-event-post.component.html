@@ -2,18 +2,23 @@
   <div class="form-container">
     <h2>Event</h2>
     <br>
- 
+
     <div class="input-end">
       <mat-label>Tytuł</mat-label>
       <input matInput placeholder="Tytuł" [formControl]="title" [(ngModel)]="postToAdd.title" required>
-      <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>             
+      <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>
     </div>
 
     <div class="input-end">
       <mat-label>Opis</mat-label>
-      <br>
-      <textarea matInput placeholder="Opis" class="desc" [formControl]="description" [(ngModel)]="postToAdd.description" required> </textarea>
-      <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() }}</mat-error>             
+      <ckeditor class="desc" [formControl]="description"
+        [editor]="Editor"
+        data=""
+        (ready)="onReady($event)"
+        (blur)="onChange($event)"
+      >
+      </ckeditor>
+      <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() }}</mat-error>
     </div>
 
     <label for="">Tagi</label>
@@ -24,7 +29,7 @@
         <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{tag.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-error *ngIf="toppings.invalid">{{ getErrorToppingsMessage() }}</mat-error>  
+    <mat-error *ngIf="toppings.invalid">{{ getErrorToppingsMessage() }}</mat-error>
     </div>
 
     <div class="input-end">
@@ -36,14 +41,14 @@
       <mat-label>Miejsce</mat-label>
       <br>
       <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" matInput placeholder="Miejsce" [formControl]="place" [(ngModel)]="postToAdd.place" required>
-      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() }}</mat-error>             
+      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() }}</mat-error>
     </div>
 
     <div class="input-end">
       <mat-label>Data</mat-label>
       <br>
       <input type="datetime-local" name="data" [formControl]="date" [(ngModel)]="postToAdd.eventDate" required>
-      <mat-error *ngIf="date.invalid">{{ getErrorDateMessage() }}</mat-error>             
+      <mat-error *ngIf="date.invalid">{{ getErrorDateMessage() }}</mat-error>
     </div>
 
     <div class="input-end">
