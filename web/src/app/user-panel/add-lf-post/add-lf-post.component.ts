@@ -8,6 +8,7 @@ import { lfPost } from 'src/app/events/model/lostfound.model';
 import {AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { BlurEvent } from '@ckeditor/ckeditor5-angular';
+import { CustomSnackbarComponent } from 'src/app/custom-snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-add-lf-post',
@@ -33,6 +34,7 @@ export class AddLfPostComponent {
       'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'
     ]
   };
+  private _snackBar: any;
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe) {
   }
 
@@ -116,8 +118,18 @@ export class AddLfPostComponent {
       return; 
     }
     this.userPanelService.addNewLfPost(this.postToAdd).subscribe(response=>{
+      if(response==null)
+      {
+        this._snackBar.openFromComponent(CustomSnackbarComponent, {
+          panelClass: ['snackbar'],
+          data: { message: 'Post został utworzony' },
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
+      }
     });
-    window.location.reload();
+    
   }
   public handleAddressChange(place: google.maps.places.PlaceResult) {
     if (place.formatted_address != null) {

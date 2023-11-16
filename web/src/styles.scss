@@ -73,3 +73,25 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --font-secondary-color: rgba(255, 255, 255, 0.5);
   --logo-color: 100%;
 }
+
+.mat-mdc-snack-bar-container {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  &.custom-snackbar {
+    --mdc-snackbar-container-color: var(--background-hover-color);
+    --mat-mdc-snack-bar-button-color: var(--primary-color);
+    --mdc-snackbar-supporting-text-color:  var(--font-color);
+  }
+  .custom-snackbar{
+    display: flex;
+    align-items: center; 
+    justify-content: space-around;
+  }
+  .mdc-button__label{
+    color: var(--primary-color);
+  }
+  .mdc-button, .mat-mdc-button, .mat-accent, .mat-mdc-button-base, .cdk-focues, .cdk-mouse-focused{
+
+      background-color:hsla(204, 100%, 50%, 0.2);
+
+  }
+}

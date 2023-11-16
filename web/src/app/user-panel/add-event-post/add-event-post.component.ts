@@ -11,6 +11,7 @@ import {AddPostFormComponent} from "../add-post-form/add-post-form.component";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {BlurEvent, ChangeEvent, CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import InlineEditor from "@ckeditor/ckeditor5-build-inline";
+import { CustomSnackbarComponent } from 'src/app/custom-snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-add-event-post',
@@ -38,8 +39,6 @@ export class AddEventPostComponent {
       'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'
     ]
   };
-  public editorHeight = '300px';
-  public editorScroll = 'scroll';
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe, private _snackBar: MatSnackBar) {
   }
 
@@ -151,8 +150,13 @@ export class AddEventPostComponent {
     this.userPanelService.addNewPost(this.postToAdd).subscribe(response=>{
       if(response==null)
       {
-        let snackBarRef = this._snackBar.open("Post utworzony","Zamknij");
-        snackBarRef.onAction().subscribe(()=> window.location.reload());
+        this._snackBar.openFromComponent(CustomSnackbarComponent, {
+          panelClass: ['snackbar'],
+          data: { message: 'Post został utworzony' },
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
       }
     });
   }

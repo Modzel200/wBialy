@@ -38,6 +38,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
@@ -67,6 +68,7 @@ const appRoutes: Routes = [
     AddLfPostComponent,
     AddGastroPostComponent,
     LostfoundComponent,
+    CustomSnackbarComponent,
   ],
   imports: [
     BrowserModule,

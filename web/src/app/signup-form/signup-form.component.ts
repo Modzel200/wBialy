@@ -4,6 +4,7 @@ import {SignupFormService} from "./service/signup-form.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { CustomSnackbarComponent } from '../custom-snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-signup-form',
@@ -76,10 +77,21 @@ export class SignupFormComponent implements OnInit{
     this.signupFormService.signUpUser(this.user).subscribe(response=>{
       if(response==null)
       {
-        this._snackBar.open("Konto utworzone","dzięki");
-        this.router.navigate(['/login']);
+        this.openCustomSnackbar("Konto utworzone");
+        this.router.navigate(['/login'  ]);
       }
     });
 
   }
+
+  openCustomSnackbar(message: string): void {
+      this._snackBar.openFromComponent(CustomSnackbarComponent, {
+      panelClass: ['snackbar'],
+      data: { message },
+      duration: 3000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+    });
+  }
+
 }

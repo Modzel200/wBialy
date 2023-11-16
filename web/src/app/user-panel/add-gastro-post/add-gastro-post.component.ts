@@ -9,6 +9,7 @@ import {AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators}
 import {MatSnackBar} from "@angular/material/snack-bar";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { BlurEvent } from '@ckeditor/ckeditor5-angular';
+import { CustomSnackbarComponent } from 'src/app/custom-snackbar/custom-snackbar.component';
 
 @Component({
   selector: 'app-add-gastro-post',
@@ -129,8 +130,13 @@ export class AddGastroPostComponent {
     this.userPanelService.addNewGastroPost(this.postToAdd).subscribe(response=>{
       if(response==null)
       {
-        let snackBarRef = this._snackBar.open("Post utworzony","Zamknij");
-        snackBarRef.onAction().subscribe(()=> window.location.reload());
+        this._snackBar.openFromComponent(CustomSnackbarComponent, {
+          panelClass: ['snackbar'],
+          data: { message: 'Post został utworzony' },
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top',
+        });
       }
     });
   }
