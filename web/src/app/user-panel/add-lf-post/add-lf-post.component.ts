@@ -9,6 +9,7 @@ import {AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators}
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { BlurEvent } from '@ckeditor/ckeditor5-angular';
 import { CustomSnackbarComponent } from 'src/app/custom-snackbar/custom-snackbar.component';
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-add-lf-post',
@@ -34,14 +35,13 @@ export class AddLfPostComponent {
       'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'
     ]
   };
-  private _snackBar: any;
-  constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe) {
+  constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe, private _snackBar: MatSnackBar) {
   }
 
   atLeastOneSelectedValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const selectedOptions = control.value;
-      
+
       if (!selectedOptions || selectedOptions.length === 0) {
         return { atLeastOneSelected: true };
       }
@@ -86,7 +86,7 @@ export class AddLfPostComponent {
     return;
   }
 
-  
+
 
   ngOnInit() {
     if(localStorage.getItem("Authorization")==null)
@@ -115,7 +115,11 @@ export class AddLfPostComponent {
   onSubmit()
   {
     if(this.toppings.errors || this.place.errors || this.title.errors || this.description.errors){
-      return; 
+      return;
+    }
+    for(let i=0;i<this.selectedToppings.length;i++)
+    {
+      this.tags.push({name:this.selectedToppings[i]});
     }
     this.userPanelService.addNewLfPost(this.postToAdd).subscribe(response=>{
       if(response==null)
@@ -129,7 +133,7 @@ export class AddLfPostComponent {
         });
       }
     });
-    
+
   }
   public handleAddressChange(place: google.maps.places.PlaceResult) {
     if (place.formatted_address != null) {
