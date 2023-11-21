@@ -17,7 +17,7 @@ export class SignupFormComponent implements OnInit{
     Password:'',
     PasswordConfirm:''
   }
-
+  captcha = '';
   constructor(private signupFormService: SignupFormService, private _snackBar: MatSnackBar, private router: Router) {
   }
   ngOnInit() {
@@ -69,19 +69,24 @@ export class SignupFormComponent implements OnInit{
     }
     return this.passwordConfirm.hasError('passwordMismatch') ? 'Hasła nie zgadzają się' : '';
   }
-
+  resolved(captchaResponse: string)
+  {
+    this.captcha = captchaResponse;
+  }
   onSubmit(){
-    if(this.passwordConfirm.errors || this.password.errors || this.email.errors){
-      return;
-    }
-    this.signupFormService.signUpUser(this.user).subscribe(response=>{
-      if(response==null)
-      {
-        this.openCustomSnackbar("Konto utworzone");
-        this.router.navigate(['/login'  ]);
+    if(this.captcha!='')
+    {
+      if(this.passwordConfirm.errors || this.password.errors || this.email.errors){
+        return;
       }
-    });
-
+      this.signupFormService.signUpUser(this.user).subscribe(response=>{
+        if(response==null)
+        {
+          this.openCustomSnackbar("Konto utworzone");
+          this.router.navigate(['/login'  ]);
+        }
+      });
+    }
   }
 
   openCustomSnackbar(message: string): void {

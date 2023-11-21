@@ -15,21 +15,21 @@
               <div class="input-end">
                 <mat-label>Email</mat-label>
                 <input matInput placeholder="Email" [formControl]="email" [(ngModel)]="user.Email" required>
-                <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>             
+                <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
               </div>
 
               <div class="input-end">
                 <mat-label>Hasło</mat-label>
                 <input matInput placeholder="Password" [formControl]="password" [(ngModel)]="user.Password" type="password" required>
-                <mat-error *ngIf="password.invalid">{{ getPasswordMessage() }}</mat-error>             
+                <mat-error *ngIf="password.invalid">{{ getPasswordMessage() }}</mat-error>
               </div>
 
               <div class="input-end">
                 <mat-label>Powtórz hasło</mat-label>
                 <input matInput placeholder="Repeat Password" [formControl]="passwordConfirm" [(ngModel)]="user.PasswordConfirm" type="password" required>
-                <mat-error *ngIf="passwordConfirm.invalid">{{ getPasswordConfirmMessage() }}</mat-error>             
+                <mat-error *ngIf="passwordConfirm.invalid">{{ getPasswordConfirmMessage() }}</mat-error>
               </div>
-
+              <re-captcha (resolved)="resolved($event)" siteKey="6LcUmRcpAAAAACZQS0_y5AzcFg7Ccx7_1M1-Th8u"></re-captcha>
               <p>Tworząc konto zgadzasz się na <a href="#" style="color:var(--primary-color);">Warunki i prywatność</a>.</p>
               <br>
               <div class="buttons">

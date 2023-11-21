@@ -39,6 +39,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
+import {RecaptchaModule} from "ng-recaptcha";
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
@@ -68,7 +69,7 @@ const appRoutes: Routes = [
     AddLfPostComponent,
     AddGastroPostComponent,
     LostfoundComponent,
-    CustomSnackbarComponent,
+    CustomSnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -90,6 +91,7 @@ const appRoutes: Routes = [
     MatNativeDateModule,
     MatSnackBarModule,
     CKEditorModule,
+    RecaptchaModule
   ],
   providers: [DatePipe,{
     provide: Loader,

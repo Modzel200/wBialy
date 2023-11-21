@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { faPalette } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
@@ -6,12 +6,22 @@ import { faPalette } from '@fortawesome/free-solid-svg-icons'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'web';
-  isDarkMode: boolean = Boolean(localStorage.getItem("DarkMode"));
+  isDarkMode: boolean = true;
   faPalette=faPalette;
   toggleDarkMode(): void {
     this.isDarkMode = !this.isDarkMode;
     localStorage.setItem("DarkMode",String(this.isDarkMode));
+  }
+  ngOnInit() {
+    if(localStorage.getItem("DarkMode")=='true')
+    {
+      this.isDarkMode = true;
+    }
+    else
+    {
+      this.isDarkMode = false;
+    }
   }
 }
