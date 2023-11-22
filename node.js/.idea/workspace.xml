@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3d765fb7-de17-49be-94e5-7f81a636df16" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/node.js.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/3rdpartylicenses.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/Carrot.132659a51ae6b2c5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/Mobile.644c03d0a8bc6f0f.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/Montserrat-Regular.54c76208542a99cd.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/Plant.86bee32101ad1ee7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/Wallet.67c9126aeb2458b4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/assets/fonts/Montserrat/Montserrat-Regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/assets/fonts/Montserrat/OFL.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/assets/icons/Carrot.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/assets/icons/Mobile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/assets/icons/Plant.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/assets/icons/VectorLogo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/assets/icons/VectorWhole.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/assets/icons/Wallet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/main.597675e4e8e5ded2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/polyfills.152d8d061095b50f.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/runtime.a6d704eae5486e84.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/styles.e380c8d8914ebc77.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../web/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../web/angular.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="2YXUROBYPFE0IIOGxxiFERcWPxN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "javascript.nodejs.core.library.configured.version": "18.18.1",
+    "javascript.nodejs.core.library.typings.version": "18.18.1",
+    "last_opened_file_path": "F:/GitHub/wBialy/node.js",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\GitHub\wBialy\node.js" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3d765fb7-de17-49be-94e5-7f81a636df16" name="Changes" comment="" />
+      <created>1700671409086</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1700671409086</updated>
+      <workItem from="1700671410214" duration="1769000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
