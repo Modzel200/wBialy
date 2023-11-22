@@ -11,7 +11,7 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
-import {DatePipe} from "@angular/common";
+import {DatePipe, HashLocationStrategy, LocationStrategy} from "@angular/common";
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
@@ -104,7 +104,7 @@ const appRoutes: Routes = [
       provide:MatDialogRef,
       useValue:{}
     },
-    ],
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
