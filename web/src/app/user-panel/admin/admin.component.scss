@@ -1,0 +1,110 @@
+.panel{
+    background-color: var(--background-color);
+
+}
+h1{
+    font-style: bold;
+    font-size: 2rem;
+    padding-left: 30px;
+    color: var(--font-color);
+  }
+  
+  .container{
+    padding: 0 2vw 0 2vw;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr;
+    height: 300px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--font-color);
+  
+  
+    .left-side{
+      grid-column: 1;
+      img{
+        min-height: 120px;
+        max-height: 15vh;
+      }
+      justify-self: start;
+      align-self: center;
+    }
+      .right-side{
+        grid-column: 2;
+        justify-self: start;
+        align-self: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        .first{
+          grid-column: 1;
+          h2{
+            font-size: x-large;
+            font-weight: 500;
+          }
+          h3{
+            font-size: smaller;
+            font-weight: 500;
+          }
+        }
+        .second{
+          grid-column: 2;
+        }
+        @media (max-width: 1200px){
+            
+        }
+      }
+  
+  }
+  
+  button{
+    width: 130px;
+    height: 40px;
+    flex-shrink: 0;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #fb1818;
+    margin: 10px 10px 10px 0;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    &:hover {
+        box-shadow: 0 4px 8px var(--border-color);
+        transform: translateY(-1px);
+    }
+  }
+  .btn-secondary {
+  background-color: var(--background-color);
+  color: #fb1818;
+  }
+  .btn-primary {
+    border: 1px solid var(--primary-color);
+  background-color: var(--primary-color);
+  color: white;
+  }
+  
+  
+  @media (max-width: 1200px){
+    .container{
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      padding: 10px;
+      flex-wrap: wrap;
+  
+      .right-side{
+        display: flex;
+        flex-direction: column;
+        justify-self: start;
+        align-self: start;
+      }
+  
+      .left-side{
+        justify-self: start;
+        align-self: start;
+      }
+  
+    }
+  
+    h1{
+      padding-left: 0;
+    }
+  
+  }

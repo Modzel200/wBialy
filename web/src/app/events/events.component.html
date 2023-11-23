@@ -3,6 +3,7 @@
 <mat-drawer-container class="events" autosize style="background-color: var(--background-color);">
 
   <mat-drawer #drawer mode="side" position="end" class="filterDrawer">
+    <h1>Filtruj</h1>
       <mat-card class="demo-inline-calendar-card">
         <mat-calendar [(selected)]="selected" (click)="formatDate()"></mat-calendar>
       </mat-card>
@@ -17,10 +18,10 @@
       </mat-form-field>
       <p>Tagi: {{selectedToppings}}</p>
       <br>
-    <button type="button" class="btn-primary btn" mat-button (click)="drawer.toggle();sendFilters()">
+    <button type="button" class="btn-primary btn" (click)="drawer.toggle();sendFilters()">
       Filtruj
     </button>
-    <button (click)="clearTags()">Usuń filtry</button>
+    <button type="button" class="btn-secondary btn" (click)="clearTags()">Usuń filtry</button>
 
     </mat-drawer>
 <div class="container" *ngFor="let event of events" id="eventsScroll">

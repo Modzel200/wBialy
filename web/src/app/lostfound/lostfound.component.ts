@@ -30,7 +30,12 @@ export class LostfoundComponent {
   allTags: Tags[] = []
   constructor(private eventsService: lfService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller) {
   }
+  selectedValue: string = 'zgubione';
   ngOnInit() {
+    if(localStorage.getItem("Authorization")==null)
+    {
+      this.router.navigate(['/']);
+    }
     this.getAllLFPosts();
     this.getAllTags();
   }
@@ -41,10 +46,7 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
     return date.toLocaleDateString(locale, { weekday: 'long' });
 }
 
- dateStr = new Date();
- day = this.getDayName(this.dateStr, "pl-PL");
 
- selectedToggleValue: string = this.day;
 
  getAllLFPosts(){
   this.eventsService.getAllLfPosts(this.number)

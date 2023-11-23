@@ -13,6 +13,7 @@
           </mat-button-toggle-group>
       </div>
   <mat-drawer #drawer mode="side" position="end" class="filterDrawer">
+    <h1>Filtruj</h1>
     <mat-form-field>
       <mat-label>Tagi</mat-label>
       <mat-select  [formControl]="toppings" [(value)]="selectedToppings" multiple>
@@ -21,10 +22,10 @@
     </mat-form-field>
     <p>Tagi: {{selectedToppings}}</p>
     <br>
-    <button type="button" class="btn-primary btn" mat-button (click)="drawer.toggle();sendFilters()">
+    <button type="button" class="btn-primary btn" (click)="drawer.toggle();sendFilters()">
       Filtruj
     </button>
-    <button (click)="clearTags()">Usuń filtry</button>
+    <button type="button" class="btn-secondary btn" (click)="clearTags()">Usuń filtry</button>
 
   </mat-drawer>
     <div class="gastro-container">
