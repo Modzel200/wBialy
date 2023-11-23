@@ -25,7 +25,7 @@ namespace wBialy.Services
         Task<PageResult<PostDto>> GetAllEventPosts(PostQuery query);
         Task<PageResult<PostDto>> GetAllGastroPosts(PostQuery query);
         Task<PageResult<PostDto>> GetAllLFPosts(PostQuery query);
-        Task<PageResult<PostDto>> GetAllToConfirm(PostQuery query);
+        Task<IEnumerable<PostDto>> GetAllToConfirm();
         Task<PostDto> GetById(int id);
         Task<PostDto> GetByIdToConfirm(int id);
         Task UpdateEventPost(EditEventPostDto editPostDto, int id);
@@ -37,6 +37,7 @@ namespace wBialy.Services
         Task<IEnumerable<PostDto>> GetAllUserLFPosts();
         Task<IEnumerable<PostDto>> GetAllUserEventPosts();
         Task<IEnumerable<PostDto>> GetAllUserGastroPosts();
+        Task DeleteAsAdmin(int id);
 
     }
 
@@ -328,6 +329,19 @@ namespace wBialy.Services
             _context.Remove(post);
             await _context.SaveChangesAsync();
         }
+        public async Task DeleteAsAdmin(int id)
+        {
+            _logger.LogWarning($"Post with id: {id} DELETE action invoked");
+            var post = await _context
+                .Posts
+                .FirstOrDefaultAsync(x => x.PostId == id);
+            if (post is null)
+            {
+                throw new NotFoundException("Post not found");
+            }
+            _context.Remove(post);
+            await _context.SaveChangesAsync();
+        }
 
         public async Task UpdateLFPost(EditLFPostDto editPostDto, int id)
         {
@@ -432,57 +446,14 @@ namespace wBialy.Services
             var result = _mapper.Map<PostDto>(post);
             return await Task.FromResult(result);
         }
-        public async Task<PageResult<PostDto>> GetAllToConfirm(PostQuery query)
+        public async Task<IEnumerable<PostDto>> GetAllToConfirm()
         {
-            List<Post> baseQuery;
-            if (!string.IsNullOrEmpty(query.SortBy))
-            {
-                var columnsSelectors = new Dictionary<string, Expression<Func<Post, object>>>
-                {
-                    { nameof(Post.Title), x => x.Title},
-                    { nameof(Post.Description), x => x.Description},
-                    //{ nameof(Post.EventDate), x => x.EventDate},
-                };
-                var selectedColumn = columnsSelectors[query.SortBy];
-                if (query.SortDirection == SortDirection.ASC)
-                {
-                    baseQuery = await _context
+            List<Post> baseQuery = await _context
                     .Posts
-                    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
-                    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
-                    && x.Confirmed == false)
-                    .OrderBy(selectedColumn)
+                    .Where(x => x.Confirmed == false)
                     .ToListAsync();
-                }
-                else
-                {
-                    baseQuery = await _context
-                    .Posts
-                    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
-                    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
-                    && x.Confirmed == false)
-                    .OrderByDescending(selectedColumn)
-                    .ToListAsync();
-                }
-            }
-            else
-            {
-                baseQuery = await _context
-                    .Posts
-                    .Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
-                    || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
-                    || x.Description.ToLower().Contains(query.SearchPhrase.ToLower()))) && x.Confirmed == false)
-                    .ToListAsync();
-            }
-            var posts = baseQuery
-                .Skip(query.PageSize * (query.PageNumber - 1))
-                .Take(query.PageSize);
-            var totalItemsCount = baseQuery.Count;
-            var postDtos = _mapper.Map<List<PostDto>>(posts);
-            var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
-            return await Task.FromResult(result);
+            var postDtos = _mapper.Map<List<PostDto>>(baseQuery);
+            return await Task.FromResult(postDtos);
         }
         public async Task Confirm(int id)
         {

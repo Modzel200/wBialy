@@ -7,7 +7,7 @@ Ten plik jest wykorzystywany przez proces publikowania/pakowania projektu intern
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword />
-    <History>True|2023-11-23T11:00:59.2864883Z;True|2023-11-23T11:54:14.4100782+01:00;False|2023-11-23T11:53:49.8699994+01:00;False|2023-11-23T11:50:55.6467948+01:00;</History>
+    <History>True|2023-11-23T19:40:17.1039822Z;True|2023-11-23T20:01:45.6963207+01:00;True|2023-11-23T19:58:23.5696082+01:00;True|2023-11-23T19:55:37.5940905+01:00;True|2023-11-23T19:16:34.3186572+01:00;True|2023-11-23T19:14:11.3442658+01:00;True|2023-11-23T19:11:13.9652325+01:00;True|2023-11-23T19:08:56.2592055+01:00;True|2023-11-23T18:59:15.1791927+01:00;True|2023-11-23T18:24:36.1140141+01:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>

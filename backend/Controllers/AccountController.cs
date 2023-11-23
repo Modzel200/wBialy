@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Data;
 using wBialy.Entities;
 using wBialy.Models;
 using wBialy.Services;
@@ -25,6 +27,17 @@ namespace wBialy.Controllers
         {
             string token = await _accountService.GenerateJwt(dto);
             return await Task.FromResult(Ok(token));
+        }
+        [HttpGet]
+        [Authorize]
+        public async Task<bool> RecogniseAdmin()
+        {
+            var result = await _accountService.RecogniseAdmin();
+            if (result)
+            {
+                return await Task.FromResult(true);
+            }
+            return await Task.FromResult(false);
         }
     }
 }

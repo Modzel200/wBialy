@@ -47,9 +47,9 @@ namespace wBialy.Controllers
         }
         [HttpGet("admin")]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<IEnumerable<PostDto>>> GetAllToConfirm([FromQuery] PostQuery query)
+        public async Task<ActionResult<IEnumerable<PostDto>>> GetAllToConfirm()
         {
-            var posts = await _postService.GetAllToConfirm(query);
+            var posts = await _postService.GetAllToConfirm();
             return await Task.FromResult(Ok(posts));
         }
         [HttpGet("admin/{id}")]
@@ -65,6 +65,13 @@ namespace wBialy.Controllers
         {
             await _postService.Confirm(id);
             return await Task.FromResult(Ok());
+        }
+        [HttpDelete("admin/{id}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult> DeleteAsAdmin([FromRoute] int id)
+        {
+            await _postService.DeleteAsAdmin(id);
+            return await Task.FromResult(NoContent());
         }
         [HttpPost("lfposts")]
         [Authorize(Roles = "User,Admin")]

@@ -14,6 +14,7 @@ namespace wBialy.Services
     {
         Task<string> GenerateJwt(LoginDto dto);
         Task RegisterUser(RegisterUserDto dto);
+        Task<bool> RecogniseAdmin();
     }
 
     public class AccountService : IAccountService
@@ -21,11 +22,13 @@ namespace wBialy.Services
         private readonly AppDbContext _context;
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly AuthenticationSettings _authenticationSettings;
-        public AccountService(AppDbContext context, IPasswordHasher<User> passwordHasher, AuthenticationSettings authenticationSettings)
+        private readonly IUserContextService _userContextService;
+        public AccountService(AppDbContext context, IPasswordHasher<User> passwordHasher, AuthenticationSettings authenticationSettings, IUserContextService userContextService)
         {
             _context = context;
             _passwordHasher = passwordHasher;
             _authenticationSettings = authenticationSettings;
+            _userContextService = userContextService;
         }
         public async Task RegisterUser(RegisterUserDto dto)
         {
@@ -74,6 +77,16 @@ namespace wBialy.Services
 
             var tokenHandler = new JwtSecurityTokenHandler();
             return await Task.FromResult(tokenHandler.WriteToken(token));
+        }
+        public async Task<bool> RecogniseAdmin()
+        {
+            var userId = _userContextService.GetUserId;
+            var userAsAdmin = await _context.Users.FirstOrDefaultAsync(x => x.RoleId == 2 && x.UserId == userId);
+            if (userAsAdmin is not null)
+            {
+                return await Task.FromResult(true);
+            }
+            return await Task.FromResult(false);
         }
     }
 }
