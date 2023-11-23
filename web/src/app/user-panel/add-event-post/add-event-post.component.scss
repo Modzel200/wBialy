@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    grid-template-areas: 
+    grid-template-areas:
     "header header "
     "form title";
     height: 80vh;
@@ -17,7 +17,7 @@
         grid-column: 2;
         background-color:  var(--background-color);
         color: var(--font-color);
-      
+
         h2{
             font-style: bold;
             font-size: 2rem;
@@ -32,7 +32,7 @@
     }
     .form{
       padding-left: 8vw;
-      
+
     }
 
 }
@@ -63,12 +63,22 @@ color: var(--background-color);
   input{
   width: 100%;
   padding: 15px;
-  margin: 5px 0 22px 0;
+  margin: 5px 0 5px 0;
   display: inline-block;
   border: 1px solid var(--background-hover-color);
   background: var(--background-color);
   color: var(--font-color);
 }
+
+.input-end{
+  margin-bottom: 15px;
+}
+
+.desc{
+  background-color: var(--background-color);
+  color: black;
+}
+
 
 
 input[type=text]:focus, input[type=password]:focus {

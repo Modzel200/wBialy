@@ -2,27 +2,47 @@
     <div class="form-container">
       <h2>Zgubione i znalezione</h2>
       <br>
-      <label for="">Tytuł</label>
-      <input type="text" name="tytul" [(ngModel)]="postToAdd.title" required>
-
-      <label for="">Opis</label>
-      <input type="text" name="opis" [(ngModel)]="postToAdd.description" required>
-
+      <div class="input-end">
+        <mat-label>Tytuł</mat-label>
+        <input matInput placeholder="Tytuł" [formControl]="title" [(ngModel)]="postToAdd.title" required>
+        <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>             
+      </div>
+  
+      <div class="input-end">
+        <mat-label>Opis</mat-label>
+        <ckeditor class="desc" [formControl]="description"
+          [editor]="Editor"
+          [config]="config"
+          data=""
+          (ready)="onReady($event)"
+          (blur)="onChange($event)"
+        >
+        </ckeditor>
+        <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() }}</mat-error>
+      </div>
+      
       <label for="">Tagi</label>
-      <br>
+      <div class="input-end">
       <mat-form-field>
         <mat-label>Tagi</mat-label>
         <mat-select class="selectTag" [formControl]="toppings" [(value)]="selectedToppings" multiple>
           <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{tag.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <br>
+      <mat-error *ngIf="toppings.invalid">{{ getErrorToppingsMessage() }}</mat-error>  
+      </div>
+
+      <div class="input-end">
       <label for="">Link do zdjęcia</label>
       <input type="file" accpet="image/*" name="img" (change)="onFileSelected($event)" required>
+    </div>
 
-      <label for="">Miejsce</label>
-      <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" type="text" name="miejsce" [(ngModel)]="postToAdd.place" required/>
-
+      <div class="input-end">
+        <mat-label>Miejsce</mat-label>
+        <br>
+        <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" matInput placeholder="Miejsce" [formControl]="place" [(ngModel)]="postToAdd.place" required>
+        <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() }}</mat-error>             
+      </div>
         <div class="buttons">
           <a><button (click)="onSubmit()" class="btn-secondary">Stwórz</button></a>
         </div>

@@ -11,7 +11,6 @@ export class SignupFormService{
   }
   //signup
   signUpUser(user: RegisterUser): Observable<RegisterUser>{
-    console.log("serwis");
     return this.http.post<RegisterUser>(this.baseUrl,user);
   }
 }

@@ -6,9 +6,9 @@
   </div>
   <div class="right-side">
     <div class="first">
-      <h1>{{event.title}}</h1>
-      <h2>{{event.eventDate}}</h2>
-      <p>{{event.description}}</p>
+      <h2>{{event.title}}</h2>
+      <h3>{{event.eventDate}}</h3>
+      <div [innerHTML]="event.description"></div>
     </div>
     <div class="second">
       <a ><button class="btn-primary" >Edytuj</button></a>

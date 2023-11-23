@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {EventPost} from "../../../events/model/event.model";
 import {UserPanelService} from "../../service/user-panel.service";
 import {Tags} from "../../model/user-panel.model";
+import {imgbbUpload} from "imgbb-image-uploader";
+import {UploadImgModel} from "../../model/uploadImg.model";
 
 @Component({
   selector: 'app-edit-post-form',
@@ -30,25 +32,21 @@ export class EditPostFormComponent implements OnInit{
   }
   ngOnInit() {
     this.event = this.userPanelService.event;
-    console.log(this.event.title);
   }
   onSubmit(event: EventPost){
     this.event.tags=this.tags;
-    console.log(event);
     this.userPanelService.editEvent(event,event.postId).subscribe(response=>{
-      console.log(response);
     });
-    //window.location.reload();
   }
   selectedFile: File = {} as File;
   onFileSelected(event : any){
     this.selectedFile = <File>event.target.files[0]
-    console.log("test");
-    this.userPanelService.uploadImg(this.selectedFile).subscribe(url=>
-      {
-        console.log(url.data.url);
-        this.event.image = url.data.url;
-      }
-    );
+    imgbbUpload({
+      key: '0044368c0f15bd2f0120f0819f511ee9',
+      image: this.selectedFile,
+    })
+      .then((data : UploadImgModel) => {
+        this.event.image = data.data.url;
+      })
   }
 }

@@ -33,6 +33,14 @@ h1{
       grid-template-columns: 1fr 1fr;
       .first{
         grid-column: 1;
+        h2{
+          font-size: x-large;
+          font-weight: 500;
+        }
+        h3{
+          font-size: smaller;
+          font-weight: 500;
+        }
       }
       .second{
         grid-column: 2;
@@ -49,7 +57,7 @@ button{
     font-size: 14px;
     border-radius: 6px;
     border: 1px solid var(--primary-color);
-    margin: 10px;
+    margin: 10px 10px 10px 0;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     &:hover {
         box-shadow: 0 4px 8px var(--border-color);

@@ -32,7 +32,7 @@
       <h1>{{event.title}}</h1>
       <h2>{{event.eventDate}}</h2>
     </div>
-    <p>{{event.description}}</p>
+    <div [innerHTML]="event.description"></div>
     <button class="btn-primary" (click)="showEvent(event)">Dołącz</button>
   </div>
 </div>

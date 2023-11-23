@@ -11,7 +11,7 @@ import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
-import {DatePipe} from "@angular/common";
+import {DatePipe, HashLocationStrategy, LocationStrategy} from "@angular/common";
 import { UserPanelComponent } from './user-panel/user-panel.component';
 import {MatDialog, MatDialogModule, MatDialogRef} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
@@ -37,7 +37,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from "@angular/material/snack-bar";
-
+import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
+import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
+import {RecaptchaModule} from "ng-recaptcha";
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
@@ -67,6 +69,7 @@ const appRoutes: Routes = [
     AddLfPostComponent,
     AddGastroPostComponent,
     LostfoundComponent,
+    CustomSnackbarComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +90,8 @@ const appRoutes: Routes = [
     MatCardModule,
     MatNativeDateModule,
     MatSnackBarModule,
+    CKEditorModule,
+    RecaptchaModule
   ],
   providers: [DatePipe,{
     provide: Loader,
@@ -99,7 +104,7 @@ const appRoutes: Routes = [
       provide:MatDialogRef,
       useValue:{}
     },
-    ],
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

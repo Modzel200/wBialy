@@ -8,22 +8,25 @@
           <h1>Cieszymy się, że do nas wracasz :)</h1>
       </div>
       <div class="form">
-          <form action="action_page.php" style="border:1px solid #ccc">
+          <form style="border:1px solid #ccc">
               <div class="form-container">
                 <h2>Wprowadź swoje dane</h2>
                   <br>
-                <label for=""><b>Adres email</b></label>
-                <input type="text" placeholder="Email" name="email" [(ngModel)]="user.Email" required>
+                <div class="input-end">
+                  <label for=""><b>Adres email</b></label>
+                  <input type="text" placeholder="Email" name="email" [(ngModel)]="user.Email" required>
+                </div>
 
-                <label for=""><b>Hasło</b></label>
-                <input type="password" placeholder="Password" name="psw" [(ngModel)]="user.Password" required>
+                <div class="input-end">
+                  <label for=""><b>Hasło</b></label>
+                  <input type="password" placeholder="Password" name="psw" [(ngModel)]="user.Password" required>
+                  <mat-error *ngIf="this.errorMessage">{{this.errorMessage}}</mat-error>
+                </div>
 
                 <p>Aby dowiedzieć się więcej, przeczytaj <a href="#" style="color:var(--primary-color);">Warunki i prywatność</a>.</p>
                 <br>
                 <div class="buttons">
-                  <a routerLink="/">
-                    <button type="button" class="btn-primary" (click)="onSubmit()">Zaloguj</button>
-                  </a>
+                  <button type="button" class="btn-primary" (click)="onSubmit()">Zaloguj</button>
                   <button type="submit" class="btn-secondary">Załóż konto</button>
                 </div>
               </div>

@@ -50,7 +50,6 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
   this.eventsService.getAllLfPosts(this.number)
     .subscribe(response => {
     this.pageResult = response;
-    console.log(this.pageResult);
     if(this.pageResult.items.length>0)
     {
       this.events = this.pageResult.items;
