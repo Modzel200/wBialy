@@ -2,3 +2,6 @@
     <app-posts-unconfirmed class="left"></app-posts-unconfirmed>
     <app-posts-confirmed class="right"></app-posts-confirmed>
 </div>
+<div *ngIf="isAdmin">
+  <app-admin></app-admin>
+</div>

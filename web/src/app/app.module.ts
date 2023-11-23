@@ -40,6 +40,7 @@ import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
 import {RecaptchaModule} from "ng-recaptcha";
+import { AdminComponent } from './user-panel/admin/admin.component';
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
     AddLfPostComponent,
     AddGastroPostComponent,
     LostfoundComponent,
-    CustomSnackbarComponent
+    CustomSnackbarComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

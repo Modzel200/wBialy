@@ -6,7 +6,7 @@ import {Injectable} from "@angular/core";
   providedIn: 'root'
 })
 export class SignupFormService{
-  baseUrl = 'https://localhost:7012/api/account/register'
+  baseUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/account/register'
   constructor(private http: HttpClient) {
   }
   //signup

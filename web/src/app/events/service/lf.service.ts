@@ -10,7 +10,7 @@ import {Tags} from "../../user-panel/model/user-panel.model";
   providedIn: 'root'
 })
 export class lfService{
-  baseUrl = 'https://localhost:7012/api/post/lfposts/';
+  baseUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/lfposts/';
   number = 1;
   public event: lfPost={
     postId: 0,
@@ -30,6 +30,6 @@ export class lfService{
   }
   getAllGastroTags()
   {
-    return this.http.get<Tags[]>('https://localhost:7012/api/post/lftags');
+    return this.http.get<Tags[]>('https://wbialyamogus-001-site1.atempurl.com/api/post/lftags');
   }
 }
