@@ -4,6 +4,8 @@ import { EventPost } from 'src/app/events/model/event.model';
 import { UserPanelService } from '../service/user-panel.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import {EditPostFormComponent} from "../posts-unconfirmed/edit-post-form/edit-post-form.component";
+import {Dialog} from "@angular/cdk/dialog";
 
 @Component({
   selector: 'app-posts-confirmed',
@@ -11,50 +13,59 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./posts-confirmed.component.scss']
 })
 export class PostsConfirmedComponent {
-  tags: Tags[] =[{
+  tags: Tags[] = [{
     name: 'pub'
   }
   ]
-  userEvents: EventPost[] =[];
+  userEvents: EventPost[] = [];
   postToAdd: PostToAdd = {
     postId: 0,
     title: '',
     description: '',
     image: '',
     place: '',
-    location:'',
+    location: '',
     eventDate: '',
     tags: this.tags,
     link: ''
   }
-  constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe) {
+
+  constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe, private dialog: Dialog) {
   }
+
   ngOnInit() {
-    if(localStorage.getItem("Authorization")==null)
-    {
+    if (localStorage.getItem("Authorization") == null) {
       this.router.navigate(['/']);
     }
     this.getAllPosts();
   }
-  getAllPosts()
-  {
+
+  getAllPosts() {
     this.userPanelService.getAllPosts()
-      .subscribe(response=>{
+      .subscribe(response => {
         this.userEvents = response;
         this.changeDateFormat();
       })
   }
-  changeDateFormat()
-  {
-    for(let i=0;i<this.userEvents.length;i++)
-    {
+
+  changeDateFormat() {
+    for (let i = 0; i < this.userEvents.length; i++) {
       this.userEvents[i].eventDate = <string>this.datePipe.transform(this.userEvents[i].eventDate, 'dd.MM.yyyy hh:mm');
     }
   }
-  deleteEvent(id: number){
-    this.userPanelService.deleteEvent(id).subscribe(response=>{
+
+  deleteEvent(id: number) {
+    this.userPanelService.deleteEvent(id).subscribe(response => {
       this.getAllPosts();
     })
   }
 
+  editEvent(event: EventPost) {
+    this.userPanelService.event = event;
+    const dialogRef = this.dialog.open(EditPostFormComponent, {
+      height: '80%',
+      autoFocus: false,
+    });
+
+  }
 }
