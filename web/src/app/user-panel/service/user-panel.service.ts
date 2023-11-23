@@ -30,6 +30,7 @@ export class UserPanelService{
     tags:[],
     link:'',
   };
+  returnData = '';
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
     'Authorization': localStorage.getItem("Authorization")!
@@ -68,12 +69,6 @@ export class UserPanelService{
   deleteEvent(id:number)
   {
     return this.http.delete(this.deleteUrl+id,this.options);
-  }
-  uploadImg(file: File):Observable<UploadImgModel>
-  {
-    const formData = new FormData();
-    formData.append('image',file);
-    return this.http.post<UploadImgModel>('/upload',formData,{params:{key:this.apiKey}});
   }
   editEvent(event: EventPost, id: number)
   {

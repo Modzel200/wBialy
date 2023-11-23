@@ -12,7 +12,8 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import {BlurEvent, ChangeEvent, CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import InlineEditor from "@ckeditor/ckeditor5-build-inline";
 import { CustomSnackbarComponent } from 'src/app/custom-snackbar/custom-snackbar.component';
-
+import {imgbbUpload} from "imgbb-image-uploader";
+import {UploadImgModel} from "../model/uploadImg.model";
 @Component({
   selector: 'app-add-event-post',
   templateUrl: './add-event-post.component.html',
@@ -132,11 +133,13 @@ export class AddEventPostComponent {
   selectedFile: File = {} as File;
   onFileSelected(event : any){
     this.selectedFile = <File>event.target.files[0]
-    this.userPanelService.uploadImg(this.selectedFile).subscribe(url=>
-    {
-      this.postToAdd.image = url.data.url;
-    }
-    );
+    imgbbUpload({
+      key: '0044368c0f15bd2f0120f0819f511ee9',
+      image: this.selectedFile,
+    })
+      .then((data : UploadImgModel) => {
+        this.postToAdd.image = data.data.url;
+      })
   }
 
   onSubmit()
@@ -170,6 +173,7 @@ export class AddEventPostComponent {
     }
   }
   public onReady(editor: ClassicEditor) {
+
     }
   public onChange({ editor }: BlurEvent) {
     this.postToAdd.description = editor.data.get();

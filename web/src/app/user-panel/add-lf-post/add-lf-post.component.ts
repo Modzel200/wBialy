@@ -10,6 +10,8 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { BlurEvent } from '@ckeditor/ckeditor5-angular';
 import { CustomSnackbarComponent } from 'src/app/custom-snackbar/custom-snackbar.component';
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {imgbbUpload} from "imgbb-image-uploader";
+import {UploadImgModel} from "../model/uploadImg.model";
 
 @Component({
   selector: 'app-add-lf-post',
@@ -105,11 +107,13 @@ export class AddLfPostComponent {
   }
   onFileSelected(event : any){
     this.selectedFile = <File>event.target.files[0]
-    this.userPanelService.uploadImg(this.selectedFile).subscribe(url=>
-    {
-      this.postToAdd.image = url.data.url;
-    }
-    );
+    imgbbUpload({
+      key: '0044368c0f15bd2f0120f0819f511ee9',
+      image: this.selectedFile,
+    })
+      .then((data : UploadImgModel) => {
+        this.postToAdd.image = data.data.url;
+      })
   }
 
   onSubmit()

@@ -10,6 +10,8 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { BlurEvent } from '@ckeditor/ckeditor5-angular';
 import { CustomSnackbarComponent } from 'src/app/custom-snackbar/custom-snackbar.component';
+import {imgbbUpload} from "imgbb-image-uploader";
+import {UploadImgModel} from "../model/uploadImg.model";
 
 @Component({
   selector: 'app-add-gastro-post',
@@ -42,7 +44,7 @@ export class AddGastroPostComponent {
   atLeastOneSelectedValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const selectedOptions = control.value;
-      
+
       if (!selectedOptions || selectedOptions.length === 0) {
         return { atLeastOneSelected: true };
       }
@@ -111,17 +113,19 @@ export class AddGastroPostComponent {
   }
   onFileSelected(event : any){
     this.selectedFile = <File>event.target.files[0]
-    this.userPanelService.uploadImg(this.selectedFile).subscribe(url=>
-    {
-      this.postToAdd.image = url.data.url;
-    }
-    );
+    imgbbUpload({
+      key: '0044368c0f15bd2f0120f0819f511ee9',
+      image: this.selectedFile,
+    })
+      .then((data : UploadImgModel) => {
+        this.postToAdd.image = data.data.url;
+      })
   }
 
   onSubmit()
   {
     if(this.toppings.errors || this.place.errors || this.title.errors || this.description.errors || this.day.errors){
-      return; 
+      return;
     }
     for(let i=0;i<this.selectedToppings.length;i++)
     {
