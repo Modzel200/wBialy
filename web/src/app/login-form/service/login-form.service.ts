@@ -7,7 +7,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class LoginFormService{
-  baseUrl = 'https://localhost:7012/api/account/login'
+  baseUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/account/login'
 
   constructor(private http: HttpClient) {
   }

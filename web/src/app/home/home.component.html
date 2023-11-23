@@ -6,8 +6,8 @@
         <img src="{{event.image}}" style="width:100%">
         <h1>{{event.title}}</h1>
         <p class="date">{{event.eventDate}}</p>
-        <p class="opis">{{event.description}}</p>
-        <p><button class="btn-primary">Dołącz</button></p>
+        <div class='opis' [innerHTML]="event.description"></div>
+        <p><button class="btn-primary" (click)="showEvent(event)">Dołącz</button></p>
       </div>
     </div>
     <div class="buttons">

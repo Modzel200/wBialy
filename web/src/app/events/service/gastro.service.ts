@@ -10,7 +10,7 @@ import {Tags} from "../../user-panel/model/user-panel.model";
   providedIn: 'root'
 })
 export class gastroService{
-  baseUrl = 'https://localhost:7012/api/post/gastroposts/';
+  baseUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/gastroposts/';
   number = 1;
   public event: gastroPost={
     postId: 0,
@@ -41,7 +41,7 @@ export class gastroService{
   }
   getAllGastroTags()
   {
-    return this.http.get<Tags[]>('https://localhost:7012/api/post/gastrotags');
+    return this.http.get<Tags[]>('https://wbialyamogus-001-site1.atempurl.com/api/post/gastrotags');
   }
 
 }

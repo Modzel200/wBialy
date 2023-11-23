@@ -9,7 +9,7 @@ import {Tags} from "../../user-panel/model/user-panel.model";
   providedIn: 'root'
 })
 export class EventsService{
-  baseUrl = 'https://localhost:7012/api/post/eventposts/';
+  baseUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/eventposts/';
   number = 1;
   public event: EventPost={
     postId: 0,
@@ -37,6 +37,6 @@ export class EventsService{
   }
   getAllTags()
   {
-    return this.http.get<Tags[]>('https://localhost:7012/api/post/eventtags/');
+    return this.http.get<Tags[]>('https://wbialyamogus-001-site1.atempurl.com/api/post/eventtags/');
   }
 }

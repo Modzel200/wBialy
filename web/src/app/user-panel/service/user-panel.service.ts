@@ -11,11 +11,12 @@ import {UploadImgModel} from "../model/uploadImg.model";
   providedIn: 'root'
 })
 export class UserPanelService{
-  baseUrl = 'https://localhost:7012/api/post/eventposts/';
-  lfUrl = 'https://localhost:7012/api/post/lfposts/';
-  gastroUrl = 'https://localhost:7012/api/post/gastroposts';
-  userUrl = 'https://localhost:7012/api/post/usereventposts/';
-  deleteUrl = 'https://localhost:7012/api/post/';
+  baseUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/eventposts/';
+  lfUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/lfposts/';
+  gastroUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/gastroposts';
+  userUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/usereventposts/';
+  deleteUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/';
+  adminUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/account/';
   apiKey = '0044368c0f15bd2f0120f0819f511ee9';
   public event: EventPost={
     postId: 0,
@@ -73,5 +74,9 @@ export class UserPanelService{
   editEvent(event: EventPost, id: number)
   {
     return this.http.put(this.baseUrl+id,event,this.options);
+  }
+  isAdmin()
+  {
+    return this.http.get<boolean>(this.adminUrl,this.options);
   }
 }

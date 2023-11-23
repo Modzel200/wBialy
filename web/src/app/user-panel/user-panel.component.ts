@@ -27,6 +27,7 @@ export class UserPanelComponent implements OnInit{
     tags: this.tags,
     link: ''
   }
+  isAdmin = true;
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe) {
   }
   ngOnInit() {
@@ -35,6 +36,10 @@ export class UserPanelComponent implements OnInit{
       this.router.navigate(['/']);
     }
     this.getAllPosts();
+    this.userPanelService.isAdmin()
+      .subscribe(response =>{
+        this.isAdmin = response;
+      })
   }
   getAllPosts()
   {

@@ -7,7 +7,7 @@ import {PageResultModel} from "../../events/model/pageResult.model";
   providedIn: 'root'
 })
 export class ShortEventsService{
-  baseUrl = 'https://localhost:7012/api/post/eventposts/'
+  baseUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/eventposts/'
   constructor(private http: HttpClient) {
   }
   getAllPosts():Observable<PageResultModel>
