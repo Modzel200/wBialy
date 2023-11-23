@@ -32,10 +32,6 @@ export class LostfoundComponent {
   }
   selectedValue: string = 'zgubione';
   ngOnInit() {
-    if(localStorage.getItem("Authorization")==null)
-    {
-      this.router.navigate(['/']);
-    }
     this.getAllLFPosts();
     this.getAllTags();
   }

@@ -32,10 +32,6 @@ export class GastroComponent {
   constructor(private eventsService: gastroService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller,private userPanelService: UserPanelService) {
   }
   ngOnInit() {
-    if(localStorage.getItem("Authorization")==null)
-    {
-      this.router.navigate(['/']);
-    }
     //this.getAllGastroPosts();
     this.getGastroPosts(this.day);
     this.getAllTags();
