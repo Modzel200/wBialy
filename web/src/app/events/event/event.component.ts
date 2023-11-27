@@ -14,6 +14,7 @@ export class EventComponent implements OnInit{
     postId:0,
     title:'',
     description:'',
+    found:false,
     image:'',
     place:'',
     location:'',

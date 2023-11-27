@@ -42,6 +42,8 @@ import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.compo
 import {RecaptchaModule} from "ng-recaptcha";
 import { AdminComponent } from './user-panel/admin/admin.component';
 import {MatRadioModule} from "@angular/material/radio";
+import { EditLfPostComponent } from './user-panel/posts-unconfirmed/edit-lf-post/edit-lf-post.component'
+import { EditGastroPostComponent } from './user-panel/posts-unconfirmed/edit-gastro-post/edit-gastro-post.component';
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
@@ -72,7 +74,9 @@ const appRoutes: Routes = [
     AddGastroPostComponent,
     LostfoundComponent,
     CustomSnackbarComponent,
-    AdminComponent
+    AdminComponent,
+    EditLfPostComponent,
+    EditGastroPostComponent
   ],
     imports: [
         BrowserModule,

@@ -16,6 +16,7 @@ export class lfService{
     postId: 0,
     title:'',
     description:'',
+    found:false,
     image:'',
     confirmed: false,
     place:'',
