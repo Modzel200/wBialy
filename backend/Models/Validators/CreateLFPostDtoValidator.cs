@@ -11,12 +11,14 @@ namespace wBialy.Models.Validators
                 .MaximumLength(50);
             RuleFor(x => x.Description)
                 .NotEmpty()
-                .MaximumLength(600);
+                .MaximumLength(1000);
             RuleFor(x => x.Place)
                 .NotEmpty();
             RuleFor(x => x.Location)
                 .NotEmpty();
             RuleFor(x => x.Tags)
+                .NotEmpty();
+            RuleFor(x => x.Found)
                 .NotEmpty();
         }
     }

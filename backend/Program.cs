@@ -65,6 +65,7 @@ builder.Services.AddScoped<IValidator<EventTagDto>, EventTagDtoValidator>();
 builder.Services.AddScoped<IValidator<GastroTagDto>, GastroTagDtoValidator>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddTransient<IEmailSenderService, EmailSenderService>();
 builder.Services.AddScoped<IUserContextService, UserContextService>();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();

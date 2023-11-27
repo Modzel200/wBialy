@@ -15,6 +15,7 @@ namespace wBialy.Models
         public string Day { get; set; }
         public string? Tags { get; set; }
         public string? Link { get; set; }
+        public bool? Found { get; set; }
         public bool Confirmed { get; set; }
 #pragma warning restore CS8618 
     }

@@ -10,6 +10,7 @@ namespace wBialy.Models
         public string? Image { get; set; }
         public string Place { get; set; }
         public string Location { get; set; }
+        public bool Found { get; set; }
         public List<LFTagDto> Tags { get; set; }
 #pragma warning restore CS8618
     }

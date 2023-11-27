@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using wBialy.Entities;
 using wBialy.Exceptions;
@@ -15,6 +16,7 @@ namespace wBialy.Services
         Task<string> GenerateJwt(LoginDto dto);
         Task RegisterUser(RegisterUserDto dto);
         Task<bool> RecogniseAdmin();
+        Task<bool> VerifyEmail(string token);
     }
 
     public class AccountService : IAccountService
@@ -23,33 +25,37 @@ namespace wBialy.Services
         private readonly IPasswordHasher<User> _passwordHasher;
         private readonly AuthenticationSettings _authenticationSettings;
         private readonly IUserContextService _userContextService;
-        public AccountService(AppDbContext context, IPasswordHasher<User> passwordHasher, AuthenticationSettings authenticationSettings, IUserContextService userContextService)
+        private readonly IEmailSenderService _emailSenderService;
+        public AccountService(AppDbContext context, IPasswordHasher<User> passwordHasher, AuthenticationSettings authenticationSettings, IUserContextService userContextService, IEmailSenderService emailSenderService)
         {
             _context = context;
             _passwordHasher = passwordHasher;
             _authenticationSettings = authenticationSettings;
             _userContextService = userContextService;
+            _emailSenderService = emailSenderService;
         }
         public async Task RegisterUser(RegisterUserDto dto)
         {
             var newUser = new User()
             {
                 Email = dto.Email,
+                VerificationToken = CreateRandomToken(),
             };
             var hashedPassword = _passwordHasher.HashPassword(newUser, dto.Password);
             newUser.PasswordHash = hashedPassword;
-            newUser.RoleId = 1;
+            newUser.Role = await _context.Roles.FirstOrDefaultAsync(x => x.Name == "Unconfirmed");
             await _context.Users.AddAsync(newUser);
             await _context.SaveChangesAsync();
+            await _emailSenderService.SendEmailAsync(dto.Email, "Confirm your email", "http://wbialyamogus-001-site1.atempurl.com/api/account/verifyemail");
         }
         public async Task<string> GenerateJwt(LoginDto dto)
         {
             var user = await _context.Users
                 .Include(x => x.Role)
-                .FirstOrDefaultAsync(x => x.Email == dto.Email);
+                .FirstOrDefaultAsync(x => x.Email == dto.Email && x.Role.Name != "Unconfirmed");
             if (user is null)
             {
-                throw new BadRequestException("Invalid username or password");
+                throw new BadRequestException("Invalid username or password or email not confirmed");
             }
 
             var result = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, dto.Password);
@@ -81,12 +87,28 @@ namespace wBialy.Services
         public async Task<bool> RecogniseAdmin()
         {
             var userId = _userContextService.GetUserId;
-            var userAsAdmin = await _context.Users.FirstOrDefaultAsync(x => x.RoleId == 2 && x.UserId == userId);
+            var userAsAdmin = await _context.Users.FirstOrDefaultAsync(x => x.Role.Name == "Admin" && x.UserId == userId);
             if (userAsAdmin is not null)
             {
                 return await Task.FromResult(true);
             }
             return await Task.FromResult(false);
+        }
+        private string CreateRandomToken()
+        {
+            return Convert.ToHexString(RandomNumberGenerator.GetBytes(64));
+        }
+        public async Task<bool> VerifyEmail(string token)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => token == x.VerificationToken && x.Role.Name == "Unconfirmed");
+            if(user is null)
+            {
+                return await Task.FromResult(false);
+            }
+            user.Role = await _context.Roles.FirstOrDefaultAsync(x => x.Name == "User");
+            _context.Update(user);
+            await _context.SaveChangesAsync();
+            return await Task.FromResult(true);
         }
     }
 }

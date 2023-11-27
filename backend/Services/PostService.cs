@@ -69,6 +69,11 @@ namespace wBialy.Services
         {
             List<LFPost> baseQuery;
             List<LFTag> tags = new List<LFTag>();
+            bool found = false;
+            if(string.Compare(query.LfFlag.ToLower(), "found") == 0)
+            {
+                found = true;
+            }
             if (string.IsNullOrEmpty(query.SortBy))
             {
                 query.SortBy = "AddDate"; //tutaj sie usunie i doda od razu sortowanie w frontend po dacie
@@ -93,7 +98,7 @@ namespace wBialy.Services
                 || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
                 && (query.TagFilter.IsNullOrEmpty()
                 || x.Tags.Any(y => tags.Contains(y)) )
-                && x.Confirmed == true)
+                && x.Confirmed == true && x.Found == found)
                 .OrderBy(selectedColumn)
                 .ToListAsync();
             }
@@ -106,7 +111,7 @@ namespace wBialy.Services
                 || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
                 && (query.TagFilter.IsNullOrEmpty()
                 || x.Tags.Any(y => tags.Contains(y)))
-                && x.Confirmed == true)
+                && x.Confirmed == true && x.Found == found)
                 .OrderByDescending(selectedColumn)
                 .ToListAsync();
             }
@@ -250,6 +255,7 @@ namespace wBialy.Services
                 Description = dto.Description,
                 Image = dto.Image,
                 Place = dto.Place,
+                Found = dto.Found,
                 Location = dto.Location,
                 Tags = tagList,
             };
@@ -368,6 +374,7 @@ namespace wBialy.Services
             postToUpdate.Description = editPostDto.Description;
             postToUpdate.Image = editPostDto.Image;
             postToUpdate.Place = editPostDto.Place;
+            postToUpdate.Found = editPostDto.Found;
             postToUpdate.Location = editPostDto.Location;
             postToUpdate.Confirmed = false;
             //postToUpdate.EventDate = editPostDto.EventDate;

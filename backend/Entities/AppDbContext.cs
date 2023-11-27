@@ -40,7 +40,7 @@ namespace wBialy.Entities
             modelBuilder.Entity<Post>()
                 .Property(x => x.Description)
                 .IsRequired()
-                .HasMaxLength(250);
+                .HasMaxLength(1000);
 
             modelBuilder.Entity<Tag>()
                 .HasKey(p => p.TagId);

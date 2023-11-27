@@ -117,7 +117,7 @@ namespace wBialy.Controllers
         }
         [HttpPut("gastroposts/{id}")]
         [Authorize(Roles = "User,Admin")]
-        public async Task<ActionResult> UpdateGstroPost([FromBody] EditGastroPostDto modifyPostDto, [FromRoute] int id)
+        public async Task<ActionResult> UpdateGastroPost([FromBody] EditGastroPostDto modifyPostDto, [FromRoute] int id)
         {
             await _postService.UpdateGastroPost(modifyPostDto, id);
             return await Task.FromResult(Ok());

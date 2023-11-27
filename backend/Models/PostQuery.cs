@@ -11,6 +11,7 @@ namespace wBialy.Models
         public string? SortBy { get; set; }
         public SortDirection? SortDirection { get; set; }
         public string? DateFilter { get; set; }
+        public string? LfFlag { get; set; }
         public List<string>? TagFilter { get; set; }
 #pragma warning restore CS8618
     }

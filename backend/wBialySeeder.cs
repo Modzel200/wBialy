@@ -54,6 +54,10 @@ namespace wBialy
                 new Role()
                 {
                     Name = "Admin"
+                },
+                new Role()
+                {
+                    Name = "Unconfirmed"
                 }
             };
             return roles;
