@@ -28,8 +28,10 @@ export class LostfoundComponent {
   selectedToppings = [];
   selectedToppingsString:string[] = [];
   allTags: Tags[] = []
+  selectedValue: string = 'zgubione';
   constructor(private eventsService: lfService, private datePipe: DatePipe, private router: Router, public dialog: MatDialog,private scroller: ViewportScroller) {
   }
+
   ngOnInit() {
     this.getAllLFPosts();
     this.getAllTags();
@@ -41,13 +43,10 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
     return date.toLocaleDateString(locale, { weekday: 'long' });
 }
 
- dateStr = new Date();
- day = this.getDayName(this.dateStr, "pl-PL");
 
- selectedToggleValue: string = this.day;
 
  getAllLFPosts(){
-  this.eventsService.getAllLfPosts(this.number)
+  this.eventsService.getAllLfPosts(this.number, this.selectedValue)
     .subscribe(response => {
     this.pageResult = response;
     if(this.pageResult.items.length>0)
@@ -73,6 +72,9 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
     this.selectedToppings = [];
     this.getAllLFPosts();
   }
-
+  changeType()
+  {
+    this.getAllLFPosts();
+  }
     protected readonly faFilter = faFilter;
 }

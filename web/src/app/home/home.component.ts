@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {EventPost} from "../events/model/event.model";
 import {ShortEventsService} from "./service/home.service";
 import {PageResultModel} from "../events/model/pageResult.model";
@@ -24,6 +24,10 @@ export class HomeComponent implements OnInit{
   };
   currentIndex: number = 0;
   isWideScreen: boolean = window.innerWidth >= 800;
+  @HostListener('window:resize', ['$event'])
+  onResize(event:any) {
+    this.isWideScreen = window.innerWidth >= 800;
+  }
   constructor(private shortEventsService:ShortEventsService, private datePipe: DatePipe, private eventsService: EventsService, public dialog: MatDialog) {
   }
   ngOnInit() {
@@ -47,10 +51,6 @@ export class HomeComponent implements OnInit{
     {
       this.shortEvents[i].eventDate = <string>this.datePipe.transform(new Date(), 'dd.MM.yyyy hh:mm');
     }
-  }
-
-  onResize() {
-    this.isWideScreen = window.innerWidth >= 800;
   }
 
   prevEvent() {

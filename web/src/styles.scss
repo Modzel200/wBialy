@@ -52,7 +52,15 @@ $web-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+::-webkit-scrollbar {
+  width: 0.7em;
+  background-color: rgb(204, 204, 204);
+}
+ 
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgb(110, 110, 110);
+}
 
 :root {
   --background-color: #ffffff;

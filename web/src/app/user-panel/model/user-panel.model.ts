@@ -17,6 +17,7 @@ export interface lfPostToAdd{
   postId:number;
   title: string;
   description: string;
+  found: boolean;
   image: string;
   place: string;
   location: string;

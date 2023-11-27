@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { PostToAdd, Tags } from '../model/user-panel.model';
 import { EventPost } from 'src/app/events/model/event.model';
 import { UserPanelService } from '../service/user-panel.service';
@@ -30,14 +30,43 @@ export class PostsUnconfirmedComponent {
     tags: this.tags,
     link: ''
   }
+  @Input() type ='';
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe, private dialog: Dialog) {
   }
+  isDarkMode = false;
   ngOnInit() {
     if(localStorage.getItem("Authorization")==null)
     {
       this.router.navigate(['/']);
     }
-    this.getAllPosts();
+    this.useFunction();
+    if(localStorage.getItem("DarkMode")=='true')
+    {
+      this.isDarkMode = true;
+    }
+    else
+    {
+      this.isDarkMode = false;
+    }
+  }
+  ngOnChanges() {
+    this.useFunction()
+  }
+  useFunction()
+  {
+    if(this.type==="lf")
+    {
+
+      this.getAllLF();
+    }
+    else if(this.type==="gastro")
+    {
+      this.getAllGastro();
+    }
+    else
+    {
+      this.getAllPosts();
+    }
   }
   getAllPosts()
   {
@@ -57,7 +86,7 @@ export class PostsUnconfirmedComponent {
 
   deleteEvent(id: number){
     this.userPanelService.deleteEvent(id).subscribe(response=>{
-      this.getAllPosts();
+      this.useFunction();
     })
   }
   // editEvent(event: EventPost)
@@ -65,10 +94,11 @@ export class PostsUnconfirmedComponent {
   //   this.userPanelService.editEvent(event)
   // }
   editEvent(event: EventPost){
+    const classmode = this.isDarkMode ? 'dark-mode' : '';
     this.userPanelService.event = event;
-    const dialogRef = this.dialog.open(EditPostFormComponent,{
-      height:'80%',
+    const dialogRef = this.dialog.open(EditPostFormComponent, {
       autoFocus: false,
+      panelClass: classmode,
     });
     //this.router.navigate(['/event']);
   }
@@ -78,4 +108,22 @@ export class PostsUnconfirmedComponent {
   //   console.log(doc.body.innerHTML)
   //   return doc.body.innerHTML
   // }
+  getAllGastro()
+  {
+    console.log("gastro");
+    this.userPanelService.getAllGastro()
+      .subscribe(response=>{
+        console.log(response);
+        this.userEvents = response;
+      })
+  }
+  getAllLF()
+  {
+    console.log("lf");
+    this.userPanelService.getAllLF()
+      .subscribe(response=>{
+        console.log(response);
+        this.userEvents = response;
+      })
+  }
 }

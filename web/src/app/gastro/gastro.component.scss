@@ -8,7 +8,7 @@
     flex-direction: column;
     align-items: center;
     justify-items: center;
-    min-height: 80vh;
+    min-height:90vh;
     gap: 40px;
     padding: 0 20vw 0 20vw;
     color: var(--font-color);
@@ -66,14 +66,12 @@ h1{
     background-color: var(--background-color);
     font-weight: 500;
 }
-.item:target{
-    color: var(--font-color);
-}
+
 
 .card {
     display: grid;
     gap:1vh;
-    grid-template-rows: 1fr 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 4fr;
     border-radius: 6px;
     overflow: hidden;
     justify-content: center;
@@ -103,41 +101,46 @@ h1{
     }
 }
 
+.buttons{
+    padding: 20px;
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    background-color: var(--background-color);
+}
+
 button{
-    width: 100%;
-    height: 40px;
+    width: 130px;
+    height: 60px;
     flex-shrink: 0;
+    padding: 8px 16px;
     cursor: pointer;
     font-size: 14px;
-    border-radius: 0;
+    border-radius: 6px;
     border: 1px solid #18A0FB;
-    transition: background-color 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
     &:hover {
-        background-color: #37afff;;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        transform: translateY(-1px);
+    }
+
+    &:disabled{
+        opacity: 40%;
+        &:hover{
+            transform: none;
+        }
     }
 }
 .btn-secondary {
-background-color: #fff;
-color: #18A0FB;
-transition: color 0.3s ease;
-height: 60px;
-width: 60px;
-margin: 1vw;
-&:hover {
-    color: #fff;;
-}
+    background-color: var(--background-color);
+    color: var(--primary-color);
 }
 .btn-primary {
-background-color: #18A0FB;
-color: #fff;
-}
-
-.buttons{
-display: flex;
-flex-direction: row;
-justify-content: center;
-align-self: center;
-}
+    background-color: var(--primary-color);
+    color: #fff;
+} 
 .filterDrawer{
   outline: 1px solid var(--primary-color);
   margin-top: 230px;
@@ -147,9 +150,14 @@ align-self: center;
   position:fixed;
   display: flex;
   flex-direction: column;
+  text-align: center;
   padding:20px;
   color: var(--font-color);
-  z-index: 1;
+  z-index: 999;
+  @media (max-width: 1000px){
+    margin-top: 100px;
+    margin-bottom: 200px;
+}
 }
 .handleFilters{
   position: fixed;
@@ -166,6 +174,7 @@ align-self: center;
   outline: none;
   transition: background-color 0.3s, color 0.3s, transform 0.3s;
   z-index: 99999;
+  -webkit-transform:translate3d(0,0,999)
 }
 
 .handleFilters:hover {

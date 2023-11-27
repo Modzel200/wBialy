@@ -13,12 +13,12 @@
                 <h2>Wprowadź swoje dane</h2>
                   <br>
                 <div class="input-end">
-                  <label for=""><b>Adres email</b></label>
+                  <label for="">Adres email</label>
                   <input type="text" placeholder="Email" name="email" [(ngModel)]="user.Email" required>
                 </div>
 
                 <div class="input-end">
-                  <label for=""><b>Hasło</b></label>
+                  <label for="">Hasło</label>
                   <input type="password" placeholder="Password" name="psw" [(ngModel)]="user.Password" required>
                   <mat-error *ngIf="this.errorMessage">{{this.errorMessage}}</mat-error>
                 </div>

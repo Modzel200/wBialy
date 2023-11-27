@@ -54,19 +54,11 @@
             transform: translateY(-1px);
         }
     }
-  .btn-secondary {
-    background-color: var(--background-color);
-    color: #fff;
-  }
-  .btn-primary {
-    background-color: var(--primary-color);
-    color: #fff;
-  }
-  @media (max-width: 1400px){
+  @media (max-width: 1600px){
     grid-template-columns: 5vw 50vw 40vw 1vw;
   }
 
-  @media (max-width: 1200px){
+  @media (max-width: 1400px){
     padding: 2vh 18vw 2vh 18vw;
     display: flex;
     flex-wrap: wrap;
@@ -113,11 +105,12 @@
 
 .buttons{
     padding: 20px;
+    gap: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
-    background-color: var(--background-color);;
+    background-color: var(--background-color);
 }
 
 button{
@@ -144,16 +137,13 @@ button{
 }
 .btn-secondary {
     background-color: var(--background-color);
-    color: #fff;
+    color: var(--primary-color);
 }
 .btn-primary {
     background-color: var(--primary-color);
     color: #fff;
 } 
-.buttons{
-    display: flex;
-    gap: 10px;
-}
+
 
 .handleFilters{
     position: fixed;
@@ -169,7 +159,8 @@ button{
     color: var(--background-color);
     outline: none;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
-    z-index: 99999;
+    z-index: 999;
+    -webkit-transform:translate3d(0,0,999)
 }
 
 .handleFilters:hover {
@@ -187,7 +178,12 @@ button{
     position:fixed; 
     display: flex;
     flex-direction: column;
+    text-align: center;
     padding:20px;
     color: var(--font-color);
     z-index: 1;
+    @media (max-width: 1000px){
+        margin-top: 100px;
+        margin-bottom: 200px;
+    }
 }

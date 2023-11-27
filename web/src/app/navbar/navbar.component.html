@@ -14,13 +14,42 @@
       </div>
     </div>
     <div class="right-side">
-      <a routerLink="/login" *ngIf="isLogged==null"><button class="btn-secondary" >Zaloguj</button></a>
-      <a routerLink="/signup" *ngIf="isLogged==null"><button class="btn-primary">Zarejestruj</button></a>
-      <a *ngIf="isLogged!=null"><button (click)="showEvent()" class="btn-secondary">Dodaj post</button></a>
-      <a routerLink="/account" *ngIf="isLogged!=null"><button class="btn-primary">Twoje Konto</button></a>
-      <a routerLink="/" *ngIf="isLogged!=null"><button (click)="logOff()" class="btn-secondary">Wyloguj się</button></a>
+      <a routerLink="/login" *ngIf="isLogged==null">
+        <button class="btn-secondary">
+          <fa-icon [icon]="faSignIn" *ngIf="isSmallScreen"></fa-icon>
+          <span *ngIf="!isSmallScreen">Zaloguj</span>
+        </button>
+      </a>
+      
+      <a routerLink="/signup" *ngIf="isLogged==null">
+        <button class="btn-primary">
+          <fa-icon [icon]="faUserPlus" *ngIf="isSmallScreen"></fa-icon>
+          <span *ngIf="!isSmallScreen">Zarejestruj</span>
+        </button>
+      </a>
+      <a *ngIf="isLogged!=null">
+        <button (click)="showEvent()" class="btn-secondary">
+          <fa-icon [icon]="faPlus" *ngIf="isSmallScreen"></fa-icon>
+          <span *ngIf="!isSmallScreen">Dodaj post</span>
+        </button>
+      </a>
+      
+      <a routerLink="/account" *ngIf="isLogged!=null">
+        <button class="btn-primary">
+          <fa-icon [icon]="faUser" aria-setsize="19px" *ngIf="isSmallScreen"></fa-icon>
+          <span *ngIf="!isSmallScreen">Twoje Konto</span>
+        </button>
+      </a>
+      
+      <a routerLink="/" *ngIf="isLogged!=null">
+        <button (click)="logOff()" class="btn-secondary">
+          <fa-icon [icon]="faRightFromBracket" *ngIf="isSmallScreen"></fa-icon>
+          <span *ngIf="!isSmallScreen">Wyloguj się</span>
+        </button>
+      </a>
+      
       <div class="burger">
-        <i (click)="toggleMenu()" class="material-icons">{{ isMenuOpen ? "close" : "menu"}}</i>
-    </div>
+      <i (click)="toggleMenu()" class="material-icons">{{ isMenuOpen ? "close" : "menu"}}</i>
+      </div>
     </div>
   </nav>

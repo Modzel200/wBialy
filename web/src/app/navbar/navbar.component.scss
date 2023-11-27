@@ -9,7 +9,7 @@
     height: 60px;
     position: relative;
     padding: 0 5vw 0 5vw;
-
+    z-index: 99;
     .WholeLogo{
       display: flex;
       height: 40px;
@@ -89,6 +89,7 @@
     }
 
     .right-side {
+      padding: 10px;
         button{
             margin-left: 10px;
             width: 130px;
@@ -104,6 +105,12 @@
                 box-shadow: 0 4px 8px var(--background-hover-color);
                 transform: translateY(-1px);
             }
+            @media (max-width: 1000px){
+              width: 60px;
+              height: 30px;
+              font-size: 16px;
+              padding: 0;
+          }
         }
       .btn-secondary {
         background-color: var(--background-color);
@@ -116,12 +123,14 @@
       display: flex;
       flex-wrap: nowrap;
     }
+    .material-icons{
+      color:var(--font-color)
+    }
     .burger{
         display: none;
         cursor: pointer;
         @media (max-width: 800px){
             display: flex;
-            align-items: center;
             padding: 1vw;
         }
     }

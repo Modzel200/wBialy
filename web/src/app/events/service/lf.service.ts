@@ -24,9 +24,16 @@ export class lfService{
   };
   constructor(private http: HttpClient) {
   }
-  getAllLfPosts(number: number):Observable<PageResultModel>
+  getAllLfPosts(number: number, type: string):Observable<PageResultModel>
   {
-    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&sortBy=Title");
+    if(type==="zgubione")
+    {
+      return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&LfFlag=lost");
+    }
+    else
+    {
+      return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&LfFlag=found");
+    }
   }
   getAllGastroTags()
   {

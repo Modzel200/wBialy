@@ -1,4 +1,5 @@
-<h1>Posty niezatwierdzone</h1>
+<div class='panel'>
+<h1>Panel admina</h1>
 <div *ngFor="let event of events">
   <div class="container">
     <div class="left-side">
@@ -9,6 +10,11 @@
         <h2>{{event.title}}</h2>
         <h3>{{event.eventDate}}</h3>
         <div [innerHTML]="event.description"></div>
+        <div>{{event.place}}</div>
+        <div>{{event.location}}</div>
+        <div>{{event.link}}</div>
+        <div>{{event.day}}</div>
+        <div>{{event.tags}}</div>
       </div>
       <div class="second">
         <a ><button class="btn-primary" (click)="acceptPost(event.postId)">Zaakceptuj</button></a>
@@ -16,4 +22,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

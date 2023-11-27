@@ -55,6 +55,14 @@ export class UserPanelService{
   {
     return this.http.get<EventPost[]>(this.userUrl,this.options);
   }
+  getAllGastro()
+  {
+    return this.http.get<EventPost[]>('https://wbialyamogus-001-site1.atempurl.com/api/post/usergastroposts',this.options);
+  }
+  getAllLF()
+  {
+    return this.http.get<EventPost[]>('https://wbialyamogus-001-site1.atempurl.com/api/post/userlfposts',this.options);
+  }
   getAllTags()
   {
     return this.http.get<Tags[]>(this.deleteUrl+"eventtags",this.options);
