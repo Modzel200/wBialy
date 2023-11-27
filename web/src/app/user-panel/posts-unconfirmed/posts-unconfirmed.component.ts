@@ -32,12 +32,21 @@ export class PostsUnconfirmedComponent {
   }
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe, private dialog: Dialog) {
   }
+  isDarkMode = false;
   ngOnInit() {
     if(localStorage.getItem("Authorization")==null)
     {
       this.router.navigate(['/']);
     }
     this.getAllPosts();
+    if(localStorage.getItem("DarkMode")=='true')
+    {
+      this.isDarkMode = true;
+    }
+    else
+    {
+      this.isDarkMode = false;
+    }
   }
   getAllPosts()
   {
@@ -65,10 +74,11 @@ export class PostsUnconfirmedComponent {
   //   this.userPanelService.editEvent(event)
   // }
   editEvent(event: EventPost){
+    const classmode = this.isDarkMode ? 'dark-mode' : '';
     this.userPanelService.event = event;
-    const dialogRef = this.dialog.open(EditPostFormComponent,{
-      height:'80%',
+    const dialogRef = this.dialog.open(EditPostFormComponent, {
       autoFocus: false,
+      panelClass: classmode,
     });
     //this.router.navigate(['/event']);
   }

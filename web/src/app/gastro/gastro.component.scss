@@ -71,7 +71,7 @@ h1{
 .card {
     display: grid;
     gap:1vh;
-    grid-template-rows: 1fr 1fr 2fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 4fr;
     border-radius: 6px;
     overflow: hidden;
     justify-content: center;
@@ -135,7 +135,7 @@ button{
 }
 .btn-secondary {
     background-color: var(--background-color);
-    color: #fff;
+    color: var(--primary-color);
 }
 .btn-primary {
     background-color: var(--primary-color);

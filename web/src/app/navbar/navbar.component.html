@@ -14,8 +14,19 @@
       </div>
     </div>
     <div class="right-side">
-      <a routerLink="/login" *ngIf="isLogged==null"><button class="btn-secondary" >Zaloguj</button></a>
-      <a routerLink="/signup" *ngIf="isLogged==null"><button class="btn-primary">Zarejestruj</button></a>
+      <a routerLink="/login" *ngIf="isLogged==null">
+        <button class="btn-secondary">
+          <fa-icon [icon]="faSignIn" *ngIf="isSmallScreen"></fa-icon>
+          <span *ngIf="!isSmallScreen">Zaloguj</span>
+        </button>
+      </a>
+      
+      <a routerLink="/signup" *ngIf="isLogged==null">
+        <button class="btn-primary">
+          <fa-icon [icon]="faUserPlus" *ngIf="isSmallScreen"></fa-icon>
+          <span *ngIf="!isSmallScreen">Zarejestruj</span>
+        </button>
+      </a>
       <a *ngIf="isLogged!=null">
         <button (click)="showEvent()" class="btn-secondary">
           <fa-icon [icon]="faPlus" *ngIf="isSmallScreen"></fa-icon>

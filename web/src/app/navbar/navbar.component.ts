@@ -1,7 +1,7 @@
 import {Component, OnInit, Input, HostListener} from '@angular/core';
 import { AddPostFormComponent } from '../user-panel/add-post-form/add-post-form.component';
 import { Dialog } from '@angular/cdk/dialog';
-import { faUser, faRightFromBracket, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faRightFromBracket, faPlus ,faUserPlus, faSignIn } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-navbar',
@@ -16,6 +16,9 @@ export class NavbarComponent implements OnInit{
   faUser = faUser;
   faRightFromBracket = faRightFromBracket;
   faPlus = faPlus;
+  faUserPlus= faUserPlus;
+  faSignIn=faSignIn;
+
   isSmallScreen = window.innerWidth <= 1000;
 
   @HostListener('window:resize', ['$event'])

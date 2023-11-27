@@ -54,14 +54,6 @@
             transform: translateY(-1px);
         }
     }
-  .btn-secondary {
-    background-color: var(--background-color);
-    color: #fff;
-  }
-  .btn-primary {
-    background-color: var(--primary-color);
-    color: #fff;
-  }
   @media (max-width: 1600px){
     grid-template-columns: 5vw 50vw 40vw 1vw;
   }
@@ -145,7 +137,7 @@ button{
 }
 .btn-secondary {
     background-color: var(--background-color);
-    color: #fff;
+    color: var(--primary-color);
 }
 .btn-primary {
     background-color: var(--primary-color);
