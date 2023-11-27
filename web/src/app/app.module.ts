@@ -41,6 +41,7 @@ import {CKEditorModule} from "@ckeditor/ckeditor5-angular";
 import { CustomSnackbarComponent } from './custom-snackbar/custom-snackbar.component';
 import {RecaptchaModule} from "ng-recaptcha";
 import { AdminComponent } from './user-panel/admin/admin.component';
+import {MatRadioModule} from "@angular/material/radio";
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
@@ -73,28 +74,29 @@ const appRoutes: Routes = [
     CustomSnackbarComponent,
     AdminComponent
   ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot(appRoutes),
-    MatDialogModule,
-    MatButtonModule,
-    FontAwesomeModule,
-    BrowserAnimationsModule,
-    MatButtonToggleModule,
-    NgxGpAutocompleteModule,
-    MatInputModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    MatSidenavModule,
-    MatDatepickerModule,
-    MatCardModule,
-    MatNativeDateModule,
-    MatSnackBarModule,
-    CKEditorModule,
-    RecaptchaModule
-  ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientModule,
+        RouterModule.forRoot(appRoutes),
+        MatDialogModule,
+        MatButtonModule,
+        FontAwesomeModule,
+        BrowserAnimationsModule,
+        MatButtonToggleModule,
+        NgxGpAutocompleteModule,
+        MatInputModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatSidenavModule,
+        MatDatepickerModule,
+        MatCardModule,
+        MatNativeDateModule,
+        MatSnackBarModule,
+        CKEditorModule,
+        RecaptchaModule,
+        MatRadioModule
+    ],
   providers: [DatePipe,{
     provide: Loader,
     useValue: new Loader({

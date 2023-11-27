@@ -2,7 +2,7 @@
 <div class="home">
     <h1><img src = "../../assets/icons/VectorWhole.svg" alt="Logo Wbialy" class="WholeLogo"/> - Zgubione i znalezione</h1>
     <div>
-        <mat-button-toggle-group class="toggle" name="fontStyle" aria-label="Font Style"  [(ngModel)]="selectedValue">
+        <mat-button-toggle-group class="toggle" name="fontStyle" aria-label="Font Style" (change)="changeType()" [(ngModel)]="selectedValue">
             <mat-button-toggle class="toggle item" value="zgubione">Zgubione</mat-button-toggle>
             <mat-button-toggle class="toggle item" value="znalezione">Znalezione</mat-button-toggle>
           </mat-button-toggle-group>

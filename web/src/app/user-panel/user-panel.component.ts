@@ -28,6 +28,7 @@ export class UserPanelComponent implements OnInit{
     link: ''
   }
   isAdmin = true;
+  selectedValue = "";
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe) {
   }
   ngOnInit() {
@@ -45,6 +46,7 @@ export class UserPanelComponent implements OnInit{
   {
     this.userPanelService.getAllPosts()
       .subscribe(response=>{
+        console.log(response);
         this.userEvents = response;
         this.changeDateFormat();
       })
@@ -55,5 +57,9 @@ export class UserPanelComponent implements OnInit{
     {
       this.userEvents[i].eventDate = <string>this.datePipe.transform(this.userEvents[i].eventDate, 'dd.MM.yyyy hh:mm');
     }
+  }
+  changeType()
+  {
+    console.log(this.selectedValue);
   }
 }

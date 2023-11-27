@@ -26,6 +26,7 @@ export class AddLfPostComponent {
     postId: 5,
     title: '',
     description: '',
+    found : true,
     image: '',
     place: '',
     location:'',
@@ -37,6 +38,7 @@ export class AddLfPostComponent {
       'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'
     ]
   };
+  type = '';
   constructor(private userPanelService: UserPanelService, private router: Router, private datePipe: DatePipe, private _snackBar: MatSnackBar) {
   }
 
@@ -118,6 +120,14 @@ export class AddLfPostComponent {
 
   onSubmit()
   {
+    if(this.type === "zgubione")
+    {
+      this.postToAdd.found = false;
+    }
+    else
+    {
+      this.postToAdd.found = true;
+    }
     if(this.toppings.errors || this.place.errors || this.title.errors || this.description.errors){
       return;
     }
