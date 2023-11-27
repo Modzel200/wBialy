@@ -6,7 +6,7 @@
         <img src="{{event.image}}" style="width:100%">
         <h1>{{event.title}}</h1>
         <p class="date">{{event.eventDate}}</p>
-        <div class='opis' [innerHTML]="event.description"></div>
+        <div class='opis' [innerHTML]="truncateDescription(event.description, 40)"></div>
         <p><button class="btn-primary" (click)="showEvent(event)">Dołącz</button></p>
       </div>
     </div>

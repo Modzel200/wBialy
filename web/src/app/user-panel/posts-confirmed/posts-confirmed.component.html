@@ -8,7 +8,7 @@
     <div class="first">
       <h2>{{event.title}}</h2>
       <h3>{{event.eventDate}}</h3>
-      <div [innerHTML]="event.description"></div>
+      <div class='opis' [innerHTML]="truncateDescription(event.description, 30)"></div>
     </div>
     <div class="second">
       <a ><button class="btn-primary" (click)="editEvent(event)">Edytuj</button></a>
