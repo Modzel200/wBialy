@@ -2,7 +2,7 @@
 .container{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr 6fr;
     min-height: 800px;
     height: auto;
     background-color: var(--background-color);
@@ -17,23 +17,36 @@
     }
     @media (max-width: 1200px){
       grid-template-columns: 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-rows: 1fr 6fr 6fr;
 
       .right{
         grid-column: 1;
-        grid-row: 1;
+        grid-row: 2;
       }
       .left{
         grid-column: 1;
-        grid-row: 2;
+        grid-row: 3;
       }
 
     }
 
 }
 .toggle{
-  font-weight: 700;
+
+  border: none;
+  grid-column: 1 / span 2;
+  display: flex;
+  justify-content: center;
+  align-self: center;
   color: var(--primary-color);
   background-color: var(--background-color);
   font-weight: 500;
+  height:50px;
+
+
+  .item{
+    border-color:var(--background-color);
+    background-color: var(--background-hover-color);
+    width: 150px;
+  }
 }

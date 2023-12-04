@@ -9,7 +9,7 @@
       <div class="first">
         <h2>{{event.title}}</h2>
         <h3>{{event.eventDate}}</h3>
-        <div [innerHTML]="event.description"></div>
+        <div class='opis' [innerHTML]="truncateDescription(event.description, 60)"></div>
         <div>{{event.place}}</div>
         <div>{{event.location}}</div>
         <div>{{event.link}}</div>

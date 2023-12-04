@@ -6,6 +6,8 @@ import {PageResultModel} from "../../events/model/pageResult.model";
 import {EventPost} from "../../events/model/event.model";
 import {map} from "rxjs/operators";
 import {UploadImgModel} from "../model/uploadImg.model";
+import { gastroPost } from "src/app/events/model/gastro.model";
+import { lfPost } from "src/app/events/model/lostfound.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +15,7 @@ import {UploadImgModel} from "../model/uploadImg.model";
 export class UserPanelService{
   baseUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/eventposts/';
   lfUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/lfposts/';
-  gastroUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/gastroposts';
+  gastroUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/gastroposts/';
   userUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/usereventposts/';
   deleteUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/';
   adminUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/account/';
@@ -24,6 +26,7 @@ export class UserPanelService{
     description:'',
     image:'',
     confirmed: false,
+    found: false,
     place:'',
     location:'',
     eventDate:'',
@@ -82,6 +85,14 @@ export class UserPanelService{
   editEvent(event: EventPost, id: number)
   {
     return this.http.put(this.baseUrl+id,event,this.options);
+  }
+  editGastro(event: gastroPost, id: number)
+  {
+    return this.http.put(this.gastroUrl+id,event,this.options);
+  }
+  editLf(event: lfPost, id: number)
+  {
+    return this.http.put(this.lfUrl+id,event,this.options);
   }
   isAdmin()
   {

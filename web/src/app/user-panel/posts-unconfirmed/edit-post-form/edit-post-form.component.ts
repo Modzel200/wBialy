@@ -21,6 +21,7 @@ export class EditPostFormComponent implements OnInit{
   event: EventPost={
     postId:0,
     title:'',
+    found:false,
     description:'',
     image:'',
     place:'',
@@ -36,6 +37,7 @@ export class EditPostFormComponent implements OnInit{
     postId:0,
     title:'',
     description:'',
+    found:false,
     image:'',
     place:'',
     location:'',
@@ -60,6 +62,7 @@ export class EditPostFormComponent implements OnInit{
     this.event = this.userPanelService.event;
     this.newEvent =  {
       postId:this.event.postId,
+      found:this.event.found,
       title:this.event.title,
       description:this.event.description,
       image:this.event.image,
