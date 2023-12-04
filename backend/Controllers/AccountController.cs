@@ -39,8 +39,8 @@ namespace wBialy.Controllers
             }
             return await Task.FromResult(false);
         }
-        [HttpGet("verifyemail")]
-        public async Task<IActionResult> VerifyEmail(string token)
+        [HttpGet("verifyemail/{token}")]
+        public async Task<IActionResult> VerifyEmail([FromRoute]string token)
         {
             var result = await _accountService.VerifyEmail(token);
             if (result)
@@ -49,5 +49,6 @@ namespace wBialy.Controllers
             }
             return await Task.FromResult(NotFound("Couldn't verify email"));
         }
+
     }
 }

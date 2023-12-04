@@ -19,7 +19,7 @@ namespace wBialy.Models.Validators
             RuleFor(x => x.Tags)
                 .NotEmpty();
             RuleFor(x => x.Found)
-                .NotEmpty();
+                .Must(y => y == false || y == true);
         }
     }
 }

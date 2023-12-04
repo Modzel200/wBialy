@@ -46,7 +46,7 @@ namespace wBialy.Services
             newUser.Role = await _context.Roles.FirstOrDefaultAsync(x => x.Name == "Unconfirmed");
             await _context.Users.AddAsync(newUser);
             await _context.SaveChangesAsync();
-            await _emailSenderService.SendEmailAsync(dto.Email, "Confirm your email", "http://wbialyamogus-001-site1.atempurl.com/api/account/verifyemail");
+            await _emailSenderService.SendEmailAsync(dto.Email, "Confirm your email", "http://wbialyamogus-001-site1.atempurl.com/api/account/verifyemail/"+$"{newUser.VerificationToken}");
         }
         public async Task<string> GenerateJwt(LoginDto dto)
         {
