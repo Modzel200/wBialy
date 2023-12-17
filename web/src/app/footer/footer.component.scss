@@ -9,6 +9,10 @@
     align-items: center;
     background-color: var(--background-color);
 
+    .icon{
+        color: rgba($color: #18a0fb, $alpha: 0.5);
+    }
+
     .up{
         justify-content: center;
         align-content: center;
@@ -19,10 +23,12 @@
         width: 80%;
         .social{
             outline: 1px solid;
+            border-radius: 5px;
             outline-color: var(--border-color);
             height: 60px;
             width: 60px;
             margin: 25px;
+            background-color: var(--background-color);
             a{
                 height: 60px;
                 width: 60px;

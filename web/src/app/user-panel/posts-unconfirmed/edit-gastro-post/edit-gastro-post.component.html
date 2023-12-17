@@ -1,47 +1,81 @@
-<form  class="form">
-    <div class="form-container">
-      <h2>Gastro</h2>
-      <br>
-      <div class="input-end">
-        <mat-label>Tytuł</mat-label>
-        <input matInput placeholder="Tytuł" [formControl]="title" [(ngModel)]="newPost.title" required>
-        <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>             
-      </div>
+<form class="form">
+  <div class="form-container">
+    <h2>Gastro</h2>
+    <br />
+    <div class="input-end">
+      <mat-label>Tytuł</mat-label>
+      <input
+        matInput
+        placeholder="Tytuł"
+        [formControl]="title"
+        [(ngModel)]="newPost.title"
+        required
+      />
+      <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>
+    </div>
 
-      <div class="input-end">
-        <mat-label>Opis</mat-label>
-        <ckeditor class="desc" [formControl]="description"
-          [editor]="Editor"
-          [config]="config"
-          data=""
-          (ready)="onReady($event)"
-          (blur)="onChange($event)"
-        >
-        </ckeditor>
-        <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() }}</mat-error>
-      </div>
+    <div class="input-end">
+      <mat-label>Opis</mat-label>
+      <ckeditor
+        class="desc"
+        [formControl]="description"
+        [editor]="Editor"
+        [config]="config"
+        data=""
+        (ready)="onReady($event)"
+        (blur)="onChange($event)"
+      >
+      </ckeditor>
+      <mat-error *ngIf="description.invalid">{{
+        getErrorDescriptionMessage()
+      }}</mat-error>
+    </div>
 
     <label for="">Tagi</label>
     <div class="input-end">
-    <mat-form-field>
-      <mat-label>Tagi</mat-label>
-      <mat-select class="selectTag" [formControl]="toppings" [(value)]="selectedToppings" multiple>
-        <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{tag.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-error *ngIf="toppings.invalid">{{ getErrorToppingsMessage() }}</mat-error>  
+      <mat-form-field>
+        <mat-label>Tagi</mat-label>
+        <mat-select
+          class="selectTag"
+          [formControl]="toppings"
+          [(value)]="selectedToppings"
+          multiple
+        >
+          <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{
+            tag.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-error *ngIf="toppings.invalid">{{
+        getErrorToppingsMessage()
+      }}</mat-error>
     </div>
 
     <div class="input-end">
       <label for="">Link do zdjęcia</label>
-      <input type="file" accpet="image/*" name="img" (change)="onFileSelected($event)" required>
+      <input
+        type="file"
+        accpet="image/*"
+        name="img"
+        (change)="onFileSelected($event)"
+        required
+      />
     </div>
 
     <div class="input-end">
       <mat-label>Miejsce</mat-label>
-      <br>
-      <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" matInput placeholder="Miejsce" [formControl]="place" [(ngModel)]="newPost.place" required>
-      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() }}</mat-error>             
+      <br />
+      <input
+        #placesRef="ngx-places"
+        ngx-gp-autocomplete
+        (onAddressChange)="handleAddressChange($event)"
+        matInput
+        placeholder="Miejsce"
+        [formControl]="place"
+        [(ngModel)]="newPost.place"
+        required
+      />
+      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() }}</mat-error>
     </div>
 
     <div class="input-end">
@@ -57,16 +91,16 @@
           <mat-option value="niedziela">Niedziela</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-error *ngIf="day.invalid">{{ getErrorDayMessage() }}</mat-error>  
-      </div>
-
-      <div class="input-end">
-      <label for="">Link</label>
-      <input type="text" name="link" [(ngModel)]="newPost.link" required>
-      </div>
-
-        <div class="buttons">
-          <a><button (click)="onSubmit()" class="btn-secondary">Stwórz</button></a>
-        </div>
+      <mat-error *ngIf="day.invalid">{{ getErrorDayMessage() }}</mat-error>
     </div>
-    </form>
+
+    <div class="input-end">
+      <label for="">Link</label>
+      <input type="text" name="link" [(ngModel)]="newPost.link" required />
+    </div>
+
+    <div class="buttons">
+      <a><button (click)="onSubmit()" class="btn-secondary">Edytuj</button></a>
+    </div>
+  </div>
+</form>

@@ -7,6 +7,8 @@ import { DatePipe } from '@angular/common';
 import {AddPostFormComponent} from "../add-post-form/add-post-form.component";
 import {Dialog} from "@angular/cdk/dialog";
 import {EditPostFormComponent} from "./edit-post-form/edit-post-form.component";
+import { EditLfPostComponent } from './edit-lf-post/edit-lf-post.component';
+import { EditGastroPostComponent } from './edit-gastro-post/edit-gastro-post.component';
 
 @Component({
   selector: 'app-posts-unconfirmed',
@@ -93,14 +95,32 @@ export class PostsUnconfirmedComponent {
   // {
   //   this.userPanelService.editEvent(event)
   // }
-  editEvent(event: EventPost){
+  editEvent(event: EventPost) {
     const classmode = this.isDarkMode ? 'dark-mode' : '';
     this.userPanelService.event = event;
-    const dialogRef = this.dialog.open(EditPostFormComponent, {
-      autoFocus: false,
-      panelClass: classmode,
-    });
-    //this.router.navigate(['/event']);
+    if(this.type==="lf")
+    {
+
+      const dialogRef = this.dialog.open(EditLfPostComponent, {
+        autoFocus: false,
+        panelClass: classmode,
+      });
+    }
+    else if(this.type==="gastro")
+    {
+      const dialogRef = this.dialog.open(EditGastroPostComponent, {
+        autoFocus: false,
+        panelClass: classmode,
+      });
+    }
+    else
+    {
+      const dialogRef = this.dialog.open(EditPostFormComponent, {
+        autoFocus: false,
+        panelClass: classmode,
+      });
+    }
+
   }
   // parseToText(text: string)
   // {

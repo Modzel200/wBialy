@@ -1,4 +1,47 @@
 
+.form{
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  max-height: 700px;
+  background-color: var(--background-color);
+  align-items: center;
+  justify-items: center;
+  border: 1px solid var(--primary-color);
+  overflow-y: auto;
+  @media (max-width: 800px){
+    width: 400px;
+    max-height: 600px;
+  }
+  @media (max-width: 500px){
+    max-height: 500px;
+  }
+}
+
+.container{
+  height: 80vh;
+  background-color: var(--background-color);
+  color: var(--font-color);
+
+
+  .form{
+      display: flex;
+      flex-direction: column;
+      padding-right: 8vw;
+      grid-column: 2;
+      background-color:  var(--background-color);
+      color: var(--font-color);
+
+      h2{
+          font-style: bold;
+          font-size: 2rem;
+          color: var(--font-color);
+      }
+  }
+
+
+}
+
 button{
   width: 130px;
   height: 40px;
@@ -6,51 +49,68 @@ button{
   cursor: pointer;
   font-size: 14px;
   border-radius: 6px;
-  border: 1px solid var(--primary-color);
+  border: 1px solid  var(--primary-color);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
   &:hover {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    transform: translateY(-1px);
+      box-shadow: 0 4px 8px  var(--border-color);
+      transform: translateY(-1px);
   }
 }
 .btn-secondary {
-  background-color: var(--background-color);
-  color: var(--primary-color);
+background-color:  var(--background-color);
+color: var(--primary-color);
 }
 .btn-primary {
-  background-color: var(--primary-color);
-  color: #fff;
+background-color:  var(--primary-color);
+color: var(--background-color);
 }
 
 input{
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: 1px solid var(--border-color);
-  background: var(--background-color);
-  color:var(--font-color);
+width: 100%;
+padding: 15px;
+margin: 5px 0 5px 0;
+display: inline-block;
+border: 1px solid var(--background-hover-color);
+background: var(--background-color);
+color: var(--font-color);
 }
+
+.input-end{
+margin-bottom: 15px;
+}
+
 .desc{
-  color: black;
+background-color: var(--background-color);
+color: black;
 }
+
+
 
 input[type=text]:focus, input[type=password]:focus {
-  background-color: var(--background-hover-color);
-  outline: none;
+background-color: var(--background-hover-color);
+outline: none;
+color: var(--font-color);
 }
 
+
 .form-container {
-  padding: 16px;
-  background-color: var(--background-color);
-  color:var(--font-color);
-  overflow-y: auto;
+padding: 16px;
+background-color:  var(--background-color);
+color: var(--font-color);
 }
 
 .buttons{
-  display: flex;
-  width: 100%;
-  gap: 2vw;
+display: flex;
+width: 100%;
+gap: 2vw;
+}
 
+h2{
+font-style: bold;
+font-size: 2rem;
+color: var(--font-color);
+}
 
+mat-form-field{
+padding-top: 5px;
 }
