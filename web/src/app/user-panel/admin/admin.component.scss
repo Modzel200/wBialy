@@ -33,7 +33,7 @@ h1{
         justify-self: start;
         align-self: center;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 2fr 1fr;
         .first{
           grid-column: 1;
           h2{

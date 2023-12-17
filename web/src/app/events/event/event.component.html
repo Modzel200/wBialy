@@ -1,26 +1,34 @@
 <div class="container">
-    <div class="description">
+  <div class="description">
+    <div>
+      <h1>{{ event.title }}</h1>
+    </div>
+    <div class="items">
       <div>
-        <h1>{{event.title}}</h1>
+        <p>📅 Data: {{ event.eventDate }}</p>
       </div>
-      <div class="items">
-        <div>
-            <p>📅 Data: {{event.eventDate}}</p>
-          </div>
-        <div>
-            <p>⌚ Godzina rozpoczęcia: {{event.place}}</p>
-        </div>
-        <div class="long-list">
-            <p>📌 Miejsce: {{event.place}}&nbsp;<a href="{{event.location}}" target="_blank">(pokaż na mapie)</a></p>
-            <div class="buttons">
-              <a href="{{event.link}}" target="_blank"><button class="btn-primary">Zobacz wydarzenie</button></a>
-                <button class="btn-secondary">Dodaj do kalendarza</button>
-            </div>
+      <div>
+        <p>⌚ Godzina rozpoczęcia: {{ event.place }}</p>
+      </div>
+      <div class="long-list">
+        <p>
+          📌 Miejsce: {{ event.place }}&nbsp;<a
+            href="{{ event.location }}"
+            target="_blank"
+            >(pokaż na mapie)</a
+          >
+        </p>
+        <div class="buttons">
+          <a href="{{ event.link }}" target="_blank"
+            ><button class="btn-primary">Zobacz wydarzenie</button></a
+          >
+          <button class="btn-secondary">Dodaj do kalendarza</button>
         </div>
       </div>
     </div>
-    <div class="image">
-        <img src="{{event.image}}" alt="">
-      <div [innerHTML]="event.description"></div>
-    </div>
+    <div [innerHTML]="event.description"></div>
   </div>
+  <div class="image">
+    <img src="{{ event.image }}" alt="" />
+  </div>
+</div>

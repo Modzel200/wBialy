@@ -1,50 +1,78 @@
 <app-home></app-home>
 
-<mat-drawer-container class="events" autosize style="background-color: var(--background-color);">
-
+<mat-drawer-container
+  class="events"
+  autosize
+  style="background-color: var(--background-color)"
+>
   <mat-drawer #drawer mode="side" position="end" class="filterDrawer">
     <h1>Filtruj</h1>
-      <mat-card class="demo-inline-calendar-card">
-        <mat-calendar [(selected)]="selected" (click)="formatDate()"></mat-calendar>
-      </mat-card>
-      <br>
-      <p>Wybrana data: {{selected}}</p>
-      <br>
-      <mat-form-field>
-        <mat-label>Tagi</mat-label>
-        <mat-select  [formControl]="toppings" [(value)]="selectedToppings" multiple>
-          <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{tag.name}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <p>Tagi: {{selectedToppings}}</p>
-      <br>
-    <button type="button" class="btn-primary btn" (click)="drawer.toggle();sendFilters()">
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar
+        [(selected)]="selected"
+        (click)="formatDate()"
+      ></mat-calendar>
+    </mat-card>
+    <br />
+    <p>Wybrana data: {{ selected }}</p>
+    <br />
+    <mat-form-field>
+      <mat-label>Tagi</mat-label>
+      <mat-select
+        [formControl]="toppings"
+        [(value)]="selectedToppings"
+        multiple
+      >
+        <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{
+          tag.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>Tagi: {{ selectedToppings }}</p>
+    <br />
+    <button
+      type="button"
+      class="btn-primary btn"
+      (click)="drawer.toggle(); sendFilters()"
+    >
       Filtruj
     </button>
-    <button type="button" class="btn-secondary btn" (click)="clearTags()">Usuń filtry</button>
-
-    </mat-drawer>
-<div class="container" *ngFor="let event of events" id="eventsScroll">
-  <div class="left-side">
-    <img src="{{event.image}}" alt="">
-  </div>
-  <div class="right-side">
-    <div>
-      <h1>{{event.title}}</h1>
-      <h2>{{event.eventDate}}</h2>
+    <button type="button" class="btn-secondary btn" (click)="clearTags()">
+      Usuń filtry
+    </button>
+  </mat-drawer>
+  <div class="container" *ngFor="let event of events" id="eventsScroll">
+    <div class="left-side">
+      <img src="{{ event.image }}" alt="" />
     </div>
-    <div [innerHTML]="event.description"></div>
-    <button class="btn-primary" (click)="showEvent(event)">Dołącz</button>
+    <div class="right-side">
+      <div>
+        <h1>{{ event.title }}</h1>
+        <h2>{{ event.eventDate }}</h2>
+      </div>
+      <div [innerHTML]="truncateDescription(event.description, 250)"></div>
+      <button class="btn-primary" (click)="showEvent(event)">Dołącz</button>
+    </div>
   </div>
-</div>
-<div class="pagination">
+  <div class="pagination">
     <div class="buttons">
-        <button class="btn-primary btn" (click)="backPage()" [disabled]="canGoPrev" >Poprzednia strona</button>
-        <button class="btn-primary btn"(click)="nextPage()" [disabled]="canGoNext">Następna strona</button>
+      <button
+        class="btn-primary btn"
+        (click)="backPage()"
+        [disabled]="canGoPrev"
+      >
+        Poprzednia strona
+      </button>
+      <button
+        class="btn-primary btn"
+        (click)="nextPage()"
+        [disabled]="canGoNext"
+      >
+        Następna strona
+      </button>
     </div>
-</div>
-<button class="handleFilters" (click)="drawer.toggle()">
-  <fa-icon size="xl" [icon]="faFilter"></fa-icon>
-</button>
-
+  </div>
+  <button class="handleFilters" (click)="drawer.toggle()">
+    <fa-icon size="xl" [icon]="faFilter"></fa-icon>
+  </button>
 </mat-drawer-container>

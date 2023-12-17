@@ -43,7 +43,13 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
     return date.toLocaleDateString(locale, { weekday: 'long' });
 }
 
-
+truncateDescription(description: string, maxLength: number): string {
+  if (description.length <= maxLength) {
+    return description;
+  } else {
+    return description.slice(0, maxLength) + '...';
+  }
+}
 
  getAllLFPosts(){
   this.eventsService.getAllLfPosts(this.number, this.selectedValue)

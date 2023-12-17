@@ -85,6 +85,14 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
     this.getGastroPosts(this.day);
   }
 
+  truncateDescription(description: string, maxLength: number): string {
+    if (description.length <= maxLength) {
+      return description;
+    } else {
+      return description.slice(0, maxLength) + '...';
+    }
+  }
+
   protected readonly faFilter = faFilter;
 }
 

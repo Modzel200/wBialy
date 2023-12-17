@@ -103,3 +103,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
   }
 }
+
+.mdc-form-field{
+  .mat-mdc-radio-button .example-margin .mat-accent{
+    color: var(--font-color);
+  }
+  .mdc-label{
+    color: var(--font-color);
+  }
+  .mdc-radio{
+    .mdc-radio__background{
+      color: var(--font-color);
+    } 
+    color: var(--font-color);
+  }
+}
+
+.mat-mdc-radio-button.mat-accent{
+  --mdc-radio-unselected-icon-color:  var(--font-color);
+}
+
+
