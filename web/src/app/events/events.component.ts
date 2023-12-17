@@ -30,6 +30,8 @@ export class EventsComponent implements OnInit{
   };
   toppings = new FormControl();
   selectedToppings = [];
+  sorting = new FormControl();
+  selectedSort = '';
   selectedToppingsString:string[] = [];
   faFilter = faFilter;
 
@@ -45,7 +47,7 @@ export class EventsComponent implements OnInit{
   selected: Date | null | string = null;
 
   formatDate(){
-    this.selected = this.datePipe.transform(this.selected, 'dd.MM.yyyy');
+    this.selected = this.datePipe.transform(this.selected, 'YYYY-MM-dd');
   }
   getAllTags()
   {
@@ -58,7 +60,7 @@ export class EventsComponent implements OnInit{
   getAllPosts(){
     this.canGoNextPage();
     this.canGoPrevPage();
-    this.eventsService.getAllPosts(this.selectedToppingsString,this.selected,this.number)
+    this.eventsService.getAllPosts(this.selectedToppingsString,this.selected,this.number,this.selectedSort)
       .subscribe(response => {
       this.pageResult = response;
       this.events = this.pageResult.items;
@@ -77,7 +79,7 @@ export class EventsComponent implements OnInit{
     this.getAllPosts();
   }
   canGoNextPage(): void {
-    this.eventsService.getAllPosts(this.selectedToppingsString,this.selected,(this.number) + 1)
+    this.eventsService.getAllPosts(this.selectedToppingsString,this.selected,(this.number) + 1, this.selectedSort)
       .subscribe(response => {
         this.canGoNext = response.items.length === 0 ? true : false;
       });

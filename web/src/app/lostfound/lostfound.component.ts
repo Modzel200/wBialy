@@ -52,13 +52,10 @@ truncateDescription(description: string, maxLength: number): string {
 }
 
  getAllLFPosts(){
-  this.eventsService.getAllLfPosts(this.number, this.selectedValue)
+  this.eventsService.getAllLfPosts(this.number, this.selectedValue, this.selectedToppingsString)
     .subscribe(response => {
     this.pageResult = response;
-    if(this.pageResult.items.length>0)
-    {
-      this.events = this.pageResult.items;
-    }
+    this.events = this.pageResult.items;
   });
 
 }

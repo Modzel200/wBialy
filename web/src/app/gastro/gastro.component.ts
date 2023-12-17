@@ -77,7 +77,7 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
   }
   sendFilters(){
     this.selectedToppingsString = this.selectedToppings;
-    this.getGastroPosts(this.day);
+    this.getGastroPosts(this.selectedToggleValue);
   }
   clearTags()
   {

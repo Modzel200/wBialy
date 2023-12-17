@@ -25,15 +25,20 @@ export class lfService{
   };
   constructor(private http: HttpClient) {
   }
-  getAllLfPosts(number: number, type: string):Observable<PageResultModel>
+  getAllLfPosts(number: number, type: string, selectedToppingsString: string[]):Observable<PageResultModel>
   {
+    let string = "";
+    for(let i=0;i<selectedToppingsString.length;i++)
+    {
+      string+="&TagFilter="+selectedToppingsString[i];
+    }
     if(type==="zgubione")
     {
-      return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&LfFlag=lost");
+      return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&LfFlag=lost"+string);
     }
     else
     {
-      return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&LfFlag=found");
+      return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5&pageNumber="+number+"&LfFlag=found"+string);
     }
   }
   getAllGastroTags()
