@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Reflection;
 using Microsoft.AspNetCore.Authorization;
 using wBialy.Authorization;
+using Microsoft.Extensions.Caching.Memory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -71,12 +72,21 @@ builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<ErrorHandlingMiddleware>();
 builder.Services.AddCors((options) =>
 {
-    options.AddPolicy("FrontEndClient", (policyBuilder) =>
+    //options.AddPolicy("FrontEndClient", (policyBuilder) =>
+    //{
+    //    policyBuilder
+    //    .AllowAnyMethod()
+    //    .AllowAnyHeader()
+    //    .AllowCredentials()
+    //    .WithOrigins(builder.Configuration["AllowedOrigins"]);
+    //});
+    options.AddPolicy("FrontEndClientMobile", (policyBuilder) =>
     {
         policyBuilder
+        .AllowAnyOrigin()
         .AllowAnyMethod()
-        .AllowAnyHeader()
-        .WithOrigins(builder.Configuration["AllowedOrigins"]);
+        .AllowAnyHeader();
+        //.WithOrigins(builder.Configuration["AllowedOriginsMobile"]);
     });
 });
 
@@ -87,7 +97,10 @@ var app = builder.Build();
 var scope = app.Services.CreateScope();
 var seeder = scope.ServiceProvider.GetRequiredService<wBialySeeder>();
 seeder.Seed();
-app.UseCors("FrontEndClient");
+app.UseHttpsRedirection();
+app.UseRouting(); 
+//app.UseCors("FrontEndClient");
+app.UseCors("FrontEndClientMobile");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -95,11 +108,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<ErrorHandlingMiddleware>();
-app.UseAuthentication();
-app.UseHttpsRedirection();
-app.UseAuthorization();
 
+app.UseAuthentication();
+
+app.UseAuthorization();
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.MapControllers();
+
 
 app.Run();

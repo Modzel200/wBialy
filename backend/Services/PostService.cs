@@ -12,6 +12,7 @@ using wBialy.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.Diagnostics;
 using System.Globalization;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace wBialy.Services
 {
@@ -64,13 +65,12 @@ namespace wBialy.Services
             var result = _mapper.Map<PostDto>(post);
             return await Task.FromResult(result);
         }
-
         public async Task<PageResult<PostDto>> GetAllLFPosts(PostQuery query)
         {
             List<LFPost> baseQuery;
             List<LFTag> tags = new List<LFTag>();
             bool found = false;
-            if(string.Compare(query.LfFlag.ToLower(), "found") == 0)
+            if (string.Compare(query.LfFlag.ToLower(), "found") == 0)
             {
                 found = true;
             }
@@ -97,7 +97,7 @@ namespace wBialy.Services
                 || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
                 || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
                 && (query.TagFilter.IsNullOrEmpty()
-                || x.Tags.Any(y => tags.Contains(y)) )
+                || x.Tags.Any(y => tags.Contains(y)))
                 && x.Confirmed == true && x.Found == found)
                 .OrderBy(selectedColumn)
                 .ToListAsync();
@@ -123,6 +123,51 @@ namespace wBialy.Services
             var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
             return await Task.FromResult(result);
         }
+
+        //private IQueryable<LFPost> GetAllLFPostsQueryable()
+        //{
+        //    return _context.LFPosts.Include(x => x.Tags).AsQueryable();
+        //}
+        //public async Task<PageResult<PostDto>> GetAllLFPosts(PostQuery query)
+        //{
+        //    List<LFTag> tags = new List<LFTag>();
+        //    if (string.IsNullOrEmpty(query.SortBy))
+        //    {
+        //        query.SortBy = "AddDate"; //tutaj sie usunie i doda od razu sortowanie w frontend po dacie
+        //    }
+        //    if (!query.TagFilter.IsNullOrEmpty())
+        //    {
+        //        tags = await _context.LFTags.Where(x => query.TagFilter.Contains(x.Name)).ToListAsync();
+        //    }
+        //    bool found = string.Compare(query.LfFlag.ToLower(), "found") == 0 ?
+        //        true : false;
+        //    var columnsSelectors = new Dictionary<string, Expression<Func<LFPost, object>>>
+        //    {
+        //        //{ nameof(LFPost.Title), x => x.Title},
+        //        //{ nameof(LFPost.Description), x => x.Description},
+        //        { nameof(LFPost.AddDate), x => x.AddDate},
+        //    };
+        //    var selectedColumn = columnsSelectors[query.SortBy];
+        //    var baseQuery = query.SortDirection == SortDirection.ASC ?
+        //        await GetAllLFPostsQueryable().Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
+        //        || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
+        //        || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
+        //        && (query.TagFilter.IsNullOrEmpty()
+        //        || x.Tags.Any(y => tags.Contains(y))) && x.Confirmed == true && x.Found == found).OrderBy(selectedColumn).ToListAsync()
+        //        : await GetAllLFPostsQueryable().Where(x => (string.IsNullOrEmpty(query.SearchPhrase)
+        //        || (x.Title.ToLower().Contains(query.SearchPhrase.ToLower())
+        //        || x.Description.ToLower().Contains(query.SearchPhrase.ToLower())))
+        //        && (query.TagFilter.IsNullOrEmpty()
+        //        || x.Tags.Any(y => tags.Contains(y))) && x.Confirmed == true && x.Found == found).OrderByDescending(selectedColumn).ToListAsync();
+
+        //    var posts = baseQuery
+        //                .Skip(query.PageSize * (query.PageNumber - 1))
+        //                .Take(query.PageSize);
+        //    var totalItemsCount = baseQuery.Count;
+        //    var postDtos = _mapper.Map<List<PostDto>>(posts);
+        //    var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
+        //    return await Task.FromResult(result);
+        //}
         public async Task<PageResult<PostDto>> GetAllEventPosts(PostQuery query)
         {
             List<EventPost> baseQuery;
