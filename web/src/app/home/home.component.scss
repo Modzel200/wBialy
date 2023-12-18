@@ -1,128 +1,141 @@
-.home{
-    display: grid;
-    justify-items: center;
-    align-self: center;
-    gap: 2vh;
-    height: 900px;
-    background-size: cover;
-    background-attachment: fixed;
-    background-color: var(--background-color);
-    color: var(--font-color);
-    @media (max-width: 800px){
-        height: 700px;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .container{
+    .home {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 2vw;
-        justify-content: center;
+        justify-items: center;
         align-self: center;
-        overflow: hidden;
-    
-        .card {
-            display: grid;
-            gap:1vh;
-            background-color: var(--background-color);
-            grid-template-rows: 1fr 1fr 2fr 1fr;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px 0 var(--background-hover-color);
-            max-width: 300px;
-            height: 400px;
-            margin: auto;
+        gap: 2vh;
+        height: 900px;
+        background-size: cover;
+        background-attachment: fixed;
+        background-color: var(--background-color);
+        color: var(--font-color);
+
+        @media (max-width: 800px) {
+            height: 700px;
+            justify-content: center;
             text-align: center;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-            h1{
-                padding: 0;
-                font-size: 1.5rem;
-                font-weight: 700;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2vw;
+            justify-content: center;
+            align-self: center;
+            overflow: hidden;
+
+            .card {
+                display: grid;
+                gap: 1vh;
+                background-color: var(--background-color);
+                grid-template-rows: 1fr 1fr 1fr 2fr;
+                border-radius: 6px;
+                overflow: hidden;
+                box-shadow: 0 4px 8px 0 var(--background-hover-color);
+                max-width: 300px;
+                height: 400px;
+                margin: auto;
+                text-align: center;
+                transition: box-shadow 0.3s ease, transform 0.3s ease;
+                border: 2px solid var(--background-hover-color);
+
+
+                h1 {
+                    padding: 0;
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                }
+
+                &:hover {
+                    box-shadow: 0 4px 8px var(--background-hover-color);
+                    transform: translateY(-1px);
+                }
+
+                img {
+                    object-fit: cover;
+                    width: 300px;
+                    height: 200px;
+                    aspect-ratio: 16 / 9;
+                }
             }
+
+            @media (max-width: 800px) {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 1vw;
+
+                .card {
+                    height: 400px;
+                }
+            }
+
+
+        }
+
+        h1 {
+            padding-top: 5vh;
+            font-size: 4rem;
+            font-weight: 700;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 500;
+
+        }
+
+        @media (max-width: 900px) {
+            gap: 1vh;
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+
+        button {
+            width: 100%;
+            height: 40px;
+            flex-shrink: 0;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 0;
+            border: 1px solid var(--primary-color);
+            transition: background-color 0.3s ease;
 
             &:hover {
-                box-shadow: 0 4px 8px var(--background-hover-color);
-                transform: translateY(-1px);
-            }
-            img{
-                object-fit:cover;
-                width: 300px;
-                height: 200px;
-                aspect-ratio: 16 / 9;
+                background-color: #37afff;
             }
         }
 
-        @media (max-width: 800px){
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          text-align: center;
-          padding: 1vw;
-          .card{
-            height: 400px;
-          }
-      }
+        .btn-secondary {
+            background-color: var(--background-color);
+            color: #18A0FB;
+            transition: color 0.3s ease;
+            height: 60px;
+            width: 60px;
+            margin: 1vw;
 
-
-    }
-
-    h1{
-        padding-top: 5vh;
-        font-size: 4rem;
-        font-weight: 700;
-    }
-    h2{
-        font-size: 1.8rem;
-        font-weight: 500;
-        
-    }
-
-    @media (max-width: 900px){
-        gap: 1vh;
-        h1{
-            font-size: 3rem;
+            &:hover {
+                color: var(--font-color);
+            }
         }
-        h2{
-            font-size: 1.5rem;
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
         }
-    }
 
-
-    button{
-        width: 100%;
-        height: 40px;
-        flex-shrink: 0;
-        cursor: pointer;
-        font-size: 14px;
-        border-radius: 0;
-        border: 1px solid var(--primary-color);
-        transition: background-color 0.3s ease;
-        &:hover {
-            background-color: #37afff;
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-self: center;
         }
-    }
-  .btn-secondary {
-    background-color: var(--background-color);
-    color: #18A0FB;
-    transition: color 0.3s ease;
-    height: 60px;
-    width: 60px;
-    margin: 1vw;
-    &:hover {
-        color: var(--font-color);
-    }
-  }
-  .btn-primary {
-    background-color: var(--primary-color);
-    color: #fff;
-  }
 
-  .buttons{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-self: center;
-  }
-  
-}
+    }

@@ -24,46 +24,53 @@ export class HomeComponent implements OnInit {
   };
   currentIndex: number = 0;
   isWideScreen: boolean = window.innerWidth >= 800;
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.isWideScreen = window.innerWidth >= 800;
-  }
   constructor(private shortEventsService: ShortEventsService, private datePipe: DatePipe, private eventsService: EventsService, public dialog: MatDialog) {
   }
+
   ngOnInit() {
     window.addEventListener('resize', this.onResize.bind(this));
     this.shortEventsService.getAllPosts().subscribe(response => {
       this.pageResult = response;
       this.shortEvents = this.pageResult.items;
-      // this.eventsToShow = this.shortEvents.slice(this.indexDown,this.indexUp);
-      if (this.isWideScreen) {
-        this.eventsToShow = [this.shortEvents[this.currentIndex], this.shortEvents[this.currentIndex + 1], this.shortEvents[this.currentIndex + 2]];
-      } else {
-        this.eventsToShow = [this.shortEvents[this.currentIndex]];
-      }
+      this.updateEventsToShow();
       this.changeDateFormat();
     })
-
   }
+
   changeDateFormat() {
     for (let i = 0; i < this.shortEvents.length; i++) {
-      this.shortEvents[i].eventDate = <string>this.datePipe.transform(new Date(), 'dd.MM.yyyy hh:mm');
+      this.shortEvents[i].eventDate = <string>this.datePipe.transform(this.shortEvents[i].eventDate, 'dd.MM.yyyy hh:mm');
+    }
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.isWideScreen = window.innerWidth >= 800;
+    this.updateEventsToShow();
+  }
+
+  updateEventsToShow() {
+    if (this.isWideScreen) {
+      this.eventsToShow = [
+        this.shortEvents[(this.currentIndex - 1 + this.shortEvents.length) % this.shortEvents.length],
+        this.shortEvents[this.currentIndex],
+        this.shortEvents[(this.currentIndex + 1) % this.shortEvents.length]
+      ];
+    } else {
+      this.eventsToShow = [this.shortEvents[this.currentIndex]];
     }
   }
 
   prevEvent() {
     this.currentIndex = (this.currentIndex - 1 + this.shortEvents.length) % this.shortEvents.length;
-    this.isWideScreen
-      ? this.eventsToShow = [this.shortEvents[this.currentIndex % this.shortEvents.length], this.shortEvents[(this.currentIndex + 1) % this.shortEvents.length], this.shortEvents[(this.currentIndex + 2) % this.shortEvents.length]]
-      : this.eventsToShow = [this.shortEvents[this.currentIndex - 1]];
+    this.updateEventsToShow();
   }
 
   nextEvent() {
     this.currentIndex = (this.currentIndex + 1) % this.shortEvents.length;
-    this.isWideScreen
-      ? this.eventsToShow = [this.shortEvents[this.currentIndex % this.shortEvents.length], this.shortEvents[(this.currentIndex + 1) % this.shortEvents.length], this.shortEvents[(this.currentIndex + 2) % this.shortEvents.length]]
-      : this.eventsToShow = [this.shortEvents[this.currentIndex + 1]];
+    this.updateEventsToShow();
   }
+
   showEvent(event: EventPost) {
     const classmode = localStorage.getItem('DarkMode') === 'true' ? 'dark-mode' : '';
     this.eventsService.event = event;
@@ -71,7 +78,6 @@ export class HomeComponent implements OnInit {
       autoFocus: false,
       panelClass: classmode
     });
-    //this.router.navigate(['/event']);
   }
 
   truncateDescription(description: string, maxLength: number): string {

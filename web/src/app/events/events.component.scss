@@ -5,7 +5,7 @@
     align-items: center;
     overflow: hidden;
     grid-auto-flow: column;
-    background-color: var(--background-color);
+    background-color: var(--background-hover-color);
     color: var(--font-color);
 
     img {
@@ -28,13 +28,16 @@
             font-style: bold;
             font-weight: 500;
             line-height: 80px;
-            font-size: 3rem;
+            font-size: 2.5rem;
+            line-height: 1.2;
+            padding-bottom: 1vh;
         }
 
         h2 {
             font-style: normal;
             font-weight: 500;
             font-size: 1.2rem;
+            line-height: 1.2;
         }
 
         justify-items:start;
@@ -62,12 +65,12 @@
         grid-template-columns: 5vw 50vw 40vw 1vw;
     }
 
-    @media (max-width: 1400px) {
+    @media (max-width: 1200px) {
         padding: 2vh 18vw 2vh 18vw;
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
 
         img {
@@ -98,7 +101,7 @@
 }
 
 .container:nth-child(2n) {
-    background-color: var(--background-hover-color);
+    background-color: var(--background-color);
 
     .right-side {
         grid-column: 2;

@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '@angular/material' as mat;
@@ -20,13 +19,10 @@ $web-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$web-theme: mat.define-light-theme((
-  color: (
-    primary: $web-primary,
-    accent: $web-accent,
-    warn: $web-warn,
-  )
-));
+$web-theme: mat.define-light-theme((color: (primary: $web-primary,
+        accent: $web-accent,
+        warn: $web-warn,
+      )));
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -35,28 +31,36 @@ $web-theme: mat.define-light-theme((
 
 
 @font-face {
-    font-family: 'Monsterrat';
-    src: url('./assets/fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: 'Monsterrat';
+  src: url('./assets/fonts/Montserrat/Montserrat-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-    font-family: 'Monsterrat';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Monsterrat';
 
-    letter-spacing: -0.225px;
+  letter-spacing: -0.225px;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 ::-webkit-scrollbar {
   width: 0.7em;
   background-color: rgb(204, 204, 204);
 }
- 
+
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
   background-color: rgb(110, 110, 110);
@@ -70,9 +74,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --font-color: black;
   --font-secondary-color: rgba(0, 0, 0, 0.5);
   --logo-color: 0%;
+  color-scheme: light;
 }
 
-.dark-mode{
+.dark-mode {
   --background-color: #1a1a1a;
   --background-hover-color: #272727;
   --primary-color: #18a0fb;
@@ -80,47 +85,58 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --font-color: rgb(238, 238, 238);
   --font-secondary-color: rgba(255, 255, 255, 0.5);
   --logo-color: 100%;
+  color-scheme: dark;
 }
 
 .mat-mdc-snack-bar-container {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
   &.custom-snackbar {
     --mdc-snackbar-container-color: var(--background-hover-color);
     --mat-mdc-snack-bar-button-color: var(--primary-color);
-    --mdc-snackbar-supporting-text-color:  var(--font-color);
+    --mdc-snackbar-supporting-text-color: var(--font-color);
   }
-  .custom-snackbar{
+
+  .custom-snackbar {
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: space-around;
   }
-  .mdc-button__label{
+
+  .mdc-button__label {
     color: var(--primary-color);
   }
-  .mdc-button, .mat-mdc-button, .mat-accent, .mat-mdc-button-base, .cdk-focues, .cdk-mouse-focused{
 
-      background-color:hsla(204, 100%, 50%, 0.2);
+  .mdc-button,
+  .mat-mdc-button,
+  .mat-accent,
+  .mat-mdc-button-base,
+  .cdk-focues,
+  .cdk-mouse-focused {
+
+    background-color: hsla(204, 100%, 50%, 0.2);
 
   }
 }
 
-.mdc-form-field{
-  .mat-mdc-radio-button .example-margin .mat-accent{
+.mdc-form-field {
+  .mat-mdc-radio-button .example-margin .mat-accent {
     color: var(--font-color);
   }
-  .mdc-label{
+
+  .mdc-label {
     color: var(--font-color);
   }
-  .mdc-radio{
-    .mdc-radio__background{
+
+  .mdc-radio {
+    .mdc-radio__background {
       color: var(--font-color);
-    } 
+    }
+
     color: var(--font-color);
   }
 }
 
-.mat-mdc-radio-button.mat-accent{
-  --mdc-radio-unselected-icon-color:  var(--font-color);
+.mat-mdc-radio-button.mat-accent {
+  --mdc-radio-unselected-icon-color: var(--font-color);
 }
-
-
