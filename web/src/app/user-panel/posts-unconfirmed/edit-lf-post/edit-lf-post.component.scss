@@ -1,116 +1,105 @@
-.container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: 
-    "header header "
-    "form title";
-    height: 80vh;
-    background-color: var(--background-color);
-    color: var(--font-color);
-  
-  
-    .form{
-        display: flex;
-        flex-direction: column;
-        padding-right: 8vw;
-        grid-column: 2;
-        background-color:  var(--background-color);
-        color: var(--font-color);
-      
-        h2{
-            font-style: bold;
-            font-size: 2rem;
-            color: var(--font-color);
-        }
-    }
-  
-    @media (max-width: 800px){
-      #circle{
-        display: none;
-      }
-    }
-    .form{
-      padding-left: 8vw;
-      
-    }
-  
-  }
-  
-  button{
-    width: 130px;
-    height: 40px;
-    flex-shrink: 0;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid  var(--primary-color);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-    &:hover {
-        box-shadow: 0 4px 8px  var(--border-color);
-        transform: translateY(-1px);
-    }
-  }
-  .btn-secondary {
-  background-color:  var(--background-color);
-  color: var(--primary-color);
-  }
-  .btn-primary {
-  background-color:  var(--primary-color);
-  color: var(--background-color);
-  }
-  
-  .desc{
-    background-color: var(--background-color);
-    color: black;
-  }
-  
-  
-  input{
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 5px 0;
-  display: inline-block;
-  border: 1px solid var(--background-hover-color);
-  background: var(--background-color);
-  color: var(--font-color);
-  }
-  
-  .input-end{
-    margin-bottom: 15px;
-  }
-  
-  select{
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: 1px solid var(--background-hover-color);
-    background: var(--background-color);
-    color: var(--font-color);
-    }
-  
-  input[type=text]:focus, input[type=password]:focus {
-  background-color: var(--background-hover-color);
-  outline: none;
-  color: var(--font-color);
-  }
-  
-  
-  .form-container {
-  padding: 16px;
-  background-color:  var(--background-color);
-  color: var(--font-color);
-  }
-  
-  .buttons{
+
+.form{
   display: flex;
-  width: 100%;
-  gap: 2vw;
+  flex-direction: column;
+  width: 600px;
+  max-height: 700px;
+  background-color: var(--background-color);
+  align-items: center;
+  justify-items: center;
+  border: 1px solid var(--primary-color);
+  overflow-y: auto;
+  @media (max-width: 800px){
+    width: 400px;
+    max-height: 600px;
   }
-  
+  @media (max-width: 500px){
+    max-height: 500px;
+  }
+}
+
+
+.form{
+  display: flex;
+  flex-direction: column;
+  background-color:  var(--background-color);
+  color: var(--font-color);
+
   h2{
-    font-style: bold;
-    font-size: 2rem;
-    color: var(--font-color);
+      font-style: bold;
+      font-size: 2rem;
+      color: var(--font-color);
   }
+}
+
+
+
+button{
+width: 130px;
+height: 40px;
+flex-shrink: 0;
+cursor: pointer;
+font-size: 14px;
+border-radius: 6px;
+border: 1px solid  var(--primary-color);
+transition: box-shadow 0.3s ease, transform 0.3s ease;
+&:hover {
+  box-shadow: 0 4px 8px  var(--border-color);
+  transform: translateY(-1px);
+}
+}
+.btn-secondary {
+background-color:  var(--background-color);
+color: var(--primary-color);
+}
+.btn-primary {
+background-color:  var(--primary-color);
+color: var(--background-color);
+}
+
+input{
+width: 100%;
+padding: 15px;
+margin: 5px 0 5px 0;
+display: inline-block;
+border: 1px solid var(--background-hover-color);
+background: var(--background-color);
+color: var(--font-color);
+}
+
+.input-end{
+margin-bottom: 15px;
+}
+
+.desc{
+background-color: var(--background-color);
+color: black;
+}
+
+
+input[type=text]:focus, input[type=password]:focus {
+background-color: var(--background-hover-color);
+outline: none;
+color: var(--font-color);
+}
+
+
+.form-container {
+padding: 16px;
+background-color:  var(--background-color);
+color: var(--font-color);
+}
+
+.buttons{
+display: flex;
+width: 100%;
+gap: 2vw;
+
+
+}
+
+h2{
+font-style: bold;
+font-size: 2rem;
+color: var(--font-color);
+}

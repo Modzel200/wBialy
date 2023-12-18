@@ -21,6 +21,10 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@capacitor/android": "^5.5.1",
+    "@capacitor/assets": "^3.0.4",
+    "@capacitor/cli": "^5.5.1",
+    "@capacitor/core": "^5.5.1",
     "@ckeditor/ckeditor5-angular": "^7.0.1",
     "@ckeditor/ckeditor5-build-classic": "^40.1.0",
     "@ckeditor/ckeditor5-build-inline": "^40.1.0",
@@ -41,7 +45,7 @@
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^16.2.5",
+    "@angular-devkit/build-angular": "^16.2.10",
     "@angular/cli": "^16.2.5",
     "@angular/compiler-cli": "^16.2.0",
     "@ckeditor/ckeditor5-inspector": "^4.1.0",

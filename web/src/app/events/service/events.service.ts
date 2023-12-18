@@ -27,14 +27,14 @@ export class EventsService{
   };
   constructor(private http: HttpClient) {
   }
-  getAllPosts(toppings: string[],date: string|Date|null,number: number)
+  getAllPosts(toppings: string[],date: string|Date|null,number: number, selectedSort: string)
   {
     let string = "";
     for(let i=0;i<toppings.length;i++)
     {
       string+="&TagFilter="+toppings[i];
     }
-    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5"+"&pageNumber="+number+"&sortDirection=0"+string+"&DateFilter="+date);
+    return this.http.get<PageResultModel>(this.baseUrl+"?pageSize=5"+"&pageNumber="+number+"&sortDirection="+selectedSort+string+"&DateFilter="+date);
   }
   getAllTags()
   {

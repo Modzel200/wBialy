@@ -43,16 +43,19 @@ getDayName(dateStr: string | number | Date, locale: Intl.LocalesArgument)
     return date.toLocaleDateString(locale, { weekday: 'long' });
 }
 
-
+truncateDescription(description: string, maxLength: number): string {
+  if (description.length <= maxLength) {
+    return description;
+  } else {
+    return description.slice(0, maxLength) + '...';
+  }
+}
 
  getAllLFPosts(){
-  this.eventsService.getAllLfPosts(this.number, this.selectedValue)
+  this.eventsService.getAllLfPosts(this.number, this.selectedValue, this.selectedToppingsString)
     .subscribe(response => {
     this.pageResult = response;
-    if(this.pageResult.items.length>0)
-    {
-      this.events = this.pageResult.items;
-    }
+    this.events = this.pageResult.items;
   });
 
 }

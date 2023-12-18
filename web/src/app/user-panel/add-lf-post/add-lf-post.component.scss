@@ -106,3 +106,14 @@ h2{
   font-size: 2rem;
   color: var(--font-color);
 }
+
+
+.mat-mdc-radio-button.mat-accent{
+  --mdc-radio-selected-focus-icon-color: var(--primary-color);
+  --mdc-radio-selected-hover-icon-color: var(--primary-color);
+  --mdc-radio-selected-icon-color: var(--primary-color);
+  --mdc-radio-selected-pressed-icon-color: var(--primary-color);
+  --mat-radio-ripple-color: #000;
+  --mat-radio-checked-ripple-color: var(--primary-color);
+}
+

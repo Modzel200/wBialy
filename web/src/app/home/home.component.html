@@ -1,17 +1,26 @@
 <div class="home">
-    <h1>Co nowego w Białymstoku?</h1>
-    <h2>Darmowe eventy codziennie!</h2>
-    <div class="container">
-      <div *ngFor="let event of eventsToShow" class="card">
-        <img src="{{event.image}}" style="width:100%">
-        <h1>{{event.title}}</h1>
-        <p class="date">{{event.eventDate}}</p>
-        <div class='opis' [innerHTML]="truncateDescription(event.description, 40)"></div>
-        <p><button class="btn-primary" (click)="showEvent(event)">Dołącz</button></p>
-      </div>
-    </div>
-    <div class="buttons">
-      <button class="btn-secondary material-icons" (click)="prevEvent()">arrow_back_ios</button>
-      <button class="btn-secondary material-icons" (click)="nextEvent()">arrow_forward_ios</button>
+  <h1>Co nowego w Białymstoku?</h1>
+  <h2>Darmowe eventy codziennie!</h2>
+  <div class="container">
+    <div *ngFor="let event of eventsToShow" class="card">
+      <img src="{{ event.image }}" style="width: 100%" />
+      <h1 [innerHTML]="truncateDescription(event.title, 25)"></h1>
+      <p class="date">{{ event.eventDate }}</p>
+      <div
+        class="opis"
+        [innerHTML]="truncateDescription(event.description, 40)"
+      ></div>
+      <p>
+        <button class="btn-primary" (click)="showEvent(event)">Dołącz</button>
+      </p>
     </div>
   </div>
+  <div class="buttons">
+    <button class="btn-secondary material-icons" (click)="prevEvent()">
+      arrow_back_ios
+    </button>
+    <button class="btn-secondary material-icons" (click)="nextEvent()">
+      arrow_forward_ios
+    </button>
+  </div>
+</div>
