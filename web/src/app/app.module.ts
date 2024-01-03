@@ -9,7 +9,7 @@ import { EventComponent } from './events/event/event.component';
 import { HomeComponent } from './home/home.component';
 import { SignupFormComponent } from './signup-form/signup-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {RouterModule, Routes} from "@angular/router";
 import {DatePipe, HashLocationStrategy, LocationStrategy} from "@angular/common";
 import { UserPanelComponent } from './user-panel/user-panel.component';
@@ -44,6 +44,14 @@ import { AdminComponent } from './user-panel/admin/admin.component';
 import {MatRadioModule} from "@angular/material/radio";
 import { EditLfPostComponent } from './user-panel/posts-unconfirmed/edit-lf-post/edit-lf-post.component'
 import { EditGastroPostComponent } from './user-panel/posts-unconfirmed/edit-gastro-post/edit-gastro-post.component';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+
+export function HttpLoaderFactory(http:HttpClient){
+  return new TranslateHttpLoader(http);
+}
+
+
 const appRoutes: Routes = [
   {path: '', component: EventsComponent},
   {path: 'login', component: LoginFormComponent},
@@ -99,7 +107,16 @@ const appRoutes: Routes = [
         MatSnackBarModule,
         CKEditorModule,
         RecaptchaModule,
-        MatRadioModule
+        MatRadioModule,
+        TranslateModule.forRoot(
+          {
+            loader:{
+              provide: TranslateLoader,
+              useFactory: HttpLoaderFactory,
+              deps: [HttpClient],
+            },
+          }
+        ),
     ],
   providers: [DatePipe,{
     provide: Loader,

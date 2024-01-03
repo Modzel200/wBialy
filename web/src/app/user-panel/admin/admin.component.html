@@ -1,5 +1,5 @@
 <div class='panel'>
-<h1>Panel admina</h1>
+<h1>{{"Panel admina" | translate}}</h1>
 <div *ngFor="let event of events">
   <div class="container">
     <div class="left-side">
@@ -17,8 +17,8 @@
         <div>{{event.tags}}</div>
       </div>
       <div class="second">
-        <a ><button class="btn-primary" (click)="acceptPost(event.postId)">Zaakceptuj</button></a>
-        <a ><button class="btn-secondary" (click)="deletePost(event.postId)">Usuń</button></a>
+        <a ><button class="btn-primary" (click)="acceptPost(event.postId)">{{"Zaakceptuj" | translate}}</button></a>
+        <a ><button class="btn-secondary" (click)="deletePost(event.postId)">{{"Usuń" | translate}}</button></a>
       </div>
     </div>
   </div>

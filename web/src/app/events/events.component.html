@@ -6,7 +6,7 @@
   style="background-color: var(--background-color)"
 >
   <mat-drawer #drawer mode="side" position="end" class="filterDrawer">
-    <h1>Filtruj</h1>
+    <h1>{{"Filtruj" | translate}}</h1>
     <mat-card class="demo-inline-calendar-card">
       <mat-calendar
         [(selected)]="selected"
@@ -14,10 +14,10 @@
       ></mat-calendar>
     </mat-card>
     <br />
-    <p>Wybrana data: {{ selected }}</p>
+    <p>{{"Wybrana data: " | translate}}{{ selected }}</p>
     <br />
     <mat-form-field>
-      <mat-label>Tagi</mat-label>
+      <mat-label>{{"Tagi" | translate}}</mat-label>
       <mat-select
         [formControl]="toppings"
         [(value)]="selectedToppings"
@@ -28,14 +28,14 @@
         }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <p>Tagi: {{ selectedToppings }}</p>
+    <p>{{"Tagi" | translate}}: {{ selectedToppings }}</p>
     <mat-form-field>
-      <mat-label>Sortowanie</mat-label>
+      <mat-label>{{"Sortowanie" | translate}}</mat-label>
       <mat-select
        [formControl]="sorting"
        [(value)]="selectedSort">
-        <mat-option [value]="0">Daty rosnąco</mat-option>
-        <mat-option [value]="1">Daty malejąco</mat-option>
+        <mat-option [value]="0">{{"Daty rosnąco" | translate}}</mat-option>
+        <mat-option [value]="1">{{"Daty malejąco" | translate}}</mat-option>
       </mat-select>
     </mat-form-field>
     <br />
@@ -44,10 +44,10 @@
       class="btn-primary btn"
       (click)="drawer.toggle(); sendFilters()"
     >
-      Filtruj
+      {{"Filtruj" | translate}}
     </button>
     <button type="button" class="btn-secondary btn" (click)="clearTags()">
-      Usuń filtry
+      {{"Usuń filtry" | translate}}
     </button>
   </mat-drawer>
   <div class="container" *ngFor="let event of events" id="eventsScroll">
@@ -60,7 +60,7 @@
         <h2>{{ event.eventDate }}</h2>
       </div>
       <div [innerHTML]="truncateDescription(event.description, 250)"></div>
-      <button class="btn-primary" (click)="showEvent(event)">Dołącz</button>
+      <button class="btn-primary" (click)="showEvent(event)">{{"Dołącz" | translate}}</button>
     </div>
   </div>
   <div class="pagination">
@@ -70,14 +70,14 @@
         (click)="backPage()"
         [disabled]="canGoPrev"
       >
-        Poprzednia strona
+        {{"Poprzednia strona" | translate}}
       </button>
       <button
         class="btn-primary btn"
         (click)="nextPage()"
         [disabled]="canGoNext"
       >
-        Następna strona
+        {{"Następna strona" | translate}}
       </button>
     </div>
   </div>

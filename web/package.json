@@ -34,6 +34,8 @@
     "@fortawesome/free-regular-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@googlemaps/js-api-loader": "^1.16.2",
+    "@ngx-translate/core": "^15.0.0",
+    "@ngx-translate/http-loader": "^8.0.0",
     "@types/google.maps": "^3.54.6",
     "imgbb-image-uploader": "^1.0.6",
     "imgbb-uploader": "^1.5.1",

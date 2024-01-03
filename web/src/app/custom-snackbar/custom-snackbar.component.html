@@ -1,5 +1,4 @@
 <div class="custom-snackbar">
-    <span>{{ message }}</span>
-    <button mat-button color="accent" (click)="closeSnackbar()">Zamknij</button>
+    <span>{{message | translate}}</span>
+    <button mat-button color="accent" (click)="closeSnackbar()">{{"Zamknij" | translate}}</button>
 </div>
-  

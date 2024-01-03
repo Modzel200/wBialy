@@ -5,24 +5,24 @@
     </div>
     <div class="items">
       <div>
-        <p>📅 Data: {{ event.eventDate }}</p>
+        <p>📅 {{"Data" | translate}}: {{ event.eventDate }}</p>
       </div>
       <div>
-        <p>⌚ Godzina rozpoczęcia: {{ event.place }}</p>
+        <p>⌚ {{"Godzina rozpoczęcia" | translate}}: {{ event.place }}</p>
       </div>
       <div class="long-list">
         <p>
-          📌 Miejsce: {{ event.place }}&nbsp;<a
+          📌 {{"Miejsce" | translate}}: {{ event.place }}&nbsp;<a
             href="{{ event.location }}"
             target="_blank"
-            >(pokaż na mapie)</a
+            >{{"(pokaż na mapie)" | translate}}</a
           >
         </p>
         <div class="buttons">
           <a href="{{ event.link }}" target="_blank"
-            ><button class="btn-primary">Zobacz wydarzenie</button></a
+            ><button class="btn-primary">{{"Zobacz wydarzenie" | translate}}</button></a
           >
-          <button class="btn-secondary">Dodaj do kalendarza</button>
+          <button class="btn-secondary">{{"Dodaj do kalendarza" | translate}}</button>
         </div>
       </div>
     </div>
