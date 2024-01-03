@@ -30,5 +30,6 @@
   </div>
   <div class="image">
     <img src="{{ event.image }}" alt="" />
+    <button class="delete" *ngIf="isAdmin" (click)="deletePost(event.postId)">{{"Usuń post" | translate}}</button>
   </div>
 </div>

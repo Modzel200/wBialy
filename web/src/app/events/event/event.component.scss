@@ -98,6 +98,13 @@
         color: #fff;
     }
 
+    .delete {
+        background-color: #fb1818;
+        color: var(--font-color);
+        width: 100%;
+        border: 1px solid #fb1818;
+    }
+
     @media (max-width: 1400px) {
         .long-list {
             display: grid;
