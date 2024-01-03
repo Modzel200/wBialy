@@ -20,7 +20,7 @@
                 <div class="input-end">
                   <label for="">{{"Hasło" | translate}}</label>
                   <input type="password" placeholder="Password" name="psw" [(ngModel)]="user.Password" required>
-                  <mat-error *ngIf="this.errorMessage">{{this.errorMessage}}</mat-error>
+                  <mat-error *ngIf="this.errorMessage">{{this.errorMessage | translate}}</mat-error>
                 </div>
 
                 <p>{{"Aby dowiedzieć się więcej, przeczytaj" | translate}} <a href="#" style="color:var(--primary-color);">{{"Warunki i prywatność" | translate}}</a>.</p>

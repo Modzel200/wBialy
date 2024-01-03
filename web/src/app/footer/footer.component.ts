@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { faFacebook, faInstagram, faTwitter, faWhatsapp } from '@fortawesome/free-brands-svg-icons'
-import {TranslateService} from "@ngx-translate/core";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-footer',
@@ -9,17 +9,21 @@ import {TranslateService} from "@ngx-translate/core";
 })
 export class FooterComponent {
 
-  faFacebook=faFacebook;
-  faInstagram=faInstagram;
-  faTwitter=faTwitter;
-  faWhatsapp=faWhatsapp;
-  year=(new Date()).getFullYear();
+  faFacebook = faFacebook;
+  faInstagram = faInstagram;
+  faTwitter = faTwitter;
+  faWhatsapp = faWhatsapp;
+  year = (new Date()).getFullYear();
 
   constructor(private translate: TranslateService) {
-    this.translate.setDefaultLang('pl');
+    const storedLanguage = localStorage.getItem('language');
+    storedLanguage !== null ? this.translate.setDefaultLang(storedLanguage) : this.translate.setDefaultLang('pl');
   }
 
-  switchLanguage(language: string){
-    this.translate.use(language);
+  switchLanguage() {
+    const currentLanguage = this.translate.currentLang;
+    const newLanguage = currentLanguage === 'pl' ? 'en' : 'pl';
+    localStorage.setItem('language', newLanguage);
+    this.translate.use(newLanguage);
   }
 }

@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {RegisterUser} from "../signup-form/model/signup-form.model";
-import {UserLogin} from "./model/login-form.model";
-import {LoginFormService} from "./service/login-form.service";
+import { Component, OnInit } from '@angular/core';
+import { RegisterUser } from "../signup-form/model/signup-form.model";
+import { UserLogin } from "./model/login-form.model";
+import { LoginFormService } from "./service/login-form.service";
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit{
+export class LoginFormComponent implements OnInit {
   user: UserLogin = {
     Email: '',
     Password: ''
@@ -17,20 +17,18 @@ export class LoginFormComponent implements OnInit{
   constructor(private loginFormService: LoginFormService, private router: Router) {
   }
   ngOnInit() {
-    if(localStorage.getItem("Authorization")!=null)
-    {
+    if (localStorage.getItem("Authorization") != null) {
       this.router.navigate(["/"]);
     }
   }
 
-  errorMessage='';
-  onSubmit()
-  {
+  errorMessage = '';
+  onSubmit() {
     this.errorMessage = "";
-    this.loginFormService.loginUser(this.user).subscribe(token=>{
-      localStorage.setItem('Authorization','Bearer '+token);
+    this.loginFormService.loginUser(this.user).subscribe(token => {
+      localStorage.setItem('Authorization', 'Bearer ' + token);
       window.location.reload();
-    },() => {
+    }, () => {
       this.errorMessage = "Niepoprawne dane logowania"
     })
 

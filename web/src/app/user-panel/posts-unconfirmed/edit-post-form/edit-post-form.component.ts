@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {EventPost} from "../../../events/model/event.model";
-import {UserPanelService} from "../../service/user-panel.service";
-import {Tags} from "../../model/user-panel.model";
-import {imgbbUpload} from "imgbb-image-uploader";
-import {UploadImgModel} from "../../model/uploadImg.model";
+import { Component, OnInit } from '@angular/core';
+import { EventPost } from "../../../events/model/event.model";
+import { UserPanelService } from "../../service/user-panel.service";
+import { Tags } from "../../model/user-panel.model";
+import { imgbbUpload } from "imgbb-image-uploader";
+import { UploadImgModel } from "../../model/uploadImg.model";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { BlurEvent } from '@ckeditor/ckeditor5-angular';
 import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
@@ -15,37 +15,37 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './edit-post-form.component.html',
   styleUrls: ['./edit-post-form.component.scss']
 })
-export class EditPostFormComponent implements OnInit{
-  tags: Tags[] =[]
+export class EditPostFormComponent implements OnInit {
+  tags: Tags[] = []
   allTags: Tags[] = []
-  event: EventPost={
-    postId:0,
-    title:'',
-    found:false,
-    description:'',
-    image:'',
-    place:'',
-    location:'',
+  event: EventPost = {
+    postId: 0,
+    title: '',
+    found: false,
+    description: '',
+    image: '',
+    place: '',
+    location: '',
     confirmed: false,
-    eventDate:'',
-    day:'',
+    eventDate: '',
+    day: '',
     tags: this.tags,
-    link:'',
+    link: '',
   }
 
-  newEvent: EventPost={
-    postId:0,
-    title:'',
-    description:'',
-    found:false,
-    image:'',
-    place:'',
-    location:'',
+  newEvent: EventPost = {
+    postId: 0,
+    title: '',
+    description: '',
+    found: false,
+    image: '',
+    place: '',
+    location: '',
     confirmed: false,
-    eventDate:'',
-    day:'',
+    eventDate: '',
+    day: '',
     tags: this.tags,
-    link:'',
+    link: '',
   }
 
   public Editor = ClassicEditor
@@ -60,35 +60,33 @@ export class EditPostFormComponent implements OnInit{
   ngOnInit() {
     this.getAllTags();
     this.event = this.userPanelService.event;
-    this.newEvent =  {
-      postId:this.event.postId,
-      found:this.event.found,
-      title:this.event.title,
-      description:this.event.description,
-      image:this.event.image,
-      place:this.event.place,
-      location:this.event.location,
+    this.newEvent = {
+      postId: this.event.postId,
+      found: this.event.found,
+      title: this.event.title,
+      description: this.event.description,
+      image: this.event.image,
+      place: this.event.place,
+      location: this.event.location,
       confirmed: false,
-      eventDate:this.event.eventDate,
-      day:this.event.day,
+      eventDate: this.event.eventDate,
+      day: this.event.day,
       tags: this.event.tags,
-      link:this.event.link,
+      link: this.event.link,
     }
   }
 
-  onSubmit(newEvent: EventPost){
-    if(this.toppings.errors || this.place.errors || this.title.errors || this.description.errors || this.date.errors){
+  onSubmit(newEvent: EventPost) {
+    if (this.toppings.errors || this.place.errors || this.title.errors || this.description.errors || this.date.errors) {
       return;
     }
-    for(let i=0;i<this.selectedToppings.length;i++)
-    {
-      this.tags.push({name:this.selectedToppings[i]});
+    for (let i = 0; i < this.selectedToppings.length; i++) {
+      this.tags.push({ name: this.selectedToppings[i] });
     }
-    this.newEvent.tags=this.tags;
+    this.newEvent.tags = this.tags;
     console.log(newEvent);
-    this.userPanelService.editEvent(newEvent,newEvent.postId).subscribe(response=>{
-      if(response==null)
-      {
+    this.userPanelService.editEvent(newEvent, newEvent.postId).subscribe(response => {
+      if (response == null) {
         this._snackBar.openFromComponent(CustomSnackbarComponent, {
           panelClass: ['snackbar'],
           data: { message: 'Post został edytowany' },
@@ -100,13 +98,13 @@ export class EditPostFormComponent implements OnInit{
     });
   }
   selectedFile: File = {} as File;
-  onFileSelected(newEvent : any){
+  onFileSelected(newEvent: any) {
     this.selectedFile = <File>newEvent.target.files[0]
     imgbbUpload({
       key: '0044368c0f15bd2f0120f0819f511ee9',
       image: this.selectedFile,
     })
-      .then((data : UploadImgModel) => {
+      .then((data: UploadImgModel) => {
         this.newEvent.image = data.data.url;
       })
   }
@@ -123,7 +121,7 @@ export class EditPostFormComponent implements OnInit{
   public onReady(editor: ClassicEditor) {
   }
   public onChange({ editor }: BlurEvent) {
-  this.newEvent.description = editor.data.get();
+    this.newEvent.description = editor.data.get();
   }
 
   atLeastOneSelectedValidator(): ValidatorFn {
@@ -140,8 +138,8 @@ export class EditPostFormComponent implements OnInit{
   toppings = new FormControl('', [Validators.required, this.atLeastOneSelectedValidator.bind(this)]);
   selectedToppings = [];
   getErrorToppingsMessage() {
-    if(this.toppings.root.touched) {return this.toppings.hasError('atLeastOneSelectedValidator') ? '' : 'Wybierz conajmniej 1 kategorię';}
-    return ;
+    if (this.toppings.root.touched) { return this.toppings.hasError('atLeastOneSelectedValidator') ? '' : 'Wybierz conajmniej 1 kategorię'; }
+    return '';
   }
 
   title = new FormControl('title', [
@@ -171,7 +169,7 @@ export class EditPostFormComponent implements OnInit{
     if (this.place.hasError('required') && this.place.root.touched) {
       return 'Musisz wprowadzić miejsce';
     }
-    return;
+    return '';
   }
 
   date = new FormControl('date', Validators.required);
@@ -179,12 +177,11 @@ export class EditPostFormComponent implements OnInit{
     if (this.date.hasError('required') && this.date.root.touched) {
       return 'Musisz wprowadzić datę';
     }
-    return;
+    return '';
   }
-  getAllTags()
-  {
+  getAllTags() {
     this.userPanelService.getAllTags()
-      .subscribe(response=>{
+      .subscribe(response => {
         this.allTags = response;
       })
   }

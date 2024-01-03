@@ -11,7 +11,7 @@
         [(ngModel)]="newPost.title"
         required
       />
-      <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>
+      <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() | translate }}</mat-error>
     </div>
 
     <div class="input-end">
@@ -27,7 +27,7 @@
       >
       </ckeditor>
       <mat-error *ngIf="description.invalid">{{
-        getErrorDescriptionMessage()
+        getErrorDescriptionMessage() | translate
       }}</mat-error>
     </div>
 
@@ -47,7 +47,7 @@
         </mat-select>
       </mat-form-field>
       <mat-error *ngIf="toppings.invalid">{{
-        getErrorToppingsMessage()
+        getErrorToppingsMessage() | translate
       }}</mat-error>
     </div>
 
@@ -75,7 +75,7 @@
         [(ngModel)]="newPost.place"
         required
       />
-      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() }}</mat-error>
+      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() | translate }}</mat-error>
     </div>
 
     <div class="input-end">
@@ -91,7 +91,7 @@
           <mat-option value="niedziela">{{"Niedziela" | translate}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-error *ngIf="day.invalid">{{ getErrorDayMessage() }}</mat-error>
+      <mat-error *ngIf="day.invalid">{{ getErrorDayMessage() | translate }}</mat-error>
     </div>
 
     <div class="input-end">

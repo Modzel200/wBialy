@@ -5,7 +5,7 @@
       <div class="input-end">
         <mat-label>{{"Tytuł" | translate}}</mat-label>
         <input matInput placeholder="Tytuł" [formControl]="title" [(ngModel)]="postToAdd.title" required>
-        <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>
+        <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() | translate}}</mat-error>
       </div>
 
       <div class="input-end">
@@ -18,7 +18,7 @@
           (blur)="onChange($event)"
         >
         </ckeditor>
-        <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() }}</mat-error>
+        <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() | translate}}</mat-error>
       </div>
 
     <label for="">{{"Tagi" | translate}}</label>
@@ -29,7 +29,7 @@
         <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{tag.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-error *ngIf="toppings.invalid">{{ getErrorToppingsMessage() }}</mat-error>
+    <mat-error *ngIf="toppings.invalid">{{ getErrorToppingsMessage() | translate}}</mat-error>
     </div>
 
     <div class="input-end">
@@ -41,7 +41,7 @@
       <mat-label>{{"Miejsce" | translate}}</mat-label>
       <br>
       <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" matInput placeholder="Miejsce" [formControl]="place" [(ngModel)]="postToAdd.place" required>
-      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() }}</mat-error>
+      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() | translate}}</mat-error>
     </div>
 
     <div class="input-end">
@@ -57,7 +57,7 @@
           <mat-option value="niedziela">{{"Niedziela" | translate}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-error *ngIf="day.invalid">{{ getErrorDayMessage() }}</mat-error>
+      <mat-error *ngIf="day.invalid">{{ getErrorDayMessage() | translate}}</mat-error>
       </div>
 
       <div class="input-end">

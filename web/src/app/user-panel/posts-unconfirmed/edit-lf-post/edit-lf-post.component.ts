@@ -3,12 +3,12 @@ import { EventPost, Tags } from 'src/app/events/model/event.model';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { lfPost } from 'src/app/events/model/lostfound.model';
-import {AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from "@angular/forms";
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { BlurEvent } from '@ckeditor/ckeditor5-angular';
 import { CustomSnackbarComponent } from 'src/app/custom-snackbar/custom-snackbar.component';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {imgbbUpload} from "imgbb-image-uploader";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { imgbbUpload } from "imgbb-image-uploader";
 import { UserPanelService } from '../../service/user-panel.service';
 import { UploadImgModel } from '../../model/uploadImg.model';
 
@@ -19,28 +19,28 @@ import { UploadImgModel } from '../../model/uploadImg.model';
   styleUrls: ['./edit-lf-post.component.scss']
 })
 export class EditLfPostComponent {
-  tags: Tags[] =[]
+  tags: Tags[] = []
   allTags: Tags[] = []
-  userEvents: lfPost[] =[];
+  userEvents: lfPost[] = [];
   postToAdd: lfPost = {
     postId: 5,
     title: '',
     description: '',
-    found : true,
+    found: true,
     image: '',
     place: '',
-    location:'',
+    location: '',
     tags: this.tags,
     confirmed: false,
   }
-  newPost: lfPost ={ 
+  newPost: lfPost = {
     postId: 5,
     title: '',
     description: '',
-    found : true,
+    found: true,
     image: '',
     place: '',
-    location:'',
+    location: '',
     tags: this.tags,
     confirmed: false,
   }
@@ -68,8 +68,8 @@ export class EditLfPostComponent {
   toppings = new FormControl('', [Validators.required, this.atLeastOneSelectedValidator.bind(this)]);
   selectedToppings = [];
   getErrorToppingsMessage() {
-    if(this.toppings.root.touched) {return this.toppings.hasError('atLeastOneSelectedValidator') ? '' : 'Wybierz conajmniej 1 kategorię';}
-    return ;
+    if (this.toppings.root.touched) { return this.toppings.hasError('atLeastOneSelectedValidator') ? '' : 'Wybierz conajmniej 1 kategorię'; }
+    return '';
   }
 
   title = new FormControl('title', [
@@ -99,14 +99,13 @@ export class EditLfPostComponent {
     if (this.place.hasError('required') && this.place.root.touched) {
       return 'Musisz wprowadzić miejsce';
     }
-    return;
+    return '';
   }
 
 
 
   ngOnInit() {
-    if(localStorage.getItem("Authorization")==null)
-    {
+    if (localStorage.getItem("Authorization") == null) {
       this.router.navigate(['/']);
     }
     this.postToAdd = this.userPanelService.event;
@@ -114,55 +113,49 @@ export class EditLfPostComponent {
       postId: this.postToAdd.postId,
       title: this.postToAdd.title,
       description: this.postToAdd.description,
-      found : this.postToAdd.found,
+      found: this.postToAdd.found,
       image: this.postToAdd.image,
       place: this.postToAdd.place,
-      location:this.postToAdd.location,
+      location: this.postToAdd.location,
       tags: this.postToAdd.tags,
       confirmed: false,
     }
     this.getAllTags();
   }
   selectedFile: File = {} as File;
-  getAllTags()
-  {
+  getAllTags() {
     this.userPanelService.getAllLFTags()
-      .subscribe(response=>{
+      .subscribe(response => {
         this.allTags = response;
       })
   }
-  onFileSelected(event : any){
+  onFileSelected(event: any) {
     this.selectedFile = <File>event.target.files[0]
     imgbbUpload({
       key: '0044368c0f15bd2f0120f0819f511ee9',
       image: this.selectedFile,
     })
-      .then((data : UploadImgModel) => {
+      .then((data: UploadImgModel) => {
         this.postToAdd.image = data.data.url;
       })
   }
 
-  onSubmit()
-  {
-    if(this.type === "zgubione")
-    {
+  onSubmit() {
+    if (this.type === "zgubione") {
       this.newPost.found = false;
     }
-    else
-    {
+    else {
       this.newPost.found = true;
     }
-    if(this.toppings.errors || this.place.errors || this.title.errors || this.description.errors){
+    if (this.toppings.errors || this.place.errors || this.title.errors || this.description.errors) {
       return;
     }
-    for(let i=0;i<this.selectedToppings.length;i++)
-    {
-      this.tags.push({name:this.selectedToppings[i]});
+    for (let i = 0; i < this.selectedToppings.length; i++) {
+      this.tags.push({ name: this.selectedToppings[i] });
     }
     this.newPost.tags = this.tags
-    this.userPanelService.editLf(this.newPost, this.newPost.postId).subscribe(response=>{
-      if(response==null)
-      {
+    this.userPanelService.editLf(this.newPost, this.newPost.postId).subscribe(response => {
+      if (response == null) {
         this._snackBar.openFromComponent(CustomSnackbarComponent, {
           panelClass: ['snackbar'],
           data: { message: 'Post został edytowany' },
@@ -186,6 +179,6 @@ export class EditLfPostComponent {
   public onReady(editor: ClassicEditor) {
   }
   public onChange({ editor }: BlurEvent) {
-  this.newPost.description = editor.data.get();
+    this.newPost.description = editor.data.get();
   }
 }

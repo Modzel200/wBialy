@@ -71,7 +71,23 @@
   "Posty zatwierdzone": "Posty zatwierdzone",
   "Edytuj": "Edytuj",
   "Posty niezatwierdzone": "Posty niezatwierdzone",
-  "Zgubione & Znalezione": "Zgubione & Znalezione"
-
-
+  "Zgubione & Znalezione": "Zgubione & Znalezione",
+  "Niepoprawne dane logowania": "Niepoprawne dane logowania",
+  "Nieprawidłowy email": "Nieprawidłowy email",
+  "Za krótkie hasło": "Za krótkie hasło",
+  "Hasła nie zgadzają się": "Hasła nie zgadzają się",
+  "Musisz wprowadzić wartość": "Musisz wprowadzić wartość",
+  "Konto utworzone": "Konto utworzone",
+  "Wybierz conajmniej 1 kategorię": "Wybierz conajmniej 1 kategorię",
+  "Musisz wprowadzić tytuł": "Musisz wprowadzić tytuł",
+  "Za długi tytuł": "Za długi tytuł",
+  "Musisz wprowadzić opis": "Musisz wprowadzić opis",
+  "Za długi opis": "Za długi opis",
+  "Musisz wprowadzić miejsce": "Musisz wprowadzić miejsce",
+  "Musisz wprowadzić datę": "Musisz wprowadzić datę",
+  "Post został utworzony": "Post został utworzony",
+  "Wybierz dzien": "Wybierz dzien",
+  "Post został edytowany": "Post został edytowany",
+  "PL": "PL",
+  "Język": "Język"
 }

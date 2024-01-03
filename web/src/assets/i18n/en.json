@@ -6,7 +6,6 @@
   "(pokaż na mapie)": "(show on map)",
   "Zobacz wydarzenie": "Redirect to event",
   "Dodaj do kalendarza": "Add to calendar",
-  "Filtruj": "Filter",
   "Wybrana data: ": "Selected date: ",
   "Tagi": "Tags",
   "Sortowanie": "Sorting",
@@ -72,6 +71,23 @@
   "Posty zatwierdzone": "Approved Posts",
   "Edytuj": "Edit",
   "Posty niezatwierdzone": "Unapproved Posts",
-  "Zgubione & Znalezione": "Lost & Found"
-
+  "Zgubione & Znalezione": "Lost & Found",
+  "Niepoprawne dane logowania": "Invalid credentials",
+  "Nieprawidłowy email": "Invalid email",
+  "Za krótkie hasło": "Password is too short",
+  "Hasła nie zgadzają się": "Passwords dont match",
+  "Musisz wprowadzić wartość": "Include value first",
+  "Konto utworzone": "Account created",
+  "Wybierz conajmniej 1 kategorię": "Select atleast 1 category",
+  "Musisz wprowadzić tytuł": "Include title",
+  "Za długi tytuł": "Title is too long",
+  "Musisz wprowadzić opis": "Include description",
+  "Za długi opis": "Description too long",
+  "Musisz wprowadzić miejsce": "Include place",
+  "Musisz wprowadzić datę": "Include date",
+  "Post został utworzony": "Post created",
+  "Wybierz dzien": "Select day",
+  "Post został edytowany": "Post edited",
+  "PL": "EN",
+  "Język": "Language"
 }
