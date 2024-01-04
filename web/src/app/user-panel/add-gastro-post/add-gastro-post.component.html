@@ -1,15 +1,15 @@
 <form  class="form">
     <div class="form-container">
-      <h2>Gastro</h2>
+      <h2>{{"Gastro" | translate}}</h2>
       <br>
       <div class="input-end">
-        <mat-label>Tytuł</mat-label>
+        <mat-label>{{"Tytuł" | translate}}</mat-label>
         <input matInput placeholder="Tytuł" [formControl]="title" [(ngModel)]="postToAdd.title" required>
-        <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>             
+        <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() | translate}}</mat-error>
       </div>
 
       <div class="input-end">
-        <mat-label>Opis</mat-label>
+        <mat-label>{{"Opis" | translate}}</mat-label>
         <ckeditor class="desc" [formControl]="description"
           [editor]="Editor"
           [config]="config"
@@ -18,55 +18,55 @@
           (blur)="onChange($event)"
         >
         </ckeditor>
-        <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() }}</mat-error>
+        <mat-error *ngIf="description.invalid">{{ getErrorDescriptionMessage() | translate}}</mat-error>
       </div>
 
-    <label for="">Tagi</label>
+    <label for="">{{"Tagi" | translate}}</label>
     <div class="input-end">
     <mat-form-field>
-      <mat-label>Tagi</mat-label>
+      <mat-label>{{"Tagi" | translate}}</mat-label>
       <mat-select class="selectTag" [formControl]="toppings" [(value)]="selectedToppings" multiple>
         <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{tag.name}}</mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-error *ngIf="toppings.invalid">{{ getErrorToppingsMessage() }}</mat-error>  
+    <mat-error *ngIf="toppings.invalid">{{ getErrorToppingsMessage() | translate}}</mat-error>
     </div>
 
     <div class="input-end">
-      <label for="">Link do zdjęcia</label>
+      <label for="">{{"Link do zdjęcia" | translate}}</label>
       <input type="file" accpet="image/*" name="img" (change)="onFileSelected($event)" required>
     </div>
 
     <div class="input-end">
-      <mat-label>Miejsce</mat-label>
+      <mat-label>{{"Miejsce" | translate}}</mat-label>
       <br>
       <input #placesRef="ngx-places" ngx-gp-autocomplete (onAddressChange)="handleAddressChange($event)" matInput placeholder="Miejsce" [formControl]="place" [(ngModel)]="postToAdd.place" required>
-      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() }}</mat-error>             
+      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() | translate}}</mat-error>
     </div>
 
     <div class="input-end">
       <mat-form-field>
-        <mat-label>Dzień</mat-label>
+        <mat-label>{{"Dzień" | translate}}</mat-label>
         <mat-select [(value)]="postToAdd.day" [formControl]="day">
-          <mat-option value="poniedziałek">Poniedziałek</mat-option>
-          <mat-option value="wtorek">Wtorek</mat-option>
-          <mat-option value="środa">Środa</mat-option>
-          <mat-option value="czwartek">Czwartek</mat-option>
-          <mat-option value="piątek">Piątek</mat-option>
-          <mat-option value="sobota">Sobota</mat-option>
-          <mat-option value="niedziela">Niedziela</mat-option>
+          <mat-option value="poniedziałek">{{"Poniedziałek" | translate}}</mat-option>
+          <mat-option value="wtorek">{{"Wtorek" | translate}}</mat-option>
+          <mat-option value="środa">{{"Środa" | translate}}</mat-option>
+          <mat-option value="czwartek">{{"Czwartek" | translate}}</mat-option>
+          <mat-option value="piątek">{{"Piątek" | translate}}</mat-option>
+          <mat-option value="sobota">{{"Sobota" | translate}}</mat-option>
+          <mat-option value="niedziela">{{"Niedziela" | translate}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-error *ngIf="day.invalid">{{ getErrorDayMessage() }}</mat-error>  
+      <mat-error *ngIf="day.invalid">{{ getErrorDayMessage() | translate}}</mat-error>
       </div>
 
       <div class="input-end">
-      <label for="">Link</label>
+      <label for="">{{"Link" | translate}}</label>
       <input type="text" name="link" [(ngModel)]="postToAdd.link" required>
       </div>
 
         <div class="buttons">
-          <a><button (click)="onSubmit()" class="btn-secondary">Stwórz</button></a>
+          <a><button (click)="onSubmit()" class="btn-secondary">{{"Stwórz" | translate}}</button></a>
         </div>
     </div>
     </form>

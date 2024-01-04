@@ -7,47 +7,47 @@
       </div>
       </a>
       <div class="nav-items" [class.is-open]="isMenuOpen">
-        <a routerLink="/">Wydarzenia</a>
-        <a routerLink="/gastro">Gastro</a>
-        <a routerLink="/l&f">L&F</a>
-        <a routerLink="/contact">Kontakt</a>
+        <a routerLink="/">{{"Wydarzenia" | translate}}</a>
+        <a routerLink="/gastro">{{"Gastro" | translate}}</a>
+        <a routerLink="/l&f">{{"L&F" | translate}}</a>
+        <a routerLink="/contact">{{"Kontakt" | translate}}</a>
       </div>
     </div>
     <div class="right-side">
       <a routerLink="/login" *ngIf="isLogged==null">
         <button class="btn-secondary">
           <fa-icon [icon]="faSignIn" *ngIf="isSmallScreen"></fa-icon>
-          <span *ngIf="!isSmallScreen">Zaloguj</span>
+          <span *ngIf="!isSmallScreen">{{"Zaloguj" | translate}}</span>
         </button>
       </a>
-      
+
       <a routerLink="/signup" *ngIf="isLogged==null">
         <button class="btn-primary">
           <fa-icon [icon]="faUserPlus" *ngIf="isSmallScreen"></fa-icon>
-          <span *ngIf="!isSmallScreen">Zarejestruj</span>
+          <span *ngIf="!isSmallScreen">{{"Zarejestruj" | translate}}</span>
         </button>
       </a>
       <a *ngIf="isLogged!=null">
         <button (click)="showEvent()" class="btn-secondary">
           <fa-icon [icon]="faPlus" *ngIf="isSmallScreen"></fa-icon>
-          <span *ngIf="!isSmallScreen">Dodaj post</span>
+          <span *ngIf="!isSmallScreen">{{"Dodaj post" | translate}}</span>
         </button>
       </a>
-      
+
       <a routerLink="/account" *ngIf="isLogged!=null">
         <button class="btn-primary">
           <fa-icon [icon]="faUser" aria-setsize="19px" *ngIf="isSmallScreen"></fa-icon>
-          <span *ngIf="!isSmallScreen">Twoje Konto</span>
+          <span *ngIf="!isSmallScreen">{{"Twoje Konto" | translate}}</span>
         </button>
       </a>
-      
+
       <a routerLink="/" *ngIf="isLogged!=null">
         <button (click)="logOff()" class="btn-secondary">
           <fa-icon [icon]="faRightFromBracket" *ngIf="isSmallScreen"></fa-icon>
-          <span *ngIf="!isSmallScreen">Wyloguj się</span>
+          <span *ngIf="!isSmallScreen">{{"Wyloguj się" | translate}}</span>
         </button>
       </a>
-      
+
       <div class="burger">
       <i (click)="toggleMenu()" class="material-icons">{{ isMenuOpen ? "close" : "menu"}}</i>
       </div>

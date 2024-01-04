@@ -1,9 +1,9 @@
 <form class="form">
   <div class="form-container">
-    <h2>Zgubione i znalezione</h2>
+    <h2>{{"Zgubione i znalezione" | translate}}</h2>
     <br />
     <div class="input-end">
-      <mat-label>Tytuł</mat-label>
+      <mat-label>{{"Tytuł" | translate}}</mat-label>
       <input
         matInput
         placeholder="Tytuł"
@@ -11,11 +11,11 @@
         [(ngModel)]="newPost.title"
         required
       />
-      <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>
+      <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() | translate }}</mat-error>
     </div>
 
     <div class="input-end">
-      <mat-label>Opis</mat-label>
+      <mat-label>{{"Opis" | translate}}</mat-label>
       <ckeditor
         class="desc"
         [formControl]="description"
@@ -27,14 +27,14 @@
       >
       </ckeditor>
       <mat-error *ngIf="description.invalid">{{
-        getErrorDescriptionMessage()
+        getErrorDescriptionMessage() | translate
       }}</mat-error>
     </div>
 
-    <label for="">Tagi</label>
+    <label for="">{{"Tagi" | translate}}</label>
     <div class="input-end">
       <mat-form-field>
-        <mat-label>Tagi</mat-label>
+        <mat-label>{{"Tagi" | translate}}</mat-label>
         <mat-select
           class="selectTag"
           [formControl]="toppings"
@@ -47,27 +47,27 @@
         </mat-select>
       </mat-form-field>
       <mat-error *ngIf="toppings.invalid">{{
-        getErrorToppingsMessage()
+        getErrorToppingsMessage() | translate
       }}</mat-error>
     </div>
     <div class="input-end">
       <section class="example-section">
-        <label class="example-margin">Typ:</label>
+        <label class="example-margin">{{"Typ" | translate}}:</label>
         <mat-radio-group
           [(ngModel)]="type"
           [ngModelOptions]="{ standalone: true }"
         >
           <mat-radio-button class="example-margin" value="zgubione"
-            >Zgubione</mat-radio-button
+            >{{"Zgubione" | translate}}</mat-radio-button
           >
           <mat-radio-button class="example-margin" value="znalezione"
-            >Znalezione</mat-radio-button
+            >{{"Znalezione" | translate}}</mat-radio-button
           >
         </mat-radio-group>
       </section>
     </div>
     <div class="input-end">
-      <label for="">Link do zdjęcia</label>
+      <label for="">{{"Link do zdjęcia" | translate}}</label>
       <input
         type="file"
         accpet="image/*"
@@ -78,7 +78,7 @@
     </div>
 
     <div class="input-end">
-      <mat-label>Miejsce</mat-label>
+      <mat-label>{{"Miejsce" | translate}}</mat-label>
       <br />
       <input
         #placesRef="ngx-places"
@@ -90,10 +90,10 @@
         [(ngModel)]="newPost.place"
         required
       />
-      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() }}</mat-error>
+      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() | translate }}</mat-error>
     </div>
     <div class="buttons">
-      <a><button (click)="onSubmit()" class="btn-secondary">Edytuj</button></a>
+      <a><button (click)="onSubmit()" class="btn-secondary">{{"Edytuj" | translate}}</button></a>
     </div>
   </div>
 </form>

@@ -1,6 +1,6 @@
 <div class="home">
-  <h1>Co nowego w Białymstoku?</h1>
-  <h2>Darmowe eventy codziennie!</h2>
+  <h1>{{"Co nowego w Białymstoku" | translate}}?</h1>
+  <h2>{{"Darmowe eventy codziennie" | translate}}!</h2>
   <div class="container">
     <div *ngFor="let event of eventsToShow" class="card">
       <img src="{{ event.image }}" style="width: 100%" />
@@ -11,7 +11,7 @@
         [innerHTML]="truncateDescription(event.description, 40)"
       ></div>
       <p>
-        <button class="btn-primary" (click)="showEvent(event)">Dołącz</button>
+        <button class="btn-primary" (click)="showEvent(event)">{{"Dołącz" | translate}}</button>
       </p>
     </div>
   </div>

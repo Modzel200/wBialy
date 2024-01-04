@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {RegisterUser} from "./model/signup-form.model";
-import {SignupFormService} from "./service/signup-form.service";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {Router} from "@angular/router";
+import { Component, OnInit } from '@angular/core';
+import { RegisterUser } from "./model/signup-form.model";
+import { SignupFormService } from "./service/signup-form.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 import { AbstractControl, FormControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { CustomSnackbarComponent } from '../custom-snackbar/custom-snackbar.component';
 
@@ -11,18 +11,17 @@ import { CustomSnackbarComponent } from '../custom-snackbar/custom-snackbar.comp
   templateUrl: './signup-form.component.html',
   styleUrls: ['./signup-form.component.scss']
 })
-export class SignupFormComponent implements OnInit{
+export class SignupFormComponent implements OnInit {
   user: RegisterUser = {
-    Email:'',
-    Password:'',
-    PasswordConfirm:''
+    Email: '',
+    Password: '',
+    PasswordConfirm: ''
   }
   captcha = '';
   constructor(private signupFormService: SignupFormService, private _snackBar: MatSnackBar, private router: Router) {
   }
   ngOnInit() {
-    if(localStorage.getItem("Authorization")!=null)
-    {
+    if (localStorage.getItem("Authorization") != null) {
       this.router.navigate(["/"]);
     }
   }
@@ -69,28 +68,25 @@ export class SignupFormComponent implements OnInit{
     }
     return this.passwordConfirm.hasError('passwordMismatch') ? 'Hasła nie zgadzają się' : '';
   }
-  resolved(captchaResponse: string)
-  {
+  resolved(captchaResponse: string) {
     this.captcha = captchaResponse;
   }
-  onSubmit(){
-    if(this.captcha!='')
-    {
-      if(this.passwordConfirm.errors || this.password.errors || this.email.errors){
+  onSubmit() {
+    if (this.captcha != '') {
+      if (this.passwordConfirm.errors || this.password.errors || this.email.errors) {
         return;
       }
-      this.signupFormService.signUpUser(this.user).subscribe(response=>{
-        if(response==null)
-        {
+      this.signupFormService.signUpUser(this.user).subscribe(response => {
+        if (response == null) {
           this.openCustomSnackbar("Konto utworzone");
-          this.router.navigate(['/login'  ]);
+          this.router.navigate(['/login']);
         }
       });
     }
   }
 
   openCustomSnackbar(message: string): void {
-      this._snackBar.openFromComponent(CustomSnackbarComponent, {
+    this._snackBar.openFromComponent(CustomSnackbarComponent, {
       panelClass: ['snackbar'],
       data: { message },
       duration: 3000,

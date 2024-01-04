@@ -1,9 +1,9 @@
 
 <div class="container">
   <mat-button-toggle-group class="toggle" name="fontStyle" aria-label="Font Style" (change)="changeType()" [(ngModel)]="selectedValue">
-    <mat-button-toggle class="toggle item" value="wydarzenia">Wydarzenia</mat-button-toggle>
-    <mat-button-toggle class="toggle item" value="gastro">Gastro</mat-button-toggle>
-    <mat-button-toggle class="toggle item" value="lf">L&F</mat-button-toggle>
+    <mat-button-toggle class="toggle item" value="wydarzenia">{{"Wydarzenia" | translate}}</mat-button-toggle>
+    <mat-button-toggle class="toggle item" value="gastro">{{"Gastro" | translate}}</mat-button-toggle>
+    <mat-button-toggle class="toggle item" value="lf">{{"L&F" | translate}}</mat-button-toggle>
   </mat-button-toggle-group>
   <app-posts-unconfirmed class="left" [type]=selectedValue></app-posts-unconfirmed>
   <app-posts-confirmed class="right" [type]=selectedValue></app-posts-confirmed>

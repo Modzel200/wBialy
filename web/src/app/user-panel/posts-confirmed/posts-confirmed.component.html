@@ -1,4 +1,4 @@
-<h1>Posty zatwierdzone</h1>
+<h1>{{"Posty zatwierdzone" | translate}}</h1>
 <div *ngFor="let event of userEvents">
   <div *ngIf="event.confirmed" class="container">
   <div class="left-side">
@@ -11,8 +11,8 @@
       <div class='opis' [innerHTML]="truncateDescription(event.description, 30)"></div>
     </div>
     <div class="second">
-      <a ><button class="btn-primary" (click)="editEvent(event)">Edytuj</button></a>
-      <a ><button class="btn-secondary" (click)="deleteEvent(event.postId)">Usuń</button></a>
+      <a ><button class="btn-primary" (click)="editEvent(event)">{{"Edytuj" | translate}}</button></a>
+      <a ><button class="btn-secondary" (click)="deleteEvent(event.postId)">{{"Usuń" | translate}}</button></a>
     </div>
   </div>
   </div>

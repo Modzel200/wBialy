@@ -1,10 +1,10 @@
 <form class="form">
   <div class="form-container">
-    <h2>Event</h2>
+    <h2>{{"Event" | translate}}</h2>
     <br />
 
     <div class="input-end">
-      <mat-label>Tytuł</mat-label>
+      <mat-label>{{"Tytuł" | translate}}</mat-label>
       <input
         matInput
         placeholder="Tytuł"
@@ -12,11 +12,11 @@
         [(ngModel)]="newEvent.title"
         required
       />
-      <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() }}</mat-error>
+      <mat-error *ngIf="title.invalid">{{ getErrorTitleMessage() | translate }}</mat-error>
     </div>
 
     <div class="input-end">
-      <mat-label>Opis</mat-label>
+      <mat-label>{{"Opis" | translate}}</mat-label>
       <ckeditor
         class="desc"
         [formControl]="description"
@@ -28,14 +28,14 @@
       >
       </ckeditor>
       <mat-error *ngIf="description.invalid">{{
-        getErrorDescriptionMessage()
+        getErrorDescriptionMessage() | translate
       }}</mat-error>
     </div>
 
-    <label for="">Tagi</label>
+    <label for="">{{"Tagi" | translate}}</label>
     <div class="input-end">
       <mat-form-field>
-        <mat-label>Tagi</mat-label>
+        <mat-label>{{"Tagi" | translate}}</mat-label>
         <mat-select
           class="selectTag"
           [formControl]="toppings"
@@ -48,12 +48,12 @@
         </mat-select>
       </mat-form-field>
       <mat-error *ngIf="toppings.invalid">{{
-        getErrorToppingsMessage()
+        getErrorToppingsMessage()| translate
       }}</mat-error>
     </div>
 
     <div class="input-end">
-      <label for="">Link do zdjęcia</label>
+      <label for="">{{"Link do zdjęcia" | translate}}</label>
       <input
         type="file"
         accept="image/*"
@@ -64,7 +64,7 @@
     </div>
 
     <div class="input-end">
-      <mat-label>Miejsce</mat-label>
+      <mat-label>{{"Miejsce" | translate}}</mat-label>
       <br />
       <input
         #placesRef="ngx-places"
@@ -76,7 +76,7 @@
         [(ngModel)]="newEvent.place"
         required
       />
-      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() }}</mat-error>
+      <mat-error *ngIf="place.invalid">{{ getErrorPlaceMessage() | translate }}</mat-error>
     </div>
 
     <div class="input-end">
@@ -89,18 +89,18 @@
         [(ngModel)]="newEvent.eventDate"
         required
       />
-      <mat-error *ngIf="date.invalid">{{ getErrorDateMessage() }}</mat-error>
+      <mat-error *ngIf="date.invalid">{{ getErrorDateMessage() | translate }}</mat-error>
     </div>
 
     <div class="input-end">
-      <label for="">Link</label>
+      <label for="">{{"Link" | translate}}</label>
       <input type="text" name="link" [(ngModel)]="newEvent.link" required />
     </div>
 
     <div class="buttons">
       <a
         ><button (click)="onSubmit(newEvent)" class="btn-secondary">
-          Edytuj
+          {{"Edytuj" | translate}}
         </button></a
       >
     </div>
