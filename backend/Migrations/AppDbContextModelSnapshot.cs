@@ -89,6 +89,9 @@ namespace wBialy.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("LikeCount")
+                        .HasColumnType("int");
+
                     b.Property<string>("Location")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -174,6 +177,21 @@ namespace wBialy.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("wBialy.Entities.UserLikedPost", b =>
+                {
+                    b.Property<int?>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PostId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserLikedPost");
                 });
 
             modelBuilder.Entity("wBialy.Entities.LFPost", b =>
@@ -302,8 +320,9 @@ namespace wBialy.Migrations
             modelBuilder.Entity("wBialy.Entities.Post", b =>
                 {
                     b.HasOne("wBialy.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
+                        .WithMany("OwnedPosts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("User");
                 });
@@ -317,6 +336,21 @@ namespace wBialy.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("wBialy.Entities.UserLikedPost", b =>
+                {
+                    b.HasOne("wBialy.Entities.Post", null)
+                        .WithMany()
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("wBialy.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("wBialy.Entities.LFPost", b =>
@@ -380,6 +414,11 @@ namespace wBialy.Migrations
                         .HasForeignKey("wBialy.Entities.GastroPost", "PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("wBialy.Entities.User", b =>
+                {
+                    b.Navigation("OwnedPosts");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using wBialy.Entities;
+using wBialy.Exceptions;
 using wBialy.Models;
+using wBialy.Services;
 
 namespace wBialy
 {
@@ -18,6 +21,7 @@ namespace wBialy
             CreateMap<CreateLFPostDto, LFPost>();
             CreateMap<CreateGastroPostDto, GastroPost>();
             CreateMap<CreateEventPostDto, EventPost>();
+                //.ForMember(x => x.LikedBy, y => y.MapFrom(z => new List<User>()));
             CreateMap<EventTag, EventTagDto>();
             CreateMap<LFTag, LFTagDto>();
             CreateMap<GastroTag, GastroTagDto>();

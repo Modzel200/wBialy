@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 using System.Net;
 
@@ -56,6 +57,17 @@ namespace wBialy.Entities
                 .Property(p => p.Name)
                 .IsRequired()
                 .HasMaxLength(25);
+            modelBuilder.Entity<Post>()
+                .HasOne(p => p.User)
+                .WithMany(p => p.OwnedPosts)
+                .HasPrincipalKey(p => p.UserId)
+                .HasForeignKey(p => p.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<User>()
+                .HasMany(p => p.LikedPosts)
+                .WithMany(p => p.LikedBy)
+                .UsingEntity<UserLikedPost>(l => l.HasOne<Post>().WithMany().HasForeignKey(y => y.PostId).OnDelete(DeleteBehavior.NoAction),
+                r => r.HasOne<User>().WithMany().HasForeignKey(y => y.UserId).OnDelete(DeleteBehavior.Cascade));
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

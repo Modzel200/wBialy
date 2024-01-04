@@ -164,5 +164,12 @@ namespace wBialy.Controllers
             var posts = await _postService.GetAllUserGastroPosts();
             return await Task.FromResult(Ok(posts));
         }
+        [HttpPost("like/{id}")]
+        [Authorize(Roles ="User,Admin")]
+        public async Task<ActionResult> LikePost([FromRoute] int id)
+        {
+            await _postService.LikePost(id);
+            return await Task.FromResult(Ok());
+        }
     }
 }

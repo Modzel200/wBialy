@@ -13,6 +13,8 @@ namespace wBialy.Models
         public string Location { get; set; }
         public DateTime? EventDate { get; set; }
         public string Day { get; set; }
+        public int LikeCount {  get; set; }
+        public bool? isLiked {  get; set; }
         public string? Tags { get; set; }
         public string? Link { get; set; }
         public bool? Found { get; set; }

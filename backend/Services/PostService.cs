@@ -39,7 +39,7 @@ namespace wBialy.Services
         Task<IEnumerable<PostDto>> GetAllUserEventPosts();
         Task<IEnumerable<PostDto>> GetAllUserGastroPosts();
         Task DeleteAsAdmin(int id);
-
+        Task LikePost(int id);
     }
 
     public class PostService : IPostService
@@ -59,10 +59,19 @@ namespace wBialy.Services
         }
         public async Task<PostDto> GetById(int id)
         {
-            var post = await _context.Posts.FirstOrDefaultAsync(x => x.PostId == id && x.Confirmed == true);
+            var post = await _context.Posts.SingleOrDefaultAsync(x => x.PostId == id && x.Confirmed == true);
             if (post is null)
                 throw new NotFoundException("Post not found");
             var result = _mapper.Map<PostDto>(post);
+            var user = _userContextService.User;
+            if(user.Claims.Count() > 0)
+            {
+                result.isLiked = await DidUserLikedPost(id);
+            } else
+            {
+                result.isLiked = false;
+            }
+            
             return await Task.FromResult(result);
         }
         public async Task<PageResult<PostDto>> GetAllLFPosts(PostQuery query)
@@ -290,9 +299,10 @@ namespace wBialy.Services
         public async Task<int> CreateLFPost(CreateLFPostDto dto)
         {
             var tagList = new List<LFTag>();
+            var likedBy = new List<User>();
             foreach (var e in dto.Tags)
             {
-                tagList.Add(await _context.LFTags.FirstOrDefaultAsync(x => x.Name == e.Name));
+                tagList.Add(await _context.LFTags.SingleOrDefaultAsync(x => x.Name == e.Name));
             }
             var postDto = new LFPost()
             {
@@ -303,6 +313,7 @@ namespace wBialy.Services
                 Found = dto.Found,
                 Location = dto.Location,
                 Tags = tagList,
+                LikedBy = likedBy
             };
             var userId = _userContextService.GetUserId;
             postDto.UserId = userId;
@@ -313,10 +324,11 @@ namespace wBialy.Services
         }
         public async Task<int> CreateGastroPost(CreateGastroPostDto dto)
         {
+            var likedBy = new List<User>();
             var tagList = new List<GastroTag>();
             foreach (var e in dto.Tags)
             {
-                tagList.Add(await _context.GastroTags.FirstOrDefaultAsync(x => x.Name == e.Name));
+                tagList.Add(await _context.GastroTags.SingleOrDefaultAsync(x => x.Name == e.Name));
             }
             var postDto = new GastroPost()
             {
@@ -328,6 +340,7 @@ namespace wBialy.Services
                 Day = dto.Day,
                 Link = dto.Link,
                 Tags = tagList,
+                LikedBy = likedBy
             };
             var userId = _userContextService.GetUserId;
             postDto.UserId = userId;
@@ -338,10 +351,11 @@ namespace wBialy.Services
         }
         public async Task<int> CreateEventPost(CreateEventPostDto dto)
         {
+            var likedBy = new List<User>();
             var tagList = new List<EventTag>();
             foreach (var e in dto.Tags)
             {
-                tagList.Add(await _context.EventTags.FirstOrDefaultAsync(x => x.Name == e.Name));
+                tagList.Add(await _context.EventTags.SingleOrDefaultAsync(x => x.Name == e.Name));
             }
             var postDto = new EventPost()
             {
@@ -353,6 +367,7 @@ namespace wBialy.Services
                 EventDate = DateTime.Parse(dto.EventDate),
                 Link = dto.Link,
                 Tags = tagList,
+                LikedBy = likedBy
             };
             var userId = _userContextService.GetUserId;
             postDto.UserId = userId;
@@ -366,7 +381,7 @@ namespace wBialy.Services
             _logger.LogWarning($"Post with id: {id} DELETE action invoked");
             var post = await _context
                 .Posts
-                .FirstOrDefaultAsync(x => x.PostId == id);
+                .SingleOrDefaultAsync(x => x.PostId == id);
             if (post is null)
             {
                 throw new NotFoundException("Post not found");
@@ -385,7 +400,7 @@ namespace wBialy.Services
             _logger.LogWarning($"Post with id: {id} DELETE action invoked");
             var post = await _context
                 .Posts
-                .FirstOrDefaultAsync(x => x.PostId == id);
+                .SingleOrDefaultAsync(x => x.PostId == id);
             if (post is null)
             {
                 throw new NotFoundException("Post not found");
@@ -399,7 +414,7 @@ namespace wBialy.Services
             var postToUpdate = await _context
                 .LFPosts
                 .Include(x => x.Tags)
-                .FirstOrDefaultAsync(x => x.PostId == id);
+                .SingleOrDefaultAsync(x => x.PostId == id);
             if (postToUpdate is null)
             {
                 throw new NotFoundException("Post not found");
@@ -413,7 +428,7 @@ namespace wBialy.Services
             postToUpdate.Tags.Clear();
             foreach (var e in editPostDto.Tags)
             {
-                postToUpdate.Tags.Add(await _context.LFTags.FirstOrDefaultAsync(x => x.Name == e.Name));
+                postToUpdate.Tags.Add(await _context.LFTags.SingleOrDefaultAsync(x => x.Name == e.Name));
             }
             postToUpdate.Title = editPostDto.Title;
             postToUpdate.Description = editPostDto.Description;
@@ -431,7 +446,7 @@ namespace wBialy.Services
             var postToUpdate = await _context
                 .EventPosts
                 .Include(x => x.Tags)
-                .FirstOrDefaultAsync(x => x.PostId == id);
+                .SingleOrDefaultAsync(x => x.PostId == id);
             if (postToUpdate is null)
             {
                 throw new NotFoundException("Post not found");
@@ -445,7 +460,7 @@ namespace wBialy.Services
             postToUpdate.Tags.Clear();
             foreach (var e in editPostDto.Tags)
             {
-                postToUpdate.Tags.Add(await _context.EventTags.FirstOrDefaultAsync(x => x.Name == e.Name));
+                postToUpdate.Tags.Add(await _context.EventTags.SingleOrDefaultAsync(x => x.Name == e.Name));
             }
             postToUpdate.Title = editPostDto.Title;
             postToUpdate.Description = editPostDto.Description;
@@ -463,7 +478,7 @@ namespace wBialy.Services
             var postToUpdate = await _context
                 .GastroPosts
                 .Include(x => x.Tags)
-                .FirstOrDefaultAsync(x => x.PostId == id);
+                .SingleOrDefaultAsync(x => x.PostId == id);
             if (postToUpdate is null)
             {
                 throw new NotFoundException("Post not found");
@@ -477,7 +492,7 @@ namespace wBialy.Services
             postToUpdate.Tags.Clear();
             foreach (var e in editPostDto.Tags)
             {
-                postToUpdate.Tags.Add(await _context.GastroTags.FirstOrDefaultAsync(x => x.Name == e.Name));
+                postToUpdate.Tags.Add(await _context.GastroTags.SingleOrDefaultAsync(x => x.Name == e.Name));
             }
             postToUpdate.Title = editPostDto.Title;
             postToUpdate.Description = editPostDto.Description;
@@ -492,7 +507,7 @@ namespace wBialy.Services
         }
         public async Task<PostDto> GetByIdToConfirm(int id)
         {
-            var post = await _context.Posts.FirstOrDefaultAsync(x => x.PostId == id && x.Confirmed == false);
+            var post = await _context.Posts.SingleOrDefaultAsync(x => x.PostId == id && x.Confirmed == false);
             if (post is null)
                 throw new NotFoundException("Post not found");
             var result = _mapper.Map<PostDto>(post);
@@ -511,7 +526,7 @@ namespace wBialy.Services
         {
             var postToConfirm = await _context
                 .Posts
-                .FirstOrDefaultAsync(x => x.PostId == id && x.Confirmed == false);
+                .SingleOrDefaultAsync(x => x.PostId == id && x.Confirmed == false);
             if (postToConfirm is null)
             {
                 throw new NotFoundException("Post not found");
@@ -581,6 +596,50 @@ namespace wBialy.Services
             }
             var postsDto = _mapper.Map<List<PostDto>>(posts);
             return await Task.FromResult(postsDto);
+        }
+        public async Task LikePost(int id)
+        {
+            var userId = _userContextService.GetUserId;
+            var user = await _context.Users.Include(x => x.LikedPosts).SingleOrDefaultAsync(x => x.UserId == userId);
+            if (user == null)
+            {
+                throw new NotFoundException("User not found");
+            }
+            var postTolike = await _context.Posts.Include(x => x.LikedBy).SingleOrDefaultAsync(x => x.PostId == id && x.Confirmed == true);
+            if (postTolike is null)
+            {
+                throw new NotFoundException("Post not found");
+            }
+            if (postTolike.LikedBy.Contains(user))
+            {
+                postTolike.LikedBy.Remove(user);
+                postTolike.LikeCount--;
+            } else
+            {
+                postTolike.LikedBy.Add(user);
+                postTolike.LikeCount++;
+            }
+            _context.Update(postTolike);
+            await _context.SaveChangesAsync();
+        }
+        private async Task<bool> DidUserLikedPost(int postId)
+        {
+            var userId = _userContextService.GetUserId;
+            if(userId is null)
+            {
+                throw new NotFoundException("User not found");
+            }
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userId);
+            if(user == null)
+            {
+                throw new NotFoundException("User not found");
+            }
+            var post = await _context.Posts.Include(x => x.LikedBy).SingleOrDefaultAsync(x => x.PostId == postId);
+            if(post == null)
+            {
+                throw new NotFoundException("Post not found");
+            }
+            return await Task.FromResult(post.LikedBy.Contains(user));
         }
     }
 }

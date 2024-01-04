@@ -40,10 +40,11 @@ namespace wBialy.Services
             {
                 Email = dto.Email,
                 VerificationToken = CreateRandomToken(),
-            };
+                LikedPosts = new List<Post>()
+        };
             var hashedPassword = _passwordHasher.HashPassword(newUser, dto.Password);
             newUser.PasswordHash = hashedPassword;
-            newUser.Role = await _context.Roles.FirstOrDefaultAsync(x => x.Name == "Unconfirmed");
+            newUser.Role = await _context.Roles.SingleOrDefaultAsync(x => x.Name == "Unconfirmed");
             await _context.Users.AddAsync(newUser);
             await _context.SaveChangesAsync();
             await _emailSenderService.SendEmailAsync(dto.Email, "Confirm your email", "http://wbialyamogus-001-site1.atempurl.com/api/account/verifyemail/"+$"{newUser.VerificationToken}");
@@ -52,7 +53,7 @@ namespace wBialy.Services
         {
             var user = await _context.Users
                 .Include(x => x.Role)
-                .FirstOrDefaultAsync(x => x.Email == dto.Email && x.Role.Name != "Unconfirmed");
+                .SingleOrDefaultAsync(x => x.Email == dto.Email && x.Role.Name != "Unconfirmed");
             if (user is null)
             {
                 throw new BadRequestException("Invalid username or password or email not confirmed");
@@ -87,7 +88,7 @@ namespace wBialy.Services
         public async Task<bool> RecogniseAdmin()
         {
             var userId = _userContextService.GetUserId;
-            var userAsAdmin = await _context.Users.FirstOrDefaultAsync(x => x.Role.Name == "Admin" && x.UserId == userId);
+            var userAsAdmin = await _context.Users.SingleOrDefaultAsync(x => x.Role.Name == "Admin" && x.UserId == userId);
             if (userAsAdmin is not null)
             {
                 return await Task.FromResult(true);
@@ -100,12 +101,12 @@ namespace wBialy.Services
         }
         public async Task<bool> VerifyEmail(string token)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => token == x.VerificationToken && x.Role.Name == "Unconfirmed");
+            var user = await _context.Users.SingleOrDefaultAsync(x => token == x.VerificationToken && x.Role.Name == "Unconfirmed");
             if(user is null)
             {
                 return await Task.FromResult(false);
             }
-            user.Role = await _context.Roles.FirstOrDefaultAsync(x => x.Name == "User");
+            user.Role = await _context.Roles.SingleOrDefaultAsync(x => x.Name == "User");
             _context.Update(user);
             await _context.SaveChangesAsync();
             return await Task.FromResult(true);
