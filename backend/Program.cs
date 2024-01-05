@@ -24,8 +24,11 @@ builder.Logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
 builder.Host.UseNLog();
 
 var authenticationSetting = new AuthenticationSettings();
+var emailSenderSetting = new EmailSenderSettings();
 builder.Configuration.GetSection("Authentication").Bind(authenticationSetting);
+builder.Configuration.GetSection("EmailSender").Bind(emailSenderSetting);
 builder.Services.AddSingleton(authenticationSetting);
+builder.Services.AddSingleton(emailSenderSetting);
 builder.Services.AddAuthentication(option =>
 {
     option.DefaultAuthenticateScheme = "Bearer";
@@ -64,6 +67,7 @@ builder.Services.AddScoped<IValidator<CreateGastroPostDto>, CreateGastroPostDtoV
 builder.Services.AddScoped<IValidator<LFTagDto>, LFTagDtoValidator>();
 builder.Services.AddScoped<IValidator<EventTagDto>, EventTagDtoValidator>();
 builder.Services.AddScoped<IValidator<GastroTagDto>, GastroTagDtoValidator>();
+builder.Services.AddScoped<IValidator<ResetPasswordDto>, ResetPasswordDtoValidator>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IAccountService, AccountService>();
 builder.Services.AddTransient<IEmailSenderService, EmailSenderService>();

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("wBialyPerformanceTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b125ab663e5cae149e2b0f55bedd2989a988b1e4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
 [assembly: System.Reflection.AssemblyProductAttribute("wBialyPerformanceTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("wBialyPerformanceTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -40,6 +40,7 @@ namespace wBialy.Services
         Task<IEnumerable<PostDto>> GetAllUserGastroPosts();
         Task DeleteAsAdmin(int id);
         Task LikePost(int id);
+        Task<IEnumerable<PostDto>> GetAllUserLikedPosts();
     }
 
     public class PostService : IPostService
@@ -640,6 +641,27 @@ namespace wBialy.Services
                 throw new NotFoundException("Post not found");
             }
             return await Task.FromResult(post.LikedBy.Contains(user));
+        }
+        public async Task<IEnumerable<PostDto>> GetAllUserLikedPosts()
+        {
+            var userId = _userContextService.GetUserId;
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserId == userId);
+            if(user == null)
+            {
+                throw new NotFoundException("User not found");
+            }
+
+            List<Post> baseQuery = await _context
+                    .Posts
+                    .Include(x => x.LikedBy)
+                    .Where(x => x.LikedBy.Contains(user))
+                    .ToListAsync();
+            var postDtos = _mapper.Map<List<PostDto>>(baseQuery);
+            foreach(var post in postDtos)
+            {
+                post.isLiked = true;
+            }
+            return await Task.FromResult(postDtos);
         }
     }
 }

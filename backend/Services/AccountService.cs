@@ -17,6 +17,8 @@ namespace wBialy.Services
         Task RegisterUser(RegisterUserDto dto);
         Task<bool> RecogniseAdmin();
         Task<bool> VerifyEmail(string token);
+        Task ForgotPassword(string email);
+        Task ResetPassword(ResetPasswordDto resetPasswordDto);
     }
 
     public class AccountService : IAccountService
@@ -41,7 +43,7 @@ namespace wBialy.Services
                 Email = dto.Email,
                 VerificationToken = CreateRandomToken(),
                 LikedPosts = new List<Post>()
-        };
+            };
             var hashedPassword = _passwordHasher.HashPassword(newUser, dto.Password);
             newUser.PasswordHash = hashedPassword;
             newUser.Role = await _context.Roles.SingleOrDefaultAsync(x => x.Name == "Unconfirmed");
@@ -110,6 +112,38 @@ namespace wBialy.Services
             _context.Update(user);
             await _context.SaveChangesAsync();
             return await Task.FromResult(true);
+        }
+        public async Task ForgotPassword(string email)
+        {
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
+            if(user is null)
+            {
+                throw new NotFoundException("User not found");
+            }
+            var code = CreateRandomToken();
+            while(await _context.Users.AnyAsync(x => x.PasswordResetToken == code))
+            {
+                code = CreateRandomToken();
+            }
+            user.PasswordResetToken = code;
+            user.ResetPasswordTimeExpires = DateTime.Now.AddHours(3);
+            _context.Update(user);
+            await _context.SaveChangesAsync();
+            await _emailSenderService.SendEmailAsync(email, "Your code to reset password", "Here's your code to reset password: \n" + $"{code}");
+        }
+        public async Task ResetPassword(ResetPasswordDto resetPasswordDto)
+        {
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.PasswordResetToken == resetPasswordDto.ResetToken && x.ResetPasswordTimeExpires > DateTime.Now);
+            if(user == null)
+            {
+                throw new NotFoundException("Invalid or expired token");
+            }
+            var newPasswordHash = _passwordHasher.HashPassword(user, resetPasswordDto.Password);
+            user.PasswordHash = newPasswordHash;
+            user.PasswordResetToken = null;
+            user.ResetPasswordTimeExpires = null;
+            _context.Update(user);
+            await _context.SaveChangesAsync();
         }
     }
 }

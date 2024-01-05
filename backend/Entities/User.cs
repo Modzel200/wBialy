@@ -7,6 +7,8 @@
         public string Email { get; set; }
         public string PasswordHash { get; set; }
         public string VerificationToken { get; set; }
+        public string? PasswordResetToken { get; set; }
+        public DateTime? ResetPasswordTimeExpires {  get; set; }
         public virtual List<Post> OwnedPosts { get; set; }
         public virtual List<Post> LikedPosts { get; set; }
         public int RoleId { get; set; }

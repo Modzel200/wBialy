@@ -11,17 +11,20 @@ namespace wBialy.Services
 
     public class EmailSenderService : IEmailSenderService
     {
+        private readonly EmailSenderSettings _settings;
+        public EmailSenderService(EmailSenderSettings settings)
+        {
+            _settings = settings;
+        }
         public async Task SendEmailAsync(string email, string subject, string message)
         {
-            var mail = "wBialyUserHelper@outlook.com";
-            var pw = "userhelperpasswordtowbialy12345!";
             var client = new SmtpClient("smtp-mail.outlook.com", 587)
             {
                 EnableSsl = true,
-                Credentials = new NetworkCredential(mail, pw)
+                Credentials = new NetworkCredential(_settings.Email, _settings.Password)
             };
             await client.SendMailAsync(
-                new MailMessage(from: mail,
+                new MailMessage(from: _settings.Email,
                 to: email,
                 subject,
                 message));
