@@ -24,7 +24,7 @@
           >
           <button class="btn-secondary">{{"Dodaj do kalendarza" | translate}}</button>
           <div class="likecount">
-          <button class="btn-heart" *ngIf="isLogged" (click)="toggleLike()" [ngClass]="{'clicked': isLiked}">
+          <button class="btn-heart" [disabled]="!isLogged" (click)="toggleLike()" [ngClass]="{'clicked': isLiked}">
             <fa-icon [icon]="faHeart"></fa-icon>
           </button>
           <p>{{likeCount}}</p>

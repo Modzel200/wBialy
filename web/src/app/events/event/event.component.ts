@@ -40,19 +40,21 @@ export class EventComponent implements OnInit {
   isLiked = false;
   ngOnInit() {
     this.event = this.eventsService.event;
-    this.userPanelService.isAdmin()
-      .subscribe(response => {
-        this.isAdmin = response;
-      })
-    this.userPanelService.isLikedPost(this.event.postId).subscribe(response => {
-      this.tempEvent = response as EventPost;
-      this.isLiked = this.tempEvent.isLiked;
-      this.likeCount = this.event.likeCount;
-    });
+    this.likeCount = this.event.likeCount;
     if (localStorage.getItem("Authorization") != null) {
       this.isLogged = true;
     }
-    console.log(this.event);
+    if (this.isLogged) {
+      this.userPanelService.isAdmin()
+        .subscribe(response => {
+          this.isAdmin = response;
+        })
+      this.userPanelService.isLikedPost(this.event.postId).subscribe(response => {
+        this.tempEvent = response as EventPost;
+        this.isLiked = this.tempEvent.isLiked;
+        console.log(this.tempEvent)
+      });
+    }
   }
 
   toggleLike() {
