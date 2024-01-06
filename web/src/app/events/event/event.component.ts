@@ -5,6 +5,7 @@ import { UserPanelService } from 'src/app/user-panel/service/user-panel.service'
 import { AdminService } from 'src/app/user-panel/admin/service/admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { CustomSnackbarComponent } from 'src/app/custom-snackbar/custom-snackbar.component';
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-event',
@@ -14,6 +15,8 @@ import { CustomSnackbarComponent } from 'src/app/custom-snackbar/custom-snackbar
 export class EventComponent implements OnInit {
   constructor(private eventsService: EventsService, private userPanelService: UserPanelService, private adminService: AdminService, private _snackBar: MatSnackBar) {
   }
+  faHeart = faHeart;
+
   event: EventPost = {
     postId: 0,
     title: '',
@@ -27,14 +30,37 @@ export class EventComponent implements OnInit {
     day: '',
     tags: [],
     link: '',
+    isLiked: false,
+    likeCount: 0
   }
+  tempEvent = this.event;
+  likeCount = 0;
   isAdmin = false;
+  isLogged = false;
+  isLiked = false;
   ngOnInit() {
     this.event = this.eventsService.event;
     this.userPanelService.isAdmin()
       .subscribe(response => {
         this.isAdmin = response;
       })
+    this.userPanelService.isLikedPost(this.event.postId).subscribe(response => {
+      this.tempEvent = response as EventPost;
+      this.isLiked = this.tempEvent.isLiked;
+      this.likeCount = this.event.likeCount;
+    });
+    if (localStorage.getItem("Authorization") != null) {
+      this.isLogged = true;
+    }
+    console.log(this.event);
+  }
+
+  toggleLike() {
+    this.isLiked = !this.isLiked;
+    this.isLiked ? this.likeCount = this.likeCount + 1 : this.likeCount = this.likeCount - 1;
+    this.userPanelService.likePost(this.event.postId).subscribe(response => {
+      console.log(response);
+    });
   }
 
   deletePost(id: number) {

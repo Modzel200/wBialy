@@ -93,8 +93,9 @@
     </mat-drawer>
     <div class="gastro-container">
       <div class="container" *ngFor="let event of events">
-        <a href="{{ event.link }}" target="_blank">
+        
           <div class="card">
+            <a href="{{ event.link }}" target="_blank">
             <img src="{{ event.image }}" style="width: 100%" />
             <h2>{{ event.title }}</h2>
             <p class="date">{{ event.day }}</p>
@@ -102,8 +103,10 @@
               class="opis"
               [innerHTML]="truncateDescription(event.description, 200)"
             ></div>
+            </a>
+            <button class="delete" *ngIf="isAdmin" (click)="deletePost(event.postId)">{{"Usuń post" | translate}}</button>
           </div>
-        </a>
+        
       </div>
     </div>
   </div>

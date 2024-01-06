@@ -1,11 +1,11 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { PostToAdd, Tags } from '../model/user-panel.model';
 import { EventPost } from 'src/app/events/model/event.model';
 import { UserPanelService } from '../service/user-panel.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
-import {EditPostFormComponent} from "../posts-unconfirmed/edit-post-form/edit-post-form.component";
-import {Dialog} from "@angular/cdk/dialog";
+import { EditPostFormComponent } from "../posts-unconfirmed/edit-post-form/edit-post-form.component";
+import { Dialog } from "@angular/cdk/dialog";
 import { EditGastroPostComponent } from '../posts-unconfirmed/edit-gastro-post/edit-gastro-post.component';
 import { EditLfPostComponent } from '../posts-unconfirmed/edit-lf-post/edit-lf-post.component';
 
@@ -14,7 +14,7 @@ import { EditLfPostComponent } from '../posts-unconfirmed/edit-lf-post/edit-lf-p
   templateUrl: './posts-confirmed.component.html',
   styleUrls: ['./posts-confirmed.component.scss']
 })
-export class PostsConfirmedComponent implements OnChanges{
+export class PostsConfirmedComponent implements OnChanges {
   tags: Tags[] = [{
     name: 'pub'
   }
@@ -41,31 +41,25 @@ export class PostsConfirmedComponent implements OnChanges{
       this.router.navigate(['/']);
     }
     this.useFunction();
-    if(localStorage.getItem("DarkMode")=='true')
-    {
+    if (localStorage.getItem("DarkMode") == 'true') {
       this.isDarkMode = true;
     }
-    else
-    {
+    else {
       this.isDarkMode = false;
     }
   }
   ngOnChanges() {
     this.useFunction()
   }
-  useFunction()
-  {
-    if(this.type==="lf")
-    {
+  useFunction() {
+    if (this.type === "lf") {
 
       this.getAllLF();
     }
-    else if(this.type==="gastro")
-    {
+    else if (this.type === "gastro") {
       this.getAllGastro();
     }
-    else
-    {
+    else {
       this.getAllPosts();
     }
   }
@@ -93,23 +87,20 @@ export class PostsConfirmedComponent implements OnChanges{
   editEvent(event: EventPost) {
     const classmode = this.isDarkMode ? 'dark-mode' : '';
     this.userPanelService.event = event;
-    if(this.type==="lf")
-    {
+    if (this.type === "lf") {
 
       const dialogRef = this.dialog.open(EditLfPostComponent, {
         autoFocus: false,
         panelClass: classmode,
       });
     }
-    else if(this.type==="gastro")
-    {
+    else if (this.type === "gastro") {
       const dialogRef = this.dialog.open(EditGastroPostComponent, {
         autoFocus: false,
         panelClass: classmode,
       });
     }
-    else
-    {
+    else {
       const dialogRef = this.dialog.open(EditPostFormComponent, {
         autoFocus: false,
         panelClass: classmode,
@@ -117,29 +108,26 @@ export class PostsConfirmedComponent implements OnChanges{
     }
 
   }
-  getAllGastro()
-  {
+  getAllGastro() {
     console.log("gastro");
     this.userPanelService.getAllGastro()
-      .subscribe(response=>{
+      .subscribe(response => {
         console.log(response);
         this.userEvents = response;
       })
   }
-  getAllLF()
-  {
+  getAllLF() {
     console.log("lf");
     this.userPanelService.getAllLF()
-      .subscribe(response=>{
+      .subscribe(response => {
         console.log(response);
         this.userEvents = response;
       })
   }
-  changeType()
-  {
+  changeType() {
 
   }
-  
+
   truncateDescription(description: string, maxLength: number): string {
     if (description.length <= maxLength) {
       return description;

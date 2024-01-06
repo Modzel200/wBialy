@@ -31,6 +31,8 @@ export class EditPostFormComponent implements OnInit {
     day: '',
     tags: this.tags,
     link: '',
+    isLiked: false,
+    likeCount: 0
   }
 
   newEvent: EventPost = {
@@ -46,6 +48,8 @@ export class EditPostFormComponent implements OnInit {
     day: '',
     tags: this.tags,
     link: '',
+    isLiked: false,
+    likeCount: 0
   }
 
   public Editor = ClassicEditor
@@ -73,6 +77,8 @@ export class EditPostFormComponent implements OnInit {
       day: this.event.day,
       tags: this.event.tags,
       link: this.event.link,
+      isLiked: this.event.isLiked,
+      likeCount: this.event.likeCount
     }
   }
 

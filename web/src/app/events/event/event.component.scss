@@ -70,6 +70,10 @@
     }
 
 
+    .buttons {
+        display: flex;
+        flex-direction: row;
+    }
 
     button {
         width: 200px;
@@ -84,6 +88,31 @@
         &:hover {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transform: translateY(-1px);
+        }
+    }
+
+    .btn-heart {
+        background-color: var(--background-color);
+        width: 50px;
+        margin-left: 1vw;
+        border-color: var(--font-color);
+        color: var(--font-color);
+
+    }
+
+    .btn-heart.clicked {
+        border-color: #eb2f2f;
+        color: #eb2f2f;
+    }
+
+    .likecount {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        p {
+            margin-left: 1vw;
         }
     }
 
@@ -150,6 +179,7 @@
 
         .btn-secondary {
             margin-top: 1vh;
+            margin-bottom: 1vh;
             margin-left: 0;
         }
 

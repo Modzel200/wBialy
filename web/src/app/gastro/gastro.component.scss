@@ -81,7 +81,7 @@ h1 {
 .card {
     display: grid;
     gap: 1vh;
-    grid-template-rows: 1fr 1fr 1fr 4fr;
+    grid-template-rows: 9fr 1fr;
     border-radius: 6px;
     overflow: hidden;
     justify-content: center;
@@ -125,7 +125,7 @@ h1 {
 
 button {
     width: 130px;
-    height: 60px;
+    height: 40px;
     flex-shrink: 0;
     padding: 8px 16px;
     cursor: pointer;
@@ -157,6 +157,14 @@ button {
     background-color: var(--primary-color);
     color: #fff;
 }
+
+.delete {
+    background-color: #fb1818;
+    color: var(--font-color);
+    width: 100%;
+    border: 1px solid #fb1818;
+}
+
 
 .filterDrawer {
     outline: 1px solid var(--primary-color);
