@@ -1,4 +1,4 @@
-export interface EventPost{
+export interface EventPost {
   //public PostId: number;
   postId: number;
   title: string;
@@ -12,7 +12,9 @@ export interface EventPost{
   day: string;
   tags: Tags[]
   link: string;
+  isLiked: boolean;
+  likeCount: number;
 }
-export interface Tags{
+export interface Tags {
   name: string;
 }

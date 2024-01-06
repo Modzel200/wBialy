@@ -34,6 +34,7 @@
           <img src="{{ event.image }}" style="width: 100%" />
           <h2>{{ event.title }}</h2>
           <div [innerHTML]="truncateDescription(event.description, 200)"></div>
+          <button class="delete" *ngIf="isAdmin" (click)="deletePost(event.postId)">{{"Usuń post" | translate}}</button>
         </div>
       </div>
     </div>

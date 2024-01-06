@@ -32,7 +32,7 @@ export class AddEventPostComponent {
     location: '',
     eventDate: '',
     tags: this.tags,
-    link: ''
+    link: '',
   }
   public Editor = ClassicEditor
   public config = {
