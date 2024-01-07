@@ -651,8 +651,8 @@ namespace wBialy.Services
                 throw new NotFoundException("User not found");
             }
 
-            List<Post> baseQuery = await _context
-                    .Posts
+            List<EventPost> baseQuery = await _context
+                    .EventPosts
                     .Include(x => x.LikedBy)
                     .Where(x => x.LikedBy.Contains(user))
                     .ToListAsync();

@@ -115,7 +115,7 @@ namespace wBialy.Services
         }
         public async Task ForgotPassword(string email)
         {
-            var user = await _context.Users.SingleOrDefaultAsync(x => x.Email.ToLower() == email.ToLower());
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.Email.ToLower() == email.ToLower() && (x.ResetPasswordTimeExpires == null || DateTime.Now > x.ResetPasswordTimeExpires));
             if(user is null)
             {
                 throw new NotFoundException("User not found");

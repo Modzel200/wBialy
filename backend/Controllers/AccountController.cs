@@ -49,8 +49,8 @@ namespace wBialy.Controllers
             }
             return await Task.FromResult(NotFound("Couldn't verify email"));
         }
-        [HttpPost("forgotpassword")]
-        public async Task<IActionResult> ForgotPassword([FromBody] string email)
+        [HttpPost("forgotpassword/{email}")]
+        public async Task<IActionResult> ForgotPassword([FromRoute] string email)
         {
             await _accountService.ForgotPassword(email);
             return await Task.FromResult(Ok("Reset code has been sent"));
