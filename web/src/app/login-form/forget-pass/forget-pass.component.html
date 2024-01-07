@@ -1,0 +1,12 @@
+<label for="">{{"Adres email" | translate}}</label>
+<input type="text" placeholder="Email" name="email" [(ngModel)]="email" required>
+<button (click)="sendKey()">Wyślik kod</button>
+<br>
+<label for="">{{"Token" | translate}}</label>
+<input type="text" placeholder="Token" name="token" [(ngModel)]="newPass.ResetToken" required>
+<label for="">{{"Nowe hasło" | translate}}</label>
+<input type="text" placeholder="Hasło" name="haslo" [(ngModel)]="newPass.Password" required>
+<label for="">{{"Powtórz nowe hasło" | translate}}</label>
+<input type="text" placeholder="Hasło" name="confhaslo" [(ngModel)]="newPass.PasswordConfirm" required>
+<br>
+<button (click)="onSubmit()">Potwierdź</button>

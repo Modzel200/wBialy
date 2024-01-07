@@ -46,6 +46,8 @@ import { EditLfPostComponent } from './user-panel/posts-unconfirmed/edit-lf-post
 import { EditGastroPostComponent } from './user-panel/posts-unconfirmed/edit-gastro-post/edit-gastro-post.component';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import { LikedEventsComponent } from './events/liked-events/liked-events.component';
+import { ForgetPassComponent } from './login-form/forget-pass/forget-pass.component';
 
 export function HttpLoaderFactory(http:HttpClient){
   return new TranslateHttpLoader(http);
@@ -60,6 +62,7 @@ const appRoutes: Routes = [
   {path: 'event',component:EventComponent},
   {path: 'gastro',component:GastroComponent},
   {path: 'l&f',component:LostfoundComponent},
+  {path: 'liked', component:LikedEventsComponent},
 ];
 @NgModule({
   declarations: [
@@ -84,7 +87,9 @@ const appRoutes: Routes = [
     CustomSnackbarComponent,
     AdminComponent,
     EditLfPostComponent,
-    EditGastroPostComponent
+    EditGastroPostComponent,
+    LikedEventsComponent,
+    ForgetPassComponent
   ],
     imports: [
         BrowserModule,

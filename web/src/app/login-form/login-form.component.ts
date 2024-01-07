@@ -3,6 +3,9 @@ import { RegisterUser } from "../signup-form/model/signup-form.model";
 import { UserLogin } from "./model/login-form.model";
 import { LoginFormService } from "./service/login-form.service";
 import { Router } from '@angular/router';
+import {EventComponent} from "../events/event/event.component";
+import {MatDialog} from "@angular/material/dialog";
+import {ForgetPassComponent} from "./forget-pass/forget-pass.component";
 
 @Component({
   selector: 'app-login-form',
@@ -14,7 +17,7 @@ export class LoginFormComponent implements OnInit {
     Email: '',
     Password: ''
   }
-  constructor(private loginFormService: LoginFormService, private router: Router) {
+  constructor(private loginFormService: LoginFormService, private router: Router, public dialog: MatDialog) {
   }
   ngOnInit() {
     if (localStorage.getItem("Authorization") != null) {
@@ -32,5 +35,12 @@ export class LoginFormComponent implements OnInit {
       this.errorMessage = "Niepoprawne dane logowania"
     })
 
+  }
+  forgetPassword(){
+    const classmode = localStorage.getItem('DarkMode') === 'true' ? 'dark-mode' : '';
+    const dialogRef = this.dialog.open(ForgetPassComponent, {
+      autoFocus: false,
+      panelClass: classmode
+    });
   }
 }

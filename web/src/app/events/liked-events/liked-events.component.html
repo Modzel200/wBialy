@@ -1,0 +1,85 @@
+<mat-drawer-container
+  class="events"
+  autosize
+  style="background-color: var(--background-color)"
+>
+  <mat-drawer #drawer mode="side" position="end" class="filterDrawer">
+    <h1>{{"Filtruj" | translate}}</h1>
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar
+        [(selected)]="selected"
+        (click)="formatDate()"
+      ></mat-calendar>
+    </mat-card>
+    <br />
+    <p>{{"Wybrana data: " | translate}}{{ selected }}</p>
+    <br />
+    <mat-form-field>
+      <mat-label>{{"Tagi" | translate}}</mat-label>
+      <mat-select
+        [formControl]="toppings"
+        [(value)]="selectedToppings"
+        multiple
+      >
+        <mat-option *ngFor="let tag of allTags" [value]="tag.name">{{
+            tag.name
+          }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>{{"Tagi" | translate}}: {{ selectedToppings }}</p>
+    <mat-form-field>
+      <mat-label>{{"Sortowanie" | translate}}</mat-label>
+      <mat-select
+        [formControl]="sorting"
+        [(value)]="selectedSort">
+        <mat-option [value]="0">{{"Daty rosnąco" | translate}}</mat-option>
+        <mat-option [value]="1">{{"Daty malejąco" | translate}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+    <button
+      type="button"
+      class="btn-primary btn"
+      (click)="drawer.toggle(); sendFilters()"
+    >
+      {{"Filtruj" | translate}}
+    </button>
+    <button type="button" class="btn-secondary btn" (click)="clearTags()">
+      {{"Usuń filtry" | translate}}
+    </button>
+  </mat-drawer>
+  <div class="container" *ngFor="let event of events" id="eventsScroll">
+    <div class="left-side">
+      <img src="{{ event.image }}" alt="" />
+    </div>
+    <div class="right-side">
+      <div>
+        <h1>{{ event.title }}</h1>
+        <h2>{{ event.eventDate }}</h2>
+      </div>
+      <div [innerHTML]="truncateDescription(event.description, 250)"></div>
+      <button class="btn-primary" (click)="showEvent(event)">{{"Dołącz" | translate}}</button>
+    </div>
+  </div>
+  <div class="pagination">
+<!--    <div class="buttons">-->
+<!--      <button-->
+<!--        class="btn-primary btn"-->
+<!--        (click)="backPage()"-->
+<!--        [disabled]="canGoPrev"-->
+<!--      >-->
+<!--        {{"Poprzednia strona" | translate}}-->
+<!--      </button>-->
+<!--      <button-->
+<!--        class="btn-primary btn"-->
+<!--        (click)="nextPage()"-->
+<!--        [disabled]="canGoNext"-->
+<!--      >-->
+<!--        {{"Następna strona" | translate}}-->
+<!--      </button>-->
+<!--    </div>-->
+  </div>
+  <button class="handleFilters" (click)="drawer.toggle()">
+    <fa-icon size="xl" [icon]="faFilter"></fa-icon>
+  </button>
+</mat-drawer-container>
