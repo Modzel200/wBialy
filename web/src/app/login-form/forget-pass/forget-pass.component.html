@@ -1,12 +1,26 @@
+<div class="container">
+<div clas="form">
+    <div class="form-container">
+    <div class="input-end">
 <label for="">{{"Adres email" | translate}}</label>
 <input type="text" placeholder="Email" name="email" [(ngModel)]="email" required>
-<button (click)="sendKey()">Wyślik kod</button>
-<br>
+<button class="btn-secondary" (click)="sendKey()">{{"Wyślij kod" | translate}}</button>
+</div>
+<div class="input-end">
 <label for="">{{"Token" | translate}}</label>
 <input type="text" placeholder="Token" name="token" [(ngModel)]="newPass.ResetToken" required>
+</div>
+<div class="input-end">
 <label for="">{{"Nowe hasło" | translate}}</label>
-<input type="text" placeholder="Hasło" name="haslo" [(ngModel)]="newPass.Password" required>
+<input type="text" placeholder="Password" name="haslo" [(ngModel)]="newPass.Password" required>
+</div>
+<div class="input-end">
 <label for="">{{"Powtórz nowe hasło" | translate}}</label>
-<input type="text" placeholder="Hasło" name="confhaslo" [(ngModel)]="newPass.PasswordConfirm" required>
-<br>
-<button (click)="onSubmit()">Potwierdź</button>
+<input type="text" placeholder="Password" name="confhaslo" [(ngModel)]="newPass.PasswordConfirm" required>
+</div>
+<div class="buttons">
+<button class="btn-primary" (click)="onSubmit()">{{"Potwierdź" | translate}}</button>
+</div>
+</div>
+</div>
+</div>

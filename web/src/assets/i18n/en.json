@@ -96,5 +96,7 @@
   "Zapomniałem hasła": "I forgot my password",
   "Token": "Token",
   "Nowe hasło": "New password",
-  "Powtórz nowe hasło": "Repeat new password"
+  "Powtórz nowe hasło": "Repeat new password",
+  "Potwierdź": "Confirm",
+  "Wyślij kod": "Send code"
 }
