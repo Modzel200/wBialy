@@ -21,7 +21,7 @@ export class FooterComponent {
   }
 
   switchLanguage() {
-    const currentLanguage = this.translate.currentLang;
+    const currentLanguage = localStorage.getItem('language');
     const newLanguage = currentLanguage === 'pl' ? 'en' : 'pl';
     localStorage.setItem('language', newLanguage);
     this.translate.use(newLanguage);

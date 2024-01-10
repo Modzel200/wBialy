@@ -38,6 +38,8 @@ export class EventComponent implements OnInit {
   isAdmin = false;
   isLogged = false;
   isLiked = false;
+  hour = '';
+  date = '';
   ngOnInit() {
     this.event = this.eventsService.event;
     this.likeCount = this.event.likeCount;
@@ -52,7 +54,10 @@ export class EventComponent implements OnInit {
       this.userPanelService.isLikedPost(this.event.postId).subscribe(response => {
         this.tempEvent = response as EventPost;
         this.isLiked = this.tempEvent.isLiked;
-        console.log(this.tempEvent)
+        const [date, time] = this.event.eventDate.split(' ')
+        console.log([date, time])
+        this.date = date;
+        this.hour = time;
       });
     }
   }
