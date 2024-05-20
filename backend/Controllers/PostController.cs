@@ -22,7 +22,7 @@ namespace wBialy.Controllers
         public async Task<ActionResult<IEnumerable<PostDto>>> GetAllLF([FromQuery]PostQuery query)
         {
             var posts = await _postService.GetAllLFPosts(query);
-            return await Task.FromResult(Ok(posts));
+            return Ok(posts);
         }
         [HttpGet("gastroposts")]
         [AllowAnonymous]

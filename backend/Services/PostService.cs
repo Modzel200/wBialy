@@ -131,7 +131,7 @@ namespace wBialy.Services
             var totalItemsCount = baseQuery.Count;
             var postDtos = _mapper.Map<List<PostDto>>(posts);
             var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
-            return await Task.FromResult(result);
+            return result;
         }
 
         //private IQueryable<LFPost> GetAllLFPostsQueryable()
