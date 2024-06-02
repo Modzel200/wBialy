@@ -107,7 +107,7 @@ export class EditPostFormComponent implements OnInit {
   onFileSelected(newEvent: any) {
     this.selectedFile = <File>newEvent.target.files[0]
     imgbbUpload({
-      key: '0044368c0f15bd2f0120f0819f511ee9',
+      key: '',
       image: this.selectedFile,
     })
       .then((data: UploadImgModel) => {

@@ -21,7 +21,7 @@ export class UserPanelService {
   adminUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/account/';
   likeUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/like/';
   isLikedUrl = 'https://wbialyamogus-001-site1.atempurl.com/api/post/';
-  apiKey = '0044368c0f15bd2f0120f0819f511ee9';
+  apiKey = '';
 
   public event: EventPost = {
     postId: 0,

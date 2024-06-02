@@ -126,7 +126,7 @@ const appRoutes: Routes = [
   providers: [DatePipe,{
     provide: Loader,
     useValue: new Loader({
-      apiKey: 'AIzaSyDGzemBUP_vbFaoOS4r_SZFsPGBLjDXF_4',
+      apiKey: '',
       libraries: ['places']
     })
   },
