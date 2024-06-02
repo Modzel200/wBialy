@@ -20,13 +20,13 @@ namespace wBialy.Controllers
         public async Task<ActionResult> RegisterUser([FromBody] RegisterUserDto dto)
         {
             await _accountService.RegisterUser(dto);
-            return await Task.FromResult(Ok());
+            return Ok();
         }
         [HttpPost("login")]
         public async Task<ActionResult> Login([FromBody] LoginDto dto)
         {
             string token = await _accountService.GenerateJwt(dto);
-            return await Task.FromResult(Ok(token));
+            return Ok(token);
         }
         [HttpGet]
         [Authorize]
@@ -35,9 +35,9 @@ namespace wBialy.Controllers
             var result = await _accountService.RecogniseAdmin();
             if (result)
             {
-                return await Task.FromResult(true);
+                return true;
             }
-            return await Task.FromResult(false);
+            return false;
         }
         [HttpGet("verifyemail/{token}")]
         public async Task<IActionResult> VerifyEmail([FromRoute]string token)
@@ -45,21 +45,21 @@ namespace wBialy.Controllers
             var result = await _accountService.VerifyEmail(token);
             if (result)
             {
-                return await Task.FromResult(Ok("Email verification completed"));
+                return Ok("Email verification completed");
             }
-            return await Task.FromResult(NotFound("Couldn't verify email"));
+            return NotFound("Couldn't verify email");
         }
         [HttpPost("forgotpassword/{email}")]
         public async Task<IActionResult> ForgotPassword([FromRoute] string email)
         {
             await _accountService.ForgotPassword(email);
-            return await Task.FromResult(Ok("Reset code has been sent"));
+            return Ok("Reset code has been sent");
         }
         [HttpPost("resetpassword")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPasswordDto)
         {
             await _accountService.ResetPassword(resetPasswordDto);
-            return await Task.FromResult(Ok("Password has been reseted"));
+            return Ok("Password has been reseted");
         }
     }
 }

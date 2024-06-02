@@ -85,7 +85,7 @@ namespace wBialy.Services
                 signingCredentials: cred);
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            return await Task.FromResult(tokenHandler.WriteToken(token));
+            return tokenHandler.WriteToken(token);
         }
         public async Task<bool> RecogniseAdmin()
         {
@@ -93,9 +93,9 @@ namespace wBialy.Services
             var userAsAdmin = await _context.Users.SingleOrDefaultAsync(x => x.Role.Name == "Admin" && x.UserId == userId);
             if (userAsAdmin is not null)
             {
-                return await Task.FromResult(true);
+                return true;
             }
-            return await Task.FromResult(false);
+            return false;
         }
         private string CreateRandomToken()
         {
@@ -106,12 +106,12 @@ namespace wBialy.Services
             var user = await _context.Users.SingleOrDefaultAsync(x => token == x.VerificationToken && x.Role.Name == "Unconfirmed");
             if(user is null)
             {
-                return await Task.FromResult(false);
+                return false;
             }
             user.Role = await _context.Roles.SingleOrDefaultAsync(x => x.Name == "User");
             _context.Update(user);
             await _context.SaveChangesAsync();
-            return await Task.FromResult(true);
+            return true;
         }
         public async Task ForgotPassword(string email)
         {

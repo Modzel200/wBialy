@@ -73,7 +73,7 @@ namespace wBialy.Services
                 result.isLiked = false;
             }
             
-            return await Task.FromResult(result);
+            return result;
         }
         public async Task<PageResult<PostDto>> GetAllLFPosts(PostQuery query)
         {
@@ -236,7 +236,7 @@ namespace wBialy.Services
             var totalItemsCount = baseQuery.Count;
             var postDtos = _mapper.Map<List<PostDto>>(posts);
             var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
-            return await Task.FromResult(result);
+            return result;
         }
         public async Task<PageResult<PostDto>> GetAllGastroPosts(PostQuery query)
         {
@@ -294,7 +294,7 @@ namespace wBialy.Services
             var totalItemsCount = baseQuery.Count;
             var postDtos = _mapper.Map<List<PostDto>>(posts);
             var result = new PageResult<PostDto>(postDtos, totalItemsCount, query.PageSize, query.PageNumber);
-            return await Task.FromResult(result);
+            return result;
         }
 
         public async Task<int> CreateLFPost(CreateLFPostDto dto)
@@ -321,7 +321,7 @@ namespace wBialy.Services
             await _context.AddAsync(postDto);
             postDto.AddDate = DateTime.Now;
             await _context.SaveChangesAsync();
-            return await Task.FromResult(postDto.PostId);
+            return postDto.PostId;
         }
         public async Task<int> CreateGastroPost(CreateGastroPostDto dto)
         {
@@ -348,7 +348,7 @@ namespace wBialy.Services
             await _context.AddAsync(postDto);
             postDto.AddDate = DateTime.Now;
             await _context.SaveChangesAsync();
-            return await Task.FromResult(postDto.PostId);
+            return postDto.PostId;
         }
         public async Task<int> CreateEventPost(CreateEventPostDto dto)
         {
@@ -375,7 +375,7 @@ namespace wBialy.Services
             await _context.AddAsync(postDto);
             postDto.AddDate = DateTime.Now;
             await _context.SaveChangesAsync();
-            return await Task.FromResult(postDto.PostId);
+            return postDto.PostId;
         }
         public async Task Delete(int id)
         {
@@ -512,7 +512,7 @@ namespace wBialy.Services
             if (post is null)
                 throw new NotFoundException("Post not found");
             var result = _mapper.Map<PostDto>(post);
-            return await Task.FromResult(result);
+            return result;
         }
         public async Task<IEnumerable<PostDto>> GetAllToConfirm()
         {
@@ -521,7 +521,7 @@ namespace wBialy.Services
                     .Where(x => x.Confirmed == false)
                     .ToListAsync();
             var postDtos = _mapper.Map<List<PostDto>>(baseQuery);
-            return await Task.FromResult(postDtos);
+            return postDtos;
         }
         public async Task Confirm(int id)
         {
@@ -541,7 +541,7 @@ namespace wBialy.Services
                 .GastroTags
                 .ToListAsync();
             var tagsDto = _mapper.Map<List<GastroTagDto>>(tags);
-            return await Task.FromResult(tagsDto);
+            return tagsDto;
         }
         public async Task<IEnumerable<EventTagDto>> GetAllEventTags()
         {
@@ -549,7 +549,7 @@ namespace wBialy.Services
                 .EventTags
                 .ToListAsync();
             var tagsDto = _mapper.Map<List<EventTagDto>>(tags);
-            return await Task.FromResult(tagsDto);
+            return tagsDto;
         }
         public async Task<IEnumerable<LFTagDto>> GetAllLFTags()
         {
@@ -557,7 +557,7 @@ namespace wBialy.Services
                 .LFTags
                 .ToListAsync();
             var tagsDto = _mapper.Map<List<LFTagDto>>(tags);
-            return await Task.FromResult(tagsDto);
+            return tagsDto;
         }
         public async Task<IEnumerable<PostDto>> GetAllUserLFPosts()
         {
@@ -570,7 +570,7 @@ namespace wBialy.Services
                 throw new NotFoundException("Not found");
             }
             var postsDto = _mapper.Map<List<PostDto>>(posts);
-            return await Task.FromResult(postsDto);
+            return postsDto;
         }
         public async Task<IEnumerable<PostDto>> GetAllUserEventPosts()
         {
@@ -583,7 +583,7 @@ namespace wBialy.Services
                 throw new NotFoundException("Not found");
             }
             var postsDto = _mapper.Map<List<PostDto>>(posts);
-            return await Task.FromResult(postsDto);
+            return postsDto;
         }
         public async Task<IEnumerable<PostDto>> GetAllUserGastroPosts()
         {
@@ -596,7 +596,7 @@ namespace wBialy.Services
                 throw new NotFoundException("Not found");
             }
             var postsDto = _mapper.Map<List<PostDto>>(posts);
-            return await Task.FromResult(postsDto);
+            return postsDto;
         }
         public async Task LikePost(int id)
         {
@@ -640,7 +640,7 @@ namespace wBialy.Services
             {
                 throw new NotFoundException("Post not found");
             }
-            return await Task.FromResult(post.LikedBy.Contains(user));
+            return post.LikedBy.Contains(user);
         }
         public async Task<IEnumerable<PostDto>> GetAllUserLikedPosts()
         {
@@ -661,7 +661,7 @@ namespace wBialy.Services
             {
                 post.isLiked = true;
             }
-            return await Task.FromResult(postDtos);
+            return postDtos;
         }
     }
 }
